@@ -34,7 +34,7 @@ export const MainScreen = observer(() => {
   });
 
   return (
-    <Flex direction={"column"} gap={12} pb={16}>
+    <Flex direction={"column"} gap={12} pb={48}>
       <div>
         <ListHeader
           text={t("my_decks")}
