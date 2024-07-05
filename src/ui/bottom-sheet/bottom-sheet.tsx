@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { theme } from "../theme.tsx";
 import { css } from "@emotion/css";
@@ -21,6 +21,18 @@ type Props = {
 
 export const BottomSheet = (props: Props) => {
   const { isOpen, onClose, children } = props;
+
+  // Disable backdrop scroll
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
