@@ -8,6 +8,7 @@ import { ListStory } from "./list-story.tsx";
 import { ListStoryMultipleIcons } from "./list-story-multiple-icons.tsx";
 import { RadioListStory } from "./radio-list-story.tsx";
 import { BottomSheetStory } from "./bottom-sheet-story.tsx";
+import { AiSpeechPreview } from "../shared/feature-preview/ai-speech-preview.tsx";
 
 export type Component = {
   name: string;
@@ -79,5 +80,9 @@ export const components: Array<Component> = [
   {
     name: BottomSheetStory.name,
     component: <BottomSheetStory />,
+  },
+  {
+    name: "AISpeech",
+    component: <AiSpeechPreview isOpen={true} onClose={() => {}} />,
   },
 ];

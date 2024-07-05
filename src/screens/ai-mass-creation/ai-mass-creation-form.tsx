@@ -13,7 +13,7 @@ import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
-import { HowMassCreationWorksBottomSheet } from "./how-mass-creation-works-bottom-sheet.tsx";
+import { MassCreationPreview } from "../shared/feature-preview/mass-creation-preview.tsx";
 
 export const AiMassCreationForm = observer(() => {
   const store = useAiMassCreationStore();
@@ -82,7 +82,12 @@ export const AiMassCreationForm = observer(() => {
         <Input field={promptForm.examplePrompt} />
       </Label>
 
-      <HowMassCreationWorksBottomSheet />
+      <MassCreationPreview
+        isOpen={store.screen.value === "how"}
+        onClose={() => {
+          store.screen.onChange(null);
+        }}
+      />
     </Screen>
   );
 });

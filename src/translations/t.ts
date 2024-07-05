@@ -44,6 +44,7 @@ const en = {
   decks: "Decks",
   edit_folder: "Edit folder",
   add_folder: "Add folder",
+  more_features: "More",
   add_deck_to_folder: "Add deck to the folder",
   no_decks_to_add: "No more decks to add",
   show_all_decks: "Show all",
@@ -260,8 +261,18 @@ const en = {
   payment_success: "Payment is successful. Enjoy additional features 😊",
   confirm_cancel: "Cancel",
   confirm_ok: "Confirm",
+
+  upgrade_pro: "Upgrade to Pro",
+
   payment_failed:
     "Payment failed. We're aware of the issue and working on it. Please contact support via Settings > Support.",
+
+  ai_speech_preview_instead: "Instead of robotic voice like this",
+  ai_speech_preview_get: "Get high-quality voice like this",
+  ai_speech_supports: "It supports all the popular languages",
+
+  ai_card_input_mode_supports: "It supports different languages",
+
   ai_speech_title: "AI speech",
   ai_speech_empty: "No AI speech generated. Choose the card side below.",
   ai_speech_type: "Or type the needed text",
@@ -272,6 +283,12 @@ const en = {
 type Translation = typeof en;
 
 const ru: Translation = {
+  ai_card_input_mode_supports: "Поддерживаются разные языки",
+  upgrade_pro: "Получить Pro",
+  ai_speech_preview_instead: "Вместо роботизированного голоса, как здесь",
+  ai_speech_preview_get: "Получите качественный голос, как здесь",
+  ai_speech_supports: "Поддерживаются все популярные языки",
+  more_features: "Ещё",
   login: "Войти",
   youtube_channel: "YouTube канал",
   card_input_mode_changed: "Режим ввода карточки изменен",
@@ -538,6 +555,12 @@ const ru: Translation = {
 };
 
 const es: Translation = {
+  ai_card_input_mode_supports: "Soporta diferentes idiomas",
+  upgrade_pro: "Obtener Pro",
+  ai_speech_preview_instead: "En lugar de voz robótica como esta",
+  ai_speech_preview_get: "Obtén una voz de alta calidad como esta",
+  ai_speech_supports: "Soporta todos los idiomas populares",
+  more_features: "Más",
   login: "Iniciar sesión",
   youtube_channel: "Canal de YouTube",
   card_input_mode_changed: "Modo de entrada de tarjeta cambiado",
@@ -807,6 +830,12 @@ const es: Translation = {
 };
 
 const ptBr: Translation = {
+  ai_card_input_mode_supports: "Suporta diferentes idiomas",
+  upgrade_pro: "Obter Pro",
+  ai_speech_preview_instead: "Em vez de voz robótica como esta",
+  ai_speech_preview_get: "Obtenha uma voz de alta qualidade como esta",
+  ai_speech_supports: "Suporta todos os idiomas populares",
+  more_features: "Mais",
   login: "Entrar",
   youtube_channel: "Canal do YouTube",
   card_input_mode_changed: "Modo de entrada de cartão alterado",
@@ -1054,6 +1083,7 @@ const ptBr: Translation = {
   ai_cards_validation_key_required: "A chave da API é obrigatória",
   quit_without_saving: "Sair sem salvar?",
   understood: "Entendi",
+
   ai_cards_generate: "Gerar cartões",
   ai_cards_no_previous_prompts: "Nenhuma solicitação anterior",
   ai_cards_api_keys_update: "Atualizar chave",

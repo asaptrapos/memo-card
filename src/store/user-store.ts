@@ -8,7 +8,7 @@ import { canUseAiMassGenerate } from "../../shared/access/can-use-ai-mass-genera
 import { RequestStore } from "../lib/mobx-request/request-store.ts";
 import { activePlanesRequest } from "../api/api.ts";
 import { reportHandledError } from "../lib/rollbar/rollbar.tsx";
-import { formatPaidUntil } from "../screens/plans/format-paid-until.tsx";
+import { formatPaidUntil } from "../screens/pro/format-paid-until.tsx";
 import { assert } from "../../shared/typescript/assert.ts";
 
 export class UserStore {
@@ -73,7 +73,7 @@ export class UserStore {
     if (plans.status === "success") {
       this.plans = plans.data.plans;
     } else {
-      reportHandledError("Error fetching active plans", plans.error, {
+      reportHandledError("Error fetching active pro", plans.error, {
         userId: this.myId,
       });
     }

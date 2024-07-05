@@ -8,10 +8,15 @@ import { TextField } from "mobx-form-lite";
 import { type PlanDuration } from "../../../../shared/pro/calc-plan-price-for-duration.ts";
 import { assert } from "../../../../shared/typescript/assert.ts";
 
+import { suitableCardInputModeStore } from "../../../store/suitable-card-input-mode-store.ts";
+
+export type PreviewItem = "individual_ai_card" | "bulk_ai_cards" | "ai_speech";
+
 export class PlansScreenStore {
   plansRequest = new RequestStore(allPlansRequest);
   createOrderRequest = new RequestStore(starsOrderPlanRequest);
   selectedPlanDuration = new TextField<PlanDuration | null>(null);
+  selectedPreviewPlanFeature?: PreviewItem;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
@@ -19,6 +24,7 @@ export class PlansScreenStore {
 
   load() {
     this.plansRequest.execute();
+    suitableCardInputModeStore.load();
   }
 
   get plans() {
@@ -65,5 +71,16 @@ export class PlansScreenStore {
     }
 
     platform.openInvoiceLink(result.data.payLink);
+  }
+
+  previewPlanFeature(previewItem: PreviewItem | undefined) {
+    if (previewItem === undefined) {
+      return;
+    }
+    this.selectedPreviewPlanFeature = previewItem;
+  }
+
+  quitPreviewPlanFeature() {
+    this.selectedPreviewPlanFeature = undefined;
   }
 }

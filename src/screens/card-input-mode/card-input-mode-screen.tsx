@@ -11,11 +11,7 @@ import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { t } from "../../translations/t.ts";
 import { DeckFormStore } from "../deck-form/deck-form/store/deck-form-store.ts";
 import { css } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
-import { BottomSheet } from "../../ui/bottom-sheet/bottom-sheet.tsx";
-import { Flex } from "../../ui/flex.tsx";
-import { CardSidePreview } from "./card-side-preview.tsx";
-import { BottomSheetTitle } from "../../ui/bottom-sheet/bottom-sheet-title.tsx";
+import { IndividualCardAiPreview } from "../shared/feature-preview/individual-card-ai-preview.tsx";
 
 type Props = { deckFormStore: DeckFormStore };
 
@@ -79,58 +75,13 @@ export const CardInputModeScreen = observer((props: Props) => {
         />
       ) : null}
 
-      <BottomSheet
+      <IndividualCardAiPreview
         isOpen={!!store.viewModeId.value}
         onClose={() => {
           store.viewModeId.onChange(null);
         }}
-      >
-        {(() => {
-          const viewMode = store.viewMode;
-          if (!viewMode) {
-            return null;
-          }
-
-          return (
-            <Flex direction={"column"} alignItems={"center"} pb={24}>
-              <BottomSheetTitle
-                title={viewMode.title}
-                onClose={() => {
-                  store.viewModeId.onChange(null);
-                }}
-              />
-              <div className={css({ width: 250 })}>
-                <Flex pb={16} justifyContent={"center"}>
-                  {t("card_input_mode_type")}
-                </Flex>
-                <div
-                  className={css({
-                    padding: "12px 10px",
-                    borderRadius: theme.borderRadius,
-                    boxSizing: "border-box",
-                    width: "100%",
-                    backgroundColor: theme.secondaryBgColor,
-                  })}
-                >
-                  {viewMode.preview_front}
-                </div>
-
-                <Flex pt={16} pb={16} justifyContent={"center"}>
-                  {t("card_input_mode_get")}
-                </Flex>
-
-                <Flex gap={8} direction={"column"}>
-                  <CardSidePreview
-                    front={viewMode.preview_front}
-                    back={viewMode.preview_back}
-                    example={viewMode.preview_example}
-                  />
-                </Flex>
-              </div>
-            </Flex>
-          );
-        })()}
-      </BottomSheet>
+        viewMode={store.viewMode}
+      />
     </Screen>
   );
 });

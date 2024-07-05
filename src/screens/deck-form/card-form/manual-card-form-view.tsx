@@ -21,17 +21,22 @@ import { formatCardType } from "./format-card-type.ts";
 import { formTouchAll, isFormValid } from "mobx-form-lite";
 import { ButtonSideAligned } from "../../../ui/button-side-aligned.tsx";
 import { ButtonGrid } from "../../../ui/button-grid.tsx";
-import { boolNarrow } from "../../../lib/typescript/bool-narrow.ts";
 import { CardAnswerErrors } from "./card-answer-errors.tsx";
 import { css } from "@emotion/css";
 import { screenStore } from "../../../store/screen-store.ts";
 import { assert } from "../../../../shared/typescript/assert.ts";
+import { useState } from "react";
+import { AiSpeechPreview } from "../../shared/feature-preview/ai-speech-preview.tsx";
+import { WithProIcon } from "../../shared/with-pro-icon.tsx";
+
+type PreviewType = "ai_speech";
 
 type Props = { cardFormStore: CardFormStoreInterface };
 
 export const ManualCardFormView = observer((props: Props) => {
   const { cardFormStore } = props;
   const { cardForm, markCardAsRemoved } = cardFormStore;
+  const [previewType, setPreviewType] = useState<PreviewType | null>(null);
   assert(cardForm, "Card should not be empty before editing");
 
   useMainButton(t("save"), () => {
@@ -118,28 +123,34 @@ export const ManualCardFormView = observer((props: Props) => {
                 cardFormStore.cardInnerScreen.onChange("cardType");
               },
             },
-            userStore.canUseAiMassGenerate
-              ? {
-                  icon: (
-                    <FilledIcon
-                      backgroundColor={theme.icons.turquoise}
-                      icon={"mdi-account-voice"}
-                    />
-                  ),
-                  text: t("ai_speech_title"),
-                  onClick: () => {
-                    if (!isFormValid(cardForm)) {
-                      formTouchAll(cardForm);
-                      return;
-                    }
-                    cardFormStore.cardInnerScreen.onChange("aiSpeech");
-                  },
-                  right: cardForm.options.value?.voice ? (
-                    <ListRightText text={t("yes")} />
-                  ) : undefined,
+            {
+              icon: (
+                <FilledIcon
+                  backgroundColor={theme.icons.turquoise}
+                  icon={"mdi-account-voice"}
+                />
+              ),
+              text: t("ai_speech_title"),
+              onClick: () => {
+                if (userStore.isPaid) {
+                  if (!isFormValid(cardForm)) {
+                    formTouchAll(cardForm);
+                    return;
+                  }
+                  cardFormStore.cardInnerScreen.onChange("aiSpeech");
+                } else {
+                  setPreviewType("ai_speech");
                 }
-              : undefined,
-          ].filter(boolNarrow)}
+              },
+              right: (
+                <WithProIcon>
+                  {cardForm.options.value?.voice ? (
+                    <ListRightText text={t("yes")} />
+                  ) : undefined}
+                </WithProIcon>
+              ),
+            },
+          ]}
         />
         {cardFormStore.cardForm ? (
           <CardAnswerErrors cardForm={cardFormStore.cardForm} />
@@ -191,6 +202,14 @@ export const ManualCardFormView = observer((props: Props) => {
           )}
         </ButtonGrid>
       </div>
+
+      <AiSpeechPreview
+        showUpgrade
+        onClose={() => {
+          setPreviewType(null);
+        }}
+        isOpen={previewType === "ai_speech"}
+      />
     </Screen>
   );
 });

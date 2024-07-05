@@ -22,6 +22,7 @@ import { Flex } from "../../ui/flex.tsx";
 import { List } from "../../ui/list.tsx";
 import { CardsToReview } from "../../ui/cards-to-review.tsx";
 import { BrowserBackButton } from "../shared/browser-platform/browser-back-button.tsx";
+import { MoreFeaturesButton } from "../shared/feature-preview/more-features-button.tsx";
 
 export const FolderPreview = observer(() => {
   const reviewStore = useReviewStore();
@@ -200,6 +201,8 @@ export const FolderPreview = observer(() => {
               {t("delete")}
             </ButtonSideAligned>
           )}
+
+          <MoreFeaturesButton />
         </ButtonGrid>
       </div>
       <Flex pt={6} direction={"column"} gap={8}>

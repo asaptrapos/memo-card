@@ -269,7 +269,7 @@ describe("deck list store", () => {
     `);
   });
 
-  test("waits for the plans to load after wallet payment", async () => {
+  test("waits for the pro to load after wallet payment", async () => {
     const store = new DeckListStore();
     store.loadFirstTime(StartParamType.WalletPaymentSuccessful);
 

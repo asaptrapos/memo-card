@@ -20,6 +20,7 @@ import { userStore } from "../../store/user-store.ts";
 import { redirectUserToDeckOrFolderLink } from "../share-deck/redirect-user-to-deck-or-folder-link.tsx";
 import { Flex } from "../../ui/flex.tsx";
 import { BrowserBackButton } from "../shared/browser-platform/browser-back-button.tsx";
+import { MoreFeaturesButton } from "../shared/feature-preview/more-features-button.tsx";
 
 export const DeckPreview = observer(() => {
   const reviewStore = useReviewStore();
@@ -189,6 +190,8 @@ export const DeckPreview = observer(() => {
               {t("delete")}
             </ButtonSideAligned>
           ) : null}
+
+          <MoreFeaturesButton />
         </ButtonGrid>
       </div>
       {deck.cardsToReview.length === 0 && (

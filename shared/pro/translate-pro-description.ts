@@ -28,9 +28,13 @@ export const translateProDescription = (
     case "en": {
       return [
         {
-          title: "Up to 1000 cards per month using AI",
+          title: "AI-powered individual cards",
+          description: "Generate flashcards with AI translation for any word",
+        },
+        {
+          title: "Bulk AI card generation",
           description:
-            "Simplify your life by generating cards instead of manually typing",
+            "Create entire decks instantly by providing a topic to AI",
         },
         {
           title: "High quality AI speech generation",
@@ -45,18 +49,19 @@ export const translateProDescription = (
           title: "One time links",
           description: "Share your decks and folders with one time links",
         },
-        {
-          title: "Specify access duration",
-          description: "Control how long your decks and folders are accessible",
-        },
       ];
     }
     case "ru": {
       return [
         {
-          title: "1000 ИИ карточек в месяц",
+          title: "ChatGPT карточки",
           description:
-            "Упростите свою жизнь, генерируя карточки вместо ввода вручную",
+            "Генерация карточек с переводом и примером для любого слова благодаря ИИ",
+        },
+        {
+          title: "Массовая генерация карточек",
+          description:
+            "Создавайте целые колоды на определённую тему с помощью ИИ",
         },
         {
           title: "ИИ озвучка карточек",
@@ -70,19 +75,19 @@ export const translateProDescription = (
           title: "Одноразовые ссылки",
           description: "Делитесь колодами и папками через одноразовые ссылки",
         },
-        {
-          title: "Длительность доступа",
-          description:
-            "Контролируйте, как долго ваши колоды и папки будут доступны другим пользователям",
-        },
       ];
     }
     case "es": {
       return [
         {
-          title: "Hasta 1000 tarjetas al mes usando IA",
+          title: "Tarjetas individuales con IA",
           description:
-            "Simplifica tu vida generando tarjetas en lugar de escribir manualmente",
+            "Genera tarjetas con traducción y ejemplos para cualquier palabra",
+        },
+        {
+          title: "Generación masiva de tarjetas con IA",
+          description:
+            "Crea barajas enteras al instante proporcionando un tema a la IA",
         },
         {
           title: "Generación de voz IA de alta calidad",
@@ -98,19 +103,19 @@ export const translateProDescription = (
           description:
             "Comparte tus barajas y carpetas con enlaces de un solo uso",
         },
-        {
-          title: "Especificar duración de acceso",
-          description:
-            "Controla cuánto tiempo tus barajas y carpetas son accesibles",
-        },
       ];
     }
     case "pt-br": {
       return [
         {
-          title: "Até 1000 cartões por mês usando IA",
+          title: "Cartões individuais com IA",
           description:
-            "Simplifique sua vida gerando cartões em vez de digitar manualmente",
+            "Gere cartões com tradução e exemplos para qualquer palavra",
+        },
+        {
+          title: "Geração em massa de cartões com IA",
+          description:
+            "Crie baralhos inteiros instantaneamente fornecendo um tópico para a IA",
         },
         {
           title: "Geração de voz IA de alta qualidade",
@@ -125,11 +130,6 @@ export const translateProDescription = (
           title: "Links de uso único",
           description:
             "Compartilhe seus baralhos e pastas com links de uso único",
-        },
-        {
-          title: "Especificar duração do acesso",
-          description:
-            "Controle por quanto tempo seus baralhos e pastas são acessíveis",
         },
       ];
     }

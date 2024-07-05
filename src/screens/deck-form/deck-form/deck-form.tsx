@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { css, cx } from "@emotion/css";
 import { Label } from "../../../ui/label.tsx";
 import { Input } from "../../../ui/input.tsx";
-import React from "react";
+import React, { useState } from "react";
 import { useMainButton } from "../../../lib/platform/use-main-button.ts";
 import { useDeckFormStore } from "./store/deck-form-store-context.tsx";
 import { screenStore } from "../../../store/screen-store.ts";
@@ -26,15 +26,24 @@ import { boolNarrow } from "../../../lib/typescript/bool-narrow.ts";
 import { isFormValid } from "mobx-form-lite";
 import { userStore } from "../../../store/user-store.ts";
 import { assert } from "../../../../shared/typescript/assert.ts";
+import { WithProIcon } from "../../shared/with-pro-icon.tsx";
+import { IndividualCardAiPreview } from "../../shared/feature-preview/individual-card-ai-preview.tsx";
+import { MassCreationPreview } from "../../shared/feature-preview/mass-creation-preview.tsx";
+import { suitableCardInputModeStore } from "../../../store/suitable-card-input-mode-store.ts";
+
+type PreviewType = "bulk_ai_cards" | "individual_ai_card";
 
 export const DeckForm = observer(() => {
   const deckFormStore = useDeckFormStore();
   const screen = screenStore.screen;
+  const [previewType, setPreviewType] = useState<PreviewType | null>(null);
   assert(screen.type === "deckForm");
 
   useMount(() => {
     deckFormStore.loadForm();
+    suitableCardInputModeStore.load();
   });
+
   useMainButton(t("save"), () => {
     deckFormStore.onDeckSave();
   });
@@ -139,46 +148,53 @@ export const DeckForm = observer(() => {
                   />
                 ),
               },
-              userStore.canUseAiMassGenerate
-                ? {
-                    text: t("ai_cards_title"),
-                    icon: (
-                      <FilledIcon
-                        backgroundColor={theme.icons.turquoise}
-                        icon={"mdi-robot"}
-                      />
-                    ),
-                    onClick: () => {
-                      if (
-                        !deckFormStore.deckForm ||
-                        !isFormValid(deckFormStore.deckForm)
-                      ) {
-                        return;
-                      }
-                      const deckId = deckFormStore.deckForm.id;
-                      assert(deckId, "Deck id should be defined");
-                      screenStore.go({
-                        type: "aiMassCreation",
-                        deckId: deckId,
-                        deckTitle: deckFormStore.deckForm.title.value,
-                      });
-                    },
+              {
+                text: t("ai_cards_title"),
+                icon: (
+                  <FilledIcon
+                    backgroundColor={theme.icons.turquoise}
+                    icon={"mdi-robot"}
+                  />
+                ),
+                onClick: () => {
+                  if (!userStore.isPaid) {
+                    setPreviewType("bulk_ai_cards");
+                    return;
                   }
-                : undefined,
-              userStore.canUseAiMassGenerate
-                ? {
-                    text: t("card_input_mode_screen"),
-                    icon: (
-                      <FilledIcon
-                        backgroundColor={theme.icons.sea}
-                        icon={"mdi-keyboard"}
-                      />
-                    ),
-                    onClick: () => {
-                      deckFormStore.goCardInputMode();
-                    },
+
+                  if (
+                    !deckFormStore.deckForm ||
+                    !isFormValid(deckFormStore.deckForm)
+                  ) {
+                    return;
                   }
-                : undefined,
+                  const deckId = deckFormStore.deckForm.id;
+                  assert(deckId, "Deck id should be defined");
+                  screenStore.go({
+                    type: "aiMassCreation",
+                    deckId: deckId,
+                    deckTitle: deckFormStore.deckForm.title.value,
+                  });
+                },
+                right: <WithProIcon />,
+              },
+              {
+                text: t("card_input_mode_screen"),
+                icon: (
+                  <FilledIcon
+                    backgroundColor={theme.icons.sea}
+                    icon={"mdi-keyboard"}
+                  />
+                ),
+                onClick: () => {
+                  if (!userStore.isPaid) {
+                    setPreviewType("individual_ai_card");
+                    return;
+                  }
+                  deckFormStore.goCardInputMode();
+                },
+                right: <WithProIcon />,
+              },
               userStore.canUpdateCatalogSettings
                 ? {
                     text: "Catalog",
@@ -226,6 +242,19 @@ export const DeckForm = observer(() => {
           {t("deck_preview")}
         </CenteredUnstyledButton>
       ) : null}
+
+      <IndividualCardAiPreview
+        showUpgrade
+        viewMode={suitableCardInputModeStore.viewMode}
+        isOpen={previewType === "individual_ai_card"}
+        onClose={() => setPreviewType(null)}
+      />
+
+      <MassCreationPreview
+        showUpgrade
+        onClose={() => setPreviewType(null)}
+        isOpen={previewType === "bulk_ai_cards"}
+      />
     </Screen>
   );
 });

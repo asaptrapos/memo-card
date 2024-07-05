@@ -30,7 +30,7 @@ import {
   ShareDeckScreenLazy,
   ShareFolderScreenLazy,
 } from "./share-deck/share-deck-screen-lazy.tsx";
-import { PlansScreen } from "./plans/plans-screen.tsx";
+import { PlansScreen } from "./pro/plans-screen.tsx";
 import { FreezeCardsScreenLazy } from "./freeze-cards/freeze-cards-screen-lazy.tsx";
 import { AiMassCreationScreen } from "./ai-mass-creation/ai-mass-creation-screen.tsx";
 import { AiMassCreationStoreProvider } from "./ai-mass-creation/store/ai-mass-creation-store-provider.tsx";

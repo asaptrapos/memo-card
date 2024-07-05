@@ -8,14 +8,14 @@ import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { Hint } from "../../ui/hint.tsx";
 import { useMount } from "../../lib/react/use-mount.ts";
 import { FullScreenLoader } from "../../ui/full-screen-loader.tsx";
-import { PlansScreenStore } from "./store/plans-screen-store.ts";
+import { PlansScreenStore, PreviewItem } from "./store/plans-screen-store.ts";
 import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { userStore } from "../../store/user-store.ts";
 import { ExternalLink } from "../../ui/external-link.tsx";
 import { t, translator } from "../../translations/t.ts";
 import { formatPaidUntil } from "./format-paid-until.tsx";
 import { RadioList } from "../../ui/radio-list/radio-list.tsx";
-import { css } from "@emotion/css";
+import { css, cx } from "@emotion/css";
 import { theme } from "../../ui/theme.tsx";
 import {
   calcPlanPriceForDuration,
@@ -32,16 +32,34 @@ import { translateProDescription } from "../../../shared/pro/translate-pro-descr
 import { formatDiscount } from "../../../shared/pro/format-discount.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
 import { links } from "../../../shared/links/links.ts";
+import { MassCreationPreview } from "../shared/feature-preview/mass-creation-preview.tsx";
+import { IndividualCardAiPreview } from "../shared/feature-preview/individual-card-ai-preview.tsx";
+import { AiSpeechPreview } from "../shared/feature-preview/ai-speech-preview.tsx";
+
+import { suitableCardInputModeStore } from "../../store/suitable-card-input-mode-store.ts";
 
 const planItems: Array<{
   iconText: string;
   iconColor: string;
+  previewItem?: PreviewItem;
 }> = [
-  { iconColor: theme.icons.pink, iconText: "mdi-robot" },
-  { iconColor: theme.icons.violet, iconText: "mdi-account-voice" },
-  { iconColor: theme.icons.blue, iconText: "mdi-content-copy" },
-  { iconColor: theme.icons.turquoise, iconText: "mdi-link-variant" },
-  { iconColor: theme.icons.sea, iconText: "mdi-clock-time-ten" },
+  {
+    iconColor: theme.icons.pink,
+    iconText: "mdi-robot",
+    previewItem: "individual_ai_card",
+  },
+  {
+    iconColor: theme.icons.violet,
+    iconText: "mdi-flash",
+    previewItem: "bulk_ai_cards",
+  },
+  {
+    iconColor: theme.icons.blue,
+    iconText: "mdi-account-voice",
+    previewItem: "ai_speech",
+  },
+  { iconColor: theme.icons.turquoise, iconText: "mdi-content-copy" },
+  { iconColor: theme.icons.sea, iconText: "mdi-link-variant" },
 ];
 
 export const PlansScreen = observer(() => {
@@ -145,6 +163,9 @@ export const PlansScreen = observer(() => {
         <Label text={t("payment_included")} fullWidth>
           <List
             items={planItems.map((item, i) => ({
+              onClick: () => {
+                store.previewPlanFeature(item.previewItem);
+              },
               icon: (
                 <FilledIcon
                   backgroundColor={item.iconColor}
@@ -165,6 +186,16 @@ export const PlansScreen = observer(() => {
                   </div>
                 </Flex>
               ),
+              right: item.previewItem ? (
+                <div className={css({ color: theme.hintColor })}>
+                  <i
+                    className={cx(
+                      "mdi mdi-chevron-right",
+                      css({ color: "currentColor" }),
+                    )}
+                  />
+                </div>
+              ) : undefined,
             }))}
           />
         </Label>
@@ -180,6 +211,22 @@ export const PlansScreen = observer(() => {
           </Hint>
         </div>
       </Flex>
+
+      <IndividualCardAiPreview
+        isOpen={store.selectedPreviewPlanFeature === "individual_ai_card"}
+        onClose={store.quitPreviewPlanFeature}
+        viewMode={suitableCardInputModeStore.viewMode}
+      />
+
+      <MassCreationPreview
+        onClose={store.quitPreviewPlanFeature}
+        isOpen={store.selectedPreviewPlanFeature === "bulk_ai_cards"}
+      />
+
+      <AiSpeechPreview
+        isOpen={store.selectedPreviewPlanFeature === "ai_speech"}
+        onClose={store.quitPreviewPlanFeature}
+      />
     </Screen>
   );
 });
