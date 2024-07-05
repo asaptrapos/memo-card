@@ -37,6 +37,7 @@ import { IndividualCardAiPreview } from "../shared/feature-preview/individual-ca
 import { AiSpeechPreview } from "../shared/feature-preview/ai-speech-preview.tsx";
 
 import { suitableCardInputModeStore } from "../../store/suitable-card-input-mode-store.ts";
+import { sharedProTitle } from "../../../shared/pro/shared-pro-title.ts";
 
 const planItems: Array<{
   iconText: string;
@@ -90,7 +91,7 @@ export const PlansScreen = observer(() => {
   const planDescription = translateProDescription(translator.getLang());
 
   return (
-    <Screen title={t("payment_page_title")}>
+    <Screen title={sharedProTitle}>
       <Flex
         direction={"column"}
         alignItems={"center"}
@@ -115,6 +116,46 @@ export const PlansScreen = observer(() => {
             </Hint>
           </div>
         ) : null}
+
+        <Label text={t("payment_included")} fullWidth>
+          <List
+            items={planItems.map((item, i) => ({
+              onClick: () => {
+                store.previewPlanFeature(item.previewItem);
+              },
+              icon: (
+                <FilledIcon
+                  backgroundColor={item.iconColor}
+                  icon={item.iconText}
+                />
+              ),
+              text: (
+                <Flex direction={"column"}>
+                  <div>{planDescription[i].title}</div>
+                  <div
+                    className={css({
+                      fontSize: 14,
+                      color: theme.hintColor,
+                      paddingRight: 4,
+                    })}
+                  >
+                    {planDescription[i].description}
+                  </div>
+                </Flex>
+              ),
+              right: item.previewItem ? (
+                <div className={css({ color: theme.hintColor })}>
+                  <i
+                    className={cx(
+                      "mdi mdi-chevron-right",
+                      css({ color: "currentColor" }),
+                    )}
+                  />
+                </div>
+              ) : undefined,
+            }))}
+          />
+        </Label>
 
         <Label fullWidth text={t("payment_choose_duration")}>
           <RadioList<PlanDuration | null>
@@ -159,45 +200,6 @@ export const PlansScreen = observer(() => {
               };
             })}
             onChange={store.selectedPlanDuration.onChange}
-          />
-        </Label>
-        <Label text={t("payment_included")} fullWidth>
-          <List
-            items={planItems.map((item, i) => ({
-              onClick: () => {
-                store.previewPlanFeature(item.previewItem);
-              },
-              icon: (
-                <FilledIcon
-                  backgroundColor={item.iconColor}
-                  icon={item.iconText}
-                />
-              ),
-              text: (
-                <Flex direction={"column"}>
-                  <div>{planDescription[i].title}</div>
-                  <div
-                    className={css({
-                      fontSize: 14,
-                      color: theme.hintColor,
-                      paddingRight: 4,
-                    })}
-                  >
-                    {planDescription[i].description}
-                  </div>
-                </Flex>
-              ),
-              right: item.previewItem ? (
-                <div className={css({ color: theme.hintColor })}>
-                  <i
-                    className={cx(
-                      "mdi mdi-chevron-right",
-                      css({ color: "currentColor" }),
-                    )}
-                  />
-                </div>
-              ) : undefined,
-            }))}
           />
         </Label>
 
