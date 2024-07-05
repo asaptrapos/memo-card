@@ -23,6 +23,7 @@ import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 import { userStore } from "../../store/user-store.ts";
 import { formatPaidUntil } from "../plans/format-paid-until.tsx";
+import { ProIcon } from "../../ui/pro-icon.tsx";
 
 export const timeRanges = generateTimeRange();
 
@@ -52,12 +53,7 @@ export const UserSettingsScreen = observer(() => {
         <List
           items={[
             {
-              icon: (
-                <FilledIcon
-                  backgroundColor={theme.icons.sea}
-                  icon={"mdi-star"}
-                />
-              ),
+              icon: <ProIcon />,
               text: "Pro",
               onClick: () => {
                 screenStore.go({ type: "plans" });
@@ -104,7 +100,7 @@ export const UserSettingsScreen = observer(() => {
             {
               icon: (
                 <FilledIcon
-                  backgroundColor={theme.icons.violet}
+                  backgroundColor={theme.icons.sea}
                   icon={"mdi-bell"}
                 />
               ),
@@ -127,7 +123,7 @@ export const UserSettingsScreen = observer(() => {
               ? {
                   icon: (
                     <FilledIcon
-                      backgroundColor={theme.icons.blue}
+                      backgroundColor={theme.icons.green}
                       icon={"mdi-clock-time-five-outline"}
                     />
                   ),
@@ -194,7 +190,7 @@ export const UserSettingsScreen = observer(() => {
             {
               icon: (
                 <FilledIcon
-                  backgroundColor={theme.icons.green}
+                  backgroundColor={theme.icons.violet}
                   icon={"mdi-face-agent"}
                 />
               ),
@@ -208,7 +204,7 @@ export const UserSettingsScreen = observer(() => {
             {
               icon: (
                 <FilledIcon
-                  backgroundColor={theme.icons.sea}
+                  backgroundColor={theme.icons.blue}
                   icon={"mdi-shield-account"}
                 />
               ),
@@ -223,7 +219,7 @@ export const UserSettingsScreen = observer(() => {
               ? {
                   icon: (
                     <FilledIcon
-                      backgroundColor={theme.orange}
+                      backgroundColor={theme.icons.turquoise}
                       icon={"mdi-email-edit"}
                     />
                   ),
