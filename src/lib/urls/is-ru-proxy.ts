@@ -1,3 +1,5 @@
+import { links } from "../../../shared/links/links.ts";
+
 export const isRuProxy = () => {
-  return window.location.host === import.meta.env.VITE_RU_PROXY_HOST;
+  return window.location.host === links.appBrowserRuProxyHost;
 };

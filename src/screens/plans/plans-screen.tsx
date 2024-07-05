@@ -31,6 +31,7 @@ import { formatStarsPrice } from "../../../shared/pro/format-price.ts";
 import { translateProDescription } from "../../../shared/pro/translate-pro-description.ts";
 import { formatDiscount } from "../../../shared/pro/format-discount.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
+import { links } from "../../../shared/links/links.ts";
 
 const planItems: Array<{
   iconText: string;
@@ -171,11 +172,9 @@ export const PlansScreen = observer(() => {
         <div className={css({ width: "100%" })}>
           <Hint>
             {t("payment_tos_and_pp_agree")}
-            <ExternalLink href={"/terms-of-service.html"}>
-              {t("payment_tos")}
-            </ExternalLink>
+            <ExternalLink href={links.tosPath}>{t("payment_tos")}</ExternalLink>
             {t("payment_and")}
-            <ExternalLink href={"/privacy-policy.html"}>
+            <ExternalLink href={links.privacyPolicyPath}>
               {t("payment_pp")}
             </ExternalLink>
           </Hint>

@@ -15,7 +15,7 @@ import { range } from "../../lib/array/range.ts";
 import { reset } from "../../ui/reset.ts";
 import { ViewMoreDecksToggle } from "./view-more-decks-toggle.tsx";
 import { t } from "../../translations/t.ts";
-import { links } from "../shared/links.ts";
+import { links } from "../../../shared/links/links.ts";
 import { tapScale } from "../../lib/animations/tap-scale.ts";
 import { Flex } from "../../ui/flex.tsx";
 import { List } from "../../ui/list.tsx";

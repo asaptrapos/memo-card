@@ -1,5 +1,6 @@
 import React from "react";
 import { platform } from "../../../lib/platform/platform.ts";
+import { links } from "../../../../shared/links/links.ts";
 
 export const YouTubeIcon = () => {
   return (
@@ -18,8 +19,8 @@ export const getYouTubeChannelLink = () => {
   const language = platform.getLanguage();
   switch (language) {
     case "ru":
-      return "https://www.youtube.com/@MemoCardRu";
+      return links.youtubeChannelRu;
     default:
-      return "https://www.youtube.com/@MemoCardBot";
+      return links.youtubeChannelEn;
   }
 };

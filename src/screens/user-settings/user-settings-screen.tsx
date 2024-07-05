@@ -15,7 +15,7 @@ import { screenStore } from "../../store/screen-store.ts";
 import { HintTransparent } from "../../ui/hint-transparent.tsx";
 import { t } from "../../translations/t.ts";
 import { Screen } from "../shared/screen.tsx";
-import { links } from "../shared/links.ts";
+import { links } from "../../../shared/links/links.ts";
 import { List } from "../../ui/list.tsx";
 import { FilledIcon } from "../../ui/filled-icon.tsx";
 import { boolNarrow } from "../../lib/typescript/bool-narrow.ts";
@@ -204,6 +204,21 @@ export const UserSettingsScreen = observer(() => {
               },
               isLinkColor: true,
             },
+
+            {
+              icon: (
+                <FilledIcon
+                  backgroundColor={theme.icons.sea}
+                  icon={"mdi-shield-account"}
+                />
+              ),
+              text: t("payment_pp"),
+              onClick: () => {
+                platform.openExternalLink(links.privacyPolicyPath);
+              },
+              isLinkColor: true,
+            },
+
             platform instanceof BrowserPlatform
               ? {
                   icon: (
