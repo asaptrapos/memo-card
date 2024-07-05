@@ -70,6 +70,7 @@ export const PlansScreen = observer(() => {
 
   useMount(() => {
     store.load();
+    suitableCardInputModeStore.load();
   });
 
   useMainButton(

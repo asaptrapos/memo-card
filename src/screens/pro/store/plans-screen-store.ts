@@ -8,8 +8,6 @@ import { TextField } from "mobx-form-lite";
 import { type PlanDuration } from "../../../../shared/pro/calc-plan-price-for-duration.ts";
 import { assert } from "../../../../shared/typescript/assert.ts";
 
-import { suitableCardInputModeStore } from "../../../store/suitable-card-input-mode-store.ts";
-
 export type PreviewItem = "individual_ai_card" | "bulk_ai_cards" | "ai_speech";
 
 export class PlansScreenStore {
@@ -24,7 +22,6 @@ export class PlansScreenStore {
 
   load() {
     this.plansRequest.execute();
-    suitableCardInputModeStore.load();
   }
 
   get plans() {

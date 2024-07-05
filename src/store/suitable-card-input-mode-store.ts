@@ -3,7 +3,6 @@ import { makeAutoObservable } from "mobx";
 import { CardInputModeDb } from "../../functions/db/card-input-mode/schema.ts";
 import { Language } from "../translations/t.ts";
 import { platform } from "../lib/platform/platform.ts";
-import { userStore } from "./user-store.ts";
 
 export class SuitableCardInputModeStore {
   cardInputModesRequest = createCachedCardInputModesRequest();
@@ -13,9 +12,6 @@ export class SuitableCardInputModeStore {
   }
 
   load() {
-    if (userStore.isPaid) {
-      return;
-    }
     this.cardInputModesRequest.execute();
   }
 
