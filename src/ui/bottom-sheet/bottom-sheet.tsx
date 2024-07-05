@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { theme } from "../theme.tsx";
 import { css } from "@emotion/css";
+import { platform } from "../../lib/platform/platform.ts";
+import { TelegramPlatform } from "../../lib/platform/telegram/telegram-platform.ts";
 
 const variants = {
   open: { y: 0 },
@@ -25,6 +27,9 @@ export const BottomSheet = (props: Props) => {
   // Disable backdrop scroll
   useEffect(() => {
     if (isOpen) {
+      if (platform instanceof TelegramPlatform && platform.isIos()) {
+        window.scrollTo(0, 0);
+      }
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
