@@ -29,6 +29,7 @@ export const BottomSheet = (props: Props) => {
     if (isOpen) {
       if (platform instanceof TelegramPlatform && platform.isIos()) {
         window.scrollTo(0, 0);
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
       }
       document.body.style.overflow = "hidden";
     } else {
