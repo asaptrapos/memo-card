@@ -1,7 +1,8 @@
 <p align="center">
 <img width="600" alt="Screenshot 2023-10-13 at 19 41 35" src="https://github.com/kubk/memo-card/assets/22447849/7f754776-3e57-4669-becc-410e1b285199"></p>
+
 <p align="center">
-  Available in: <a href="./README.md">English</a>, <a href="./README.ru.md">Русский</a>, <a href="./README.ua.md">Українська</a>
+  Readme: <a href="./README.md">English</a>, <a href="./README.ru.md">Русский</a>, <a href="./README.ua.md">Українська</a>, <a href="./README.pr-br.md">Português</a>
 </p>
 
 Люди забывают информацию. В течение часа до 60% новой информации может быть утеряно, к концу недели сохранится лишь около 10%. Однако регулярное повторение информации поможет справиться с этой проблемой. Этот бот использует проверенный метод карточек для помощи пользователям в усвоении языков, истории и многого другого.
@@ -26,58 +27,3 @@
 - Для дополнительных функций в Anki пользователи должны устанавливать плагины, которые ограничены только настольной версией. Однако бот Memo Card доступен на Mac, Windows, iOS, Android и веб-версиях Telegram.
 - У Anki нет автоматических push-уведомлений для предупреждения пользователей о предстоящих обзорах. Это легко решить с помощью push-уведомлений в Telegram.
 
-## Для разработчиков
-
-Этот проект состоит из двух приложений: фронтенда и бекенда, оба написаны на TypeScript. Бекенд создан с использованием функций Cloudflare.
-
-### Почему Cloudflare
-
-Cloudflare Pages — хороший выбор для создания мини-приложения Telegram.
-- Доменные имена для фронтенда и бекенда с включенным SSL.
-- Автоматический CI/CD; простой `git push` разворачивает как фронтенд, так и бекенд.
-- 100 000 бесплатных запросов в день.
-- UI для [логов функций](https://developers.cloudflare.com/pages/platform/functions/debugging-and-logging/) для каждой функции.
-
-### Локальный запуск
-- Получите свой API-ключ у [BotFather](https://core.telegram.org/bots/tutorial).
-- Установите зависимости, используя `npm i`.
-- Скопируйте файл c переменными окружения для API: `cp .dev.vars.example .dev.vars`. Этот файл использует Cloudflare Workers для локальной разработки. Подробнее об этом вы можете узнать [здесь](https://developers.cloudflare.com/workers/configuration/environment-variables/).
-- Обновите переменную среды `BOT_TOKEN`, чтобы она соответствовала вашему API-ключу.
-- Запустите функции Cloudflare командой `npm run dev:api:start`.
-- Запустите фронтенд-проект командой `npm run dev:frontend:start`.
-- Чтобы сделать ваши фронтенд и API доступными в интернет и предоставить SSL, вы можете использовать [ngrok](https://ngrok.com). После регистрации вы получите 1 бесплатный стабильный домен. Получите его [здесь](https://dashboard.ngrok.com/cloud-edge/domains) и запустите `ngrok http --domain=<your_domain>.ngrok-free.app 5173`.
-- Сообщите BotFather об обновлении настроек: перейдите в Настройки бота -> Кнопка меню -> Изменить URL кнопки меню и введите полученный ранее домен.
-
-После выполнения этих шагов достаточно выполнить команды `npm run dev:api:start`, `npm run dev:frontend:start` и `ngrok`, чтобы запустить локальную версию бота.
-
-### Деплой
-Для деплоя достаточно выполнить `git push` как только вы подключите ваш репозиторий к панели Cloudflare. Перейдите в [Cloudflare Dashboard](https://dash.cloudflare.com/) -> Workers & Pages -> Overview -> выберите вкладку Pages -> нажмите Connect to Git.
-
-В панели Cloudflare добавьте переменные окружения `BOT_TOKEN`, `SUPABASE_KEY`,
-`SUPABASE_URL`.
-
-### База данных
-Проект использует [supabase](https://supabase.com/) в качестве основного хранилища данных. Это облачная реляционная база данных с UI и JavaScript-клиентом для общения по API. Под капотом используется PostgreSQL, а значит можно использовать все его возможности. 
-
-Последовательность шагов:
-- Регистрация в [supabase.com](https://supabase.com/dashboard/sign-in)
-- Добавление проекта
-- Скопировать `SUPABASE_KEY`, `SUPABASE_URL` из настроек проекта
-- Для локальной разработки вставить `SUPABASE_KEY` и `SUPABASE_URL` в `.dev.vars`
-- Для продакшн вставить переменные окружения в Cloudflare dashboard.
-
-Для знакомства с supabase рекомендуется прочитать [официальное руководство](https://supabase.com/docs/guides/database).
-
-### Валидация Telegram
-
-Данные, полученные через Mini App, [должны проверяться](https://core.telegram.org/bots/webapps#testing-mini-apps) для предотвращения несанкционированного доступа.
-В этом приложении реализация основана на [Web Crypto API](https://developers.cloudflare.com/workers/runtime-apis/web-crypto/). Cloudflare Workers работают в уникальной среде, которая не является ни браузером в привычном понимании, ни традиционной серверной средой, как Node.js. Функции работают в сети Cloudflare, и их среда выполнения напоминает Service Worker веб-браузера. Именно поэтому мы должны использовать Web Crypto API для проверки данных, полученных через Mini App. В этом приложении данные пользователя [передаются через заголовки HTTP](https://github.com/kubk/memo-card/blob/main/src/lib/request/request.ts#L17) и [проверяются](https://github.com/kubk/memo-card/blob/main/functions/lib/telegram/validate-telegram-request.ts#L26) при каждом API-запросе.
-
-### Telegram webhook
-
-Чтобы бот отвечал на сообщения пользователей в чате, настройте веб-хук:
-
-- Dev: `curl "https://api.telegram.org/bot<DEV_BOT_TOKEN>/setWebhook?url=<ngrok_domain>/api/bot?token=DEV_BOT_TOKEN"`
-- Prod: `curl "https://api.telegram.org/bot<PROD_BOT_TOKEN>/setWebhook?url=<prod_domain>/bot?token=PROD_BOT_TOKEN"`
- 
-Обратите внимание, что для продакшена используется `/bot?token=`, тогда как для разработки - `/api/bot?token=` из-за прокси-сервера, настроенного для разработки через конфигурацию Vite.
