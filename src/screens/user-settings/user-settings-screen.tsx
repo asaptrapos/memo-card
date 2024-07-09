@@ -24,6 +24,8 @@ import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts"
 import { userStore } from "../../store/user-store.ts";
 import { formatPaidUntil } from "../pro/format-paid-until.tsx";
 import { ProIcon } from "../../ui/pro-icon.tsx";
+import { copyToClipboard } from "../../lib/copy-to-clipboard/copy-to-clipboard.ts";
+import { showAlert } from "../../lib/platform/show-alert.ts";
 
 export const timeRanges = generateTimeRange();
 
@@ -229,7 +231,14 @@ export const UserSettingsScreen = observer(() => {
                     </a>
                   </span>
                 ) : (
-                  links.supportEmail
+                  <span
+                    onClick={() => {
+                      copyToClipboard(links.supportEmail);
+                      showAlert(t("share_link_copied"));
+                    }}
+                  >
+                    {links.supportEmail}
+                  </span>
                 ),
             },
           ]}
