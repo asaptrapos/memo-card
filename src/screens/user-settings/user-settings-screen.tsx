@@ -214,25 +214,25 @@ export const UserSettingsScreen = observer(() => {
               },
               isLinkColor: true,
             },
-
-            platform instanceof BrowserPlatform
-              ? {
-                  icon: (
-                    <FilledIcon
-                      backgroundColor={theme.icons.turquoise}
-                      icon={"mdi-email-edit"}
-                    />
-                  ),
-                  text: (
-                    <span>
-                      <a href={`mailto:${links.supportEmail}`}>
-                        {links.supportEmail}
-                      </a>
-                    </span>
-                  ),
-                }
-              : undefined,
-          ].filter(boolNarrow)}
+            {
+              icon: (
+                <FilledIcon
+                  backgroundColor={theme.icons.turquoise}
+                  icon={"mdi-email-edit"}
+                />
+              ),
+              text:
+                platform instanceof BrowserPlatform ? (
+                  <span>
+                    <a href={`mailto:${links.supportEmail}`}>
+                      {links.supportEmail}
+                    </a>
+                  </span>
+                ) : (
+                  links.supportEmail
+                ),
+            },
+          ]}
         />
 
         <HintTransparent>{t("settings_support_hint")}</HintTransparent>
