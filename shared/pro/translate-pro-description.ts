@@ -28,7 +28,7 @@ export const translateProDescription = (
     case "en": {
       return [
         {
-          title: "AI-powered individual cards",
+          title: "AI powered individual cards",
           description: "Generate flashcards with AI translation for any word",
         },
         {
