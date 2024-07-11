@@ -161,4 +161,8 @@ export class BrowserPlatform implements Platform {
   openInvoiceLink(link: string) {
     this.openExternalLink(link);
   }
+
+  isWindows() {
+    return navigator.platform.indexOf('Win') > -1
+  }
 }

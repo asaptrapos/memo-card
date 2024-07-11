@@ -3,6 +3,7 @@ import { css } from "@emotion/css";
 import { t, translateCategory } from "../translations/t.ts";
 import { platform } from "../lib/platform/platform.ts";
 import { TelegramPlatform } from "../lib/platform/telegram/telegram-platform.ts";
+import { BrowserPlatform } from "../lib/platform/browser/browser-platform.ts";
 
 // Windows doesn't support flag emojis, so we replace them with images
 // TODO: move to database
@@ -17,8 +18,15 @@ export const replaceFlagEmojiOnWindows = (logo: string) => {
   }
 };
 
-const supportsEmojiFlag =
-  platform instanceof TelegramPlatform ? !platform.isTelegramDesktop() : true;
+const supportsEmojiFlag = (() => {
+  if (platform instanceof BrowserPlatform) {
+    return !platform.isWindows();
+  }
+  if (platform instanceof TelegramPlatform && platform.isTelegramDesktop()) {
+    return false;
+  }
+  return true;
+})();
 
 type Props = {
   logo: string;
