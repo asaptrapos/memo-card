@@ -2,6 +2,8 @@ import React, { ReactNode } from "react";
 import { observer } from "mobx-react-lite";
 import { css } from "@emotion/css";
 import { BrowserBackButton } from "./browser-platform/browser-back-button.tsx";
+import { platform } from "../../lib/platform/platform.ts";
+import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 
 type Props = {
   children: ReactNode;
@@ -19,7 +21,7 @@ export const Screen = observer((props: Props) => {
         flexDirection: "column",
         gap: 8,
         position: "relative",
-        marginBottom: 16,
+        marginBottom: platform instanceof BrowserPlatform ? 48 : 16,
       })}
     >
       <div>
