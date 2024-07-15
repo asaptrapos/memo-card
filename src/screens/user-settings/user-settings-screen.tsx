@@ -210,7 +210,7 @@ export const UserSettingsScreen = observer(() => {
                   icon={"mdi-shield-account"}
                 />
               ),
-              text: t("payment_pp"),
+              text: t("privacy_policy"),
               onClick: () => {
                 platform.openExternalLink(links.privacyPolicyPath);
               },
