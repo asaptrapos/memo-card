@@ -62,6 +62,8 @@ vi.mock("../../../../store/screen-store.ts", () => {
         type: "deckForm",
         deckId: 1,
       },
+      goToDeckForm: () => {},
+      restoreHistory: () => {},
     },
   };
 });
