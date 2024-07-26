@@ -7,7 +7,7 @@ import { t } from "../../translations/t.ts";
 
 export const ErrorScreen = () => {
   return (
-    <Screen title={"Error"}>
+    <Screen title={t('error')}>
       <div className={css({ alignSelf: 'center', marginTop: 24, marginBottom: 24 })}>
         {t('error_contact_support')}
       </div>
