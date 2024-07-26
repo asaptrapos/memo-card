@@ -7,9 +7,7 @@ import { css } from "@emotion/css";
 import { theme } from "../../ui/theme.tsx";
 import { t } from "../../translations/t.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
-import {
-  TelegramPlatform
-} from "../../lib/platform/telegram/telegram-platform.ts";
+import { TelegramPlatform } from "../../lib/platform/telegram/telegram-platform.ts";
 import { ErrorScreen } from "../error-screen/error-screen.tsx";
 
 const BOT_NAME = import.meta.env.VITE_BOT_NAME;
@@ -17,7 +15,7 @@ assert(BOT_NAME, "VITE_BOT_NAME is not set");
 
 export const TelegramWidgetLoginScreen = observer(() => {
   if (platform instanceof TelegramPlatform) {
-    return <ErrorScreen/>
+    return <ErrorScreen />;
   }
 
   return (

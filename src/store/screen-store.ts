@@ -2,16 +2,19 @@ import { makeAutoObservable } from "mobx";
 import { CardFormType } from "../screens/deck-form/deck-form/store/deck-form-store.ts";
 import { makeLoggable } from "mobx-log";
 
+type DeckFormRoute = {
+  type: "deckForm";
+  deckId?: number;
+  folder?: { id: number; name: string };
+  cardId?: number;
+  index: number;
+};
+
 type Route =
   | { type: "main" }
   | { type: "deckMine"; deckId: number }
   | { type: "deckPublic"; deckId: number }
-  | {
-      type: "deckForm";
-      deckId?: number;
-      folder?: { id: number; name: string };
-      cardId?: number;
-    }
+  | DeckFormRoute
   | { type: "cardPreview"; form: CardFormType }
   | { type: "folderForm"; folderId?: number }
   | { type: "folderPreview"; folderId: number }
@@ -29,7 +32,9 @@ type Route =
   | { type: "freezeCards" }
   | { type: "userStatistics" }
   | { type: "tgLoginWidget" }
-  | { type: "userSettings" };
+  | { type: "userSettings"; index: number };
+
+let routeIndex = 0;
 
 export class ScreenStore {
   private history: Route[] = [{ type: "main" }];
@@ -71,6 +76,18 @@ export class ScreenStore {
       return this.onceRoute;
     }
     return this.history[this.history.length - 1];
+  }
+
+  goToUserSettings() {
+    this.go({ type: "userSettings", index: ++routeIndex });
+  }
+
+  goToDeckForm(route: Omit<DeckFormRoute, "index" | "type">) {
+    this.go({
+      ...route,
+      type: "deckForm",
+      index: ++routeIndex,
+    });
   }
 
   get isDeckPreviewScreen() {

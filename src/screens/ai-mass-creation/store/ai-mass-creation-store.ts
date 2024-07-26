@@ -65,8 +65,7 @@ export class AiMassCreationStore {
     this.onQuit(() => {
       const { screen } = screenStore;
       assert(screen.type === "aiMassCreation", "Invalid screen type");
-      screenStore.go({
-        type: "deckForm",
+      screenStore.goToDeckForm({
         deckId: screen.deckId,
       });
     });
@@ -200,8 +199,7 @@ export class AiMassCreationStore {
     notifySuccess(t("ai_cards_added"));
     deckListStore.replaceDeck(result.data.deck);
     deckListStore.updateCardsToReview(result.data.cardsToReview);
-    screenStore.go({
-      type: "deckForm",
+    screenStore.goToDeckForm({
       deckId: screen.deckId,
     });
   }

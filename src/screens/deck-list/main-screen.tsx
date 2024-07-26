@@ -106,7 +106,7 @@ export const MainScreen = observer(() => {
                 if (deckListStore.myDecks.length > 0) {
                   screenStore.go({ type: "deckOrFolderChoose" });
                 } else {
-                  screenStore.go({ type: "deckForm" });
+                  screenStore.goToDeckForm({});
                 }
               }}
             >
@@ -217,7 +217,7 @@ export const MainScreen = observer(() => {
                     />
                   ),
                   onClick: () => {
-                    screenStore.go({ type: "userSettings" });
+                    screenStore.goToUserSettings();
                   },
                 },
               ]}

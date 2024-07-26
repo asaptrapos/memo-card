@@ -1,8 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { useUserSettingsStore } from "./store/user-settings-store-context.tsx";
 import { deckListStore } from "../../store/deck-list-store.ts";
-import React from "react";
-import { useMount } from "../../lib/react/use-mount.ts";
+import React, { useEffect } from "react";
 import { generateTimeRange } from "./generate-time-range.tsx";
 import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { useProgress } from "../../lib/platform/use-progress.tsx";
@@ -26,14 +25,18 @@ import { formatPaidUntil } from "../pro/format-paid-until.tsx";
 import { ProIcon } from "../../ui/pro-icon.tsx";
 import { copyToClipboard } from "../../lib/copy-to-clipboard/copy-to-clipboard.ts";
 import { showAlert } from "../../lib/platform/show-alert.ts";
+import { assert } from "../../../shared/typescript/assert.ts";
 
 export const timeRanges = generateTimeRange();
 
 export const UserSettingsScreen = observer(() => {
   const userSettingsStore = useUserSettingsStore();
-  useMount(() => {
+  const screen = screenStore.screen;
+  assert(screen.type === "userSettings");
+
+  useEffect(() => {
     userSettingsStore.load();
-  });
+  }, [userSettingsStore, screen.index]);
 
   useMainButton(t("save"), () => userSettingsStore.submit());
 

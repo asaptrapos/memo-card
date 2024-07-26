@@ -149,7 +149,7 @@ export const DeckPreview = observer(() => {
               icon={"mdi-pencil-circle mdi-24px"}
               outline
               onClick={() => {
-                screenStore.go({ type: "deckForm", deckId: deck.id });
+                screenStore.goToDeckForm({ deckId: deck.id });
               }}
             >
               {t("edit")}

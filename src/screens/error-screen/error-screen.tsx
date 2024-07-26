@@ -7,16 +7,22 @@ import { t } from "../../translations/t.ts";
 
 export const ErrorScreen = () => {
   return (
-    <Screen title={t('error')}>
-      <div className={css({ alignSelf: 'center', marginTop: 24, marginBottom: 24 })}>
-        {t('error_contact_support')}
+    <Screen title={t("error")}>
+      <div
+        className={css({
+          alignSelf: "center",
+          marginTop: 24,
+          marginBottom: 24,
+        })}
+      >
+        {t("error_contact_support")}
       </div>
       <Button
         onClick={() => {
           platform.openInternalLink(links.supportChat);
         }}
       >
-        {t('settings_contact_support')}
+        {t("settings_contact_support")}
       </Button>
     </Screen>
   );

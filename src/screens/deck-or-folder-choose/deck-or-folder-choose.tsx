@@ -26,7 +26,7 @@ export const DeckOrFolderChoose = observer(() => {
           title={t("deck")}
           description={t("deck_description")}
           onClick={() => {
-            screenStore.go({ type: "deckForm" });
+            screenStore.goToDeckForm({});
           }}
         />
         <Choice

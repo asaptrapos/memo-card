@@ -131,8 +131,7 @@ export const FolderPreview = observer(() => {
               icon={"mdi-plus-circle mdi-24px"}
               outline
               onClick={() => {
-                screenStore.go({
-                  type: "deckForm",
+                screenStore.goToDeckForm({
                   folder: {
                     id: folder.id,
                     name: folder.name,

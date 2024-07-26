@@ -56,7 +56,7 @@ export class CardInputModeStore {
     this.deckFormStore.quitInnerScreen();
 
     screenStore.restoreHistory();
-    screenStore.go({ type: "deckForm", deckId });
+    screenStore.goToDeckForm({ deckId });
   }
 
   get viewMode(): CardInputModeDb | null {

@@ -418,7 +418,7 @@ export class DeckFormStore implements CardFormStoreInterface {
 
         if (isNewDeck && this.deckForm?.id) {
           screenStore.restoreHistory();
-          screenStore.go({ type: "deckForm", deckId: this.deckForm.id });
+          screenStore.goToDeckForm({ deckId: this.deckForm.id });
         }
       }),
     );
@@ -578,6 +578,8 @@ export class DeckFormStore implements CardFormStoreInterface {
       deckListStore.replaceDeck(deck, true);
       deckListStore.updateFolders(folders);
       deckListStore.updateCardsToReview(cardsToReview);
+      screenStore.restoreHistory();
+      screenStore.goToDeckForm({ deckId: deck.id });
       onSuccess?.();
     });
   }

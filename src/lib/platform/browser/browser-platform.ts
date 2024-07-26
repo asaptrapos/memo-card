@@ -163,6 +163,6 @@ export class BrowserPlatform implements Platform {
   }
 
   isWindows() {
-    return navigator.platform.indexOf('Win') > -1
+    return navigator.platform.indexOf("Win") > -1;
   }
 }

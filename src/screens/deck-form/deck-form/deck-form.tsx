@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { css, cx } from "@emotion/css";
 import { Label } from "../../../ui/label.tsx";
 import { Input } from "../../../ui/input.tsx";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMainButton } from "../../../lib/platform/use-main-button.ts";
 import { useDeckFormStore } from "./store/deck-form-store-context.tsx";
 import { screenStore } from "../../../store/screen-store.ts";
@@ -40,9 +40,12 @@ export const DeckForm = observer(() => {
   assert(screen.type === "deckForm");
 
   useMount(() => {
-    deckFormStore.loadForm();
     suitableCardInputModeStore.load();
   });
+
+  useEffect(() => {
+    deckFormStore.loadForm();
+  }, [deckFormStore, screen.index]);
 
   useMainButton(t("save"), () => {
     deckFormStore.onDeckSave();

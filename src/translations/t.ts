@@ -2,7 +2,8 @@ import { platform } from "../lib/platform/platform.ts";
 import { Translator } from "../../shared/translator/translator.ts";
 
 const en = {
-  error_contact_support: "An error occurred. Please contact support so we can help you.",
+  error_contact_support:
+    "An error occurred. Please contact support so we can help you.",
   login: "Login",
   card_input_mode_changed: "Card input mode has been changed",
   card_input_mode_manual: "Manual input",
@@ -285,7 +286,8 @@ const en = {
 type Translation = typeof en;
 
 const ru: Translation = {
-  error_contact_support: "Произошла ошибка. Пожалуйста свяжитесь с поддержкой, чтобы мы могли помочь вам.",
+  error_contact_support:
+    "Произошла ошибка. Пожалуйста свяжитесь с поддержкой, чтобы мы могли помочь вам.",
   ai_card_input_mode_supports: "Поддерживаются разные языки",
   upgrade_pro: "Получить Pro",
   ai_speech_preview_instead: "Вместо роботизированного голоса, как здесь",
@@ -559,7 +561,8 @@ const ru: Translation = {
 };
 
 const es: Translation = {
-  error_contact_support: "Se ha producido un error. Por favor, contacta con soporte para que podamos ayudarte.",
+  error_contact_support:
+    "Se ha producido un error. Por favor, contacta con soporte para que podamos ayudarte.",
   ai_card_input_mode_supports: "Soporta diferentes idiomas",
   upgrade_pro: "Obtener Pro",
   ai_speech_preview_instead: "En lugar de voz robótica como esta",
@@ -836,7 +839,8 @@ const es: Translation = {
 };
 
 const ptBr: Translation = {
-  error_contact_support: "Ocorreu um erro. Por favor, entre em contato com o suporte para que possamos ajudar.",
+  error_contact_support:
+    "Ocorreu um erro. Por favor, entre em contato com o suporte para que possamos ajudar.",
   ai_card_input_mode_supports: "Suporta diferentes idiomas",
   upgrade_pro: "Obter Pro",
   ai_speech_preview_instead: "Em vez de voz robótica como esta",

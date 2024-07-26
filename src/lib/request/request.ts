@@ -41,7 +41,7 @@ const requestInner = async <Output, Input = object>(
     return response.json() as Output;
   }
   if (response.status === 401) {
-    screenStore.go({  type: 'tgLoginWidget'})
+    screenStore.go({ type: "tgLoginWidget" });
     return null as any;
   }
 
