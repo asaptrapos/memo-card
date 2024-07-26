@@ -40,8 +40,9 @@ const requestInner = async <Output, Input = object>(
   if (response.status === 200) {
     return response.json() as Output;
   }
-  if (response.status === 401 && endpoint === "/my-info") {
-    return null as Output;
+  if (response.status === 401) {
+    screenStore.go({  type: 'tgLoginWidget'})
+    return null as any;
   }
 
   throw new Error(
