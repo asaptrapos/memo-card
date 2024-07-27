@@ -6,6 +6,9 @@ import React, { useState } from "react";
 import { CardPreviewStore } from "../../deck-review/store/card-preview-store.ts";
 import { CardFormStoreInterface } from "../deck-form/store/card-form-store-interface.ts";
 import { createPortal } from "react-dom";
+import { platform } from "../../../lib/platform/platform.ts";
+import { BrowserPlatform } from "../../../lib/platform/browser/browser-platform.ts";
+import { BrowserBackButton } from "../../shared/browser-platform/browser-back-button.tsx";
 
 type Props = {
   form: CardFormStoreInterface;
@@ -32,6 +35,17 @@ export const CardPreview = observer((props: Props) => {
         overflowX: "hidden",
       })}
     >
+      {platform instanceof BrowserPlatform && (
+        <div
+          className={css({
+            position: "absolute",
+            top: 12,
+            left: 12,
+          })}
+        >
+          <BrowserBackButton />
+        </div>
+      )}
       {cardPreviewStore.isOpened && (
         <div
           className={css({
