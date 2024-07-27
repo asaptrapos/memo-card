@@ -411,9 +411,6 @@ export class DeckFormStore implements CardFormStoreInterface {
       action(() => {
         if (isEditCard) {
           return;
-        } else {
-          this.cardFormIndex = undefined;
-          this.cardFormType = undefined;
         }
 
         if (isNewDeck && this.deckForm?.id) {
@@ -533,7 +530,7 @@ export class DeckFormStore implements CardFormStoreInterface {
     );
   }
 
-  async onDeckSave(onSuccess?: () => void) {
+  async onDeckSave(onSuccess?: (deck: DeckWithCardsDbType) => void) {
     assert(this.deckForm, "onDeckSave: form is empty");
 
     if (!isFormValid(this.deckForm)) {
@@ -578,9 +575,7 @@ export class DeckFormStore implements CardFormStoreInterface {
       deckListStore.replaceDeck(deck, true);
       deckListStore.updateFolders(folders);
       deckListStore.updateCardsToReview(cardsToReview);
-      screenStore.restoreHistory();
-      screenStore.goToDeckForm({ deckId: deck.id });
-      onSuccess?.();
+      onSuccess?.(deck);
     });
   }
 

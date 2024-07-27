@@ -48,7 +48,10 @@ export const DeckForm = observer(() => {
   }, [deckFormStore, screen.index]);
 
   useMainButton(t("save"), () => {
-    deckFormStore.onDeckSave();
+    deckFormStore.onDeckSave((deck) => {
+      screenStore.restoreHistory();
+      screenStore.goToDeckForm({ deckId: deck.id });
+    });
   });
   useBackButton(() => {
     deckFormStore.onDeckBack(() => {
