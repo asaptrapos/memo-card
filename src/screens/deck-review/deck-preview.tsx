@@ -156,7 +156,7 @@ export const DeckPreview = observer(() => {
             </ButtonSideAligned>
           ) : null}
 
-          {deckListStore.canEditDeck && (
+          {(deckListStore.canEditDeck || deck.is_public) && (
             <ButtonSideAligned
               icon={"mdi-share-circle mdi-24px"}
               outline
