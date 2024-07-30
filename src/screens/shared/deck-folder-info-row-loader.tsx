@@ -1,12 +1,13 @@
 import ContentLoader from "react-content-loader";
 import { theme } from "../../ui/theme.tsx";
 import React from "react";
+import { css } from "@emotion/css";
 
 export const DeckFolderInfoRowLoader = () => {
   return <div>
     <ContentLoader
       speed={1}
-      width={"100%"}
+      width={80}
       height={15}
       viewBox="0 0 80 15"
       backgroundColor={theme.bgColor}
