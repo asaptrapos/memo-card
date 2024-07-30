@@ -64,6 +64,7 @@ export type DeckListItem = {
   cardsToReview: DeckCardDbTypeWithType[];
   name: string;
   description: string | null;
+  isPublic: boolean;
 } & (
   | {
       type: "deck";
@@ -256,6 +257,14 @@ export class DeckListStore {
       });
   }
 
+  get canShareDeck() {
+    const deck = this.selectedDeck;
+    if (!deck) {
+      return false;
+    }
+    return deckListStore.canEditDeck || deck.is_public;
+  }
+
   get canEditDeck() {
     const deck = this.selectedDeck;
     if (!deck) {
@@ -342,6 +351,7 @@ export class DeckListStore {
         ),
         shareId: this.catalogFolder.share_id,
         authorId: this.catalogFolder.author_id,
+        isPublic: this.catalogFolder.is_public,
         name: this.catalogFolder.title,
         id: this.catalogFolder.id,
         description: this.catalogFolder.description,
@@ -388,7 +398,7 @@ export class DeckListStore {
 
     return canDuplicateDeckOrFolder(
       user,
-      { author_id: folder.authorId },
+      { author_id: folder.authorId, is_public: folder.isPublic },
       userStore.plans,
     );
   }
@@ -405,7 +415,7 @@ export class DeckListStore {
 
     return canDuplicateDeckOrFolder(
       user,
-      { author_id: deck.author_id },
+      { author_id: deck.author_id, is_public: deck.is_public },
       userStore.plans,
     );
   }
@@ -486,7 +496,7 @@ export class DeckListStore {
     );
   }
 
-  get myDecks(): DeckWithCardsWithReviewType[] {
+  get myDecks(): (DeckWithCardsWithReviewType & { isPublic: boolean })[] {
     if (!this.myInfo) {
       return [];
     }
@@ -494,6 +504,7 @@ export class DeckListStore {
 
     return this.myInfo.myDecks.map((deck) => ({
       ...deck,
+      isPublic: deck.is_public,
       cardsToReview: getCardsToReview(deck, cardsToReview),
     }));
   }
@@ -525,6 +536,7 @@ export class DeckListStore {
         folderDescription: string | null;
         folderAuthorId: number;
         folderShareId: string;
+        folderIsPublic: boolean;
         decks: DeckWithCardsWithReviewType[];
       }
     >();
@@ -535,6 +547,8 @@ export class DeckListStore {
         folderDescription: folder.folder_description,
         folderAuthorId: folder.folder_author_id,
         folderShareId: folder.folder_share_id,
+        // Actually checked via user ownership
+        folderIsPublic: false,
         decks: [],
       };
       const deck = myDecks.find((deck) => deck.id === folder.deck_id);
@@ -553,6 +567,7 @@ export class DeckListStore {
       ),
       type: "folder",
       name: mapItem.folderName,
+      isPublic: mapItem.folderIsPublic,
       shareId: mapItem.folderShareId,
       description: mapItem.folderDescription,
       authorId: mapItem.folderAuthorId,

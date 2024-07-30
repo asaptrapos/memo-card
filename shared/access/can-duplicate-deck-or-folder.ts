@@ -10,9 +10,11 @@ export const canDuplicateDeckOrFolder = (
   if (user.is_admin) {
     return true;
   }
+  if (!plans?.some((plan) => plan.advanced_duplicate)) {
+    return;
+  }
 
-  return (
-    plans?.some((plan) => plan.advanced_duplicate) &&
-    user.id === deckOrFolder.author_id
-  );
+  const isPublic = deckOrFolder.is_public;
+  const isUserAuthor = user.id === deckOrFolder.author_id;
+  return isUserAuthor || isPublic;
 };

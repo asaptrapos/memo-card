@@ -22,7 +22,15 @@ export const BrowserBackButton = observer(() => {
         <i
           className={cx(
             "mdi mdi-arrow-left-circle mdi-24px",
-            css({ color: theme.hintColor, cursor: "pointer" }),
+            css({
+              color: theme.hintColor,
+              cursor: "pointer",
+              ":active": {
+                transform: "scale(0.9)",
+                transition: "transform 0.3s",
+                transformOrigin: "center center",
+              },
+            }),
           )}
           onClick={() => {
             assert(platform instanceof BrowserPlatform);

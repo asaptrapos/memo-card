@@ -78,6 +78,7 @@ const en = {
   category_Geography: "Geography",
   category_History: "History",
   category_Chemistry: "Chemistry",
+  category_Other: "Other",
   save: "Save",
   add_card: "Add card",
   edit_card: "Edit card",
@@ -413,6 +414,7 @@ const ru: Translation = {
     "Попробуйте изменить фильтры чтобы увидеть больше",
   // TODO: move to database
   category_English: "Английский",
+  category_Other: "Другое",
   category_Thai: "Тайский",
   category_Geography: "География",
   category_History: "История",
@@ -695,6 +697,7 @@ const es: Translation = {
   deck_search_not_found_description:
     "Intenta actualizar los filtros para ver más mazos",
   category_English: "Inglés",
+  category_Other: "Otro",
   category_Thai: "Tailandés",
   category_Geography: "Geografía",
   category_History: "Historia",
@@ -975,6 +978,7 @@ const ptBr: Translation = {
   deck_search_not_found_description:
     "Tente atualizar os filtros para ver mais baralhos",
   category_English: "Inglês",
+  category_Other: "Outro",
   category_Thai: "Tailandês",
   category_Geography: "Geografia",
   category_History: "História",
