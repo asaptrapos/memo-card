@@ -23,6 +23,7 @@ import { List } from "../../ui/list.tsx";
 import { CardsToReview } from "../../ui/cards-to-review.tsx";
 import { BrowserBackButton } from "../shared/browser-platform/browser-back-button.tsx";
 import { MoreFeaturesButton } from "../shared/feature-preview/more-features-button.tsx";
+import { DeckFolderInfoRowLoader } from "../shared/deck-folder-info-row-loader.tsx";
 
 export const FolderPreview = observer(() => {
   const reviewStore = useReviewStore();
@@ -85,7 +86,7 @@ export const FolderPreview = observer(() => {
         <div>
           <DeckFolderDescription deck={folder} />
         </div>
-        {!deckListStore.getFolderWithDecksCards.isLoading && (
+        {
           <div
             className={css({
               display: "flex",
@@ -98,32 +99,40 @@ export const FolderPreview = observer(() => {
             <Flex gap={4}>
               <span>{t("cards_to_repeat")}: </span>
               <h4 className={css({ color: theme.orange })}>
-                {
+                {deckListStore.getFolderWithDecksCards.isLoading ? (
+                  <DeckFolderInfoRowLoader />
+                ) : (
                   folder.cardsToReview.filter((card) => card.type === "repeat")
                     .length
-                }
+                )}
               </h4>
             </Flex>
             <Flex gap={4}>
               <span>{t("cards_new")}: </span>
               <h4 className={css({ color: theme.success })}>
-                {
+                {deckListStore.getFolderWithDecksCards.isLoading ? (
+                  <DeckFolderInfoRowLoader />
+                ) : (
                   folder.cardsToReview.filter((card) => card.type === "new")
                     .length
-                }
+                )}
               </h4>
             </Flex>
             <Flex gap={4}>
               <span>{t("cards_total")}: </span>
               <h4>
-                {folder.decks.reduce(
-                  (acc, cur) => cur.deck_card.length + acc,
-                  0,
+                {deckListStore.getFolderWithDecksCards.isLoading ? (
+                  <DeckFolderInfoRowLoader />
+                ) : (
+                  folder.decks.reduce(
+                    (acc, cur) => cur.deck_card.length + acc,
+                    0,
+                  )
                 )}
               </h4>
             </Flex>
           </div>
-        )}
+        }
 
         <ButtonGrid>
           {deckListStore.canEditFolder ? (
@@ -204,30 +213,36 @@ export const FolderPreview = observer(() => {
           <MoreFeaturesButton />
         </ButtonGrid>
       </div>
-      <Flex pt={6} direction={"column"} gap={8}>
-        <div>
-          <ListHeader text={t("decks")} />
-          <List
-            items={folder.decks.map((deck) => ({
-              onClick: () => {
-                deckListStore.goDeckById(deck.id);
-              },
-              text: deck.name,
-              right: (
-                <div
-                  className={css({ position: "relative", marginRight: -12 })}
-                >
-                  <CardsToReview item={deck} />
-                </div>
-              ),
-            }))}
-          />
-        </div>
-        {folder.cardsToReview.length === 0 &&
-        !deckListStore.isCatalogItemLoading ? (
-          <Hint>{t("no_cards_to_review_in_deck")}</Hint>
-        ) : null}
-      </Flex>
+
+      {folder.decks.length > 0 && (
+        <Flex pt={6} direction={"column"} gap={8}>
+          <div>
+            <ListHeader text={t("decks")} />
+            <List
+              items={folder.decks.map((deck) => ({
+                onClick: () => {
+                  deckListStore.goDeckById(deck.id);
+                },
+                text: deck.name,
+                right: (
+                  <div
+                    className={css({ position: "relative", marginRight: -12 })}
+                  >
+                    <CardsToReview item={deck} />
+                  </div>
+                ),
+              }))}
+            />
+          </div>
+        </Flex>
+      )}
+
+      {deckListStore.isDeckFolderAdded({ id: folder.id, type: "folder" })
+        .isMineFolder &&
+      folder.cardsToReview.length === 0 &&
+      !deckListStore.isCatalogItemLoading ? (
+        <Hint>{t("no_cards_to_review_in_deck")}</Hint>
+      ) : null}
     </Flex>
   );
 });

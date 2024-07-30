@@ -21,6 +21,7 @@ import { redirectUserToDeckOrFolderLink } from "../share-deck/redirect-user-to-d
 import { Flex } from "../../ui/flex.tsx";
 import { BrowserBackButton } from "../shared/browser-platform/browser-back-button.tsx";
 import { MoreFeaturesButton } from "../shared/feature-preview/more-features-button.tsx";
+import { DeckFolderInfoRowLoader } from "../shared/deck-folder-info-row-loader.tsx";
 
 export const DeckPreview = observer(() => {
   const reviewStore = useReviewStore();
@@ -83,7 +84,7 @@ export const DeckPreview = observer(() => {
         <div>
           <DeckFolderDescription deck={deck} />
         </div>
-        {!deckListStore.deckWithCardsRequest.isLoading && (
+        {
           <div
             className={css({
               display: "flex",
@@ -96,27 +97,37 @@ export const DeckPreview = observer(() => {
             <Flex gap={4}>
               <span>{t("cards_to_repeat")}: </span>
               <h4 className={css({ color: theme.orange })}>
-                {
+                {deckListStore.deckWithCardsRequest.isLoading ? (
+                  <DeckFolderInfoRowLoader />
+                ) : (
                   deck.cardsToReview.filter((card) => card.type === "repeat")
                     .length
-                }
+                )}
               </h4>
             </Flex>
             <Flex gap={4}>
               <span>{t("cards_new")}: </span>
               <h4 className={css({ color: theme.success })}>
-                {
+                {deckListStore.deckWithCardsRequest.isLoading ? (
+                  <DeckFolderInfoRowLoader />
+                ) : (
                   deck.cardsToReview.filter((card) => card.type === "new")
                     .length
-                }
+                )}
               </h4>
             </Flex>
             <Flex gap={4}>
               <span>{t("cards_total")}: </span>
-              <h4>{deck.deck_card.length}</h4>
+              <h4>
+                {deckListStore.deckWithCardsRequest.isLoading ? (
+                  <DeckFolderInfoRowLoader />
+                ) : (
+                  deck.deck_card.length
+                )}
+              </h4>
             </Flex>
           </div>
-        )}
+        }
 
         <ButtonGrid>
           {deckListStore.canEditDeck ? (
@@ -194,7 +205,7 @@ export const DeckPreview = observer(() => {
           <MoreFeaturesButton />
         </ButtonGrid>
       </div>
-      {deck.cardsToReview.length === 0 && (
+      {!deckListStore.deckWithCardsRequest.isLoading && deck.cardsToReview.length === 0 && (
         <>
           <Hint>
             <Flex direction={"column"} gap={10} mb={4}>
