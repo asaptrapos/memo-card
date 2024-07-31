@@ -109,7 +109,7 @@ export class FolderFormStore {
     });
   }
 
-  get decksMineFiltered() {
+  get decksAvailableFiltered() {
     if (this.decksMineRequest.result.status !== "success") {
       return [];
     }
@@ -117,7 +117,19 @@ export class FolderFormStore {
       this.folderForm?.decks.value.map((deck) => deck.id) || [];
 
     return this.decksMineRequest.result.data.filter((deck) => {
-      return !deckIdsAdded.includes(deck.id);
+      return !deckIdsAdded.includes(deck.id) && !deck.folder_id;
+    });
+  }
+
+  get decksNotAvailable() {
+    if (this.decksMineRequest.result.status !== "success") {
+      return [];
+    }
+    const deckIdsAdded =
+      this.folderForm?.decks.value.map((deck) => deck.id) || [];
+
+    return this.decksMineRequest.result.data.filter((deck) => {
+      return !deckIdsAdded.includes(deck.id) && deck.folder_id;
     });
   }
 

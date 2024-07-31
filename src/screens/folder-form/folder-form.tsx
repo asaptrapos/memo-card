@@ -20,6 +20,7 @@ import { ValidationError } from "../../ui/validation-error.tsx";
 import { userStore } from "../../store/user-store.ts";
 import { FilledIcon } from "../../ui/filled-icon.tsx";
 import { assert } from "../../../shared/typescript/assert.ts";
+import { Flex } from "../../ui/flex.tsx";
 
 export const FolderForm = observer(() => {
   const folderStore = useFolderFormStore();
@@ -121,15 +122,16 @@ export const FolderForm = observer(() => {
           })}
         />
       </Label>
+
       <Label text={t("add_deck_to_folder")} isPlain>
         {folderStore.decksMineRequest.isLoading && <Loader />}
         {folderStore.decksMineRequest.result.status === "success" &&
-        folderStore.decksMineFiltered.length === 0 ? (
+        folderStore.decksAvailableFiltered.length === 0 ? (
           <EmptyState>{t("no_decks_to_add")}</EmptyState>
         ) : null}
 
         <List
-          items={folderStore.decksMineFiltered.map((deck) => {
+          items={folderStore.decksAvailableFiltered.map((deck) => {
             return {
               text: deck.name,
               right: (
@@ -158,6 +160,30 @@ export const FolderForm = observer(() => {
           })}
         />
       </Label>
+
+      {folderStore.decksNotAvailable.length > 0 && (
+        <Label text={t("decks_in_other_folders")} isPlain>
+          <List
+            items={folderStore.decksNotAvailable.map((deck) => {
+              return {
+                text: (
+                  <Flex direction={"column"} gap={4}>
+                    <div>{deck.name}</div>
+                    <div
+                      className={css({
+                        fontSize: 14,
+                        color: theme.hintColor,
+                      })}
+                    >
+                      {deck.folder_title}
+                    </div>
+                  </Flex>
+                ),
+              };
+            })}
+          />
+        </Label>
+      )}
     </Screen>
   );
 });
