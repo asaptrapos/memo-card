@@ -10,11 +10,18 @@ export class Translator<
 > {
   constructor(
     private storage: Storage<Language, Translation>,
-    private lang: Language,
+    private languageOrProvider: Language | (() => Language),
   ) {}
 
+  get lang() {
+    if (typeof this.languageOrProvider === "function") {
+      return this.languageOrProvider();
+    }
+    return this.languageOrProvider;
+  }
+
   setLang(lang: Language) {
-    this.lang = lang;
+    this.languageOrProvider = lang;
   }
 
   getLang() {

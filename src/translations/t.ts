@@ -1127,13 +1127,17 @@ const ptBr: Translation = {
 const translations = { en, ru, es, "pt-br": ptBr };
 export type Language = keyof typeof translations;
 
+export const isLanguage = (lang?: string | null): lang is Language => {
+  return lang ? lang in translations : false;
+};
+
 export const translateCategory = (category: string) => {
   return t(`category_${category}` as any, category);
 };
 
 export const translator = new Translator<Language, Translation>(
   translations,
-  platform.getLanguage(),
+  () => platform.getLanguage(),
 );
 
 export const t = (key: keyof Translation, defaultValue?: string) => {

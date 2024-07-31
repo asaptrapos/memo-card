@@ -9,6 +9,8 @@ import { activePlanesRequest } from "../api/api.ts";
 import { reportHandledError } from "../lib/rollbar/rollbar.tsx";
 import { formatPaidUntil } from "../screens/pro/format-paid-until.tsx";
 import { assert } from "../../shared/typescript/assert.ts";
+import { platform } from "../lib/platform/platform.ts";
+import { BrowserPlatform } from "../lib/platform/browser/browser-platform.ts";
 
 export class UserStore {
   userInfo?: UserDbType;
@@ -27,6 +29,10 @@ export class UserStore {
   setUser(user: UserDbType, plans: PlansForUser) {
     this.userInfo = user;
     this.plans = plans;
+
+    if (platform instanceof BrowserPlatform) {
+      platform.setDbLang(user.language_code);
+    }
   }
 
   get user() {

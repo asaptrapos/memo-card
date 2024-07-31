@@ -1,7 +1,7 @@
 import { Platform, PlatformTheme } from "../platform.ts";
 import { action, makeAutoObservable } from "mobx";
 import { BooleanToggle } from "mobx-form-lite";
-import { Language } from "../../../translations/t.ts";
+import { isLanguage, Language } from "../../../translations/t.ts";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
 
 const cssVariables = {
@@ -24,6 +24,7 @@ const cssVariables = {
 };
 
 const telegramLoginWidgetDataKey = "tlg";
+const browserPlatformLangKey = "browserPlatformLang";
 
 export class BrowserPlatform implements Platform {
   maxWidth = 600;
@@ -38,6 +39,8 @@ export class BrowserPlatform implements Platform {
   backButtonInfo?: {
     onClick: () => void;
   };
+
+  dbLang?: string | null = localStorage.getItem(browserPlatformLangKey) || null;
 
   constructor() {
     makeAutoObservable(
@@ -68,7 +71,7 @@ export class BrowserPlatform implements Platform {
   }
 
   getLanguage(): Language {
-    return "en";
+    return isLanguage(this.dbLang) ? this.dbLang : "en";
   }
 
   getStartParam(): string | undefined {
@@ -164,5 +167,10 @@ export class BrowserPlatform implements Platform {
 
   isWindows() {
     return navigator.platform.indexOf("Win") > -1;
+  }
+
+  setDbLang(lang?: string | null) {
+    this.dbLang = lang;
+    localStorage.setItem(browserPlatformLangKey, lang || "");
   }
 }
