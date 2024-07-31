@@ -1,4 +1,4 @@
-import { createCardSideField } from "../../deck-form/store/deck-form-store.ts";
+import { createFrontCardField } from "../../deck-form/store/deck-form-store.ts";
 import { RequestStore } from "../../../../lib/mobx-request/request-store.ts";
 import { makeAutoObservable } from "mobx";
 import { formTouchAll, isFormValid } from "mobx-form-lite";
@@ -11,7 +11,7 @@ import { assert } from "../../../../../shared/typescript/assert.ts";
 
 export class AiGeneratedCardFormStore {
   form = {
-    prompt: createCardSideField(""),
+    prompt: createFrontCardField(""),
   };
   cardInputModesRequest = createCachedCardInputModesRequest();
   aiSingleCardGenerateRequest = new RequestStore(aiSingleCardGenerateRequest);

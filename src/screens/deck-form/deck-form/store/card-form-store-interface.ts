@@ -30,4 +30,6 @@ export interface CardFormStoreInterface {
   isNextCardVisible?: boolean;
   onPreviousCard?: () => void;
   onNextCard?: () => void;
+
+  onOpenNewFromCard?: () => void;
 }

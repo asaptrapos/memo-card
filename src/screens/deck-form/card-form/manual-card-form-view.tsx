@@ -191,6 +191,7 @@ export const ManualCardFormView = observer((props: Props) => {
               {t("card_preview")}
             </ButtonSideAligned>
           ) : null}
+
           {markCardAsRemoved && cardForm.id && (
             <ButtonSideAligned
               icon={"mdi-delete-outline mdi-24px"}
@@ -199,6 +200,20 @@ export const ManualCardFormView = observer((props: Props) => {
             >
               {t("delete")}
             </ButtonSideAligned>
+          )}
+
+          {cardForm.id && (
+            <>
+              <ButtonSideAligned
+                onClick={() => {
+                  cardFormStore.onOpenNewFromCard?.();
+                }}
+                icon={"mdi-plus mdi-24px"}
+                outline
+              >
+                {t("add_card")}
+              </ButtonSideAligned>
+            </>
           )}
         </ButtonGrid>
       </div>

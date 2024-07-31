@@ -71,9 +71,24 @@ export const createDeckTitleField = (value: string) => {
   });
 };
 
-export const createCardSideField = (value: string) => {
+export const createFrontCardField = (value: string) => {
   return new TextField(value, {
     validate: validators.required(t("validation_required")),
+  });
+};
+
+export const createBackCardField = (
+  value: string,
+  getForm: () => CardFormType | null,
+) => {
+  return new TextField(value, {
+    validate: (value) => {
+      const cardForm = getForm();
+      if (cardForm?.answerType.value === "remember") {
+        return validators.required(t("validation_required"))(value);
+      }
+      return undefined;
+    },
   });
 };
 
@@ -130,8 +145,8 @@ const createUpdateForm = (
     cardInputModeId: deck.card_input_mode_id || null,
     cards: deck.deck_card.map((card) => ({
       id: card.id,
-      front: createCardSideField(card.front),
-      back: createCardSideField(card.back),
+      front: createFrontCardField(card.front),
+      back: createBackCardField(card.back, getCardForm),
       example: new TextField(card.example || ""),
       answerType: createAnswerTypeField(card),
       options: new TextField<DeckCardOptionsDbType>(card.options ?? null),
@@ -378,8 +393,12 @@ export class DeckFormStore implements CardFormStoreInterface {
     this.cardFormIndex = this.deckForm.cards.length;
     this.cardFormType = "new";
     this.deckForm.cards.push({
-      front: createCardSideField(""),
-      back: createCardSideField(""),
+      front: createFrontCardField(""),
+      back: createBackCardField("", () => {
+        if (!this.deckForm || !this.cardFormIndex) return null;
+        const cardForm = this.deckForm.cards[this.cardFormIndex];
+        return cardForm || null;
+      }),
       example: new TextField(""),
       answerType: createAnswerTypeField(),
       options: new TextField<DeckCardOptionsDbType>(null),
@@ -449,6 +468,12 @@ export class DeckFormStore implements CardFormStoreInterface {
       );
       const nextCard = this.filteredCards[currentCardIndex - 1];
       this.editCardFormById(nextCard.id);
+    });
+  }
+
+  onOpenNewFromCard() {
+    this.onQuitCard(() => {
+      this.openNewCardForm();
     });
   }
 

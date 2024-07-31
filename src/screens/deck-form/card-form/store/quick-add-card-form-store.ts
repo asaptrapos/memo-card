@@ -2,7 +2,8 @@ import {
   CardFormType,
   createAnswerListField,
   createAnswerTypeField,
-  createCardSideField,
+  createBackCardField,
+  createFrontCardField,
 } from "../../deck-form/store/deck-form-store.ts";
 import { makeAutoObservable } from "mobx";
 import {
@@ -33,8 +34,8 @@ import { assert } from "../../../../../shared/typescript/assert.ts";
 
 export class QuickAddCardFormStore implements CardFormStoreInterface {
   cardForm: CardFormType = {
-    back: createCardSideField(""),
-    front: createCardSideField(""),
+    back: createBackCardField("", () => this.cardForm),
+    front: createFrontCardField(""),
     example: new TextField(""),
     answerType: createAnswerTypeField(),
     options: new TextField<DeckCardOptionsDbType>(null),
