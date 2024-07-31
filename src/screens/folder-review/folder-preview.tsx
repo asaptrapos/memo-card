@@ -49,7 +49,7 @@ export const FolderPreview = observer(() => {
   }
 
   return (
-    <Flex direction={"column"} pt={12} pb={12}>
+    <Flex direction={"column"} pt={12} pb={82}>
       <div
         className={css({
           display: "flex",
