@@ -28,7 +28,7 @@ export const IndividualCardAiPreview = observer((props: Props) => {
         }
 
         return (
-          <Flex direction={"column"} alignItems={"center"} pb={24}>
+          <Flex direction={"column"} alignItems={"center"} pb={48}>
             <BottomSheetTitle title={viewMode.title} onClose={onClose} />
             <div className={css({ width: 250 })}>
               <Flex pb={16} justifyContent={"center"}>

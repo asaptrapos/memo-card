@@ -40,7 +40,7 @@ export const AiSpeechPreview = observer((props: Props) => {
 
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose}>
-      <Flex direction={"column"} alignItems={"center"} pb={24}>
+      <Flex direction={"column"} alignItems={"center"} pb={48}>
         <BottomSheetTitle title={t("ai_speech_title")} onClose={onClose} />
         <div
           className={css({
