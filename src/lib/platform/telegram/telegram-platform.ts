@@ -29,6 +29,10 @@ export class TelegramPlatform implements Platform {
   initialize() {
     WebApp.ready();
     WebApp.setHeaderColor("secondary_bg_color");
+    if (this.isSwipeControllable()) {
+      // @ts-expect-error
+      WebApp.isVerticalSwipesEnabled = false;
+    }
     WebApp.expand();
   }
 
@@ -38,6 +42,10 @@ export class TelegramPlatform implements Platform {
 
   isCloudStorageAvailable(): boolean {
     return WebApp.isVersionAtLeast("6.9");
+  }
+
+  isSwipeControllable() {
+    return WebApp.isVersionAtLeast('7.8');
   }
 
   openInternalLink(link: string) {
