@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { css, cx } from "@emotion/css";
 import { PublicDeck } from "./public-deck.tsx";
@@ -27,14 +27,25 @@ import {
 } from "../shared/youtube/youtube.tsx";
 import { boolNarrow } from "../../lib/typescript/bool-narrow.ts";
 import { ButtonSideAligned } from "../../ui/button-side-aligned.tsx";
+import { BottomSheet } from "../../ui/bottom-sheet/bottom-sheet.tsx";
+import { DeckOrFolderChoose } from "../deck-or-folder-choose/deck-or-folder-choose.tsx";
 
 export const MainScreen = observer(() => {
+  const [isDeckOrFolderChooseOpen, setIsDeckOrFolderChooseOpen] =
+    useState(false);
+
   useMount(() => {
     deckListStore.loadFirstTime(platform.getStartParam());
   });
 
   return (
     <Flex direction={"column"} gap={12} pb={48}>
+      <BottomSheet
+        isOpen={isDeckOrFolderChooseOpen}
+        onClose={() => setIsDeckOrFolderChooseOpen(false)}
+      >
+        <DeckOrFolderChoose />
+      </BottomSheet>
       <div>
         <ListHeader
           text={t("my_decks")}
@@ -105,7 +116,7 @@ export const MainScreen = observer(() => {
               outline
               onClick={() => {
                 if (deckListStore.myDecks.length > 0) {
-                  screenStore.go({ type: "deckOrFolderChoose" });
+                  setIsDeckOrFolderChooseOpen(true);
                 } else {
                   screenStore.goToDeckForm({});
                 }

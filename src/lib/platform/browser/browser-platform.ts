@@ -40,8 +40,8 @@ const cssVariablesDark = {
   "--tg-theme-button-text-color": "#ffffff",
   "--tg-theme-section-header-text-color": "#b1c3d5",
   "--tg-theme-link-color": "#62bcf9",
-  "--tg-viewport-stable-height": "100vh"
-}
+  "--tg-viewport-stable-height": "100vh",
+};
 
 const telegramLoginWidgetDataKey = "tlg";
 const browserPlatformLangKey = "browserPlatformLang";

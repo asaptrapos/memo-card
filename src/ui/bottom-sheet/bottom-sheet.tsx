@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { theme } from "../theme.tsx";
-import { css } from "@emotion/css";
+import { css, cx } from "@emotion/css";
 import { platform } from "../../lib/platform/platform.ts";
-import { TelegramPlatform } from "../../lib/platform/telegram/telegram-platform.ts";
+import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 
 const variants = {
   open: { y: 0 },
@@ -27,10 +27,6 @@ export const BottomSheet = (props: Props) => {
   // Disable backdrop scroll
   useEffect(() => {
     if (isOpen) {
-      if (platform instanceof TelegramPlatform && platform.isIos()) {
-        window.scrollTo(0, 0);
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
-      }
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -40,6 +36,53 @@ export const BottomSheet = (props: Props) => {
     };
   }, [isOpen]);
 
+  const bottomSheetBody =
+    platform instanceof BrowserPlatform && !platform.isMobile ? (
+      <div
+        className={cx(
+          css({
+            position: "fixed",
+            bottom: 0,
+            right: 0,
+            backgroundColor: theme.bgColor,
+            padding: 20,
+            boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
+            zIndex: theme.zIndex.bottomSheetForeground,
+            borderRadius: 20,
+            width: platform.maxWidth,
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }),
+        )}
+      >
+        {children}
+      </div>
+    ) : (
+      <motion.div
+        className={cx(
+          css({
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: theme.bgColor,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+            padding: 20,
+            boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
+            zIndex: theme.zIndex.bottomSheetForeground,
+          }),
+        )}
+        initial="closed"
+        animate="open"
+        exit="closed"
+        variants={variants}
+        transition={{ duration: 0.2 }}
+      >
+        {children}
+      </motion.div>
+    );
   return (
     <AnimatePresence>
       {isOpen && (
@@ -63,27 +106,7 @@ export const BottomSheet = (props: Props) => {
             transition={{ duration: 0.2 }}
             onClick={onClose}
           />
-          <motion.div
-            className={css({
-              position: "fixed",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              backgroundColor: theme.bgColor,
-              borderTopLeftRadius: 20,
-              borderTopRightRadius: 20,
-              padding: 20,
-              boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
-              zIndex: theme.zIndex.bottomSheetForeground,
-            })}
-            initial="closed"
-            animate="open"
-            exit="closed"
-            variants={variants}
-            transition={{ duration: 0.2 }}
-          >
-            {children}
-          </motion.div>
+          {bottomSheetBody}
         </>
       )}
     </AnimatePresence>

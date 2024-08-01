@@ -77,7 +77,10 @@ export const PreventTelegramSwipeDownClosing = (props: Props) => {
 export const PreventTelegramSwipeDownClosingIos = (props: {
   children: ReactNode;
 }) => {
-  const isOldIos = platform instanceof TelegramPlatform && platform.isIos() && !platform.isSwipeControllable();
+  const isOldIos =
+    platform instanceof TelegramPlatform &&
+    platform.isIos() &&
+    !platform.isSwipeControllable();
   return (
     <PreventTelegramSwipeDownClosing condition={isOldIos}>
       {props.children}

@@ -45,7 +45,7 @@ export class TelegramPlatform implements Platform {
   }
 
   isSwipeControllable() {
-    return WebApp.isVersionAtLeast('7.8');
+    return WebApp.isVersionAtLeast("7.8");
   }
 
   openInternalLink(link: string) {

@@ -16,7 +16,6 @@ import {
 } from "../lib/platform/telegram/prevent-telegram-swipe-down-closing.tsx";
 import { RepeatAllScreen } from "./deck-review/repeat-all-screen.tsx";
 import { DeckCatalog } from "./catalog/deck-catalog.tsx";
-import { DeckOrFolderChoose } from "./deck-or-folder-choose/deck-or-folder-choose.tsx";
 import { FolderForm } from "./folder-form/folder-form.tsx";
 import { DeckCatalogStoreContextProvider } from "./catalog/store/deck-catalog-store-context.tsx";
 import { FolderFormStoreProvider } from "./folder-form/store/folder-form-store-context.tsx";
@@ -91,11 +90,6 @@ export const App = observer(() => {
           <ReviewStoreProvider>
             <RepeatAllScreen />
           </ReviewStoreProvider>
-        </PreventTelegramSwipeDownClosingIos>
-      )}
-      {screenStore.screen.type === "deckOrFolderChoose" && (
-        <PreventTelegramSwipeDownClosingIos>
-          <DeckOrFolderChoose />
         </PreventTelegramSwipeDownClosingIos>
       )}
       {screenStore.screen.type === "folderForm" && (
