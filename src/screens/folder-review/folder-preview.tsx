@@ -48,6 +48,11 @@ export const FolderPreview = observer(() => {
     return null;
   }
 
+  const cardsTotal = folder.decks.reduce(
+    (acc, cur) => cur.deck_card.length + acc,
+    0,
+  );
+
   return (
     <Flex direction={"column"} pt={12} pb={82}>
       <div
@@ -124,10 +129,7 @@ export const FolderPreview = observer(() => {
                 {deckListStore.getFolderWithDecksCards.isLoading ? (
                   <DeckFolderInfoRowLoader />
                 ) : (
-                  folder.decks.reduce(
-                    (acc, cur) => cur.deck_card.length + acc,
-                    0,
-                  )
+                  cardsTotal
                 )}
               </h4>
             </Flex>
@@ -237,11 +239,14 @@ export const FolderPreview = observer(() => {
         </Flex>
       )}
 
-      {deckListStore.isDeckFolderAdded({ id: folder.id, type: "folder" })
+      {cardsTotal > 0 &&
+      deckListStore.isDeckFolderAdded({ id: folder.id, type: "folder" })
         .isMineFolder &&
       folder.cardsToReview.length === 0 &&
       !deckListStore.isCatalogItemLoading ? (
-        <Hint>{t("no_cards_to_review_in_deck")}</Hint>
+        <div className={css({ marginTop: 8 })}>
+          <Hint>{t("no_cards_to_review_in_deck")}</Hint>
+        </div>
       ) : null}
     </Flex>
   );

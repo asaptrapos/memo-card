@@ -206,26 +206,25 @@ export const DeckPreview = observer(() => {
         </ButtonGrid>
       </div>
       {!deckListStore.deckWithCardsRequest.isLoading &&
-        deck.cardsToReview.length === 0 && (
-          <>
-            <Hint>
-              <Flex direction={"column"} gap={10} mb={4}>
-                <div>{t("no_cards_to_review_in_deck")}</div>
-                <Button
-                  outline
-                  icon={"mdi-cached"}
-                  onClick={() => {
-                    reviewStore.startDeckReviewAnyway(
-                      deckListStore.selectedDeck,
-                    );
-                  }}
-                >
-                  {t("repeat_cards_anyway")}
-                </Button>
-              </Flex>
-            </Hint>
-          </>
-        )}
+      deck.cardsToReview.length === 0 &&
+      deck.deck_card.length > 0 ? (
+        <>
+          <Hint>
+            <Flex direction={"column"} gap={10} mb={4}>
+              <div>{t("no_cards_to_review_in_deck")}</div>
+              <Button
+                outline
+                icon={"mdi-cached"}
+                onClick={() => {
+                  reviewStore.startDeckReviewAnyway(deckListStore.selectedDeck);
+                }}
+              >
+                {t("repeat_cards_anyway")}
+              </Button>
+            </Flex>
+          </Hint>
+        </>
+      ) : null}
     </Flex>
   );
 });
