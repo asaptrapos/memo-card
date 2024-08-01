@@ -3,8 +3,9 @@ import { action, makeAutoObservable } from "mobx";
 import { BooleanToggle } from "mobx-form-lite";
 import { isLanguage, Language } from "../../../translations/t.ts";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
+import { isDarkTheme } from "../../color-scheme/is-dark-theme.tsx";
 
-const cssVariables = {
+const cssVariablesLight = {
   "--tg-theme-hint-color": "#999999",
   "--tg-theme-secondary-bg-color": "#efeff3",
   "--tg-theme-text-color": "#000000",
@@ -22,6 +23,25 @@ const cssVariables = {
   "--tg-theme-link-color": "#2481cc",
   "--tg-viewport-stable-height": "100vh",
 };
+
+const cssVariablesDark = {
+  "--tg-theme-hint-color": "#b1c3d5",
+  "--tg-theme-secondary-bg-color": "#131415",
+  "--tg-theme-text-color": "#ffffff",
+  "--tg-theme-section-bg-color": "#18222d",
+  "--tg-theme-header-bg-color": "#131415",
+  "--tg-theme-accent-text-color": "#2ea6ff",
+  "--tg-color-scheme": "dark",
+  "--tg-viewport-height": "100vh",
+  "--tg-theme-destructive-text-color": "#ef5b5b",
+  "--tg-theme-button-color": "#2ea6ff",
+  "--tg-theme-bg-color": "#18222d",
+  "--tg-theme-subtitle-text-color": "#b1c3d5",
+  "--tg-theme-button-text-color": "#ffffff",
+  "--tg-theme-section-header-text-color": "#b1c3d5",
+  "--tg-theme-link-color": "#62bcf9",
+  "--tg-viewport-stable-height": "100vh"
+}
 
 const telegramLoginWidgetDataKey = "tlg";
 const browserPlatformLangKey = "browserPlatformLang";
@@ -62,7 +82,12 @@ export class BrowserPlatform implements Platform {
     this.listenIsMobile();
   }
 
+  private getCssVariables() {
+    return isDarkTheme() ? cssVariablesDark : cssVariablesLight;
+  }
+
   getTheme(): PlatformTheme {
+    const cssVariables = this.getCssVariables();
     return {
       buttonColor: cssVariables["--tg-theme-button-color"],
       hintColor: cssVariables["--tg-theme-hint-color"],
@@ -133,6 +158,7 @@ export class BrowserPlatform implements Platform {
   }
 
   initialize() {
+    const cssVariables = this.getCssVariables();
     for (const variable in cssVariables) {
       document.documentElement.style.setProperty(
         variable,
