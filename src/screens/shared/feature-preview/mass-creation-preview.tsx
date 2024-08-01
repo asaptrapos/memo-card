@@ -27,7 +27,6 @@ export const MassCreationPreview = observer((props: Props) => {
           flexDirection: "column",
           gap: 16,
           padding: 16,
-          paddingBottom: 48,
           background: theme.bgColor,
           borderRadius: theme.borderRadius,
         })}
