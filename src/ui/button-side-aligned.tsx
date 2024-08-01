@@ -3,16 +3,17 @@ import React, { useMemo } from "react";
 import { colord } from "colord";
 import { reset } from "./reset.ts";
 import { theme } from "./theme.tsx";
-import { isDarkTheme } from "../lib/color-scheme/is-dark-theme.tsx";
 
 type Props = {
   mainColor?: string;
   outline?: boolean;
   icon: string;
   column?: boolean;
+  align?: "left" | "center";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const ButtonSideAligned = (props: Props) => {
+  const align = props.align || "left";
   const {
     className,
     mainColor = theme.buttonColorComputed,
@@ -61,22 +62,26 @@ export const ButtonSideAligned = (props: Props) => {
         }),
         outline &&
           css({
-            backgroundColor: parsedColor
-              .lighten(isDarkTheme() ? 0.3 : 0.4)
-              .toHex(),
+            backgroundColor: parsedColor.alpha(0.2).toHex(),
             color: mainColor,
           }),
         className,
       )}
     >
       <span
-        className={css({
-          position: "absolute",
-          left: 16,
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-        })}
+        className={css(
+          {
+            position: "absolute",
+            left: 16,
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+          },
+          align === "center" && {
+            left: "50%",
+            transform: "translate(-50%)",
+          },
+        )}
       >
         {icon && <i className={cx("mdi", icon, css({ color: "inherit" }))} />}
         {children}

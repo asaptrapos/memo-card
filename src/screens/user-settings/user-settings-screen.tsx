@@ -8,7 +8,7 @@ import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { RadioSwitcher } from "../../ui/radio-switcher.tsx";
 import { theme } from "../../ui/theme.tsx";
 import { Select } from "../../ui/select.tsx";
-import { css } from "@emotion/css";
+import { css, cx } from "@emotion/css";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
 import { HintTransparent } from "../../ui/hint-transparent.tsx";
@@ -26,6 +26,7 @@ import { ProIcon } from "../../ui/pro-icon.tsx";
 import { copyToClipboard } from "../../lib/copy-to-clipboard/copy-to-clipboard.ts";
 import { showAlert } from "../../lib/platform/show-alert.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
+import { reset } from "../../ui/reset.ts";
 
 export const timeRanges = generateTimeRange();
 
@@ -229,7 +230,10 @@ export const UserSettingsScreen = observer(() => {
               text:
                 platform instanceof BrowserPlatform ? (
                   <span>
-                    <a href={`mailto:${links.supportEmail}`}>
+                    <a
+                      className={cx(reset.a, css({ color: theme.linkColor }))}
+                      href={`mailto:${links.supportEmail}`}
+                    >
                       {links.supportEmail}
                     </a>
                   </span>

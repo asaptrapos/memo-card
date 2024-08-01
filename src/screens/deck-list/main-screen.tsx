@@ -8,7 +8,6 @@ import { useMount } from "../../lib/react/use-mount.ts";
 import { Hint } from "../../ui/hint.tsx";
 import { theme } from "../../ui/theme.tsx";
 import { screenStore } from "../../store/screen-store.ts";
-import { Button } from "../../ui/button.tsx";
 import { CardRowLoading } from "../shared/card-row-loading.tsx";
 import { ListHeader } from "../../ui/list-header.tsx";
 import { range } from "../../lib/array/range.ts";
@@ -27,6 +26,7 @@ import {
   YouTubeIcon,
 } from "../shared/youtube/youtube.tsx";
 import { boolNarrow } from "../../lib/typescript/bool-narrow.ts";
+import { ButtonSideAligned } from "../../ui/button-side-aligned.tsx";
 
 export const MainScreen = observer(() => {
   useMount(() => {
@@ -99,8 +99,9 @@ export const MainScreen = observer(() => {
           ) : null}
 
           {deckListStore.myInfo ? (
-            <Button
-              icon={"mdi-plus"}
+            <ButtonSideAligned
+              align={"center"}
+              icon={"mdi-plus-circle mdi-24px"}
               outline
               onClick={() => {
                 if (deckListStore.myDecks.length > 0) {
@@ -111,7 +112,7 @@ export const MainScreen = observer(() => {
               }}
             >
               {t("add")}
-            </Button>
+            </ButtonSideAligned>
           ) : null}
 
           {deckListStore.areAllDecksReviewed && (

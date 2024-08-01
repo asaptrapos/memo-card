@@ -3,7 +3,6 @@ import React, { useMemo } from "react";
 import { colord } from "colord";
 import { reset } from "./reset.ts";
 import { theme } from "./theme.tsx";
-import { isDarkTheme } from "../lib/color-scheme/is-dark-theme.tsx";
 
 type Props = {
   mainColor?: string;
@@ -36,6 +35,7 @@ export const Button = (props: Props) => {
           flexDirection: column ? "column" : undefined,
           width: "100%",
           gap: column ? 0 : 8,
+          height: 45,
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: mainColor,
@@ -64,13 +64,8 @@ export const Button = (props: Props) => {
         }),
         outline &&
           css({
-            backgroundColor: parsedColor
-              .lighten(isDarkTheme() ? 0.3 : 0.4)
-              .toHex(),
+            backgroundColor: parsedColor.alpha(0.2).toHex(),
             color: mainColor,
-            ":hover": {
-              backgroundColor: parsedColor.lighten(0.4).darken(0.08).toHex(),
-            },
             ":disabled": {
               backgroundColor: parsedColor.lighten(0.4).toHex(),
               cursor: "not-allowed",
