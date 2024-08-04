@@ -184,6 +184,13 @@ export class BrowserPlatform implements Platform {
         cssVariables[variable],
       );
     }
+
+    // Temporarily prevent back button forcing user to use our own
+    // Will be replaced when a routing library is integrated
+    window.history.pushState(null, "", window.location.href);
+    window.onpopstate = function () {
+      window.history.pushState(null, "", window.location.href);
+    };
   }
 
   openInternalLink(link: string) {
