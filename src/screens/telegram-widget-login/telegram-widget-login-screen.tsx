@@ -60,6 +60,7 @@ export const TelegramWidgetLoginScreen = observer(() => {
           borderRadius: theme.borderRadius,
           boxShadow: theme.boxShadow,
           padding: 24,
+          paddingBottom: 48,
         })}
       >
         <div
@@ -88,21 +89,23 @@ export const TelegramWidgetLoginScreen = observer(() => {
             alignItems: "center",
           })}
         >
-          <Button
-            icon={
-              <i
-                className={cx(
-                  "mdi mdi-google mdi-24px",
-                  css({ color: "inherit" }),
-                )}
-              />
-            }
-            onClick={() => {
-              setShowGoogleSignIn(false);
-            }}
-          >
-            {t("login_google")}
-          </Button>
+          <div className={css({ width: 219 })}>
+            <Button
+              icon={
+                <i
+                  className={cx(
+                    "mdi mdi-google mdi-24px",
+                    css({ color: "inherit" }),
+                  )}
+                />
+              }
+              onClick={() => {
+                setShowGoogleSignIn(false);
+              }}
+            >
+              {t("login_google")}
+            </Button>
+          </div>
           <div className={css({ height: 22 })}>
             <LoginButton
               showAvatar={false}
