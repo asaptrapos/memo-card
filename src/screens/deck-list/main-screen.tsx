@@ -29,7 +29,6 @@ import { boolNarrow } from "../../lib/typescript/bool-narrow.ts";
 import { ButtonSideAligned } from "../../ui/button-side-aligned.tsx";
 import { BottomSheet } from "../../ui/bottom-sheet/bottom-sheet.tsx";
 import { DeckOrFolderChoose } from "../deck-or-folder-choose/deck-or-folder-choose.tsx";
-import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 
 export const MainScreen = observer(() => {
   const [isDeckOrFolderChooseOpen, setIsDeckOrFolderChooseOpen] =
