@@ -88,6 +88,10 @@ import {
   UpdateCatalogItemSettingsRequest,
   UpdateCatalogItemSettingsResponse,
 } from "../../functions/update-catalog-item-settings.ts";
+import {
+  GoogleSignInRequest,
+  GoogleSignInResponse,
+} from "../../functions/google-signin.ts";
 
 export const healthRequest = () => {
   return request<HealthResponse>("/health");
@@ -340,4 +344,12 @@ export const deckChangeInputModeRequest = (
 
 export const activePlanesRequest = () => {
   return request<ActivePlansResponse>("/active-plans");
+};
+
+export const googleSignIn = (input: GoogleSignInRequest) => {
+  return request<GoogleSignInResponse, GoogleSignInRequest>(
+    "/google-signin",
+    "POST",
+    input,
+  );
 };

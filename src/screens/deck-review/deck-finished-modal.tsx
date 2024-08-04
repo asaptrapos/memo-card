@@ -27,7 +27,6 @@ export const DeckFinishedModal = (props: Props) => {
     <LazyLoadFramerMotion>
       <m.div
         className={css({
-          maxWidth: 290,
           margin: "0 auto",
           padding: 24,
           background: theme.bgColor,

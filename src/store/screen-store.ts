@@ -30,7 +30,7 @@ type Route =
   | { type: "componentCatalog" }
   | { type: "freezeCards" }
   | { type: "userStatistics" }
-  | { type: "tgLoginWidget" }
+  | { type: "browserLogin" }
   | { type: "userSettings"; index: number };
 
 let routeIndex = 0;

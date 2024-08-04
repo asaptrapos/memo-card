@@ -1,11 +1,14 @@
 import { trimEnd, trimStart } from "../string/trim.ts";
 import { platform } from "../platform/platform.ts";
 import { collectClientData } from "./collect-client-data.ts";
-import { UserHeaders } from "../../../functions/services/get-telegram-user.ts";
-import { BrowserPlatform } from "../platform/browser/browser-platform.ts";
+import { UserHeaders } from "../../../functions/services/get-user.ts";
 import { screenStore } from "../../store/screen-store.ts";
 
 const baseUrl = import.meta.env.VITE_API_URL || "";
+
+const allowedWithoutAuth = ["/google-signin"];
+
+const allowedToReFetch = ["/upsert-deck", "/review-cards"];
 
 const requestInner = async <Output, Input = object>(
   path: string,
@@ -18,19 +21,18 @@ const requestInner = async <Output, Input = object>(
   const initData = platform.getInitData();
 
   if (initData === null) {
-    if (screenStore.screen.type !== "tgLoginWidget") {
-      screenStore.go({ type: "tgLoginWidget" });
+    if (screenStore.screen.type !== "browserLogin") {
+      screenStore.go({ type: "browserLogin" });
     }
-    return null as Output;
+    if (!allowedWithoutAuth.includes(path)) {
+      return null as Output;
+    }
   }
 
   const headers: Record<any, any> = {
     [UserHeaders.Hash]: initData,
     [UserHeaders.Platform]: collectClientData(),
   };
-  if (platform instanceof BrowserPlatform && !import.meta.env.VITE_USER_QUERY) {
-    headers[UserHeaders.TelegramLogin] = "1";
-  }
 
   const response = await fetch(endpoint, {
     method,
@@ -41,7 +43,7 @@ const requestInner = async <Output, Input = object>(
     return response.json() as Output;
   }
   if (response.status === 401) {
-    screenStore.go({ type: "tgLoginWidget" });
+    screenStore.go({ type: "browserLogin" });
     return null as any;
   }
 
@@ -61,11 +63,7 @@ export const request = async <Output, Input = object>(
   try {
     return await requestInner(path, method, body);
   } catch (error) {
-    if (
-      method === "GET" ||
-      path === "/upsert-deck" ||
-      path === "/review-cards"
-    ) {
+    if (method === "GET" || allowedToReFetch.includes(path)) {
       return requestInner(path, method, body);
     }
     throw error;

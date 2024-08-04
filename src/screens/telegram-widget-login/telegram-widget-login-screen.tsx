@@ -12,29 +12,32 @@ import { ErrorScreen } from "../error-screen/error-screen.tsx";
 import { useGoogleOneTapLogin } from "react-google-one-tap-login";
 import { Button } from "../../ui/button.tsx";
 
-const BOT_NAME = import.meta.env.VITE_BOT_NAME;
-assert(BOT_NAME, "VITE_BOT_NAME is not set");
-
 export const TelegramWidgetLoginScreen = observer(() => {
-  const [showGoogleSignIn, setShowGoogleSignIn] = useState(true);
+  const BOT_NAME = import.meta.env.VITE_BOT_NAME;
+  assert(BOT_NAME, "VITE_BOT_NAME is not set");
+
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  assert(googleClientId, "VITE_GOOGLE_CLIENT_ID is not set");
+
+  const [isGoogleSignInHidden, setGoogleSignInHidden] = useState(true);
+  const [isGoogleSignInInProgress, setIsGoogleSignInInProgress] =
+    useState(false);
+
   useGoogleOneTapLogin({
     onError: (error) => console.log(error),
-    disabled: showGoogleSignIn,
-    onSuccess: (response) => {
-      console.log(response);
-    },
+    disabled: isGoogleSignInHidden,
     googleAccountConfigs: {
-      // callback: ({ clientId, credential, select_by }) => console.log('==', credential),
-      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      callback: ({ credential }) => {
+        assert(platform instanceof BrowserPlatform);
+        platform.handleGoogleAuth(credential);
+      },
+      client_id: googleClientId,
     },
   });
 
   if (platform instanceof TelegramPlatform) {
     return <ErrorScreen />;
   }
-
-  console.log(import.meta.env.VITE_GOOGLE_CLIENT_ID);
-  console.log(import.meta.env);
 
   return (
     <div
@@ -91,6 +94,7 @@ export const TelegramWidgetLoginScreen = observer(() => {
         >
           <div className={css({ width: 219 })}>
             <Button
+              disabled={isGoogleSignInInProgress}
               icon={
                 <i
                   className={cx(
@@ -100,10 +104,11 @@ export const TelegramWidgetLoginScreen = observer(() => {
                 />
               }
               onClick={() => {
-                setShowGoogleSignIn(false);
+                setGoogleSignInHidden(false);
+                setIsGoogleSignInInProgress(true);
               }}
             >
-              {t("login_google")}
+              {isGoogleSignInInProgress ? t("ui_loading") : t("login_google")}
             </Button>
           </div>
           <div className={css({ height: 22 })}>

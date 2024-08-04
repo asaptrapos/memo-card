@@ -172,7 +172,7 @@ export const App = observer(() => {
           <CatalogSettingsScreenLazy />
         </PreventTelegramSwipeDownClosingIos>
       )}
-      {screenStore.screen.type === "tgLoginWidget" && (
+      {screenStore.screen.type === "browserLogin" && (
         <TelegramWidgetLoginScreen />
       )}
       <BrowserMainButton />

@@ -4,6 +4,8 @@ import { BooleanToggle } from "mobx-form-lite";
 import { isLanguage, Language } from "../../../translations/t.ts";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
 import { isDarkTheme } from "../../color-scheme/is-dark-theme.tsx";
+import { googleSignIn } from "../../../api/api.ts";
+import { UserSource } from "../../../../functions/db/user/user-source.ts";
 
 const cssVariablesLight = {
   "--tg-theme-hint-color": "#999999",
@@ -43,7 +45,7 @@ const cssVariablesDark = {
   "--tg-viewport-stable-height": "100vh",
 };
 
-const telegramLoginWidgetDataKey = "tlg";
+const browserTokenKey = "brwsrtkn";
 const browserPlatformLangKey = "browserPlatformLang";
 
 export class BrowserPlatform implements Platform {
@@ -147,14 +149,30 @@ export class BrowserPlatform implements Platform {
     if (userQuery) {
       return userQuery;
     }
-    const tlgLoginWidgetData = localStorage.getItem(telegramLoginWidgetDataKey);
-    return tlgLoginWidgetData || null;
+
+    return localStorage.getItem(browserTokenKey) || null;
   }
 
   // Telegram auth outside Telegram mini app
   handleTelegramWidgetLogin(data: Record<any, any>) {
-    localStorage.setItem(telegramLoginWidgetDataKey, JSON.stringify(data));
+    localStorage.setItem(
+      browserTokenKey,
+      `${UserSource.Telegram} ${JSON.stringify(data)}`,
+    );
     window.location.reload();
+  }
+
+  // Google auth outside Telegram mini app
+  handleGoogleAuth(credential: string) {
+    googleSignIn({ token: credential })
+      .then((response) => {
+        localStorage.setItem(
+          browserTokenKey,
+          `${UserSource.Google} ${response.browserToken}`,
+        );
+        window.location.reload();
+      })
+      .catch(console.error);
   }
 
   initialize() {
