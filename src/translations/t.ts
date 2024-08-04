@@ -54,6 +54,9 @@ const en = {
   hide_all_decks: "Hide",
   no_personal_decks_start:
     "You don't have any personal deck yet. Feel free to create one below. Happy learning! 😊",
+  browser_no_personal_decks_start: "You don't have any personal deck yet",
+  browser_no_personal_decks_link: "Learn how to use MemoCard on ",
+  browser_no_personal_decks_end: ". Happy learning! 😊",
   add_deck: "Add deck",
   add: "Add",
   edit_deck: "Edit deck",
@@ -291,6 +294,9 @@ const ru: Translation = {
   error_contact_support:
     "Произошла ошибка. Пожалуйста свяжитесь с поддержкой, чтобы мы могли помочь вам.",
   ai_card_input_mode_supports: "Поддерживаются разные языки",
+  browser_no_personal_decks_start: "У вас еще нет персональных колод",
+  browser_no_personal_decks_end: ". Удачного изучения! 😊",
+  browser_no_personal_decks_link: "Узнайте как использовать MemoCard на ",
   upgrade_pro: "Получить Pro",
   ai_speech_preview_instead: "Вместо роботизированного голоса, как здесь",
   ai_speech_preview_get: "Получите качественный голос, как здесь",
@@ -565,6 +571,9 @@ const ru: Translation = {
 };
 
 const es: Translation = {
+  browser_no_personal_decks_link: "Aprende cómo usar MemoCard en ",
+  browser_no_personal_decks_end: ". ¡Buena suerte! 😊",
+  browser_no_personal_decks_start: "No tienes mazos personales todavía",
   error_contact_support:
     "Se ha producido un error. Por favor, contacta con soporte para que podamos ayudarte.",
   ai_card_input_mode_supports: "Soporta diferentes idiomas",
@@ -845,6 +854,9 @@ const es: Translation = {
 };
 
 const ptBr: Translation = {
+  browser_no_personal_decks_start: "Você ainda não tem baralhos pessoais",
+  browser_no_personal_decks_end: ". Boa sorte! 😊",
+  browser_no_personal_decks_link: "Aprenda como usar o MemoCard em ",
   error_contact_support:
     "Ocorreu um erro. Por favor, entre em contato com o suporte para que possamos ajudar.",
   ai_card_input_mode_supports: "Suporta diferentes idiomas",

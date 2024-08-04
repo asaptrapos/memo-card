@@ -29,6 +29,7 @@ import { boolNarrow } from "../../lib/typescript/bool-narrow.ts";
 import { ButtonSideAligned } from "../../ui/button-side-aligned.tsx";
 import { BottomSheet } from "../../ui/bottom-sheet/bottom-sheet.tsx";
 import { DeckOrFolderChoose } from "../deck-or-folder-choose/deck-or-folder-choose.tsx";
+import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 
 export const MainScreen = observer(() => {
   const [isDeckOrFolderChooseOpen, setIsDeckOrFolderChooseOpen] =
@@ -106,7 +107,25 @@ export const MainScreen = observer(() => {
             : null}
 
           {deckListStore.myInfo && !deckListStore.myDecks.length ? (
-            <Hint>{t("no_personal_decks_start")}</Hint>
+            <Hint>
+              <div>
+                {t("browser_no_personal_decks_start")}
+                <br />
+                {t("browser_no_personal_decks_link")}
+                <span
+                  className={css({
+                    color: theme.linkColor,
+                    cursor: "pointer",
+                  })}
+                  onClick={() => {
+                    platform.openExternalLink(links.youtubeChannelEn);
+                  }}
+                >
+                  YouTube
+                </span>
+                {t("browser_no_personal_decks_end")}
+              </div>
+            </Hint>
           ) : null}
 
           {deckListStore.myInfo ? (
