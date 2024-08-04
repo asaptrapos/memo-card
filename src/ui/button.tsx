@@ -1,5 +1,5 @@
 import { css, cx } from "@emotion/css";
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { colord } from "colord";
 import { reset } from "./reset.ts";
 import { theme } from "./theme.tsx";
@@ -8,7 +8,7 @@ type Props = {
   mainColor?: string;
   outline?: boolean;
   noPseudoClasses?: boolean;
-  icon?: string;
+  icon?: string | ReactNode;
   column?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -74,15 +74,19 @@ export const Button = (props: Props) => {
         className,
       )}
     >
-      {icon && (
-        <i
-          className={cx(
-            "mdi",
-            icon,
-            css({ color: "inherit", position: "relative", top: 1 }),
-          )}
-        />
-      )}
+      {icon ? (
+        typeof icon === "string" ? (
+          <i
+            className={cx(
+              "mdi",
+              icon,
+              css({ color: "inherit", position: "relative", top: 1 }),
+            )}
+          />
+        ) : (
+          icon
+        )
+      ) : null}
       {children}
     </button>
   );
