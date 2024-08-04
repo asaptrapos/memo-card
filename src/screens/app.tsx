@@ -37,7 +37,7 @@ import { AiMassCreationStoreProvider } from "./ai-mass-creation/store/ai-mass-cr
 import { SnackbarProviderWrapper } from "./shared/snackbar/snackbar-provider-wrapper.tsx";
 import { Debug } from "./debug/debug.tsx";
 import { BrowserMainButton } from "./shared/browser-platform/browser-main-button.tsx";
-import { css } from "@emotion/css";
+import { css, cx } from "@emotion/css";
 import { platform } from "../lib/platform/platform.ts";
 import { BrowserPlatform } from "../lib/platform/browser/browser-platform.ts";
 import { CatalogSettingsScreenLazy } from "./catalog-settings/catalog-settings-screen-lazy.tsx";
@@ -58,15 +58,20 @@ export const App = observer(() => {
     <div
       className={
         platform instanceof BrowserPlatform
-          ? css({
-              margin: "0 auto",
-              marginTop: 24,
-              maxWidth: platform.maxWidth,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              minHeight: "calc(100vh - 48px)",
-            })
+          ? cx(
+              css({
+                margin: "0 auto",
+                marginTop: 24,
+                maxWidth: platform.maxWidth,
+              }),
+              screenStore.screen.type === "browserLogin" &&
+                css({
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  minHeight: "calc(100vh - 48px)",
+                }),
+            )
           : undefined
       }
     >
