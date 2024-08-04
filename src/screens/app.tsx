@@ -41,7 +41,7 @@ import { css } from "@emotion/css";
 import { platform } from "../lib/platform/platform.ts";
 import { BrowserPlatform } from "../lib/platform/browser/browser-platform.ts";
 import { CatalogSettingsScreenLazy } from "./catalog-settings/catalog-settings-screen-lazy.tsx";
-import { TelegramWidgetLoginScreen } from "./telegram-widget-login/telegram-widget-login-screen.tsx";
+import { LoginScreen } from "./login/login-screen.tsx";
 
 export const App = observer(() => {
   useRestoreFullScreenExpand();
@@ -62,6 +62,10 @@ export const App = observer(() => {
               margin: "0 auto",
               marginTop: 24,
               maxWidth: platform.maxWidth,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "calc(100vh - 48px)",
             })
           : undefined
       }
@@ -172,9 +176,7 @@ export const App = observer(() => {
           <CatalogSettingsScreenLazy />
         </PreventTelegramSwipeDownClosingIos>
       )}
-      {screenStore.screen.type === "browserLogin" && (
-        <TelegramWidgetLoginScreen />
-      )}
+      {screenStore.screen.type === "browserLogin" && <LoginScreen />}
       <BrowserMainButton />
     </div>
   );
