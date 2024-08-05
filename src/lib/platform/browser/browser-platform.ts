@@ -111,7 +111,10 @@ export class BrowserPlatform implements Platform {
   }
 
   getClientData(): PlatformSchemaType {
-    return {};
+    return {
+      platform: navigator.userAgent,
+      colorScheme: isDarkTheme() ? "dark" : "light",
+    };
   }
 
   showMainButton(text: string, onClick: () => void, condition?: () => boolean) {
