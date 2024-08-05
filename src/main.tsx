@@ -10,4 +10,9 @@ applyFormatters();
 
 platform.initialize();
 
+// https://vitejs.dev/guide/build#load-error-handling
+window.addEventListener('vite:preloadError', () => {
+  window.location.reload()
+})
+
 ReactDOM.createRoot(document.getElementById("root")!).render(<App />);
