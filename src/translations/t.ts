@@ -2,7 +2,7 @@ import { platform } from "../lib/platform/platform.ts";
 import { Translator } from "../../shared/translator/translator.ts";
 
 const en = {
-  logout: 'Logout',
+  logout: "Logout",
   error_contact_support:
     "An error occurred. Please contact support so we can help you.",
   login_google: "Login with Google",
@@ -292,7 +292,7 @@ const en = {
 type Translation = typeof en;
 
 const ru: Translation = {
-  logout: 'Выйти',
+  logout: "Выйти",
   error_contact_support:
     "Произошла ошибка. Пожалуйста свяжитесь с поддержкой, чтобы мы могли помочь вам.",
   ai_card_input_mode_supports: "Поддерживаются разные языки",
@@ -573,7 +573,7 @@ const ru: Translation = {
 };
 
 const es: Translation = {
-  logout: 'Cerrar sesión',
+  logout: "Cerrar sesión",
   browser_no_personal_decks_link: "Aprende cómo usar MemoCard en ",
   browser_no_personal_decks_end: ". ¡Buena suerte! 😊",
   browser_no_personal_decks_start: "No tienes mazos personales todavía",
@@ -857,7 +857,7 @@ const es: Translation = {
 };
 
 const ptBr: Translation = {
-  logout: 'Sair',
+  logout: "Sair",
   browser_no_personal_decks_start: "Você ainda não tem baralhos pessoais",
   browser_no_personal_decks_end: ". Boa sorte! 😊",
   browser_no_personal_decks_link: "Aprenda como usar o MemoCard em ",

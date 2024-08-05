@@ -254,25 +254,27 @@ export const UserSettingsScreen = observer(() => {
         <HintTransparent>{t("settings_support_hint")}</HintTransparent>
       </div>
 
-      {platform instanceof BrowserPlatform && <div>
-        <List
-          items={[
-            {
-              icon: <FilledIcon
-                backgroundColor={theme.icons.sea}
-                icon={"mdi-logout"}
-              />,
-              text: t('logout'),
-              onClick: () => {
-                assert(platform instanceof BrowserPlatform)
-                platform.logout();
-
+      {platform instanceof BrowserPlatform && (
+        <div>
+          <List
+            items={[
+              {
+                icon: (
+                  <FilledIcon
+                    backgroundColor={theme.icons.sea}
+                    icon={"mdi-logout"}
+                  />
+                ),
+                text: t("logout"),
+                onClick: () => {
+                  assert(platform instanceof BrowserPlatform);
+                  platform.logout();
+                },
               },
-            },
-          ]}
-        />
-
-      </div>}
+            ]}
+          />
+        </div>
+      )}
     </Screen>
   );
 });
