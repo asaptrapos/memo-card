@@ -21,7 +21,7 @@ export const Screen = observer((props: Props) => {
         flexDirection: "column",
         gap: 8,
         position: "relative",
-        marginBottom: platform instanceof BrowserPlatform ? 70 : 16,
+        marginBottom: platform instanceof BrowserPlatform ? 80 : 16,
       })}
     >
       <div>

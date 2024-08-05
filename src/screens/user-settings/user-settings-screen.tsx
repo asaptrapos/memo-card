@@ -60,7 +60,7 @@ export const UserSettingsScreen = observer(() => {
           items={[
             {
               icon: <ProIcon />,
-              text: "Pro",
+              text: "MemoCard Pro",
               onClick: () => {
                 screenStore.go({ type: "plans" });
               },
@@ -253,6 +253,26 @@ export const UserSettingsScreen = observer(() => {
 
         <HintTransparent>{t("settings_support_hint")}</HintTransparent>
       </div>
+
+      {platform instanceof BrowserPlatform && <div>
+        <List
+          items={[
+            {
+              icon: <FilledIcon
+                backgroundColor={theme.icons.sea}
+                icon={"mdi-logout"}
+              />,
+              text: t('logout'),
+              onClick: () => {
+                assert(platform instanceof BrowserPlatform)
+                platform.logout();
+
+              },
+            },
+          ]}
+        />
+
+      </div>}
     </Screen>
   );
 });

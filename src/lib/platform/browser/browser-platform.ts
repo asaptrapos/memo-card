@@ -227,4 +227,9 @@ export class BrowserPlatform implements Platform {
     this.dbLang = lang;
     localStorage.setItem(browserPlatformLangKey, lang || "");
   }
+
+  logout() {
+    localStorage.removeItem(browserTokenKey);
+    window.location.reload();
+  }
 }
