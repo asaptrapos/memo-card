@@ -16,7 +16,7 @@ import { ListHeader } from "../../ui/list-header.tsx";
 import { ButtonGrid } from "../../ui/button-grid.tsx";
 import { DeckFolderDescription } from "../shared/deck-folder-description.tsx";
 import { useScrollToTopOnMount } from "../../lib/react/use-scroll-to-top-mount.ts";
-import { redirectUserToDeckOrFolderLink } from "../share-deck/redirect-user-to-deck-or-folder-link.tsx";
+import { shareMemoCardUrl } from "../share-deck/share-memo-card-url.tsx";
 import { userStore } from "../../store/user-store.ts";
 import { Flex } from "../../ui/flex.tsx";
 import { List } from "../../ui/list.tsx";
@@ -186,7 +186,7 @@ export const FolderPreview = observer(() => {
                       shareId: folder.shareId,
                     });
                   } else {
-                    redirectUserToDeckOrFolderLink(folder.shareId);
+                    shareMemoCardUrl(folder.shareId);
                   }
                 }}
               >

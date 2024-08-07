@@ -2,7 +2,7 @@ import { BooleanToggle, isFormValid, TextField } from "mobx-form-lite";
 import { t } from "../../../translations/t.ts";
 import { makeAutoObservable } from "mobx";
 import { screenStore } from "../../../store/screen-store.ts";
-import { redirectUserToDeckOrFolderLink } from "../redirect-user-to-deck-or-folder-link.tsx";
+import { shareMemoCardUrl } from "../share-memo-card-url.tsx";
 import {
   addDeckAccessRequest,
   getDeckAccessesOfDeckRequest,
@@ -74,7 +74,7 @@ export class ShareDeckFormStore {
     const { shareId } = screen;
 
     if (!this.form.isOneTime.value) {
-      redirectUserToDeckOrFolderLink(shareId);
+      shareMemoCardUrl(shareId);
       return;
     }
 
@@ -100,6 +100,6 @@ export class ShareDeckFormStore {
       return;
     }
 
-    redirectUserToDeckOrFolderLink(result.data.share_id);
+    shareMemoCardUrl(result.data.share_id);
   }
 }

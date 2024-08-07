@@ -17,7 +17,7 @@ import { Button } from "../../ui/button.tsx";
 import { DeckFolderDescription } from "../shared/deck-folder-description.tsx";
 import { useScrollToTopOnMount } from "../../lib/react/use-scroll-to-top-mount.ts";
 import { userStore } from "../../store/user-store.ts";
-import { redirectUserToDeckOrFolderLink } from "../share-deck/redirect-user-to-deck-or-folder-link.tsx";
+import { shareMemoCardUrl } from "../share-deck/share-memo-card-url.tsx";
 import { Flex } from "../../ui/flex.tsx";
 import { BrowserBackButton } from "../shared/browser-platform/browser-back-button.tsx";
 import { MoreFeaturesButton } from "../shared/feature-preview/more-features-button.tsx";
@@ -191,7 +191,7 @@ export const DeckPreview = observer((props: Props) => {
                     shareId: deck.share_id,
                   });
                 } else {
-                  redirectUserToDeckOrFolderLink(deck.share_id);
+                  shareMemoCardUrl(deck.share_id);
                 }
               }}
             >

@@ -4,7 +4,7 @@ import { t } from "../../translations/t.ts";
 import React from "react";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { useMount } from "../../lib/react/use-mount.ts";
-import { getDeckOrFolderLink } from "./redirect-user-to-deck-or-folder-link.tsx";
+import { getDeckOrFolderLink } from "./share-memo-card-url.tsx";
 import { copyToClipboard } from "../../lib/copy-to-clipboard/copy-to-clipboard.ts";
 import { showAlert } from "../../lib/platform/show-alert.ts";
 import { theme } from "../../ui/theme.tsx";
