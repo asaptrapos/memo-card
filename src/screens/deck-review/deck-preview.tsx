@@ -146,6 +146,19 @@ export const DeckPreview = observer((props: Props) => {
               {t("add_card_short")}
             </ButtonSideAligned>
           ) : null}
+
+          {!deckListStore.canEditDeck && (
+            <ButtonSideAligned
+              icon={"mdi-eye-circle mdi-24px"}
+              outline
+              onClick={() => {
+                props.onCardListPreview();
+              }}
+            >
+              {t("view")}
+            </ButtonSideAligned>
+          )}
+
           {deckListStore.canDuplicateSelectedDeck && (
             <ButtonSideAligned
               icon={"mdi-content-duplicate mdi-24px"}
@@ -167,17 +180,7 @@ export const DeckPreview = observer((props: Props) => {
             >
               {t("edit")}
             </ButtonSideAligned>
-          ) : (
-            <ButtonSideAligned
-              icon={"mdi-eye-circle mdi-24px"}
-              outline
-              onClick={() => {
-                props.onCardListPreview();
-              }}
-            >
-              {t("view")}
-            </ButtonSideAligned>
-          )}
+          ) : null}
 
           {deckListStore.canShareDeck && (
             <ButtonSideAligned
