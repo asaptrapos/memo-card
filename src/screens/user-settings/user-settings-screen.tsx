@@ -28,6 +28,7 @@ import { showAlert } from "../../lib/platform/show-alert.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
 import { reset } from "../../ui/reset.ts";
 import { showConfirm } from "../../lib/platform/show-confirm.ts";
+import { notifyError } from "../shared/snackbar/snackbar.tsx";
 
 export const timeRanges = generateTimeRange();
 
@@ -288,8 +289,19 @@ export const UserSettingsScreen = observer(() => {
                       const confirm = await showConfirm(
                         "Are you sure you want to delete your account?",
                       );
-                      if (confirm) {
+                      if (!confirm) {
+                        return;
+                      }
+
+                      const result =
                         await userSettingsStore.deleteAccountRequest.execute();
+
+                      if (result.status === "error") {
+                        notifyError({
+                          e: result.error,
+                          info: "Failed to remove account",
+                        });
+                      } else {
                         window.location.reload();
                       }
                     },
