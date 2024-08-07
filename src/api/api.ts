@@ -92,6 +92,7 @@ import {
   GoogleSignInRequest,
   GoogleSignInResponse,
 } from "../../functions/google-signin.ts";
+import { DeleteMyselfResponse } from "../../functions/delete-account.ts";
 
 export const healthRequest = () => {
   return request<HealthResponse>("/health");
@@ -346,10 +347,14 @@ export const activePlanesRequest = () => {
   return request<ActivePlansResponse>("/active-plans");
 };
 
-export const googleSignIn = (input: GoogleSignInRequest) => {
+export const googleSignInRequest = (input: GoogleSignInRequest) => {
   return request<GoogleSignInResponse, GoogleSignInRequest>(
     "/google-signin",
     "POST",
     input,
   );
+};
+
+export const deleteAccountRequest = () => {
+  return request<DeleteMyselfResponse>("/delete-account", "POST");
 };

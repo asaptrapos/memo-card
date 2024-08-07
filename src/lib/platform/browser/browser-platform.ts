@@ -4,7 +4,7 @@ import { BooleanToggle } from "mobx-form-lite";
 import { isLanguage, Language } from "../../../translations/t.ts";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
 import { isDarkTheme } from "../../color-scheme/is-dark-theme.tsx";
-import { googleSignIn } from "../../../api/api.ts";
+import { googleSignInRequest } from "../../../api/api.ts";
 import { UserSource } from "../../../../functions/db/user/user-source.ts";
 
 const cssVariablesLight = {
@@ -167,7 +167,7 @@ export class BrowserPlatform implements Platform {
 
   // Google auth outside Telegram mini app
   handleGoogleAuth(credential: string) {
-    googleSignIn({ token: credential })
+    googleSignInRequest({ token: credential })
       .then((response) => {
         localStorage.setItem(
           browserTokenKey,

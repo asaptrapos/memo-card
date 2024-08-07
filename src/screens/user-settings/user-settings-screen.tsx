@@ -27,6 +27,7 @@ import { copyToClipboard } from "../../lib/copy-to-clipboard/copy-to-clipboard.t
 import { showAlert } from "../../lib/platform/show-alert.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
 import { reset } from "../../ui/reset.ts";
+import { showConfirm } from "../../lib/platform/show-confirm.ts";
 
 export const timeRanges = generateTimeRange();
 
@@ -271,7 +272,30 @@ export const UserSettingsScreen = observer(() => {
                   platform.logout();
                 },
               },
-            ]}
+
+              userStore.canDeleteItsAccount
+                ? {
+                    icon: (
+                      <FilledIcon
+                        backgroundColor={theme.danger}
+                        icon={"mdi-account-cancel"}
+                      />
+                    ),
+                    text: userSettingsStore.deleteAccountRequest.isLoading
+                      ? t("ui_loading")
+                      : "Delete account",
+                    onClick: async () => {
+                      const confirm = await showConfirm(
+                        "Are you sure you want to delete your account?",
+                      );
+                      if (confirm) {
+                        await userSettingsStore.deleteAccountRequest.execute();
+                        window.location.reload();
+                      }
+                    },
+                  }
+                : null,
+            ].filter(boolNarrow)}
           />
         </div>
       )}

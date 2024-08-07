@@ -7,7 +7,7 @@ import {
 } from "mobx-form-lite";
 import { DateTime } from "luxon";
 import { formatTime } from "../generate-time-range.tsx";
-import { userSettingsRequest } from "../../../api/api.ts";
+import { deleteAccountRequest, userSettingsRequest } from "../../../api/api.ts";
 import { UserSettingsRequest } from "../../../../functions/user-settings.ts";
 import { userStore } from "../../../store/user-store.ts";
 import { RequestStore } from "../../../lib/mobx-request/request-store.ts";
@@ -24,6 +24,7 @@ export class UserSettingsStore {
     time: TextField<string>;
   };
   userSettingsRequest = new RequestStore(userSettingsRequest);
+  deleteAccountRequest = new RequestStore(deleteAccountRequest);
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });

@@ -11,6 +11,7 @@ import { formatPaidUntil } from "../screens/pro/format-paid-until.tsx";
 import { assert } from "../../shared/typescript/assert.ts";
 import { platform } from "../lib/platform/platform.ts";
 import { BrowserPlatform } from "../lib/platform/browser/browser-platform.ts";
+import { canDeleteItsAccount } from "../../shared/roles/can-delete-its-account.ts";
 
 export class UserStore {
   userInfo?: UserDbType;
@@ -91,6 +92,13 @@ export class UserStore {
 
   get canUpdateCatalogSettings() {
     return this.isAdmin;
+  }
+
+  get canDeleteItsAccount() {
+    if (!this.user) {
+      return false;
+    }
+    return canDeleteItsAccount(this.user);
   }
 }
 
