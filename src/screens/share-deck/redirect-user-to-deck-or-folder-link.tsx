@@ -17,8 +17,8 @@ export const redirectUserToDeckOrFolderLink = (shareId: string) => {
   const botUrlWithDeckId = getDeckOrFolderLink(shareId);
 
   const shareUrl = `https://t.me/share/url?${
-    platform.isMacos() ? "" : "text="
-  }&url=${botUrlWithDeckId}`;
+    platform.isMacos() ? "" : "text=&"
+  }url=${botUrlWithDeckId}`;
 
   platform.openInternalLink(shareUrl);
 };
