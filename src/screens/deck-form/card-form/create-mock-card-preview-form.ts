@@ -10,7 +10,7 @@ import { DeckCardOptionsDbType } from "../../../../functions/db/deck/decks-with-
 export const createMockCardPreviewForm = (card: {
   front: string;
   back: string;
-  example?: string;
+  example?: string | null;
 }): CardFormStoreInterface => {
   return {
     cardForm: {

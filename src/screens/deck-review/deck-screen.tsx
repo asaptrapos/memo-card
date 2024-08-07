@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { Review } from "./review.tsx";
 import { DeckPreview } from "./deck-preview.tsx";
 import { useReviewStore } from "./store/review-store-context.tsx";
 import { DeckFinished } from "./deck-finished.tsx";
+import { CardListWithPreviewReadonly } from "./preview-readonly/card-list-with-preview-readonly.tsx";
+import { deckListStore } from "../../store/deck-list-store.ts";
+import { BooleanToggle } from "mobx-form-lite";
 
 export const DeckScreen = observer(() => {
   const reviewStore = useReviewStore();
+  const [previewStore] = useState(() => new BooleanToggle(false));
 
   if (reviewStore.isFinished) {
     return <DeckFinished type={"deck"} />;
   } else if (reviewStore.currentCardId) {
     return <Review />;
   }
-  return <DeckPreview />;
+
+  if (previewStore.value) {
+    const cards = deckListStore.selectedDeck?.deck_card ?? [];
+    return (
+      <CardListWithPreviewReadonly
+        onBack={previewStore.setFalse}
+        cards={cards}
+      />
+    );
+  }
+
+  return <DeckPreview onCardListPreview={previewStore.setTrue} />;
 });

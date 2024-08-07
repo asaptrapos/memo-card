@@ -188,6 +188,20 @@ export type CardFilterDirection = "desc" | "asc";
 
 type DeckInnerScreen = "cardList" | "speakingCards" | "cardInputMode";
 
+export type CardFilterForm = {
+  text: TextField<string>;
+  sortBy: TextField<CardFilterSortBy>;
+  sortDirection: TextField<CardFilterDirection>;
+};
+
+export const createCardFilterForm = (): CardFilterForm => {
+  return {
+    text: new TextField(""),
+    sortBy: new TextField<CardFilterSortBy>("createdAt"),
+    sortDirection: new TextField<CardFilterDirection>("desc"),
+  };
+};
+
 export class DeckFormStore implements CardFormStoreInterface {
   cardFormIndex?: number;
   cardFormType?: "new" | "edit";
@@ -195,11 +209,7 @@ export class DeckFormStore implements CardFormStoreInterface {
   upsertDeckRequest = new RequestStore(upsertDeckRequest);
   cardInnerScreen = new TextField<CardInnerScreenType>(null);
   deckInnerScreen?: DeckInnerScreen;
-  cardFilter = {
-    text: new TextField(""),
-    sortBy: new TextField<CardFilterSortBy>("createdAt"),
-    sortDirection: new TextField<CardFilterDirection>("desc"),
-  };
+  cardFilter = createCardFilterForm();
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });

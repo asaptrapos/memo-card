@@ -23,7 +23,9 @@ import { BrowserBackButton } from "../shared/browser-platform/browser-back-butto
 import { MoreFeaturesButton } from "../shared/feature-preview/more-features-button.tsx";
 import { DeckFolderInfoRowLoader } from "../shared/deck-folder-info-row-loader.tsx";
 
-export const DeckPreview = observer(() => {
+type Props = { onCardListPreview: () => void };
+
+export const DeckPreview = observer((props: Props) => {
   const reviewStore = useReviewStore();
 
   useBackButton(() => {
@@ -165,7 +167,17 @@ export const DeckPreview = observer(() => {
             >
               {t("edit")}
             </ButtonSideAligned>
-          ) : null}
+          ) : (
+            <ButtonSideAligned
+              icon={"mdi-eye-circle mdi-24px"}
+              outline
+              onClick={() => {
+                props.onCardListPreview();
+              }}
+            >
+              {t("view")}
+            </ButtonSideAligned>
+          )}
 
           {deckListStore.canShareDeck && (
             <ButtonSideAligned
