@@ -29,7 +29,7 @@ export const shareMemoCardUrl = (shareId: string) => {
 
   if (platform instanceof TelegramPlatform) {
     const shareUrl = `https://t.me/share/url?${
-      platform.isMacos() ? "" : "text=&"
+      platform.isMacosWithShareBugs() ? "" : "text=&"
     }url=${memoCardUrl}`;
 
     platform.openInternalLink(shareUrl);

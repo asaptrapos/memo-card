@@ -60,8 +60,8 @@ export class TelegramPlatform implements Platform {
     return WebApp.platform === "android";
   }
 
-  isMacos() {
-    return WebApp.platform === "macos";
+  isMacosWithShareBugs() {
+    return WebApp.platform === "macos" && WebApp.isVersionAtLeast("7.8");
   }
 
   getClientData(): PlatformSchemaType {
