@@ -29,6 +29,7 @@ import { boolNarrow } from "../../lib/typescript/bool-narrow.ts";
 import { ButtonSideAligned } from "../../ui/button-side-aligned.tsx";
 import { BottomSheet } from "../../ui/bottom-sheet/bottom-sheet.tsx";
 import { DeckOrFolderChoose } from "../deck-or-folder-choose/deck-or-folder-choose.tsx";
+import { TelegramPlatform } from "../../lib/platform/telegram/telegram-platform.ts";
 
 export const MainScreen = observer(() => {
   const [isDeckOrFolderChooseOpen, setIsDeckOrFolderChooseOpen] =
@@ -203,6 +204,15 @@ export const MainScreen = observer(() => {
                     />
                   ),
                   onClick: () => {
+                    // https://github.com/overtake/TelegramSwift/issues/1156
+                    if (
+                      platform instanceof TelegramPlatform &&
+                      platform.isMacosWithShareBugs()
+                    ) {
+                      platform.openExternalLink(links.botChannel);
+                      return;
+                    }
+
                     platform.openInternalLink(links.botChannel);
                   },
                 },
