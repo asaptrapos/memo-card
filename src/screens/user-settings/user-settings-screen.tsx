@@ -24,11 +24,10 @@ import { userStore } from "../../store/user-store.ts";
 import { formatPaidUntil } from "../pro/format-paid-until.tsx";
 import { ProIcon } from "../../ui/pro-icon.tsx";
 import { copyToClipboard } from "../../lib/copy-to-clipboard/copy-to-clipboard.ts";
-import { showAlert } from "../../lib/platform/show-alert.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
 import { reset } from "../../ui/reset.ts";
 import { showConfirm } from "../../lib/platform/show-confirm.ts";
-import { notifyError } from "../shared/snackbar/snackbar.tsx";
+import { notifyError, notifySuccess } from "../shared/snackbar/snackbar.tsx";
 
 export const timeRanges = generateTimeRange();
 
@@ -243,7 +242,7 @@ export const UserSettingsScreen = observer(() => {
                   <span
                     onClick={() => {
                       copyToClipboard(links.supportEmail);
-                      showAlert(t("share_link_copied"));
+                      notifySuccess(t("share_link_copied"));
                     }}
                   >
                     {links.supportEmail}

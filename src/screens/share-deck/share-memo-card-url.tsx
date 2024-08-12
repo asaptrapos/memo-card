@@ -6,8 +6,8 @@ import { TelegramPlatform } from "../../lib/platform/telegram/telegram-platform.
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 import { links } from "../../../shared/links/links.ts";
 import { copyToClipboard } from "../../lib/copy-to-clipboard/copy-to-clipboard.ts";
-import { showAlert } from "../../lib/platform/show-alert.ts";
 import { t } from "../../translations/t.ts";
+import { notifySuccess } from "../shared/snackbar/snackbar.tsx";
 
 export const getDeckOrFolderLink = (shareId: string) => {
   if (platform instanceof BrowserPlatform) {
@@ -23,7 +23,7 @@ export const shareMemoCardUrl = (shareId: string) => {
 
   if (platform instanceof BrowserPlatform) {
     copyToClipboard(memoCardUrl);
-    showAlert(t("share_link_copied"));
+    notifySuccess(t("share_link_copied"));
     return;
   }
 
