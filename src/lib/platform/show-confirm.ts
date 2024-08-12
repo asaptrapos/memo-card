@@ -4,6 +4,6 @@ import { showConfirmTelegram } from "./telegram/show-confirm-telegram.ts";
 import { showConfirmBrowser } from "./browser/show-confirm-browser.tsx";
 
 export const showConfirm =
-  platform instanceof TelegramPlatform
+  platform instanceof TelegramPlatform && !platform.isMacosWithShareBugs()
     ? showConfirmTelegram
     : showConfirmBrowser;
