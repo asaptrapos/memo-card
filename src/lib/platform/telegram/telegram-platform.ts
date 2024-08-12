@@ -52,7 +52,7 @@ export class TelegramPlatform implements Platform {
   openInternalLink(link: string) {
     // https://github.com/overtake/TelegramSwift/issues/1156
     if (this.isMacosWithShareBugs()) {
-      this.openExternalLink(links.botChannel);
+      this.openExternalLink(link);
       return;
     }
 
