@@ -4,7 +4,6 @@ import { cssVarToValue } from "./css-var-to-value.ts";
 import { Language } from "../../../translations/t.ts";
 import { isRuProxy } from "../../urls/is-ru-proxy.ts";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
-import { links } from "../../../../shared/links/links.ts";
 
 const buttonColor = "var(--tg-theme-button-color)";
 const buttonTextColor = "var(--tg-theme-button-text-color)";

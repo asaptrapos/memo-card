@@ -24,6 +24,7 @@ import { CardsToReview } from "../../ui/cards-to-review.tsx";
 import { BrowserBackButton } from "../shared/browser-platform/browser-back-button.tsx";
 import { MoreFeaturesButton } from "../shared/feature-preview/more-features-button.tsx";
 import { DeckFolderInfoRowLoader } from "../shared/deck-folder-info-row-loader.tsx";
+import { useMount } from "../../lib/react/use-mount.ts";
 
 export const FolderPreview = observer(() => {
   const reviewStore = useReviewStore();
@@ -31,6 +32,10 @@ export const FolderPreview = observer(() => {
   useBackButton(() => {
     screenStore.back();
   });
+
+  useMount(() => {
+    deckListStore.checkFolderRequiresUpdating()
+  })
 
   useProgress(() => deckListStore.isCatalogItemLoading);
   useScrollToTopOnMount();

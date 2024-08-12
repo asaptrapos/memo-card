@@ -39,6 +39,8 @@ import {
 import { RequestStore } from "../lib/mobx-request/request-store.ts";
 import { notifyError } from "../screens/shared/snackbar/snackbar.tsx";
 import { assert } from "../../shared/typescript/assert.ts";
+import { arrayDifference } from "../lib/array/array-difference.ts";
+import { boolNarrow } from "../lib/typescript/bool-narrow.ts";
 
 export enum StartParamType {
   RepeatAll = "repeat_all",
@@ -226,11 +228,14 @@ export class DeckListStore {
     reviewStore.startDeckReview(this.selectedDeck);
   }
 
-  addDeckToMine(deckId: number) {
+  addDeckToMine(deckId: number, silent = false) {
     return addDeckToMineRequest({
       deckId,
     })
       .then(() => {
+        if (silent) {
+          return;
+        }
         this.load();
       })
       .catch((error) => {
@@ -520,6 +525,27 @@ export class DeckListStore {
         ...deck,
         type: "deck",
       }));
+  }
+
+  checkFolderRequiresUpdating() {
+    const folder = this.selectedFolder;
+    if (!folder || !this.myInfo) return;
+
+    const authorsDecksIds = this.myInfo.folders
+      .filter((f) => f.folder_id === folder.id)
+      .map((d) => d.deck_id)
+      .filter(boolNarrow);
+
+    const usersDeckIds = folder.decks.map((d) => d.id);
+
+    const decksInFolderNotAddedByUser = arrayDifference(
+      authorsDecksIds,
+      usersDeckIds,
+    );
+
+    decksInFolderNotAddedByUser.forEach((deckId) => {
+      this.addDeckToMine(deckId, true);
+    });
   }
 
   get myFoldersAsDecks(): DeckListItem[] {
