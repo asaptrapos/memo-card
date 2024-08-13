@@ -11,6 +11,7 @@ import { getEncouragingMessage } from "../../translations/get-encouraging-messag
 import { WantMoreCardsButton } from "./want-more-cards-button.tsx";
 import { deckListStore } from "../../store/deck-list-store.ts";
 import { Flex } from "../../ui/flex.tsx";
+import { useHotkeys } from "react-hotkeys-hook";
 
 type Props = {
   type: "deck" | "repeat_all";
@@ -26,9 +27,13 @@ export const DeckFinished = observer((props: Props) => {
       deckListStore.load();
     });
   });
-  useMainButton(t("go_back"), () => {
+
+  const onBack = () => {
     screenStore.go({ type: "main" });
-  });
+  };
+
+  useHotkeys("enter", onBack);
+  useMainButton(t("go_back"), onBack);
   useProgress(() => reviewStore.reviewCardsRequest.isLoading);
 
   return (

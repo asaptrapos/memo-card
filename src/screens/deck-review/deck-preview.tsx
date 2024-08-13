@@ -22,6 +22,7 @@ import { Flex } from "../../ui/flex.tsx";
 import { BrowserBackButton } from "../shared/browser-platform/browser-back-button.tsx";
 import { MoreFeaturesButton } from "../shared/feature-preview/more-features-button.tsx";
 import { DeckFolderInfoRowLoader } from "../shared/deck-folder-info-row-loader.tsx";
+import { useHotkeys } from "react-hotkeys-hook";
 
 type Props = { onCardListPreview: () => void };
 
@@ -35,13 +36,15 @@ export const DeckPreview = observer((props: Props) => {
   useProgress(() => deckListStore.deckWithCardsRequest.isLoading);
   useScrollToTopOnMount();
 
-  useMainButton(
-    t("review_deck"),
-    () => {
+  const onStart = () => {
+    if (deckListStore.canReview) {
       deckListStore.startDeckReview(reviewStore);
-    },
-    () => deckListStore.canReview,
-  );
+    }
+  };
+
+  useHotkeys("enter", onStart);
+
+  useMainButton(t("review_deck"), onStart, () => deckListStore.canReview);
 
   const deck = deckListStore.selectedDeck;
   if (!deck) {

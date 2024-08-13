@@ -29,12 +29,14 @@ export const Review = observer(() => {
   };
 
   useHotkeys("1", () => {
+    console.log("1");
     if (reviewStore.currentCard?.isOpened) {
       onWrong();
     }
   });
 
   useHotkeys("2", () => {
+    console.log("2");
     if (reviewStore.currentCard?.isOpened) {
       onCorrect();
     }

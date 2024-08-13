@@ -34,8 +34,8 @@ export const FolderPreview = observer(() => {
   });
 
   useMount(() => {
-    deckListStore.checkFolderRequiresUpdating()
-  })
+    deckListStore.checkFolderRequiresUpdating();
+  });
 
   useProgress(() => deckListStore.isCatalogItemLoading);
   useScrollToTopOnMount();
