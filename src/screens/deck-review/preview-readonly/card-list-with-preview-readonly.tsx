@@ -1,16 +1,10 @@
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
-import {
-  DeckCardDbType
-} from "../../../../functions/db/deck/decks-with-cards-schema.ts";
-import {
-  CardPreviewFromListReadonly
-} from "./card-preview-from-list-readonly.tsx";
+import { DeckCardDbType } from "../../../../functions/db/deck/decks-with-cards-schema.ts";
+import { CardPreviewFromListReadonly } from "./card-preview-from-list-readonly.tsx";
 import { CardListReadonly } from "./card-list-readonly.tsx";
 import { DeckWithCardsWithReviewType } from "../../../store/deck-list-store.ts";
-import {
-  useScrollToTopOnMount
-} from "../../../lib/react/use-scroll-to-top-mount.ts";
+import { useScrollToTopOnMount } from "../../../lib/react/use-scroll-to-top-mount.ts";
 
 type Props = {
   onBack: () => void;

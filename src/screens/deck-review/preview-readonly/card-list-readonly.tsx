@@ -1,7 +1,5 @@
 import { observer } from "mobx-react-lite";
-import {
-  DeckCardDbType
-} from "../../../../functions/db/deck/decks-with-cards-schema.ts";
+import { DeckCardDbType } from "../../../../functions/db/deck/decks-with-cards-schema.ts";
 import { Screen } from "../../shared/screen.tsx";
 import { t } from "../../../translations/t.ts";
 import { css, cx } from "@emotion/css";
@@ -14,9 +12,7 @@ import { useBackButton } from "../../../lib/platform/use-back-button.ts";
 import { DeckWithCardsWithReviewType } from "../../../store/deck-list-store.ts";
 import { List } from "../../../ui/list.tsx";
 import { ListHeader } from "../../../ui/list-header.tsx";
-import {
-  DeckFolderDescription
-} from "../../shared/deck-folder-description.tsx";
+import { DeckFolderDescription } from "../../shared/deck-folder-description.tsx";
 import { reset } from "../../../ui/reset.ts";
 
 type Props = {
@@ -36,17 +32,15 @@ export const CardListReadonly = observer((props: Props) => {
 
   return (
     <Screen
-      title={deck ? deck.name : t("cards")}
+      title={deck ? "" : t("cards")}
       subtitle={
         deck ? (
           <div
             className={css({
               textAlign: "center",
               fontSize: 14,
-              marginBottom: -12,
             })}
           >
-            {t("folder")}{" "}
             <button
               onClick={() => {
                 onBack();
@@ -69,13 +63,25 @@ export const CardListReadonly = observer((props: Props) => {
             className={css({
               display: "flex",
               flexDirection: "column",
-              gap: 16,
+              gap: 8,
               borderRadius: theme.borderRadius,
               padding: "8px 16px",
               paddingBottom: 16,
               background: theme.bgColor,
             })}
           >
+            <h3
+              className={css({
+                paddingTop: 8,
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+              })}
+            >
+              <i className={"mdi mdi-cards-outline"} title={t("deck")} />
+              {deck.name}
+            </h3>
+
             <DeckFolderDescription isExpanded deck={deck} />
           </div>
         </div>

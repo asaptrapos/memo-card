@@ -10,13 +10,9 @@ import { useHotkeys } from "react-hotkeys-hook";
 import { ReviewDeckName } from "./review-deck-name.tsx";
 import { CardReviewWithControls } from "./card-review-with-controls.tsx";
 import { createPortal } from "react-dom";
-import {
-  BrowserBackButton
-} from "../shared/browser-platform/browser-back-button.tsx";
+import { BrowserBackButton } from "../shared/browser-platform/browser-back-button.tsx";
 import { platform } from "../../lib/platform/platform.ts";
-import {
-  BrowserPlatform
-} from "../../lib/platform/browser/browser-platform.ts";
+import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 
 export const Review = observer(() => {
   const reviewStore = useReviewStore();
