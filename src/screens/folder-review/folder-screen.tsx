@@ -3,7 +3,7 @@ import { useReviewStore } from "../deck-review/store/review-store-context.tsx";
 import { DeckFinished } from "../deck-review/deck-finished.tsx";
 import { Review } from "../deck-review/review.tsx";
 import React from "react";
-import { FolderPreview } from "./folder-preview.tsx";
+import { FolderPreviewWrapper } from "./folder-preview-wrapper.tsx";
 
 export const FolderScreen = observer(() => {
   const reviewStore = useReviewStore();
@@ -14,5 +14,5 @@ export const FolderScreen = observer(() => {
     return <Review />;
   }
 
-  return <FolderPreview />;
+  return <FolderPreviewWrapper />;
 });

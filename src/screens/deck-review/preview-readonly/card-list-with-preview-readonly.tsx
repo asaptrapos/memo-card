@@ -1,25 +1,39 @@
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
-import { DeckCardDbType } from "../../../../functions/db/deck/decks-with-cards-schema.ts";
-import { CardPreviewFromListReadonly } from "./card-preview-from-list-readonly.tsx";
+import {
+  DeckCardDbType
+} from "../../../../functions/db/deck/decks-with-cards-schema.ts";
+import {
+  CardPreviewFromListReadonly
+} from "./card-preview-from-list-readonly.tsx";
 import { CardListReadonly } from "./card-list-readonly.tsx";
+import { DeckWithCardsWithReviewType } from "../../../store/deck-list-store.ts";
+import {
+  useScrollToTopOnMount
+} from "../../../lib/react/use-scroll-to-top-mount.ts";
 
 type Props = {
   onBack: () => void;
   cards: DeckCardDbType[];
+  deck?: DeckWithCardsWithReviewType;
+  folderName?: string;
 };
 
 export const CardListWithPreviewReadonly = observer((props: Props) => {
-  const cards = props.cards;
+  const { deck, onBack, cards, folderName } = props;
   const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
+
+  useScrollToTopOnMount();
 
   if (!selectedCardId) {
     return (
       <CardListReadonly
+        folderName={folderName}
+        deck={deck}
         onClick={(card) => {
           setSelectedCardId(card.id);
         }}
-        onBack={props.onBack}
+        onBack={onBack}
         cards={cards}
       />
     );

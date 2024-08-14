@@ -9,17 +9,17 @@ import {
   getFolderWithDecksCards,
   getSharedDeckRequest,
   myInfoRequest,
-  removeDeckFromMineRequest,
+  removeDeckFromMineRequest
 } from "../api/api.ts";
 import { type MyInfoResponse } from "../../functions/my-info.ts";
 import {
   type DeckCardDbType,
-  type DeckWithCardsDbType,
+  type DeckWithCardsDbType
 } from "../../functions/db/deck/decks-with-cards-schema.ts";
 import { screenStore } from "./screen-store.ts";
 import {
   CardReviewType,
-  type CardToReviewDbType,
+  type CardToReviewDbType
 } from "../../functions/db/deck/get-cards-to-review-db.ts";
 import { ReviewStore } from "../screens/deck-review/store/review-store.ts";
 import { reportHandledError } from "../lib/rollbar/rollbar.tsx";
@@ -27,14 +27,22 @@ import { BooleanToggle } from "mobx-form-lite";
 import { userStore } from "./user-store.ts";
 import { showConfirm } from "../lib/platform/show-confirm.ts";
 import { t } from "../translations/t.ts";
-import { canDuplicateDeckOrFolder } from "../../shared/access/can-duplicate-deck-or-folder.ts";
+import {
+  canDuplicateDeckOrFolder
+} from "../../shared/access/can-duplicate-deck-or-folder.ts";
 import { hapticImpact } from "../lib/platform/telegram/haptics.ts";
-import { FolderWithDecksWithCards } from "../../functions/db/folder/get-folder-with-decks-with-cards-db.ts";
-import { type FolderWithDeckIdDbType } from "../../functions/db/folder/schema.ts";
-import { CatalogFolderDbType } from "../../functions/db/folder/get-public-folders-with-decks-db.ts";
+import {
+  FolderWithDecksWithCards
+} from "../../functions/db/folder/get-folder-with-decks-with-cards-db.ts";
+import {
+  type FolderWithDeckIdDbType
+} from "../../functions/db/folder/schema.ts";
+import {
+  CatalogFolderDbType
+} from "../../functions/db/folder/get-public-folders-with-decks-db.ts";
 import {
   notifyPaymentFailed,
-  notifyPaymentSuccess,
+  notifyPaymentSuccess
 } from "../screens/shared/notify-payment.ts";
 import { RequestStore } from "../lib/mobx-request/request-store.ts";
 import { notifyError } from "../screens/shared/snackbar/snackbar.tsx";
@@ -297,20 +305,22 @@ export class DeckListStore {
     this.replaceDeck(result.data);
   }
 
-  goDeckById(deckId: number) {
+  goDeckById(deckId: number): boolean {
     if (!this.myInfo) {
-      return null;
+      return false;
     }
     const myDeck = this.myInfo.myDecks.find((deck) => deck.id === deckId);
     if (myDeck) {
       screenStore.go({ type: "deckMine", deckId });
-      return;
+      return true;
     }
     const publicDeck = this.publicDecks.find((deck) => deck.id === deckId);
     if (publicDeck) {
       screenStore.go({ type: "deckPublic", deckId });
-      return;
+      return true;
     }
+
+    return false;
   }
 
   searchDeckById(deckId: number) {

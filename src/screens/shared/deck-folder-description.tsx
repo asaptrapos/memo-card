@@ -6,12 +6,13 @@ import { t } from "../../translations/t.ts";
 
 type Props = {
   deck: { description: string | null };
+  isExpanded?: boolean;
 };
 
 export const DeckFolderDescription = (props: Props) => {
   const { deck } = props;
   const [isOverflowing, setIsOverflowing] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(!!props.isExpanded);
   const { ref } = useIsOverflowing(isOverflowing, setIsOverflowing);
 
   return (

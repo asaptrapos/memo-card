@@ -1,5 +1,8 @@
 import { observer } from "mobx-react-lite";
-import { deckListStore } from "../../store/deck-list-store.ts";
+import {
+  deckListStore,
+  DeckWithCardsWithReviewType
+} from "../../store/deck-list-store.ts";
 import { css } from "@emotion/css";
 import { theme } from "../../ui/theme.tsx";
 import React from "react";
@@ -15,18 +18,30 @@ import { useReviewStore } from "../deck-review/store/review-store-context.tsx";
 import { ListHeader } from "../../ui/list-header.tsx";
 import { ButtonGrid } from "../../ui/button-grid.tsx";
 import { DeckFolderDescription } from "../shared/deck-folder-description.tsx";
-import { useScrollToTopOnMount } from "../../lib/react/use-scroll-to-top-mount.ts";
+import {
+  useScrollToTopOnMount
+} from "../../lib/react/use-scroll-to-top-mount.ts";
 import { shareMemoCardUrl } from "../share-deck/share-memo-card-url.tsx";
 import { userStore } from "../../store/user-store.ts";
 import { Flex } from "../../ui/flex.tsx";
 import { List } from "../../ui/list.tsx";
 import { CardsToReview } from "../../ui/cards-to-review.tsx";
-import { BrowserBackButton } from "../shared/browser-platform/browser-back-button.tsx";
-import { MoreFeaturesButton } from "../shared/feature-preview/more-features-button.tsx";
-import { DeckFolderInfoRowLoader } from "../shared/deck-folder-info-row-loader.tsx";
+import {
+  BrowserBackButton
+} from "../shared/browser-platform/browser-back-button.tsx";
+import {
+  MoreFeaturesButton
+} from "../shared/feature-preview/more-features-button.tsx";
+import {
+  DeckFolderInfoRowLoader
+} from "../shared/deck-folder-info-row-loader.tsx";
 import { useMount } from "../../lib/react/use-mount.ts";
 
-export const FolderPreview = observer(() => {
+type Props = {
+  onDeckPreviewOpen: (deck: DeckWithCardsWithReviewType) => void;
+};
+
+export const FolderPreview = observer((props: Props) => {
   const reviewStore = useReviewStore();
 
   useBackButton(() => {
@@ -228,12 +243,18 @@ export const FolderPreview = observer(() => {
             <List
               items={folder.decks.map((deck) => ({
                 onClick: () => {
-                  deckListStore.goDeckById(deck.id);
+                  const found = deckListStore.goDeckById(deck.id);
+                  if (!found) {
+                    props.onDeckPreviewOpen(deck);
+                  }
                 },
                 text: deck.name,
                 right: (
                   <div
-                    className={css({ position: "relative", marginRight: -12 })}
+                    className={css({
+                      position: "relative",
+                      marginRight: -12,
+                    })}
                   >
                     <CardsToReview item={deck} />
                   </div>
