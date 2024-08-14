@@ -28,6 +28,8 @@ import { BrowserBackButton } from "../shared/browser-platform/browser-back-butto
 import { MoreFeaturesButton } from "../shared/feature-preview/more-features-button.tsx";
 import { DeckFolderInfoRowLoader } from "../shared/deck-folder-info-row-loader.tsx";
 import { useMount } from "../../lib/react/use-mount.ts";
+import { platform } from "../../lib/platform/platform.ts";
+import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 
 type Props = {
   onDeckPreviewOpen: (deck: DeckWithCardsWithReviewType) => void;
@@ -66,7 +68,8 @@ export const FolderPreview = observer((props: Props) => {
   );
 
   return (
-    <Flex direction={"column"} pt={12} pb={82}>
+    <Flex direction={"column"} pb={82}>
+      <ListHeader text={t("folder")} />
       <div
         className={css({
           display: "flex",
@@ -74,6 +77,7 @@ export const FolderPreview = observer((props: Props) => {
           gap: 16,
           borderRadius: theme.borderRadius,
           padding: "8px 16px",
+          paddingTop: 0,
           paddingBottom: 16,
           background: theme.bgColor,
         })}
@@ -81,7 +85,6 @@ export const FolderPreview = observer((props: Props) => {
         <div
           className={css({
             position: "relative",
-            textAlign: "center",
           })}
         >
           <div className={css({ position: "absolute", left: 0, top: 6 })}>
@@ -90,13 +93,9 @@ export const FolderPreview = observer((props: Props) => {
           <h3
             className={css({
               paddingTop: 12,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 6,
+              paddingLeft: platform instanceof BrowserPlatform ? 32 : 0,
             })}
           >
-            <i className={"mdi mdi-folder-open-outline"} title={t("folder")} />
             {folder.name}
           </h3>
         </div>

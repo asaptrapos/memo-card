@@ -20,11 +20,11 @@ type Props = {
   cards: DeckCardDbType[];
   onClick: (card: DeckCardDbType) => void;
   deck?: DeckWithCardsWithReviewType;
-  folderName?: string;
+  subtitle: string;
 };
 
 export const CardListReadonly = observer((props: Props) => {
-  const { cards, onClick, onBack, deck, folderName } = props;
+  const { cards, onClick, onBack, deck, subtitle } = props;
 
   useBackButton(() => {
     onBack();
@@ -32,33 +32,31 @@ export const CardListReadonly = observer((props: Props) => {
 
   return (
     <Screen
-      title={deck ? "" : t("cards")}
+      title={""}
       subtitle={
-        deck ? (
-          <div
-            className={css({
-              textAlign: "center",
-              fontSize: 14,
-            })}
+        <div
+          className={css({
+            textAlign: "center",
+            fontSize: 14,
+          })}
+        >
+          <button
+            onClick={() => {
+              onBack();
+            }}
+            className={cx(
+              reset.button,
+              css({ fontSize: "inherit", color: theme.linkColor }),
+            )}
           >
-            <button
-              onClick={() => {
-                onBack();
-              }}
-              className={cx(
-                reset.button,
-                css({ fontSize: "inherit", color: theme.linkColor }),
-              )}
-            >
-              {folderName}
-            </button>
-          </div>
-        ) : undefined
+            {subtitle}
+          </button>
+        </div>
       }
     >
-      {deck && (
+      {deck ? (
         <div>
-          {deck && <ListHeader text={t("deck")} />}
+          <ListHeader text={t("deck")} />
           <div
             className={css({
               display: "flex",
@@ -70,24 +68,13 @@ export const CardListReadonly = observer((props: Props) => {
               background: theme.bgColor,
             })}
           >
-            <h3
-              className={css({
-                paddingTop: 8,
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-              })}
-            >
-              <i className={"mdi mdi-cards-outline"} title={t("deck")} />
-              {deck.name}
-            </h3>
-
+            <h3 className={css({ paddingTop: 8 })}>{deck.name}</h3>
             <DeckFolderDescription isExpanded deck={deck} />
           </div>
         </div>
-      )}
+      ) : null}
       <div>
-        {deck && <ListHeader text={t("cards")} />}
+        <ListHeader text={t("cards")} />
         <List
           items={cards.map((card, i) => ({
             onClick: () => {

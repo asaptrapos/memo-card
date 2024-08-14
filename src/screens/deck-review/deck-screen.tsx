@@ -20,10 +20,12 @@ export const DeckScreen = observer(() => {
 
   if (previewStore.value) {
     const cards = deckListStore.selectedDeck?.deck_card ?? [];
+    const subtitle = deckListStore.selectedDeck?.name || "";
     return (
       <CardListWithPreviewReadonly
         onBack={previewStore.setFalse}
         cards={cards}
+        subtitle={subtitle}
       />
     );
   }

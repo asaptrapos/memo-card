@@ -10,11 +10,12 @@ type Props = {
   onBack: () => void;
   cards: DeckCardDbType[];
   deck?: DeckWithCardsWithReviewType;
-  folderName?: string;
+  subtitle: string;
+  isFolderPreview?: boolean;
 };
 
 export const CardListWithPreviewReadonly = observer((props: Props) => {
-  const { deck, onBack, cards, folderName } = props;
+  const { deck, onBack, cards, subtitle } = props;
   const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
 
   useScrollToTopOnMount();
@@ -22,7 +23,7 @@ export const CardListWithPreviewReadonly = observer((props: Props) => {
   if (!selectedCardId) {
     return (
       <CardListReadonly
-        folderName={folderName}
+        subtitle={subtitle}
         deck={deck}
         onClick={(card) => {
           setSelectedCardId(card.id);

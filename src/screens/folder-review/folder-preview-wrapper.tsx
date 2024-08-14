@@ -15,7 +15,8 @@ export const FolderPreviewWrapper = observer(() => {
     const folderName = deckListStore.selectedFolder?.name || "";
     return (
       <CardListWithPreviewReadonly
-        folderName={folderName}
+        isFolderPreview
+        subtitle={folderName}
         deck={previewDeck}
         cards={previewDeck.deck_card}
         onBack={() => setPreviewDeck(null)}
