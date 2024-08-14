@@ -211,7 +211,7 @@ export const ManualCardFormView = observer((props: Props) => {
                 icon={"mdi-plus mdi-24px"}
                 outline
               >
-                {t("add_card")}
+                {t("add_card_short")}
               </ButtonSideAligned>
             </>
           )}
