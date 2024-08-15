@@ -21,7 +21,7 @@ export const links = {
   // YouTube
   youtubeChannelEn: "https://www.youtube.com/@MemoCardBot",
   youtubeChannelRu: "https://www.youtube.com/@MemoCardRu",
-  telegramRuVideos: 'https://t.me/memocard_ru_videos',
+  telegramRuVideos: "https://t.me/memocard_ru_videos",
 
   // ToS and Privacy Policy
   privacyPolicyPath: "/privacy-policy.html",
