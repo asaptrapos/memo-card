@@ -2,16 +2,20 @@ import { css } from "@emotion/css";
 import { theme } from "./theme.tsx";
 import React from "react";
 
-type Props = { height?: string };
+type Props = {
+  height?: string;
+  backgroundColor?: string;
+};
 
 export const FullScreenLoader = (props: Props) => {
   const height = props.height ?? "100vh";
+  const backgroundColor = props.backgroundColor ?? theme.secondaryBgColor;
   return (
     <div
       className={css({
         display: "flex",
         height,
-        backgroundColor: theme.secondaryBgColor,
+        backgroundColor,
         alignItems: "center",
         justifyContent: "center",
       })}
