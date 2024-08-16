@@ -8,11 +8,18 @@ const baseUrl = import.meta.env.VITE_API_URL || "";
 
 const allowedWithoutAuth = ["/google-signin"];
 
-const allowedToReFetch = ["/upsert-deck", "/review-cards"];
+const allowedToReFetch = [
+  "/upsert-deck",
+  "/review-cards",
+  "/add-card",
+  "/add-deck-to-mine",
+];
+
+type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
 const requestInner = async <Output, Input = object>(
-  path: string,
-  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" = "GET",
+  path: `/${string}`,
+  method: HttpMethod = "GET",
   body?: Input,
 ): Promise<Output> => {
   const endpoint = `${trimEnd(baseUrl, "/")}/${trimStart(path, "/")}`;
@@ -54,10 +61,10 @@ const requestInner = async <Output, Input = object>(
   );
 };
 
-// Retry GET request once
+// Retry GET request once and some POST/PUT requests
 export const request = async <Output, Input = object>(
-  path: string,
-  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" = "GET",
+  path: `/${string}`,
+  method: HttpMethod = "GET",
   body?: Input,
 ): Promise<Output> => {
   try {
