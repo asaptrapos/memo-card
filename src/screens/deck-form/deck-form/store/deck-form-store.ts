@@ -213,7 +213,6 @@ export class DeckFormStore implements CardFormStoreInterface {
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
-    window['form'] = this;
   }
 
   get isSending() {
