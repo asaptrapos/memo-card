@@ -55,6 +55,8 @@ export const FolderPreview = observer((props: Props) => {
       deckListStore.reviewFolder(reviewStore);
     },
     () => deckListStore.isFolderReviewVisible,
+    [],
+    { forceHide: true },
   );
 
   const folder = deckListStore.selectedFolder;

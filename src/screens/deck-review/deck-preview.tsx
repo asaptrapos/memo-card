@@ -47,7 +47,9 @@ export const DeckPreview = observer((props: Props) => {
 
   useHotkeys("enter", onStart);
 
-  useMainButton(t("review_deck"), onStart, () => deckListStore.canReview);
+  useMainButton(t("review_deck"), onStart, () => deckListStore.canReview, [], {
+    forceHide: true,
+  });
 
   const deck = deckListStore.selectedDeck;
   if (!deck) {

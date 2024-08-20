@@ -1,20 +1,21 @@
 import { platform, UseMainButtonType } from "../platform.ts";
-import { useMount } from "../../react/use-mount.ts";
 import { BrowserPlatform } from "./browser-platform.ts";
 import { action, autorun, runInAction } from "mobx";
 import { assert } from "../../../../shared/typescript/assert.ts";
+import { useEffect } from "react";
 
 export const useMainButtonBrowser: UseMainButtonType = (
   text,
   onClick,
   condition,
+  deps = [],
 ) => {
   const hideMainButton = action(() => {
     assert(platform instanceof BrowserPlatform);
     platform.hideMainButton();
   });
 
-  useMount(() => {
+  useEffect(() => {
     const stopAutoRun = autorun(() => {
       if (condition !== undefined && !condition()) {
         hideMainButton();
@@ -33,5 +34,6 @@ export const useMainButtonBrowser: UseMainButtonType = (
       hideMainButton();
       stopAutoRun();
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
 };

@@ -213,6 +213,7 @@ export class DeckFormStore implements CardFormStoreInterface {
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
+    window['form'] = this;
   }
 
   get isSending() {
@@ -233,8 +234,11 @@ export class DeckFormStore implements CardFormStoreInterface {
     const screen = screenStore.screen;
     assert(screen.type === "deckForm");
 
+    console.log('loadForm', screen.deckId);
     if (screen.deckId) {
+      // debugger;
       const deck = deckListStore.searchDeckById(screen.deckId);
+      console.log('UPDATED Descriptoin', deck?.description);
       assert(deck, "Deck not found in deckListStore");
       this.deckForm = createUpdateForm(
         screen.deckId,
@@ -587,6 +591,8 @@ export class DeckFormStore implements CardFormStoreInterface {
     );
     const cardsToSend = newCards.concat(touchedCards).map(cardFormToApi);
 
+    console.log(this.deckForm.description.value);
+
     const result = await this.upsertDeckRequest.execute({
       id: this.deckForm.id,
       title: this.deckForm.title.value,
@@ -606,7 +612,7 @@ export class DeckFormStore implements CardFormStoreInterface {
     const { deck, folders, cardsToReview } = result.data;
 
     runInAction(() => {
-      this.deckForm = createUpdateForm(deck.id, deck, () => this.cardForm);
+      // this.deckForm = createUpdateForm(deck.id, deck, () => this.cardForm);
       deckListStore.replaceDeck(deck, true);
       deckListStore.updateFolders(folders);
       deckListStore.updateCardsToReview(cardsToReview);

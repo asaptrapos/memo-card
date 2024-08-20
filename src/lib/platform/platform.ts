@@ -26,6 +26,8 @@ export type UseMainButtonType = (
   text: string | (() => string),
   onClick: () => void,
   condition?: () => boolean,
+  deps?: any[],
+  options?: { forceHide?: boolean },
 ) => void;
 
 export type ShowConfirmType = (text: string) => Promise<boolean>;

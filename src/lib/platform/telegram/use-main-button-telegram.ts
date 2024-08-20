@@ -1,14 +1,17 @@
-import { useMount } from "../../react/use-mount.ts";
 import WebApp from "@twa-dev/sdk";
 import { useHotkeys } from "react-hotkeys-hook";
 import { autorun } from "mobx";
 import { UseMainButtonType } from "../platform.ts";
+import { useEffect } from "react";
 
 // Track visible state to avoid flickering
 let isVisible = false;
 
-const hide = () => {
-  if (WebApp.platform !== "ios" && WebApp.platform !== "android") {
+const hide = (forceHide = false) => {
+  if (
+    forceHide ||
+    (WebApp.platform !== "ios" && WebApp.platform !== "android")
+  ) {
     WebApp.MainButton.hide();
     isVisible = false;
     return;
@@ -29,14 +32,16 @@ export const useMainButtonTelegram: UseMainButtonType = (
   text,
   onClick,
   condition,
+  deps = [],
+  options,
 ) => {
   const hideMainButton = () => {
-    hide();
+    hide(!!options?.forceHide);
     WebApp.MainButton.offClick(onClick);
     WebApp.MainButton.hideProgress();
   };
 
-  useMount(() => {
+  useEffect(() => {
     const stopAutoRun = autorun(() => {
       if (condition !== undefined && !condition()) {
         hideMainButton();
@@ -53,7 +58,8 @@ export const useMainButtonTelegram: UseMainButtonType = (
       stopAutoRun();
       hideMainButton();
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
 
   useHotkeys("enter", () => {
     if (condition !== undefined) {

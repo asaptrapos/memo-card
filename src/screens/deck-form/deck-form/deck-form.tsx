@@ -47,12 +47,18 @@ export const DeckForm = observer(() => {
     deckFormStore.loadForm();
   }, [deckFormStore, screen.index]);
 
-  useMainButton(t("save"), () => {
-    deckFormStore.onDeckSave((deck) => {
-      screenStore.restoreHistory();
-      screenStore.goToDeckForm({ deckId: deck.id });
-    });
-  });
+  useMainButton(
+    t("save"),
+    () => {
+      deckFormStore.onDeckSave((deck) => {
+        screenStore.restoreHistory();
+        screenStore.goToDeckForm({ deckId: deck.id });
+      });
+    },
+    undefined,
+    [screen.index],
+  );
+
   useBackButton(() => {
     deckFormStore.onDeckBack(() => {
       screenStore.back();
