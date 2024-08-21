@@ -606,7 +606,7 @@ export class DeckFormStore implements CardFormStoreInterface {
     const { deck, folders, cardsToReview } = result.data;
 
     runInAction(() => {
-      // this.deckForm = createUpdateForm(deck.id, deck, () => this.cardForm);
+      this.deckForm = createUpdateForm(deck.id, deck, () => this.cardForm);
       deckListStore.replaceDeck(deck, true);
       deckListStore.updateFolders(folders);
       deckListStore.updateCardsToReview(cardsToReview);
