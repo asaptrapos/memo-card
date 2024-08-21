@@ -63,7 +63,8 @@ export const DeckForm = observer(() => {
     deckFormStore.onDeckBack(() => {
       screenStore.back();
     });
-  });
+  }, [screen.index]);
+
   useProgress(() => deckFormStore.isSending);
 
   if (!deckFormStore.deckForm) {

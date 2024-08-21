@@ -30,6 +30,8 @@ export type UseMainButtonType = (
   options?: { forceHide?: boolean },
 ) => void;
 
+export type UseBackButtonType = (onBack: () => void, deps?: any[]) => void;
+
 export type ShowConfirmType = (text: string) => Promise<boolean>;
 
 const createPlatform = (): Platform => {

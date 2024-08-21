@@ -1,8 +1,12 @@
-import { useMount } from "../../react/use-mount.ts";
 import WebApp from "@twa-dev/sdk";
+import { UseBackButtonType } from "../platform.ts";
+import { useEffect } from "react";
 
-export const useBackButtonTelegram = (fn: () => void) => {
-  useMount(() => {
+export const useBackButtonTelegram: UseBackButtonType = (
+  fn: () => void,
+  deps = [],
+) => {
+  useEffect(() => {
     WebApp.BackButton.show();
     WebApp.BackButton.onClick(fn);
 
@@ -10,5 +14,6 @@ export const useBackButtonTelegram = (fn: () => void) => {
       WebApp.BackButton.offClick(fn);
       WebApp.BackButton.hide();
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
 };

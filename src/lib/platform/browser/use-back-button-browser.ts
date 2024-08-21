@@ -1,10 +1,13 @@
-import { platform } from "../platform.ts";
-import { useMount } from "../../react/use-mount.ts";
+import { platform, UseBackButtonType } from "../platform.ts";
 import { BrowserPlatform } from "./browser-platform.ts";
 import { assert } from "../../../../shared/typescript/assert.ts";
+import { useEffect } from "react";
 
-export const useBackButtonBrowser = (onClick: () => void) => {
-  useMount(() => {
+export const useBackButtonBrowser: UseBackButtonType = (
+  onClick: () => void,
+  deps = [],
+) => {
+  useEffect(() => {
     assert(platform instanceof BrowserPlatform);
     platform.showBackButton(onClick);
 
@@ -12,5 +15,6 @@ export const useBackButtonBrowser = (onClick: () => void) => {
       assert(platform instanceof BrowserPlatform);
       platform.hideBackButton();
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
 };
