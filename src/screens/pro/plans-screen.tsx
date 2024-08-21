@@ -161,7 +161,7 @@ export const PlansScreen = observer(() => {
         </Label>
 
         {platform instanceof BrowserPlatform && (
-          <Label fullWidth text={"Payment method"}>
+          <Label fullWidth text={t("payment_choose_method")}>
             <RadioList
               selectedId={store.method}
               options={[
