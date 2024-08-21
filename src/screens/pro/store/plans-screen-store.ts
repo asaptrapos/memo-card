@@ -7,6 +7,10 @@ import { platform } from "../../../lib/platform/platform.ts";
 import { TextField } from "mobx-form-lite";
 import { type PlanDuration } from "../../../../shared/pro/calc-plan-price-for-duration.ts";
 import { assert } from "../../../../shared/typescript/assert.ts";
+import { PaymentMethodType } from "../../../../shared/pro/payment-gateway-types.ts";
+import { BrowserPlatform } from "../../../lib/platform/browser/browser-platform.ts";
+import { TelegramPlatform } from "../../../lib/platform/telegram/telegram-platform.ts";
+import { links } from "../../../../shared/links/links.ts";
 
 export type PreviewItem = "individual_ai_card" | "bulk_ai_cards" | "ai_speech";
 
@@ -15,6 +19,11 @@ export class PlansScreenStore {
   createOrderRequest = new RequestStore(starsOrderPlanRequest);
   selectedPlanDuration = new TextField<PlanDuration | null>(null);
   selectedPreviewPlanFeature?: PreviewItem;
+
+  method =
+    platform instanceof TelegramPlatform
+      ? PaymentMethodType.Stars
+      : PaymentMethodType.Usd;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
@@ -51,23 +60,52 @@ export class PlansScreenStore {
     if (!selectedPlan || !this.selectedPlanDuration.value) {
       return "";
     }
-    return getBuyText(selectedPlan, this.selectedPlanDuration.value);
+    return getBuyText(
+      selectedPlan,
+      this.selectedPlanDuration.value,
+      this.method,
+    );
   }
 
   async createOrder() {
     assert(this.proPlan);
     assert(this.selectedPlanDuration.value);
-    const result = await this.createOrderRequest.execute(
-      this.proPlan.id,
-      this.selectedPlanDuration.value,
-    );
-    if (result.status === "error") {
-      const info = `Order creation failed. Plan: ${this.proPlan.id}`;
-      notifyError({ info: info, e: result.error });
-      return;
-    }
 
-    platform.openInvoiceLink(result.data.payLink);
+    if (this.method === PaymentMethodType.Stars) {
+      const result = await this.createOrderRequest.execute(
+        this.proPlan.id,
+        this.selectedPlanDuration.value,
+      );
+      if (result.status === "error") {
+        const info = `Order creation failed. Plan: ${this.proPlan.id}`;
+        notifyError({ info: info, e: result.error });
+        return;
+      }
+
+      platform.openInvoiceLink(result.data.payLink);
+    } else if (this.method === PaymentMethodType.Usd) {
+      assert(platform instanceof BrowserPlatform);
+
+      const link =
+        this.selectedPlanDuration.value === 12
+          ? links.lsqYearlySubscription
+          : links.lsqMonthlySubscription;
+
+      platform.openExternalLink(link);
+    }
+  }
+
+  updateMethod(method: PaymentMethodType) {
+    assert(platform instanceof BrowserPlatform);
+    this.method = method;
+
+    // LemonSqueezy doesn't support 6 months plans
+    if (
+      this.method === PaymentMethodType.Usd &&
+      this.selectedPlanDuration.value === 6
+    ) {
+      this.selectedPlanDuration.onChange(12);
+    }
   }
 
   previewPlanFeature(previewItem: PreviewItem | undefined) {

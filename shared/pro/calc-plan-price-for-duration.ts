@@ -1,3 +1,6 @@
+import { PaymentMethodType } from "./payment-gateway-types.ts";
+import { PlanDb } from "../../functions/db/plan/schema.ts";
+
 export type PlanDuration = 1 | 6 | 12;
 
 export const durationsWithDiscount: Array<{
@@ -11,8 +14,8 @@ export const durationsWithDiscount: Array<{
 ];
 
 export const calcPlanPriceForDuration = (
-  type: "usd" | "stars",
-  price: number,
+  method: PaymentMethodType,
+  plan: PlanDb,
   duration: PlanDuration,
 ) => {
   const found = durationsWithDiscount.find(
@@ -21,6 +24,11 @@ export const calcPlanPriceForDuration = (
   if (!found) {
     throw new Error(`Unknown duration: ${duration}`);
   }
-  const discount = type === "usd" ? found.discount : found.discountStars;
-  return Math.floor(price * duration * (1 - discount));
+
+  const priceRaw =
+    method === PaymentMethodType.Stars ? plan.price_stars : plan.price;
+  const discount =
+    method === PaymentMethodType.Usd ? found.discount : found.discountStars;
+
+  return Math.floor(priceRaw * duration * (1 - discount));
 };

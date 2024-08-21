@@ -23,6 +23,11 @@ export const links = {
   youtubeChannelRu: "https://www.youtube.com/@MemoCardRu",
   telegramRuVideos: "https://t.me/memocard_ru_videos",
 
+  lsqMonthlySubscription:
+    "https://memocard.lemonsqueezy.com/buy/c6563ccb-8aa0-4a6e-931d-a0cc3740dbbe",
+  lsqYearlySubscription:
+    "https://memocard.lemonsqueezy.com/buy/9c659ad7-1e84-4bd8-b704-3be904760920",
+
   // ToS and Privacy Policy
   privacyPolicyPath: "/privacy-policy.html",
   tosPath: "/terms-of-service.html",

@@ -4,7 +4,8 @@ import {
   calcPlanPriceForDuration,
   PlanDuration,
 } from "../../../shared/pro/calc-plan-price-for-duration.ts";
-import { formatStarsPriceAsText } from "../../../shared/pro/format-price.ts";
+import { formatPriceAsText } from "../../../shared/pro/format-price.ts";
+import { PaymentMethodType } from "../../../shared/pro/payment-gateway-types.ts";
 
 export const getPlanTitle = (plan: PlanDb) => {
   switch (plan.type) {
@@ -18,10 +19,15 @@ export const getPlanTitle = (plan: PlanDb) => {
   }
 };
 
-export const getBuyText = (plan: PlanDb, duration: PlanDuration) => {
+export const getBuyText = (
+  plan: PlanDb,
+  duration: PlanDuration,
+  method: PaymentMethodType,
+) => {
   const lang = translator.getLang();
-  const price = formatStarsPriceAsText(
-    calcPlanPriceForDuration("stars", plan.price_stars, duration),
+  const price = formatPriceAsText(
+    calcPlanPriceForDuration(method, plan, duration),
+    method,
   );
 
   switch (lang) {

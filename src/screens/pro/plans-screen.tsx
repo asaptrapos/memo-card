@@ -38,6 +38,9 @@ import { AiSpeechPreview } from "../shared/feature-preview/ai-speech-preview.tsx
 import { suitableCardInputModeStore } from "../../store/suitable-card-input-mode-store.ts";
 import { sharedProTitle } from "../../../shared/pro/shared-pro-title.ts";
 import { IconTelegramStar } from "./icon-telegram-star.tsx";
+import { PaymentMethodType } from "../../../shared/pro/payment-gateway-types.ts";
+import { platform } from "../../lib/platform/platform.ts";
+import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 
 const planItems: Array<{
   iconText: string;
@@ -157,53 +160,105 @@ export const PlansScreen = observer(() => {
           />
         </Label>
 
-        <Label fullWidth text={t("payment_choose_duration")}>
+        {platform instanceof BrowserPlatform && (
+          <Label fullWidth text={"Payment method"}>
+            <RadioList
+              selectedId={store.method}
+              options={[
+                {
+                  id: PaymentMethodType.Usd,
+                  title: (
+                    <Flex gap={4}>
+                      {t("payment_method_usd")}{" "}
+                      <Tag text={formatDiscount(0.4)} />
+                    </Flex>
+                  ),
+                },
+                {
+                  id: PaymentMethodType.Stars,
+                  title: t("payment_method_stars"),
+                },
+              ]}
+              onChange={(method) => {
+                store.updateMethod(method);
+              }}
+            />
+          </Label>
+        )}
+
+        <Label
+          fullWidth
+          text={
+            store.method === PaymentMethodType.Usd
+              ? t("payment_choose_subscription")
+              : t("payment_choose_duration")
+          }
+        >
           <RadioList<PlanDuration | null>
             selectedId={store.selectedPlanDuration.value}
-            options={durationsWithDiscount.map((durationsWithDiscount) => {
-              const proPlan = store.proPlan;
-              assert(proPlan);
-              return {
-                id: durationsWithDiscount.duration,
-                title: (
-                  <div className={css({ display: "flex", gap: 8 })}>
-                    <span>
-                      {translateProDuration(
-                        durationsWithDiscount.duration,
-                        translator.getLang(),
-                      )}
-                    </span>
-                    {durationsWithDiscount.discountStars > 0 && (
-                      <Tag
-                        text={formatDiscount(
-                          durationsWithDiscount.discountStars,
+            options={durationsWithDiscount
+              .filter((duration) => {
+                if (
+                  store.method === PaymentMethodType.Usd &&
+                  duration.duration === 6
+                ) {
+                  return false;
+                }
+
+                return true;
+              })
+              .map((durationsWithDiscount) => {
+                const proPlan = store.proPlan;
+                assert(proPlan);
+
+                const discount =
+                  store.method === PaymentMethodType.Stars
+                    ? durationsWithDiscount.discountStars
+                    : durationsWithDiscount.discount;
+
+                return {
+                  id: durationsWithDiscount.duration,
+                  title: (
+                    <div className={css({ display: "flex", gap: 8 })}>
+                      <span>
+                        {translateProDuration(
+                          durationsWithDiscount.duration,
+                          translator.getLang(),
+                          store.method,
                         )}
-                      />
-                    )}
-                    <div
-                      className={css({
-                        display: "flex",
-                        gap: 4,
-                        color: theme.hintColor,
-                        marginLeft: "auto",
-                        paddingRight: 8,
-                      })}
-                    >
-                      {calcPlanPriceForDuration(
-                        "stars",
-                        proPlan.price_stars,
-                        durationsWithDiscount.duration,
-                      )}
+                      </span>
+                      {discount > 0 && <Tag text={formatDiscount(discount)} />}
                       <div
-                        className={css({ width: 16, height: 16, marginTop: 2 })}
+                        className={css({
+                          display: "flex",
+                          gap: 4,
+                          color: theme.hintColor,
+                          marginLeft: "auto",
+                          paddingRight: 8,
+                        })}
                       >
-                        <IconTelegramStar />
+                        {store.method === PaymentMethodType.Usd ? "$" : null}
+                        {calcPlanPriceForDuration(
+                          store.method,
+                          proPlan,
+                          durationsWithDiscount.duration,
+                        )}
+                        {store.method === PaymentMethodType.Stars ? (
+                          <div
+                            className={css({
+                              width: 16,
+                              height: 16,
+                              marginTop: 2,
+                            })}
+                          >
+                            <IconTelegramStar />
+                          </div>
+                        ) : null}
                       </div>
                     </div>
-                  </div>
-                ),
-              };
-            })}
+                  ),
+                };
+              })}
             onChange={store.selectedPlanDuration.onChange}
           />
         </Label>
