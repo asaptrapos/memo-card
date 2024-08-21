@@ -4,7 +4,7 @@ import {
   calcPlanPriceForDuration,
   PlanDuration,
 } from "../../../shared/pro/calc-plan-price-for-duration.ts";
-import { formatStarsPrice } from "../../../shared/pro/format-price.ts";
+import { formatStarsPriceAsText } from "../../../shared/pro/format-price.ts";
 
 export const getPlanTitle = (plan: PlanDb) => {
   switch (plan.type) {
@@ -20,7 +20,7 @@ export const getPlanTitle = (plan: PlanDb) => {
 
 export const getBuyText = (plan: PlanDb, duration: PlanDuration) => {
   const lang = translator.getLang();
-  const price = formatStarsPrice(
+  const price = formatStarsPriceAsText(
     calcPlanPriceForDuration("stars", plan.price_stars, duration),
   );
 

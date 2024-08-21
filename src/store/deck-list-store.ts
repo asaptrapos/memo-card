@@ -32,10 +32,6 @@ import { hapticImpact } from "../lib/platform/telegram/haptics.ts";
 import { FolderWithDecksWithCards } from "../../functions/db/folder/get-folder-with-decks-with-cards-db.ts";
 import { type FolderWithDeckIdDbType } from "../../functions/db/folder/schema.ts";
 import { CatalogFolderDbType } from "../../functions/db/folder/get-public-folders-with-decks-db.ts";
-import {
-  notifyPaymentFailed,
-  notifyPaymentSuccess,
-} from "../screens/shared/notify-payment.ts";
 import { RequestStore } from "../lib/mobx-request/request-store.ts";
 import { notifyError } from "../screens/shared/snackbar/snackbar.tsx";
 import { assert } from "../../shared/typescript/assert.ts";
@@ -47,8 +43,6 @@ export enum StartParamType {
   DeckCatalog = "catalog",
   Pro = "pro",
   Components = "ui_kit",
-  WalletPaymentSuccessful = "wp_success",
-  WalletPaymentFailed = "wp_fail",
   Debug = "debug",
   Break = "break",
 }
@@ -805,10 +799,6 @@ export class DeckListStore {
         );
     } else if (startParam === StartParamType.DeckCatalog) {
       screenStore.go({ type: "deckCatalog" });
-    } else if (startParam === StartParamType.WalletPaymentSuccessful) {
-      this.startCheckingUserWithPlanStatus();
-    } else if (startParam === StartParamType.WalletPaymentFailed) {
-      notifyPaymentFailed();
     } else if (startParam === StartParamType.Debug) {
       screenStore.go({ type: "debug" });
     } else if (startParam === StartParamType.Components) {
@@ -882,23 +872,6 @@ export class DeckListStore {
 
     return { isMineFolder, isMineDeck };
   };
-
-  private startCheckingUserWithPlanStatus() {
-    if (userStore.isPaid) {
-      this.isAppLoading = false;
-      notifyPaymentSuccess();
-      return;
-    }
-
-    this.isAppLoading = true;
-    userStore.fetchActivePlans();
-    setTimeout(
-      action(() => {
-        this.startCheckingUserWithPlanStatus();
-      }),
-      2000,
-    );
-  }
 }
 
 const getCardsToReview = (

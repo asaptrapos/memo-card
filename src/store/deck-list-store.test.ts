@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, test, vi } from "vitest";
 import { MyInfoResponse } from "../../functions/my-info.ts";
 import { when } from "mobx";
-import { DeckListStore, StartParamType } from "./deck-list-store.ts";
+import { DeckListStore } from "./deck-list-store.ts";
 
 vi.mock("mobx-persist-store", () => {
   return {
@@ -267,15 +267,5 @@ describe("deck list store", () => {
         },
       ]
     `);
-  });
-
-  test("waits for the pro to load after wallet payment", async () => {
-    const store = new DeckListStore();
-    store.loadFirstTime(StartParamType.WalletPaymentSuccessful);
-
-    await when(() => !!store.myInfo);
-
-    expect(notifyPaymentSuccessMock).toHaveBeenCalled();
-    expect(notifyPaymentFailedMock).not.toHaveBeenCalled();
   });
 });

@@ -27,7 +27,6 @@ import { Label } from "../../ui/label.tsx";
 import { List } from "../../ui/list.tsx";
 import { FilledIcon } from "../../ui/filled-icon.tsx";
 import { translateProDuration } from "../../../shared/pro/translate-plan-duration.ts";
-import { formatStarsPrice } from "../../../shared/pro/format-price.ts";
 import { translateProDescription } from "../../../shared/pro/translate-pro-description.ts";
 import { formatDiscount } from "../../../shared/pro/format-discount.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
@@ -38,6 +37,7 @@ import { AiSpeechPreview } from "../shared/feature-preview/ai-speech-preview.tsx
 
 import { suitableCardInputModeStore } from "../../store/suitable-card-input-mode-store.ts";
 import { sharedProTitle } from "../../../shared/pro/shared-pro-title.ts";
+import { IconTelegramStar } from "./icon-telegram-star.tsx";
 
 const planItems: Array<{
   iconText: string;
@@ -182,18 +182,23 @@ export const PlansScreen = observer(() => {
                     )}
                     <div
                       className={css({
+                        display: "flex",
+                        gap: 4,
                         color: theme.hintColor,
                         marginLeft: "auto",
                         paddingRight: 8,
                       })}
                     >
-                      {formatStarsPrice(
-                        calcPlanPriceForDuration(
-                          "stars",
-                          proPlan.price_stars,
-                          durationsWithDiscount.duration,
-                        ),
+                      {calcPlanPriceForDuration(
+                        "stars",
+                        proPlan.price_stars,
+                        durationsWithDiscount.duration,
                       )}
+                      <div
+                        className={css({ width: 16, height: 16, marginTop: 2 })}
+                      >
+                        <IconTelegramStar />
+                      </div>
                     </div>
                   </div>
                 ),

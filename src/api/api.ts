@@ -36,10 +36,6 @@ import {
   AddDeckAccessResponse,
 } from "../../functions/add-deck-access.ts";
 import { DecksMineResponse } from "../../functions/decks-mine.ts";
-import {
-  CreateOrderRequest,
-  CreateOrderResponse,
-} from "../../functions/wallet-order-plan.ts";
 import { DuplicateFolderResponse } from "../../functions/duplicate-folder.ts";
 import { MyStatisticsResponse } from "../../functions/my-statistics.ts";
 import { AllPlansResponse } from "../../functions/plans.ts";
@@ -93,6 +89,10 @@ import {
   GoogleSignInResponse,
 } from "../../functions/google-signin.ts";
 import { DeleteMyselfResponse } from "../../functions/delete-account.ts";
+import {
+  CreateOrderRequest,
+  CreateOrderResponse,
+} from "../../functions/stars-order-plan.ts";
 
 export const healthRequest = () => {
   return request<HealthResponse>("/health");
@@ -237,17 +237,6 @@ export const deleteFolderRequest = (folderId: number) => {
 
 export const decksMineRequest = () => {
   return request<DecksMineResponse>("/decks-mine");
-};
-
-export const walletOrderRequest = (planId: number, duration: PlanDuration) => {
-  return request<CreateOrderResponse, CreateOrderRequest>(
-    `/wallet-order-plan`,
-    "POST",
-    {
-      planId,
-      duration: duration.toString(),
-    },
-  );
 };
 
 export const starsOrderPlanRequest = (

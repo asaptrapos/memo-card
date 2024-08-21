@@ -233,11 +233,8 @@ export class DeckFormStore implements CardFormStoreInterface {
     const screen = screenStore.screen;
     assert(screen.type === "deckForm");
 
-    console.log('loadForm', screen.deckId);
     if (screen.deckId) {
-      // debugger;
       const deck = deckListStore.searchDeckById(screen.deckId);
-      console.log('UPDATED Descriptoin', deck?.description);
       assert(deck, "Deck not found in deckListStore");
       this.deckForm = createUpdateForm(
         screen.deckId,
@@ -589,8 +586,6 @@ export class DeckFormStore implements CardFormStoreInterface {
       (card) => !!(card.id && (isFormTouched(card) || isFormDirty(card))),
     );
     const cardsToSend = newCards.concat(touchedCards).map(cardFormToApi);
-
-    console.log(this.deckForm.description.value);
 
     const result = await this.upsertDeckRequest.execute({
       id: this.deckForm.id,
