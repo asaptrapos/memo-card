@@ -6,16 +6,14 @@ import {
 } from "../../../shared/pro/calc-plan-price-for-duration.ts";
 import { formatPriceAsText } from "../../../shared/pro/format-price.ts";
 import { PaymentMethodType } from "../../../shared/pro/payment-gateway-types.ts";
+import { formatDiscountAsTextParenthesis } from "../../../shared/pro/format-discount-as-text.ts";
 
 export const getPlanTitle = (plan: PlanDb) => {
   switch (plan.type) {
     case "pro":
       return `Pro`;
-    case "plus":
-    case "deck_producer":
-      return "";
     default:
-      return plan.type satisfies never;
+      return "";
   }
 };
 
@@ -23,6 +21,7 @@ export const getBuyText = (
   plan: PlanDb,
   duration: PlanDuration,
   method: PaymentMethodType,
+  totalDiscount: number,
 ) => {
   const lang = translator.getLang();
   const price = formatPriceAsText(
@@ -30,15 +29,20 @@ export const getBuyText = (
     method,
   );
 
+  const discountFormatted = formatDiscountAsTextParenthesis(
+    totalDiscount,
+    lang,
+  );
+
   switch (lang) {
     case "en":
-      return `Buy "${getPlanTitle(plan)}" for ${price}`;
+      return `Buy "${getPlanTitle(plan)}" for ${price}${discountFormatted}`;
     case "ru":
-      return `Купить "${getPlanTitle(plan)}" за ${price}`;
+      return `Купить "${getPlanTitle(plan)}" за ${price}${discountFormatted}`;
     case "es":
-      return `Comprar "${getPlanTitle(plan)}" por ${price}`;
+      return `Comprar "${getPlanTitle(plan)}" por ${price}${discountFormatted}`;
     case "pt-br":
-      return `Comprar "${getPlanTitle(plan)}" por ${price}`;
+      return `Comprar "${getPlanTitle(plan)}" por ${price}${discountFormatted}`;
     default:
       return lang satisfies never;
   }

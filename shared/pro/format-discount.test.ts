@@ -1,8 +1,8 @@
 import { test, expect } from "vitest";
-import { formatDiscount } from "./format-discount";
+import { formatDiscountNumber } from "./format-discount-number";
 
 test("format discount", () => {
-  expect(formatDiscount(0)).toBe(null);
-  expect(formatDiscount(0.3333)).toBe("-33%");
-  expect(formatDiscount(0.5)).toBe("-50%");
+  expect(formatDiscountNumber(0)).toBe(null);
+  expect(formatDiscountNumber(0.3333)).toBe("-33%");
+  expect(formatDiscountNumber(0.5)).toBe("-50%");
 });

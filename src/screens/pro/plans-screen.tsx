@@ -28,7 +28,6 @@ import { List } from "../../ui/list.tsx";
 import { FilledIcon } from "../../ui/filled-icon.tsx";
 import { translateProDuration } from "../../../shared/pro/translate-plan-duration.ts";
 import { translateProDescription } from "../../../shared/pro/translate-pro-description.ts";
-import { formatDiscount } from "../../../shared/pro/format-discount.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
 import { links } from "../../../shared/links/links.ts";
 import { MassCreationPreview } from "../shared/feature-preview/mass-creation-preview.tsx";
@@ -41,6 +40,7 @@ import { IconTelegramStar } from "./icon-telegram-star.tsx";
 import { PaymentMethodType } from "../../../shared/pro/payment-gateway-types.ts";
 import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
+import { formatDiscountAsText } from "../../../shared/pro/format-discount-as-text.ts";
 
 const planItems: Array<{
   iconText: string;
@@ -169,8 +169,13 @@ export const PlansScreen = observer(() => {
                   id: PaymentMethodType.Usd,
                   title: (
                     <Flex gap={4}>
-                      {t("payment_method_usd")}{" "}
-                      <Tag text={formatDiscount(0.4)} />
+                      {t("payment_method_usd")}
+                      <Tag
+                        text={formatDiscountAsText(
+                          store.bankCardDiscount,
+                          translator.getLang(),
+                        )}
+                      />
                     </Flex>
                   ),
                 },
@@ -227,7 +232,14 @@ export const PlansScreen = observer(() => {
                           store.method,
                         )}
                       </span>
-                      {discount > 0 && <Tag text={formatDiscount(discount)} />}
+                      {discount > 0 && (
+                        <Tag
+                          text={formatDiscountAsText(
+                            discount,
+                            translator.getLang(),
+                          )}
+                        />
+                      )}
                       <div
                         className={css({
                           display: "flex",

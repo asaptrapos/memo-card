@@ -5,7 +5,10 @@ import { RequestStore } from "../../../lib/mobx-request/request-store.ts";
 import { notifyError } from "../../shared/snackbar/snackbar.tsx";
 import { platform } from "../../../lib/platform/platform.ts";
 import { TextField } from "mobx-form-lite";
-import { type PlanDuration } from "../../../../shared/pro/calc-plan-price-for-duration.ts";
+import {
+  durationsWithDiscount,
+  type PlanDuration,
+} from "../../../../shared/pro/calc-plan-price-for-duration.ts";
 import { assert } from "../../../../shared/typescript/assert.ts";
 import { PaymentMethodType } from "../../../../shared/pro/payment-gateway-types.ts";
 import { BrowserPlatform } from "../../../lib/platform/browser/browser-platform.ts";
@@ -45,6 +48,14 @@ export class PlansScreenStore {
       : null;
   }
 
+  get bankCardDiscount() {
+    const proPlan = this.proPlan;
+    if (!proPlan) return 0.2;
+    const starsToUsdApprox = proPlan.price_stars / 50;
+
+    return +((starsToUsdApprox - proPlan.price) / starsToUsdApprox).toFixed(1);
+  }
+
   get aiCardsLeft() {
     return this.plansRequest.result.status === "success"
       ? this.plansRequest.result.data.aiCardsLeft
@@ -64,7 +75,27 @@ export class PlansScreenStore {
       selectedPlan,
       this.selectedPlanDuration.value,
       this.method,
+      this.totalDiscount,
     );
+  }
+
+  private get totalDiscount() {
+    const duration = this.selectedPlanDuration.value;
+    if (!duration) return 0;
+    const methodDiscount =
+      this.method === PaymentMethodType.Usd ? this.bankCardDiscount : 0;
+
+    const durationWithDiscount = durationsWithDiscount.find(
+      (item) => item.duration === duration,
+    );
+    if (!durationWithDiscount) return methodDiscount;
+
+    const durationDiscount =
+      this.method === PaymentMethodType.Usd
+        ? durationWithDiscount.discount
+        : durationWithDiscount.discountStars;
+
+    return durationDiscount + methodDiscount;
   }
 
   async createOrder() {

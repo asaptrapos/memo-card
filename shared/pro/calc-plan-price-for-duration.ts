@@ -9,8 +9,8 @@ export const durationsWithDiscount: Array<{
   discountStars: number;
 }> = [
   { duration: 1, discount: 0, discountStars: 0 },
-  { duration: 6, discount: 0.15, discountStars: 0.333 },
-  { duration: 12, discount: 0.25, discountStars: 0.5 },
+  { duration: 6, discount: 0.333, discountStars: 0.333 },
+  { duration: 12, discount: 0.5, discountStars: 0.5 },
 ];
 
 export const calcPlanPriceForDuration = (

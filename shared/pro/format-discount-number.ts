@@ -1,4 +1,4 @@
-export const formatDiscount = (discount: number): string | null => {
+export const formatDiscountNumber = (discount: number): string | null => {
   if (discount === 0) {
     return null;
   }
