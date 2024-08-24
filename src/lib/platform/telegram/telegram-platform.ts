@@ -2,7 +2,6 @@ import WebApp from "@twa-dev/sdk";
 import { Platform, PlatformTheme } from "../platform.ts";
 import { cssVarToValue } from "./css-var-to-value.ts";
 import { Language } from "../../../translations/t.ts";
-import { isRuProxy } from "../../urls/is-ru-proxy.ts";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
 
 const buttonColor = "var(--tg-theme-button-color)";
@@ -75,7 +74,6 @@ export class TelegramPlatform implements Platform {
       platform: WebApp.platform,
       colorScheme: WebApp.colorScheme,
       tgVersion: WebApp.version,
-      isRuProxy: isRuProxy(),
     };
   }
 

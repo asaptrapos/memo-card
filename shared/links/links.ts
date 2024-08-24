@@ -9,7 +9,6 @@ export const links = {
 
   // Bot app links
   botApp: "https://t.me/memo_card_bot/app",
-  botAppRuProxy: "https://t.me/memo_card_bot/app_ru",
 
   botChannel: "https://t.me/memo_card_bot_channel",
   ruBotChannel: "https://t.me/memocard_ru",
