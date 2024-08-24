@@ -21,18 +21,18 @@ import { List } from "../../ui/list.tsx";
 import { FilledIcon } from "../../ui/filled-icon.tsx";
 import { CardsToReview } from "../../ui/cards-to-review.tsx";
 import { platform } from "../../lib/platform/platform.ts";
-import {
-  getYouTubeChannelLink,
-  YouTubeIcon,
-} from "../shared/youtube/youtube.tsx";
+import { YouTubeIcon } from "../shared/youtube/youtube.tsx";
 import { boolNarrow } from "../../lib/typescript/bool-narrow.ts";
 import { ButtonSideAligned } from "../../ui/button-side-aligned.tsx";
-import { BottomSheet } from "../../ui/bottom-sheet/bottom-sheet.tsx";
-import { DeckOrFolderChoose } from "../deck-or-folder-choose/deck-or-folder-choose.tsx";
+import { DeckOrFolderChoose } from "./deck-or-folder-choose/deck-or-folder-choose.tsx";
+import { BooleanToggle } from "mobx-form-lite";
+import { RuEduVideoChoice } from "./ru-edu-video-choice.tsx";
+import { getTelegramChannelLink } from "../../../shared/links/get-telegram-channel-link.ts";
+import { getYouTubeChannelLink } from "../../../shared/links/get-youtube-channel-link.ts";
 
 export const MainScreen = observer(() => {
-  const [isDeckOrFolderChooseOpen, setIsDeckOrFolderChooseOpen] =
-    useState(false);
+  const [deckFolderToggle] = useState(() => new BooleanToggle(false));
+  const [ruEduVideoToggle] = useState(() => new BooleanToggle(false));
 
   useMount(() => {
     deckListStore.loadFirstTime(platform.getStartParam());
@@ -40,12 +40,9 @@ export const MainScreen = observer(() => {
 
   return (
     <Flex direction={"column"} gap={12} pb={48}>
-      <BottomSheet
-        isOpen={isDeckOrFolderChooseOpen}
-        onClose={() => setIsDeckOrFolderChooseOpen(false)}
-      >
-        <DeckOrFolderChoose />
-      </BottomSheet>
+      <DeckOrFolderChoose toggle={deckFolderToggle} />
+      <RuEduVideoChoice toggle={ruEduVideoToggle} />
+
       <div>
         <ListHeader
           text={t("my_decks")}
@@ -110,6 +107,7 @@ export const MainScreen = observer(() => {
               <div>
                 {t("browser_no_personal_decks_start")}
                 <br />
+
                 {t("browser_no_personal_decks_link")}
                 <span
                   className={css({
@@ -117,11 +115,18 @@ export const MainScreen = observer(() => {
                     cursor: "pointer",
                   })}
                   onClick={() => {
-                    platform.openExternalLink(links.youtubeChannelEn);
+                    if (platform.getLanguage() === "ru") {
+                      ruEduVideoToggle.setTrue();
+                    } else {
+                      platform.openExternalLink(links.youtubeChannelEn);
+                    }
                   }}
                 >
-                  YouTube
+                  {platform.getLanguage() === "ru"
+                    ? "обучающие видео"
+                    : "YouTube"}
                 </span>
+
                 {t("browser_no_personal_decks_end")}
               </div>
             </Hint>
@@ -134,7 +139,7 @@ export const MainScreen = observer(() => {
               outline
               onClick={() => {
                 if (deckListStore.myDecks.length > 0) {
-                  setIsDeckOrFolderChooseOpen(true);
+                  deckFolderToggle.setTrue();
                 } else {
                   screenStore.goToDeckForm({});
                 }
@@ -203,21 +208,35 @@ export const MainScreen = observer(() => {
                     />
                   ),
                   onClick: () => {
-                    platform.openInternalLink(links.botChannel);
+                    platform.openInternalLink(getTelegramChannelLink());
                   },
                 },
-                {
-                  text: t("youtube_channel"),
-                  icon: (
-                    <FilledIcon
-                      icon={<YouTubeIcon />}
-                      backgroundColor={theme.danger}
-                    />
-                  ),
-                  onClick: () => {
-                    platform.openExternalLink(getYouTubeChannelLink());
-                  },
-                },
+
+                platform.getLanguage() === "ru"
+                  ? {
+                      text: "Обучающие видео",
+                      onClick: () => {
+                        ruEduVideoToggle.setTrue();
+                      },
+                      icon: (
+                        <FilledIcon
+                          icon={"mdi-video"}
+                          backgroundColor={theme.danger}
+                        />
+                      ),
+                    }
+                  : {
+                      text: t("youtube_channel"),
+                      icon: (
+                        <FilledIcon
+                          icon={<YouTubeIcon />}
+                          backgroundColor={theme.danger}
+                        />
+                      ),
+                      onClick: () => {
+                        platform.openExternalLink(getYouTubeChannelLink());
+                      },
+                    },
               ].filter(boolNarrow)}
             />
           </div>

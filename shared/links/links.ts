@@ -12,6 +12,8 @@ export const links = {
   botAppRuProxy: "https://t.me/memo_card_bot/app_ru",
 
   botChannel: "https://t.me/memo_card_bot_channel",
+  ruBotChannel: "https://t.me/memocard_ru",
+  telegramRuVideosFirst: "https://t.me/memocard_ru/4",
 
   // Support
   supportChat: `https://t.me/${supportName}`,
@@ -21,7 +23,7 @@ export const links = {
   // YouTube
   youtubeChannelEn: "https://www.youtube.com/@MemoCardBot",
   youtubeChannelRu: "https://www.youtube.com/@MemoCardRu",
-  telegramRuVideos: "https://t.me/memocard_ru_videos",
+
 
   lsqMonthlySubscription:
     "https://memocard.lemonsqueezy.com/buy/c6563ccb-8aa0-4a6e-931d-a0cc3740dbbe",

@@ -1,13 +1,13 @@
 import { css, cx } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
-import { Flex } from "../../ui/flex.tsx";
-import { tapScale } from "../../lib/animations/tap-scale.ts";
-import { ChevronIcon } from "../../ui/chevron-icon.tsx";
-import { useMemo } from "react";
+import { theme } from "../../../ui/theme.tsx";
+import { Flex } from "../../../ui/flex.tsx";
+import { tapScale } from "../../../lib/animations/tap-scale.ts";
+import { ChevronIcon } from "../../../ui/chevron-icon.tsx";
+import { ReactNode, useMemo } from "react";
 import { colord } from "colord";
 
 type Props = {
-  icon: string;
+  icon?: string | ReactNode;
   title: string;
   description?: string;
   onClick: () => void;
@@ -35,7 +35,11 @@ export const Choice = (props: Props) => {
       })}
     >
       <Flex alignItems={"center"} fullWidth gap={12}>
-        <i className={cx(icon, css({ color: theme.buttonColor }))} />
+        {typeof icon === "string" ? (
+          <i className={cx(icon, css({ color: theme.buttonColor }))} />
+        ) : (
+          icon
+        )}
         <Flex direction={"column"}>
           <h3 className={css({ color: theme.buttonColor })}>{title}</h3>
           <div className={css({ color: theme.buttonColor })}>{description}</div>
