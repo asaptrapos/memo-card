@@ -61,6 +61,10 @@ export class TelegramPlatform implements Platform {
     return WebApp.platform === "ios";
   }
 
+  isWeb() {
+    return WebApp.platform === "webk" || WebApp.platform === "weba";
+  }
+
   isAndroid() {
     return WebApp.platform === "android";
   }

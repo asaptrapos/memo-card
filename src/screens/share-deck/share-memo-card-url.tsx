@@ -21,7 +21,10 @@ export const getDeckOrFolderLink = (shareId: string) => {
 export const shareMemoCardUrl = (shareId: string) => {
   const memoCardUrl = getDeckOrFolderLink(shareId);
 
-  if (platform instanceof BrowserPlatform) {
+  if (
+    platform instanceof BrowserPlatform ||
+    (platform instanceof TelegramPlatform && platform.isWeb())
+  ) {
     copyToClipboard(memoCardUrl);
     notifySuccess(t("share_link_copied"));
     return;
