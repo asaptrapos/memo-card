@@ -32,6 +32,14 @@ const allowedTags = [
   "ol", // Ordered list
   "li", // List item
 
+  // html table tags
+  "table",
+  "thead",
+  "tbody",
+  "tr",
+  "th",
+  "td",
+
   ...mathmlTagNames,
 ];
 

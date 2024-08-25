@@ -23,7 +23,6 @@ export const links = {
   youtubeChannelEn: "https://www.youtube.com/@MemoCardBot",
   youtubeChannelRu: "https://www.youtube.com/@MemoCardRu",
 
-
   lsqMonthlySubscription:
     "https://memocard.lemonsqueezy.com/buy/c6563ccb-8aa0-4a6e-931d-a0cc3740dbbe",
   lsqYearlySubscription:

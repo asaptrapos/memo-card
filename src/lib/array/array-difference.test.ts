@@ -1,4 +1,4 @@
-import { test, expect } from "vitest";
+import { expect, test } from "vitest";
 import { arrayDifference } from "./array-difference.ts";
 
 test("array-difference", () => {

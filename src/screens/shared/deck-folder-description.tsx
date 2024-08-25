@@ -3,6 +3,8 @@ import { useIsOverflowing } from "../../lib/react/use-is-overflowing.ts";
 import { css, cx } from "@emotion/css";
 import { theme } from "../../ui/theme.tsx";
 import { t } from "../../translations/t.ts";
+import { sanitizeTextForCard } from "../../lib/sanitize-html/sanitize-text-for-card.ts";
+import { wysiwygTableStyle } from "../../ui/wysiwyg-table-style.ts";
 
 type Props = {
   deck: { description: string | null };
@@ -26,10 +28,12 @@ export const DeckFolderDescription = (props: Props) => {
             overflowY: "hidden",
           }),
           isExpanded && css({ maxHeight: "none" }),
+          wysiwygTableStyle,
         )}
-      >
-        {deck.description}
-      </div>
+        dangerouslySetInnerHTML={{
+          __html: sanitizeTextForCard(deck.description || ""),
+        }}
+      />
       {isOverflowing && !isExpanded ? (
         <div
           className={css({

@@ -169,6 +169,10 @@ const en = {
   share_used: "Link have been used by",
   share_unused: "Haven't been used",
   share_link_copied: "The link has been copied to your clipboard",
+  copied: "Copied",
+  copy_code: "Copy code",
+  html_column: "Column",
+  html_row: "Row",
   share_copy_link: "Copy link",
   share_access_duration_days: "Access duration days",
   share_access_duration_no_limit: "No limit",
@@ -298,6 +302,10 @@ const en = {
 type Translation = typeof en;
 
 const ru: Translation = {
+  copy_code: "Скопировать код",
+  copied: "Скопировано",
+  html_column: "Столбец",
+  html_row: "Строка",
   logout: "Выйти",
   error_contact_support:
     "Произошла ошибка. Пожалуйста свяжитесь с поддержкой, чтобы мы могли помочь вам.",
@@ -585,6 +593,10 @@ const ru: Translation = {
 };
 
 const es: Translation = {
+  html_row: "Fila",
+  html_column: "Columna",
+  copied: "Copiado",
+  copy_code: "Copiar código",
   logout: "Cerrar sesión",
   browser_no_personal_decks_link: "Aprende cómo usar MemoCard en ",
   browser_no_personal_decks_end: ". ¡Buena suerte! 😊",
@@ -875,6 +887,10 @@ const es: Translation = {
 };
 
 const ptBr: Translation = {
+  copied: "Copiado",
+  copy_code: "Copiar código",
+  html_column: "Coluna",
+  html_row: "Linha",
   logout: "Sair",
   browser_no_personal_decks_start: "Você ainda não tem baralhos pessoais",
   browser_no_personal_decks_end: ". Boa sorte! 😊",

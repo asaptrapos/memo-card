@@ -21,6 +21,8 @@ import { userStore } from "../../store/user-store.ts";
 import { FilledIcon } from "../../ui/filled-icon.tsx";
 import { assert } from "../../../shared/typescript/assert.ts";
 import { Flex } from "../../ui/flex.tsx";
+import { FormattingSwitcher } from "../deck-form/card-form/formatting-switcher.tsx";
+import { WysiwygField } from "../../ui/wysiwyg-field/wysiwig-field.tsx";
 
 export const FolderForm = observer(() => {
   const folderStore = useFolderFormStore();
@@ -51,8 +53,13 @@ export const FolderForm = observer(() => {
       <Label text={t("title")} isRequired>
         <Input field={folderForm.title} />
       </Label>
-      <Label text={t("description")}>
-        <Input field={folderForm.description} rows={3} type={"textarea"} />
+
+      <Label isPlain text={t("description")} slotRight={<FormattingSwitcher />}>
+        {userStore.isCardFormattingOn.value ? (
+          <WysiwygField field={folderForm.description} />
+        ) : (
+          <Input field={folderForm.description} type={"textarea"} rows={3} />
+        )}
       </Label>
 
       {userStore.canUpdateCatalogSettings && screen.folderId ? (

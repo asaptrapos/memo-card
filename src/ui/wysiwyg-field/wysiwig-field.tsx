@@ -7,12 +7,14 @@ import {
   Toolbar,
 } from "react-simple-wysiwyg";
 import { theme } from "../theme.tsx";
-import React from "react";
+import React, { useState } from "react";
 import { TextField } from "mobx-form-lite";
 import { ValidationError } from "../validation-error.tsx";
 import { ColorIcon } from "./color-icon.tsx";
 import { t } from "../../translations/t.ts";
 import { sanitizeTextForCard } from "../../lib/sanitize-html/sanitize-text-for-card.ts";
+import { BottomSheet } from "../bottom-sheet/bottom-sheet.tsx";
+import { HtmlTableEditor } from "./html-table-editor.tsx";
 
 const BtnBigHeader = createButton(
   t("wysiwyg_big_header"),
@@ -94,9 +96,27 @@ export const WysiwygField = observer((props: Props) => {
   const { field } = props;
   const { onChange, value, isTouched, error, onBlur } = field;
   const hasError = isTouched && error;
+  const [isTable, setIsTable] = useState(false);
+
+  const BtnTable = createButton(
+    "Table",
+    <i className={"mdi mdi-table"} />,
+    () => {
+      setIsTable(true);
+    },
+  );
 
   return (
     <EditorProvider>
+      <BottomSheet
+        isOpen={isTable}
+        onClose={() => {
+          setIsTable(false);
+        }}
+      >
+        <HtmlTableEditor />
+      </BottomSheet>
+
       <Editor
         onBlur={onBlur}
         containerProps={
@@ -121,6 +141,7 @@ export const WysiwygField = observer((props: Props) => {
           <BtnBigHeader />
           <BtnMiddleHeader />
           <BtnSmallHeader />
+          <BtnTable />
           <BtnClearFormatting />
           <BtnUndo />
           <BtnRedo />

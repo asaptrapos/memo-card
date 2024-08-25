@@ -30,6 +30,8 @@ import { WithProIcon } from "../../shared/with-pro-icon.tsx";
 import { IndividualCardAiPreview } from "../../shared/feature-preview/individual-card-ai-preview.tsx";
 import { MassCreationPreview } from "../../shared/feature-preview/mass-creation-preview.tsx";
 import { suitableCardInputModeStore } from "../../../store/suitable-card-input-mode-store.ts";
+import { FormattingSwitcher } from "../card-form/formatting-switcher.tsx";
+import { WysiwygField } from "../../../ui/wysiwyg-field/wysiwig-field.tsx";
 
 type PreviewType = "bulk_ai_cards" | "individual_ai_card";
 
@@ -104,12 +106,16 @@ export const DeckForm = observer(() => {
         <Input field={deckFormStore.deckForm.title} />
       </Label>
 
-      <Label text={t("description")}>
-        <Input
-          field={deckFormStore.deckForm.description}
-          rows={3}
-          type={"textarea"}
-        />
+      <Label isPlain text={t("description")} slotRight={<FormattingSwitcher />}>
+        {userStore.isCardFormattingOn.value ? (
+          <WysiwygField field={deckFormStore.deckForm.description} />
+        ) : (
+          <Input
+            field={deckFormStore.deckForm.description}
+            type={"textarea"}
+            rows={3}
+          />
+        )}
       </Label>
 
       {deckFormStore.deckForm.cards.length > 0 && (
