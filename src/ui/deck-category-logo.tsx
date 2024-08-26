@@ -13,6 +13,8 @@ export const replaceFlagEmojiOnWindows = (logo: string) => {
       return "gb";
     case "🇹🇭":
       return "th";
+    case "🇪🇸":
+      return "es";
     default:
       return null;
   }
