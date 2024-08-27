@@ -13,7 +13,16 @@ export const GeneratedCardPreviewScreen = observer((props: Props) => {
   const store = useAiMassCreationStore();
   assert(store.massCreationForm);
   const { card } = props;
-  const [form] = useState(createMockCardPreviewForm(card));
+  const [form] = useState(
+    createMockCardPreviewForm({
+      example: card.example || null,
+      back: card.back,
+      front: card.front,
+      answers: [],
+      options: null,
+      answer_type: "remember",
+    }),
+  );
 
   return (
     <CardPreview

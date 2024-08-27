@@ -42,6 +42,7 @@ export const CardListWithPreviewReadonly = observer((props: Props) => {
   return (
     <CardPreviewFromListReadonly
       card={selectedCard}
+      deck={deck}
       onBack={() => {
         setSelectedCardId(null);
       }}
