@@ -5,6 +5,8 @@ import LinesEllipsis from "react-lines-ellipsis";
 import { DeckCategoryLogo } from "./deck-category-logo.tsx";
 import { tapScale } from "../lib/animations/tap-scale.ts";
 import React, { ReactNode } from "react";
+import { sanitizeTextForCard } from "../lib/sanitize-html/sanitize-text-for-card.ts";
+import { removeAllTags } from "../lib/sanitize-html/remove-all-tags.ts";
 
 type Props = {
   catalogItem: {
@@ -59,7 +61,11 @@ export const DeckListItemWithDescription = observer((props: Props) => {
         })}
       >
         <LinesEllipsis
-          text={catalogItem.description}
+          text={
+            catalogItem.description
+              ? removeAllTags(catalogItem.description)
+              : ""
+          }
           maxLine="2"
           ellipsis="..."
           trimRight
