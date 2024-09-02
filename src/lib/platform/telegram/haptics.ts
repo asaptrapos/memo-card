@@ -1,4 +1,4 @@
-import WebApp from "@twa-dev/sdk";
+import { WebApp } from "./telegram-web-app.ts";
 
 const isIos = WebApp.platform === "ios";
 const isAndroid = WebApp.platform === "android";

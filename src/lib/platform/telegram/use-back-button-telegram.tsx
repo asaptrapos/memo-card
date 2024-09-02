@@ -1,6 +1,6 @@
-import WebApp from "@twa-dev/sdk";
 import { UseBackButtonType } from "../platform.ts";
 import { useEffect } from "react";
+import { WebApp } from "./telegram-web-app.ts";
 
 export const useBackButtonTelegram: UseBackButtonType = (
   fn: () => void,

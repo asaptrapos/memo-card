@@ -1,5 +1,5 @@
-import WebApp from "@twa-dev/sdk";
 import { type StorageController } from "mobx-persist-store";
+import { WebApp } from "./telegram-web-app.ts";
 
 // An adapter of the Telegram cloud storage to the mobx-persist-store interface
 export const cloudStorageAdapter: StorageController = {
@@ -29,7 +29,7 @@ export const cloudStorageAdapter: StorageController = {
   },
   setItem(key: string, value: any) {
     return new Promise((resolve, reject) => {
-      WebApp.CloudStorage.setItem(key, value, (err, result) => {
+      window.Telegram.WebApp.CloudStorage.setItem(key, value, (err, result) => {
         if (err != null) {
           return reject(err);
         } else {

@@ -5,6 +5,10 @@ export enum LanguageCatalogItemAvailableIn {
   Ru = "ru",
   Es = "es",
   Uk = "uk",
+  // arabic
+  Ar = "ar",
+  // Farsi
+  Fa = "fa",
   PtBr = "pt-br",
 }
 
@@ -22,6 +26,10 @@ export const languageCatalogItemAvailableInToNative = (
       return "Українська";
     case LanguageCatalogItemAvailableIn.PtBr:
       return "Português";
+    case LanguageCatalogItemAvailableIn.Ar:
+      return "العربية";
+    case LanguageCatalogItemAvailableIn.Fa:
+      return "فارسی";
     default:
       return type;
   }

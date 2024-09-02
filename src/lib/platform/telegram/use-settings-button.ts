@@ -1,5 +1,5 @@
-import WebApp from "@twa-dev/sdk";
 import { useMount } from "../../react/use-mount.ts";
+import { WebApp } from "./telegram-web-app.ts";
 
 export const useSettingsButton = (fn: () => void) => {
   useMount(() => {

@@ -1,8 +1,8 @@
-import WebApp from "@twa-dev/sdk";
 import { Platform, PlatformTheme } from "../platform.ts";
 import { cssVarToValue } from "./css-var-to-value.ts";
 import { Language } from "../../../translations/t.ts";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
+import { WebApp } from "./telegram-web-app.ts";
 
 const buttonColor = "var(--tg-theme-button-color)";
 const buttonTextColor = "var(--tg-theme-button-text-color)";
@@ -29,7 +29,6 @@ export class TelegramPlatform implements Platform {
     WebApp.ready();
     WebApp.setHeaderColor("secondary_bg_color");
     if (this.isSwipeControllable()) {
-      // @ts-expect-error
       WebApp.isVerticalSwipesEnabled = false;
     }
     WebApp.expand();

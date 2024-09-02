@@ -1,8 +1,8 @@
-import WebApp from "@twa-dev/sdk";
 import { useHotkeys } from "react-hotkeys-hook";
 import { autorun } from "mobx";
 import { UseMainButtonType } from "../platform.ts";
 import { useEffect } from "react";
+import { WebApp } from "./telegram-web-app.ts";
 
 // Track visible state to avoid flickering
 let isVisible = false;

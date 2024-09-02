@@ -3,7 +3,7 @@ import { css } from "@emotion/css";
 import { throttle } from "../../throttle/throttle.ts";
 import { platform } from "../platform.ts";
 import { TelegramPlatform } from "./telegram-platform.ts";
-import WebApp from "@twa-dev/sdk";
+import { WebApp } from "./telegram-web-app.ts";
 
 type Props = {
   condition: boolean;
