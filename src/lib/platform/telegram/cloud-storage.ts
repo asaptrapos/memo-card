@@ -29,7 +29,7 @@ export const cloudStorageAdapter: StorageController = {
   },
   setItem(key: string, value: any) {
     return new Promise((resolve, reject) => {
-      window.Telegram.WebApp.CloudStorage.setItem(key, value, (err, result) => {
+      WebApp.CloudStorage.setItem(key, value, (err, result) => {
         if (err != null) {
           return reject(err);
         } else {

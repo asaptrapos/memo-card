@@ -42,6 +42,7 @@ import { platform } from "../lib/platform/platform.ts";
 import { BrowserPlatform } from "../lib/platform/browser/browser-platform.ts";
 import { CatalogSettingsScreenLazy } from "./catalog-settings/catalog-settings-screen-lazy.tsx";
 import { LoginScreen } from "./login/login-screen.tsx";
+import { TelegramPlatform } from "../lib/platform/telegram/telegram-platform.ts";
 
 export const App = observer(() => {
   useRestoreFullScreenExpand();
@@ -56,24 +57,28 @@ export const App = observer(() => {
 
   return (
     <div
-      className={
+      className={cx(
+        platform instanceof TelegramPlatform && platform.isWeb()
+          ? css({ marginTop: 16 })
+          : undefined,
+
         platform instanceof BrowserPlatform
-          ? cx(
-              css({
-                margin: "0 auto",
-                marginTop: 24,
-                maxWidth: platform.maxWidth,
-              }),
-              screenStore.screen.type === "browserLogin" &&
-                css({
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  minHeight: "calc(100vh - 48px)",
-                }),
-            )
-          : undefined
-      }
+          ? css({
+              margin: "0 auto",
+              marginTop: 24,
+              maxWidth: platform.maxWidth,
+            })
+          : undefined,
+
+        screenStore.screen.type === "browserLogin"
+          ? css({
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "calc(100vh - 48px)",
+            })
+          : undefined,
+      )}
     >
       <VersionWarning />
       <SnackbarProviderWrapper />
