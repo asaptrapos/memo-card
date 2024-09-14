@@ -27,7 +27,7 @@ export type UseMainButtonType = (
   onClick: () => void,
   condition?: () => boolean,
   deps?: any[],
-  options?: { forceHide?: boolean },
+  options?: { forceHide?: boolean; hasShineEffect?: boolean },
 ) => void;
 
 export type UseBackButtonType = (onBack: () => void, deps?: any[]) => void;

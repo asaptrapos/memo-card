@@ -83,6 +83,10 @@ export const PlansScreen = observer(() => {
       store.createOrder();
     },
     () => store.isBuyButtonVisible,
+    [],
+    {
+      hasShineEffect: true,
+    }
   );
 
   useProgress(() => store.createOrderRequest.isLoading);

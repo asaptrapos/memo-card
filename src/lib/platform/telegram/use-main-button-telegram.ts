@@ -52,6 +52,10 @@ export const useMainButtonTelegram: UseMainButtonType = (
       WebApp.MainButton.show();
       WebApp.MainButton.setText(typeof text === "string" ? text : text());
       WebApp.MainButton.onClick(onClick);
+      if (options?.hasShineEffect) {
+        // @ts-expect-error
+        WebApp.MainButton.hasShineEffect = true;
+      }
     });
 
     return () => {
