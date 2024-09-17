@@ -1,6 +1,7 @@
 import { Platform, PlatformTheme } from "../platform.ts";
 import { cssVarToValue } from "./css-var-to-value.ts";
 import { Language } from "../../../translations/t.ts";
+import { isRuProxy } from "../../urls/is-ru-proxy.ts";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
 import { WebApp } from "./telegram-web-app.ts";
 
@@ -81,6 +82,7 @@ export class TelegramPlatform implements Platform {
       platform: WebApp.platform,
       colorScheme: WebApp.colorScheme,
       tgVersion: WebApp.version,
+      isRuProxy: isRuProxy(),
     };
   }
 
