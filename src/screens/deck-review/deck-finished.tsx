@@ -38,7 +38,7 @@ export const DeckFinished = observer((props: Props) => {
 
   return (
     <DeckFinishedModal>
-      <Flex direction={"column"} alignItems={"center"}>
+      <Flex direction={"column"}>
         <p>
           {type === "deck" ? t("review_deck_finished") : t("review_all_cards")}
         </p>
