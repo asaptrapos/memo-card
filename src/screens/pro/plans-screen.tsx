@@ -13,7 +13,6 @@ import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { userStore } from "../../store/user-store.ts";
 import { ExternalLink } from "../../ui/external-link.tsx";
 import { t, translator } from "../../translations/t.ts";
-import { formatPaidUntil } from "./format-paid-until.tsx";
 import { RadioList } from "../../ui/radio-list/radio-list.tsx";
 import { css, cx } from "@emotion/css";
 import { theme } from "../../ui/theme.tsx";
@@ -113,8 +112,7 @@ export const PlansScreen = observer(() => {
             <Hint>
               <Flex direction={"column"}>
                 <div>
-                  {t("payment_paid_until")}:{" "}
-                  {formatPaidUntil(userStore.paidUntil)}
+                  {t("payment_paid_until")}: {userStore.paidUntil}
                 </div>
                 <div>
                   {t("ai_cards_left")}: {store.aiCardsLeft}

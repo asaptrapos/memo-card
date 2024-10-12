@@ -21,7 +21,6 @@ import { boolNarrow } from "../../lib/typescript/bool-narrow.ts";
 import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 import { userStore } from "../../store/user-store.ts";
-import { formatPaidUntil } from "../pro/format-paid-until.tsx";
 import { ProIcon } from "../../ui/pro-icon.tsx";
 import { copyToClipboard } from "../../lib/copy-to-clipboard/copy-to-clipboard.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
@@ -72,7 +71,7 @@ export const UserSettingsScreen = observer(() => {
         <HintTransparent>
           {userStore.paidUntil ? (
             <span>
-              {t("payment_paid_until")}: {formatPaidUntil(userStore.paidUntil)}
+              {t("payment_paid_until")}: {userStore.paidUntil}
             </span>
           ) : (
             t("payment_description")
