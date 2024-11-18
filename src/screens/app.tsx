@@ -38,7 +38,7 @@ import { SnackbarProviderWrapper } from "./shared/snackbar/snackbar-provider-wra
 import { Debug } from "./debug/debug.tsx";
 import { BrowserMainButton } from "./shared/browser-platform/browser-main-button.tsx";
 import { css, cx } from "@emotion/css";
-import { platform } from "../lib/platform/platform.ts";
+import { platform, platformMaxWidth } from "../lib/platform/platform.ts";
 import { BrowserPlatform } from "../lib/platform/browser/browser-platform.ts";
 import { CatalogSettingsScreenLazy } from "./catalog-settings/catalog-settings-screen-lazy.tsx";
 import { LoginScreen } from "./login/login-screen.tsx";
@@ -62,11 +62,12 @@ export const App = observer(() => {
           ? css({ marginTop: 16 })
           : undefined,
 
-        platform instanceof BrowserPlatform
+        platform instanceof BrowserPlatform ||
+          (platform instanceof TelegramPlatform && platform.isFullScreen)
           ? css({
               margin: "0 auto",
               marginTop: 24,
-              maxWidth: platform.maxWidth,
+              maxWidth: platformMaxWidth,
             })
           : undefined,
 

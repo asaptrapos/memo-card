@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { Button } from "../../../ui/button.tsx";
 import { theme } from "../../../ui/theme.tsx";
-import { platform } from "../../../lib/platform/platform.ts";
+import { platform, platformMaxWidth } from "../../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../../lib/platform/browser/browser-platform.ts";
 import { t } from "../../../translations/t.ts";
 import { css } from "@emotion/css";
@@ -27,7 +27,7 @@ export const BrowserMainButton = observer(() => {
     <div
       className={css({
         width: "100%",
-        maxWidth: platform.maxWidth,
+        maxWidth: platformMaxWidth,
         position: "fixed",
         left: 0,
         right: 0,

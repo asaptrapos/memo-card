@@ -4,12 +4,21 @@ import { Language } from "../../../translations/t.ts";
 import { isRuProxy } from "../../urls/is-ru-proxy.ts";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
 import { WebApp } from "./telegram-web-app.ts";
+import { makeObservable, observable, action } from "mobx";
 
 const buttonColor = "var(--tg-theme-button-color)";
 const buttonTextColor = "var(--tg-theme-button-text-color)";
 const hintColor = "var(--tg-theme-hint-color)";
 
 export class TelegramPlatform implements Platform {
+  isFullScreen = this.calcIsFullScreen();
+
+  constructor() {
+    makeObservable(this, {
+      isFullScreen: observable,
+    });
+  }
+
   getInitData(): string {
     return WebApp.initData;
   }
@@ -33,6 +42,27 @@ export class TelegramPlatform implements Platform {
       WebApp.isVerticalSwipesEnabled = false;
     }
     WebApp.expand();
+
+    // Def doesn't work on Mac :(
+    // Don't know yet about other platform
+    WebApp.onEvent(
+      // @ts-expect-error
+      "fullscreenChanged",
+      action(() => {
+        this.isFullScreen = this.calcIsFullScreen();
+      }),
+    );
+  }
+
+  private calcIsFullScreen() {
+    if (!WebApp.isVersionAtLeast("8.0")) {
+      return false;
+    }
+    if (WebApp.platform === "macos") {
+      return true;
+    }
+    // @ts-expect-error
+    return !!WebApp.isFullscreen;
   }
 
   isOutdated(): boolean {

@@ -1,4 +1,4 @@
-import { Platform, PlatformTheme } from "../platform.ts";
+import { Platform, platformMaxWidth, PlatformTheme } from "../platform.ts";
 import { action, makeAutoObservable } from "mobx";
 import { BooleanToggle } from "mobx-form-lite";
 import { isLanguage, Language } from "../../../translations/t.ts";
@@ -13,7 +13,6 @@ import {
 import { cssVariablesDark, cssVariablesLight } from "./browser-colors.ts";
 
 export class BrowserPlatform implements Platform {
-  maxWidth = 600;
   isMobile = false;
 
   mainButtonInfo?: {
@@ -32,7 +31,6 @@ export class BrowserPlatform implements Platform {
     makeAutoObservable(
       this,
       {
-        maxWidth: false,
         getTheme: false,
         getInitData: false,
         initialize: false,
@@ -169,7 +167,9 @@ export class BrowserPlatform implements Platform {
   }
 
   listenIsMobile() {
-    const isMobileQuery = window.matchMedia(`(max-width: ${this.maxWidth}px)`);
+    const isMobileQuery = window.matchMedia(
+      `(max-width: ${platformMaxWidth}px)`,
+    );
     this.isMobile = isMobileQuery.matches;
     isMobileQuery.addEventListener(
       "change",

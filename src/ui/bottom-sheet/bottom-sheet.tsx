@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { theme } from "../theme.tsx";
 import { css, cx } from "@emotion/css";
-import { platform } from "../../lib/platform/platform.ts";
+import { platform, platformMaxWidth } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 
 const variants = {
@@ -49,7 +49,7 @@ export const BottomSheet = (props: Props) => {
             boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
             zIndex: theme.zIndex.bottomSheetForeground,
             borderRadius: 20,
-            width: platform.maxWidth,
+            width: platformMaxWidth,
             height: "fit-content",
             top: "50%",
             left: "50%",
