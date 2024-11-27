@@ -41,6 +41,8 @@ const requestInner = async <Output, Input = object>(
     [UserHeaders.Platform]: collectClientData(),
   };
 
+  console.log('mc: request', endpoint, method);
+
   const response = await fetch(endpoint, {
     method,
     body: bodyAsString,

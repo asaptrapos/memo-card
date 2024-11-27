@@ -721,17 +721,22 @@ export class DeckListStore {
   }
 
   async load() {
+    console.log('mc: trying execute myInfoRequest');
     const result = await this.myInfoRequest.execute();
     if (result.status === "error") {
+      console.log('mc: error in myInfoRequest', result.error);
       return;
     }
     const userData = result.data;
     if (!userData) {
+      console.log('mc: no userData');
       return;
     }
     runInAction(() => {
+      console.log('mc: setting myInfo');
       this.myInfo = userData;
     });
+    console.log('mc: setting user');
     userStore.setUser(userData.user, userData.plans);
   }
 

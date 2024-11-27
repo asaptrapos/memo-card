@@ -35,6 +35,7 @@ export const MainScreen = observer(() => {
   const [ruEduVideoToggle] = useState(() => new BooleanToggle(false));
 
   useMount(() => {
+    console.log('mc: load first time');
     deckListStore.loadFirstTime(platform.getStartParam());
   });
 
