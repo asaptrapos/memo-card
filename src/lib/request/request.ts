@@ -17,6 +17,10 @@ const allowedToReFetch = [
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
+const encodeHeaderValue = (value: string): string => {
+  return btoa(encodeURIComponent(value));
+};
+
 const requestInner = async <Output, Input = object>(
   path: `/${string}`,
   method: HttpMethod = "GET",
@@ -37,11 +41,10 @@ const requestInner = async <Output, Input = object>(
   }
 
   const headers: Record<any, any> = {
-    [UserHeaders.Hash]: initData,
-    [UserHeaders.Platform]: collectClientData(),
+    [UserHeaders.Hash]: initData ? encodeHeaderValue(initData) : "",
+    [UserHeaders.Platform]: encodeHeaderValue(collectClientData()),
+    "X-Header-Encoding": "base64",
   };
-
-  console.log('mc: request', endpoint, method);
 
   const response = await fetch(endpoint, {
     method,
