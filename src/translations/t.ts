@@ -126,10 +126,11 @@ const en = {
   duplicate: "Duplicate",
   duplicate_deck_confirm: "Are you sure to duplicate this deck?",
   duplicate_folder_confirm: "Are you sure to duplicate this folder?",
-  delete_deck_confirm_shared:
-    "This will remove the deck from your collection only. Are you sure?",
+  delete_deck_confirm_shared: "Remove deck from your collection?",
+  delete_folder_confirm_shared: "Remove folder from your collection?",
   delete_deck_confirm_author:
-    "This will remove the deck for all users, including you. Are you sure?",
+    "Remove deck from MemoCard? This action can't be undone",
+  delete_folder_confirm_author: "Remove folder from MemoCard?",
   deck_form_remove_card_confirm:
     "Are you sure you want to remove the card? All the card reviews from all the users will be lost",
   delete: "Delete",
@@ -218,7 +219,6 @@ const en = {
     "One answer should be selected as correct",
   validation_at_least_one_answer_required:
     "At least one answer should be provided",
-  delete_folder_confirm: "Do you want to delete the folder?",
   user_stats_btn: "Statistics",
   user_stats_page: "My statistics",
   user_stats_remembered: "Remembered",
@@ -485,6 +485,8 @@ const ru: Translation = {
   duplicate: "Копировать",
   duplicate_deck_confirm: "Вы уверены, что хотите продублировать эту колоду?",
   delete_deck_confirm_shared: "Удалить колоду из вашей коллекции?",
+  delete_folder_confirm_shared: "Удалить папку из вашей коллекции?",
+  delete_folder_confirm_author: "Удалить папку из MemoCard?",
   delete_deck_confirm_author:
     "Удалить колоду из MemoCard? Это действие нельзя отменить",
   delete: "Удалить",
@@ -531,7 +533,6 @@ const ru: Translation = {
   go_back: "Назад",
   settings_contact_support: "Связаться с поддержкой в Telegram",
   settings_support_hint: "Если у вас есть вопросы, проблемы или предложения",
-  delete_folder_confirm: "Удалить папку?",
   user_stats_btn: "Статистика",
   user_stats_page: "Моя статистика",
   user_stats_remembered: "Запомнено карточек",
@@ -785,6 +786,9 @@ const es: Translation = {
   duplicate: "Duplicar",
   duplicate_deck_confirm: "¿Estás seguro de duplicar este mazo?",
   delete_deck_confirm_shared: "¿Eliminar el mazo de tu colección?",
+  delete_folder_confirm_author:
+    "¿Eliminar la carpeta de MemoCard? Esta acción no se puede deshacer",
+  delete_folder_confirm_shared: "¿Eliminar la carpeta de tu colección?",
   delete_deck_confirm_author:
     "¿Eliminar el mazo de MemoCard? Esta acción no se puede deshacer",
   delete: "Eliminar",
@@ -830,7 +834,6 @@ const es: Translation = {
   share_deck_settings: "Compartir un mazo",
   share_perpetual_link: "Compartir enlace perpetuo",
   go_back: "Volver",
-  delete_folder_confirm: "¿Quieres eliminar la carpeta?",
   user_stats_btn: "Estadísticas",
   user_stats_page: "Mi estadística",
   user_stats_remembered: "Tarjetas recordadas",
@@ -1082,6 +1085,9 @@ const ptBr: Translation = {
   duplicate: "Duplicar",
   duplicate_deck_confirm: "Tem certeza de que deseja duplicar este baralho?",
   delete_deck_confirm_shared: "Excluir baralho da sua coleção?",
+  delete_folder_confirm_author:
+    "Excluir pasta do MemoCard? Esta ação não pode ser desfeita",
+  delete_folder_confirm_shared: "Excluir pasta da sua coleção?",
   delete_deck_confirm_author:
     "Excluir baralho do MemoCard? Esta ação não pode ser desfeita",
   delete: "Deletar",
@@ -1128,7 +1134,6 @@ const ptBr: Translation = {
   share_one_time_link: "Compartilhar link de acesso único",
   share_unused: "Não utilizado",
   go_back: "Voltar",
-  delete_folder_confirm: "Você quer deletar a pasta?",
   user_stats_btn: "Estatísticas",
   user_stats_page: "Minha Estatística",
   user_stats_remembered: "Cartões Memorizados",

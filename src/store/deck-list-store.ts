@@ -646,9 +646,19 @@ export class DeckListStore {
     }, 0);
   }
 
-  deleteFolder() {
+  async deleteFolder() {
     const folder = this.selectedFolder;
     if (!folder) {
+      return;
+    }
+
+    const isAuthor = folder.authorId === userStore.myId;
+    const confirmMessage = isAuthor
+      ? t("delete_folder_confirm_author")
+      : t("delete_folder_confirm_shared");
+
+    const isConfirmed = await showConfirm(confirmMessage);
+    if (!isConfirmed) {
       return;
     }
 
