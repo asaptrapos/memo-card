@@ -8,7 +8,6 @@ import { screenStore } from "../../store/screen-store.ts";
 import { Hint } from "../../ui/hint.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { useMainButton } from "../../lib/platform/use-main-button.ts";
-import { showConfirm } from "../../lib/platform/show-confirm.ts";
 import { ButtonSideAligned } from "../../ui/button-side-aligned.tsx";
 import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { t } from "../../translations/t.ts";

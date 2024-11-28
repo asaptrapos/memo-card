@@ -130,7 +130,8 @@ const en = {
   delete_folder_confirm_shared: "Remove folder from your collection?",
   delete_deck_confirm_author:
     "Remove deck from MemoCard? This action can't be undone",
-  delete_folder_confirm_author: "Remove folder from MemoCard?",
+  delete_folder_confirm_author:
+    "Remove folder from MemoCard? This action can't be undone",
   deck_form_remove_card_confirm:
     "Are you sure you want to remove the card? All the card reviews from all the users will be lost",
   delete: "Delete",
@@ -486,7 +487,8 @@ const ru: Translation = {
   duplicate_deck_confirm: "Вы уверены, что хотите продублировать эту колоду?",
   delete_deck_confirm_shared: "Удалить колоду из вашей коллекции?",
   delete_folder_confirm_shared: "Удалить папку из вашей коллекции?",
-  delete_folder_confirm_author: "Удалить папку из MemoCard?",
+  delete_folder_confirm_author:
+    "Удалить папку из MemoCard? Это действие нельзя отменить",
   delete_deck_confirm_author:
     "Удалить колоду из MemoCard? Это действие нельзя отменить",
   delete: "Удалить",
