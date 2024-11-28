@@ -126,8 +126,10 @@ const en = {
   duplicate: "Duplicate",
   duplicate_deck_confirm: "Are you sure to duplicate this deck?",
   duplicate_folder_confirm: "Are you sure to duplicate this folder?",
-  delete_deck_confirm:
-    "Are you sure to remove the deck from your collection? This action can't be undone",
+  delete_deck_confirm_shared:
+    "This will remove the deck from your collection only. Are you sure?",
+  delete_deck_confirm_author:
+    "This will remove the deck for all users, including you. Are you sure?",
   deck_form_remove_card_confirm:
     "Are you sure you want to remove the card? All the card reviews from all the users will be lost",
   delete: "Delete",
@@ -482,8 +484,9 @@ const ru: Translation = {
   cards_total: "Всего",
   duplicate: "Копировать",
   duplicate_deck_confirm: "Вы уверены, что хотите продублировать эту колоду?",
-  delete_deck_confirm:
-    "Удалить колоду из своей коллекции? Это действие нельзя отменить",
+  delete_deck_confirm_shared: "Удалить колоду из вашей коллекции?",
+  delete_deck_confirm_author:
+    "Удалить колоду из MemoCard? Это действие нельзя отменить",
   delete: "Удалить",
   no_cards_to_review_in_deck: `Отличная работа! 🌟 Вы прошли все карточки в этой колоде. Возвращайтесь позже за новыми.`,
   no_cards_to_review_all: `Отличная работа! 🌟 Вы повторили все карточки на сегодня`,
@@ -781,8 +784,9 @@ const es: Translation = {
   cards_total: "Total de tarjetas",
   duplicate: "Duplicar",
   duplicate_deck_confirm: "¿Estás seguro de duplicar este mazo?",
-  delete_deck_confirm:
-    "¿Estás seguro de eliminar el mazo de tu colección? Esta acción no se puede deshacer",
+  delete_deck_confirm_shared: "¿Eliminar el mazo de tu colección?",
+  delete_deck_confirm_author:
+    "¿Eliminar el mazo de MemoCard? Esta acción no se puede deshacer",
   delete: "Eliminar",
   no_cards_to_review_in_deck: `¡Increíble trabajo! 🌟 Has repasado todas las tarjetas en este mazo por ahora. Vuelve más tarde para más.`,
   no_cards_to_review_all: `¡Increíble trabajo! 🌟 Has repasado todas las tarjetas por hoy. Vuelve más tarde para más.`,
@@ -1077,8 +1081,9 @@ const ptBr: Translation = {
   cards_total: "Total de cartões",
   duplicate: "Duplicar",
   duplicate_deck_confirm: "Tem certeza de que deseja duplicar este baralho?",
-  delete_deck_confirm:
-    "Tem certeza de que deseja remover o baralho da sua coleção? Esta ação não pode ser desfeita",
+  delete_deck_confirm_shared: "Excluir baralho da sua coleção?",
+  delete_deck_confirm_author:
+    "Excluir baralho do MemoCard? Esta ação não pode ser desfeita",
   delete: "Deletar",
   no_cards_to_review_in_deck: `Ótimo trabalho! 🌟 Você já revisou todos os cartões neste baralho por enquanto. Volte posteriormente para mais.`,
   no_cards_to_review_all: `Ótimo trabalho! 🌟 Você revisou todos os cartões para hoje. Volte posteriormente para mais.`,

@@ -667,7 +667,7 @@ export class DeckListStore {
         }),
       )
       .catch((e) => {
-        reportHandledError(`Unable to remove deck ${folder.id}`, e);
+        reportHandledError(`Unable to remove folder ${folder.id}`, e);
       })
       .finally(
         action(() => {
@@ -676,9 +676,19 @@ export class DeckListStore {
       );
   }
 
-  removeDeck() {
+  async removeDeck() {
     const deck = this.selectedDeck;
     if (!deck) {
+      return;
+    }
+
+    const isAuthor = deck.author_id === userStore.myId;
+    const confirmMessage = isAuthor
+      ? t("delete_deck_confirm_author")
+      : t("delete_deck_confirm_shared");
+
+    const isConfirmed = await showConfirm(confirmMessage);
+    if (!isConfirmed) {
       return;
     }
 
@@ -721,22 +731,22 @@ export class DeckListStore {
   }
 
   async load() {
-    console.log('mc: trying execute myInfoRequest');
+    console.log("mc: trying execute myInfoRequest");
     const result = await this.myInfoRequest.execute();
     if (result.status === "error") {
-      console.log('mc: error in myInfoRequest', result.error);
+      console.log("mc: error in myInfoRequest", result.error);
       return;
     }
     const userData = result.data;
     if (!userData) {
-      console.log('mc: no userData');
+      console.log("mc: no userData");
       return;
     }
     runInAction(() => {
-      console.log('mc: setting myInfo');
+      console.log("mc: setting myInfo");
       this.myInfo = userData;
     });
-    console.log('mc: setting user');
+    console.log("mc: setting user");
     userStore.setUser(userData.user, userData.plans);
   }
 

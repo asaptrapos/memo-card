@@ -212,13 +212,8 @@ export const DeckPreview = observer((props: Props) => {
               <ButtonSideAligned
                 icon={"mdi-delete-circle mdi-24px"}
                 outline
-                onClick={async () => {
-                  const isConfirmed = await showConfirm(
-                    t("delete_deck_confirm"),
-                  );
-                  if (isConfirmed) {
-                    deckListStore.removeDeck();
-                  }
+                onClick={() => {
+                  deckListStore.removeDeck();
                 }}
               >
                 {t("delete")}
