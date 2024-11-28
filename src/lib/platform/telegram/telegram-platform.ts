@@ -32,7 +32,12 @@ export class TelegramPlatform implements Platform {
   }
 
   getStartParam(): string | undefined {
-    return WebApp.initDataUnsafe.start_param;
+    const startParam = WebApp.initDataUnsafe.start_param;
+    if (startParam) return startParam;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const start = urlParams.get("start");
+    return typeof start === "string" ? start : undefined;
   }
 
   initialize() {
