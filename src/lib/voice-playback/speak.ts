@@ -1,5 +1,4 @@
 import { camelCaseToHuman } from "../string/camel-case-to-human.ts";
-import { isIosAtLeast } from "../browser/is-ios-at-least.ts";
 
 export enum SpeakLanguageEnum {
   USEnglish = "en-US",
@@ -58,12 +57,14 @@ export const speak = (text: string, language: SpeakLanguageEnum) => {
 
   const utterance = new SpeechSynthesisUtterance(text);
 
-  if (isIosAtLeast(18)) {
-    const voicesList = window.speechSynthesis.getVoices();
-    const firstVoice = voicesList.find((voice) => voice.lang === language);
-    if (firstVoice) {
-      utterance.voice = firstVoice;
-    }
+  const voicesList = window.speechSynthesis.getVoices();
+  const defaultVoice = voicesList.find(
+    (voice) => voice.default && voice.lang === language,
+  );
+  const firstVoice = voicesList.find((voice) => voice.lang === language);
+  const voice = defaultVoice || firstVoice;
+  if (voice) {
+    utterance.voice = voice;
   }
 
   utterance.lang = language;
