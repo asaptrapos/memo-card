@@ -45,6 +45,21 @@ export const formatFrozenCards = (cards: number) => {
           return `${cards} foram congelados`;
       }
     }
+    case "ar": {
+      const rulesAr = new Intl.PluralRules("ar");
+      const resultAr = rulesAr.select(cards);
+      switch (resultAr) {
+        case "one":
+          return `تم تجميد بطاقة واحدة`;
+        case "few":
+          return `تم تجميد ${cards} بطاقات`;
+        case "many":
+          return `تم تجميد ${cards} بطاقة`;
+        case "two":
+        default:
+          return `تم تجميد ${cards} بطاقة`;
+      }
+    }
   }
 };
 
@@ -89,6 +104,21 @@ export const formatDays = (days: number) => {
         case "other":
         default:
           return `${days} días`;
+      }
+    }
+    case "ar": {
+      const rulesAr = new Intl.PluralRules("ar");
+      const resultAr = rulesAr.select(days);
+      switch (resultAr) {
+        case "one":
+          return `${days} يوم`;
+        case "few":
+          return `${days} أيام`;
+        case "many":
+          return `${days} يومًا`;
+        case "two":
+        default:
+          return `${days} يومًا`;
       }
     }
   }

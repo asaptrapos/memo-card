@@ -105,6 +105,30 @@ export const translateProDuration = (
           return method satisfies never;
       }
     }
+    case "ar": {
+      const rulesAr = new Intl.PluralRules("ar");
+      const resultAr = rulesAr.select(duration);
+      switch (method) {
+        case PaymentMethodType.Usd:
+          switch (resultAr) {
+            case "one":
+              return `الدفع شهريًا`;
+            case "other":
+            default:
+              return `الدفع سنويًا`;
+          }
+        case PaymentMethodType.Stars:
+          switch (resultAr) {
+            case "one":
+              return `${duration} شهر`;
+            case "other":
+            default:
+              return `${duration} أشهر`;
+          }
+        default:
+          return method satisfies never;
+      }
+    }
     default:
       return lang satisfies never;
   }

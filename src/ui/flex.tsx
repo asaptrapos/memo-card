@@ -1,5 +1,6 @@
 import { CSSProperties, ReactNode } from "react";
 import { css, cx } from "@emotion/css";
+import { userStore } from "../store/user-store.ts";
 
 type Props = {
   children: ReactNode;
@@ -42,6 +43,7 @@ export const Flex = (props: Props) => {
           paddingBottom: props.pb,
           paddingLeft: props.pl,
           paddingRight: props.pr,
+          textAlign: userStore.isRtl ? "right" : undefined,
         }),
         className,
       )}

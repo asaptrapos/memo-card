@@ -14,6 +14,7 @@ import { List } from "../../../ui/list.tsx";
 import { ListHeader } from "../../../ui/list-header.tsx";
 import { DeckFolderDescription } from "../../shared/deck-folder-description.tsx";
 import { reset } from "../../../ui/reset.ts";
+import { userStore } from "../../../store/user-store.ts";
 
 type Props = {
   onBack: () => void;
@@ -85,6 +86,7 @@ export const CardListReadonly = observer((props: Props) => {
                 key={i}
                 className={css({
                   cursor: "pointer",
+                  textAlign: userStore.isRtl ? "right" : undefined,
                   backgroundColor: theme.bgColor,
                   borderRadius: theme.borderRadius,
                   // If the card content is too big then hide it

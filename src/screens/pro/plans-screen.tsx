@@ -152,7 +152,9 @@ export const PlansScreen = observer(() => {
                 <div className={css({ color: theme.hintColor })}>
                   <i
                     className={cx(
-                      "mdi mdi-chevron-right",
+                      userStore.isRtl
+                        ? "mdi mdi-chevron-left"
+                        : "mdi mdi-chevron-right",
                       css({ color: "currentColor" }),
                     )}
                   />

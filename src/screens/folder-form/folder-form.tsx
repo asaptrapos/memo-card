@@ -174,7 +174,13 @@ export const FolderForm = observer(() => {
             items={folderStore.decksNotAvailable.map((deck) => {
               return {
                 text: (
-                  <Flex direction={"column"} gap={4}>
+                  <Flex
+                    className={css({
+                      textAlign: userStore.isRtl ? "right" : undefined,
+                    })}
+                    direction={"column"}
+                    gap={4}
+                  >
                     <div>{deck.name}</div>
                     <div
                       className={css({

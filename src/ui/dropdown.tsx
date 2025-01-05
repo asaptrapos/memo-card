@@ -4,6 +4,7 @@ import { theme } from "./theme.tsx";
 import { tapScale } from "../lib/animations/tap-scale.ts";
 import { LazyLoadFramerMotion } from "../lib/framer-motion/lazy-load-framer-motion.tsx";
 import { AnimatePresence, m } from "framer-motion";
+import { userStore } from "../store/user-store.ts";
 
 type Props = {
   items: Array<{ text: ReactNode; onClick: () => void }>;
@@ -59,7 +60,8 @@ export const Dropdown = ({ items }: Props) => {
                   minWidth: "160px",
                   borderRadius: theme.borderRadius,
                   boxShadow: theme.boxShadow,
-                  right: 0,
+                  right: userStore.isRtl ? undefined : 0,
+                  left: userStore.isRtl ? 0 : undefined,
                   zIndex: 1,
                   color: theme.textColor,
                 }),

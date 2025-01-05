@@ -127,6 +127,7 @@ export class TelegramPlatform implements Platform {
       case "ru":
       case "es":
       case "pt-br":
+      case "ar":
         return languageCode;
       default:
         return "en";

@@ -3,6 +3,7 @@ import { css, cx } from "@emotion/css";
 import { theme } from "./theme.tsx";
 import { tapScale } from "../lib/animations/tap-scale.ts";
 import React, { ReactNode } from "react";
+import { userStore } from "../store/user-store.ts";
 
 export type ListItemType = {
   text: ReactNode;
@@ -53,6 +54,7 @@ export const List = observer((props: Props) => {
                   borderBottomRightRadius: theme.borderRadius,
                 },
                 paddingLeft: 12,
+                paddingRight: userStore.isRtl ? 12 : undefined,
                 background: theme.bgColor,
 
                 textAlign: item.alignCenter ? "center" : "left",

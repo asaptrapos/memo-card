@@ -21,6 +21,8 @@ export const formatDiscountAsText = (
       return `Descuento ${discountNumberFormatted}`;
     case "pt-br":
       return `Desconto ${discountNumberFormatted}`;
+    case "ar":
+      return `خصم ${discountNumberFormatted}`;
     default:
       return lang satisfies never;
   }

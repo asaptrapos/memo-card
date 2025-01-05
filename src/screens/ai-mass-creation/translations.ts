@@ -123,5 +123,23 @@ export const translateHowMassCreationWorksText = () => {
     };
   }
 
+  if (language === "ar") {
+    return {
+      example1: "المثال 1",
+      example2: "المثال 2",
+      description: "قم بإنشاء بطاقات متعددة في وقت واحد باستخدام الذكاء الاصطناعي",
+      promptExample1: "إنشاء 3 بطاقات بعواصم العالم",
+      frontExample1: "بلد",
+      backExample1: "عاصمة",
+      resultExample1:
+        "ستحصل على بطاقات مثل ألمانيا - برلين ، فرنسا - باريس ، كندا - أوتاوا",
+      promptExample2:
+        "إنشاء 2 بطاقة بكلمات إنجليزية وفرنسية تتعلق بالفواكه",
+      frontExample2: "فاكهة بالإنجليزية",
+      backExample2: "فاكهة بالفرنسية",
+      resultExample2: "ستحصل على بطاقات مثل تفاحة - Pomme ، موزة - Banane",
+    };
+  }
+
   return language satisfies never;
 };

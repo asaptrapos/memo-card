@@ -3,6 +3,7 @@ import { css, cx } from "@emotion/css";
 import { theme } from "./theme.tsx";
 import { Flex } from "./flex.tsx";
 import { reset } from "./reset.ts";
+import { userStore } from "../store/user-store.ts";
 
 type Props = {
   text: ReactNode;
@@ -30,7 +31,11 @@ export const Label = (props: Props) => {
         }),
       )}
     >
-      <Flex ml={12} alignItems={"center"}>
+      <Flex
+        mr={userStore.isRtl ? 12 : undefined}
+        ml={!userStore.isRtl ? 12 : undefined}
+        alignItems={"center"}
+      >
         <span
           className={css({
             color: theme.hintColor,
@@ -52,11 +57,14 @@ export const Label = (props: Props) => {
         )}
         {slotRight && (
           <span
-            className={css({
-              marginLeft: "auto",
-              marginRight: 12,
-              fontSize: 14,
-            })}
+            className={cx(
+              css({
+                fontSize: 14,
+              }),
+              userStore.isRtl
+                ? css({ marginRight: "auto", marginLeft: 12 })
+                : css({ marginLeft: "auto", marginRight: 12 }),
+            )}
           >
             {slotRight}
           </span>

@@ -53,10 +53,10 @@ export const showConfirmBrowser: ShowConfirmType = (text) => {
           >
             <p>{text}</p>
             <Flex gap={8}>
-              <Button onClick={handleConfirm}>{t("confirm_ok")}</Button>
               <Button outline onClick={handleCancel}>
                 {t("confirm_cancel")}
               </Button>
+              <Button onClick={handleConfirm}>{t("confirm_ok")}</Button>
             </Flex>
           </div>
         </div>,

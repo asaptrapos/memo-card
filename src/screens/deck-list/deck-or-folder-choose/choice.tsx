@@ -34,17 +34,26 @@ export const Choice = (props: Props) => {
         ...tapScale,
       })}
     >
-      <Flex alignItems={"center"} fullWidth gap={12}>
-        {typeof icon === "string" ? (
-          <i className={cx(icon, css({ color: theme.buttonColor }))} />
-        ) : (
-          icon
-        )}
-        <Flex direction={"column"}>
-          <h3 className={css({ color: theme.buttonColor })}>{title}</h3>
-          <div className={css({ color: theme.buttonColor })}>{description}</div>
+      <Flex
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        fullWidth
+        gap={12}
+      >
+        <Flex gap={12}>
+          {typeof icon === "string" ? (
+            <i className={cx(icon, css({ color: theme.buttonColor }))} />
+          ) : (
+            icon
+          )}
+          <Flex direction={"column"}>
+            <h3 className={css({ color: theme.buttonColor })}>{title}</h3>
+            <div className={css({ color: theme.buttonColor })}>
+              {description}
+            </div>
+          </Flex>
         </Flex>
-        <div className={css({ marginLeft: "auto", color: theme.buttonColor })}>
+        <div className={css({ color: theme.buttonColor })}>
           <ChevronIcon direction={"right"} />
         </div>
       </Flex>

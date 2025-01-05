@@ -78,7 +78,8 @@ export const Card = observer((props: Props) => {
           className={css({
             position: "absolute",
             top: 0,
-            right: 30,
+            right: userStore.isRtl ? undefined : 30,
+            left: userStore.isRtl ? 30 : undefined,
             cursor: "pointer",
           })}
         >

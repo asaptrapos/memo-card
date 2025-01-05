@@ -6,6 +6,7 @@ import { deckListStore } from "../../store/deck-list-store.ts";
 import { ChevronIcon } from "../../ui/chevron-icon.tsx";
 import React from "react";
 import { t } from "../../translations/t.ts";
+import { userStore } from "../../store/user-store.ts";
 
 export const ViewMoreDecksToggle = observer(() => {
   return (
@@ -14,7 +15,8 @@ export const ViewMoreDecksToggle = observer(() => {
         reset.button,
         css({
           position: "absolute",
-          right: 12,
+          right: !userStore.isRtl ? 12 : undefined,
+          left: userStore.isRtl ? 12 : undefined,
           top: 2,
           color: theme.linkColor,
           fontSize: 14,

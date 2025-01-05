@@ -68,3 +68,9 @@ a {
 textarea {
   font-family: inherit;
 }
+
+/* RTL support */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}

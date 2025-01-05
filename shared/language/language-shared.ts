@@ -1,4 +1,4 @@
-export type LanguageShared = "en" | "ru" | "es" | "pt-br";
+export type LanguageShared = "en" | "ru" | "es" | "pt-br" | "ar"
 
 export enum LanguageCatalogItemAvailableIn {
   En = "en",

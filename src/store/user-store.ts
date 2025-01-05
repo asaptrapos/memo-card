@@ -12,6 +12,7 @@ import { assert } from "../../shared/typescript/assert.ts";
 import { platform } from "../lib/platform/platform.ts";
 import { BrowserPlatform } from "../lib/platform/browser/browser-platform.ts";
 import { canDeleteItsAccount } from "../../shared/roles/can-delete-its-account.ts";
+import { getUserLanguage } from "../../shared/language/get-user-language.ts";
 
 export class UserStore {
   userInfo?: UserDbType;
@@ -32,8 +33,17 @@ export class UserStore {
     this.plans = plans;
 
     if (platform instanceof BrowserPlatform) {
-      platform.setDbLang(user.language_code);
+      platform.setDbLang(getUserLanguage(user));
+
+      if (this.isRtl) {
+        document.documentElement.setAttribute("dir", "rtl");
+      }
     }
+  }
+
+  get isRtl() {
+    // return true
+    return platform.getLanguage() === "ar";
   }
 
   get user() {

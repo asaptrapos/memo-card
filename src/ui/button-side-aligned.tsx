@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import { colord } from "colord";
 import { reset } from "./reset.ts";
 import { theme } from "./theme.tsx";
+import { userStore } from "../store/user-store.ts";
 
 type Props = {
   mainColor?: string;
@@ -72,7 +73,8 @@ export const ButtonSideAligned = (props: Props) => {
         className={css(
           {
             position: "absolute",
-            left: 16,
+            left: userStore.isRtl ? undefined : 16,
+            right: userStore.isRtl && align !== "center" ? 16 : undefined,
             display: "flex",
             alignItems: "center",
             gap: 8,

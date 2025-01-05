@@ -10,6 +10,8 @@ export const translateShortProDescription = (lang: LanguageShared): string => {
       return "Desbloquee funciones avanzadas: generación de tarjetas de IA, generación de voz de IA de alta calidad, duplicar carpetas y barajas";
     case "pt-br":
       return "Desbloqueie recursos avançados: geração de cartões de IA, geração de voz de IA de alta qualidade, duplicar pastas e baralhos";
+    case "ar":
+      return "فتح ميزات متقدمة: إنشاء بطاقات بالذكاء الاصطناعي، إنشاء صوتي بالذكاء الاصطناعي عالي الجودة، تكرار المجلدات والكومات";
     default:
       return lang satisfies never;
   }
@@ -130,6 +132,32 @@ export const translateProDescription = (
           title: "Links de uso único",
           description:
             "Compartilhe seus baralhos e pastas com links de uso único",
+        },
+      ];
+    }
+    case "ar": {
+      return [
+        {
+          title: "بطاقات فردية مدعومة بالذكاء الاصطناعي",
+          description: "إنشاء بطاقات فلاشية مع ترجمة الذكاء الاصطناعي لأي كلمة",
+        },
+        {
+          title: "إنشاء بطاقات بالجملة بالذكاء الاصطناعي",
+          description:
+            "إنشاء أكوام بأكملها على الفور عن طريق توفير موضوع للذكاء الاصطناعي",
+        },
+        {
+          title: "إنشاء صوتي بالذكاء الاصطناعي عالي الجودة",
+          description:
+            "الحصول على تسجيلات صوتية عالية الجودة بدلاً من الصوت الروبوتي لبطاقاتك",
+        },
+        {
+          title: "تكرار المجلد، الكومة",
+          description: "وفر الوقت من خلال تكرار مجلداتك وأكوامك",
+        },
+        {
+          title: "روابط مرة واحدة",
+          description: "شارك أكوامك ومجلداتك بروابط مرة واحدة",
         },
       ];
     }
