@@ -3,6 +3,7 @@ import { Bot } from "grammy";
 const bot = new Bot(process.env.BOT_TOKEN);
 
 const main = async () => {
+  // English
   await bot.api.setMyShortDescription(
     "Improve your memory with spaced repetition. Learn languages, history or other subjects with the proven flashcard method.",
     { language_code: "en" },
@@ -15,6 +16,7 @@ const main = async () => {
     },
   );
 
+  // Russian
   await bot.api.setMyShortDescription(
     "Улучшайте свою память с помощью интервального повторения. Изучайте языки, историю и другие предметы с помощью бота.",
     { language_code: "ru" },
@@ -27,6 +29,7 @@ const main = async () => {
     },
   );
 
+  // Spanish
   await bot.api.setMyShortDescription(
     "Mejora tu memoria con la repetición espaciada.",
     { language_code: "es" },
@@ -39,6 +42,7 @@ const main = async () => {
     },
   );
 
+  // Portuguese
   await bot.api.setMyShortDescription(
     "Melhore sua memória com a repetição espaçada. Estude idiomas, história e outras matérias com o bot.",
     { language_code: "pt" },
@@ -48,6 +52,19 @@ const main = async () => {
     "As pessoas tendem a esquecer informações. Em uma hora, até 60% das novas informações podem ser esquecidas e, ao final de uma semana, pode restar apenas cerca de 10% delas. No entanto, a revisão constante da informação pode combater esse declínio. Este bot utiliza o método comprovado de cartões de memória, ajudando os usuários a reter e dominar idiomas, história e muito mais.",
     {
       language_code: "pt",
+    },
+  );
+
+  // Arabic
+  await bot.api.setMyShortDescription(
+    "حسّن ذاكرتك باستخدام التكرار المتباعد. تعلم اللغات والتاريخ ومواد أخرى باستخدام طريقة البطاقات التعليمية المجربة.",
+    { language_code: "ar" },
+  );
+
+  await bot.api.setMyDescription(
+    "يميل الناس إلى نسيان المعلومات. خلال ساعة واحدة، يمكن أن يتم نسيان ما يصل إلى 60٪ من المعلومات الجديدة، وبحلول نهاية الأسبوع، قد لا يتبقى سوى 10٪. ومع ذلك، يمكن مواجهة هذا التراجع من خلال المراجعة المنتظمة للمعلومات. يستخدم هذا البوت طريقة البطاقات التعليمية المثبتة، مما يساعد المستخدمين على حفظ وإتقان اللغات والتاريخ والمزيد.",
+    {
+      language_code: "ar",
     },
   );
 };
