@@ -1,8 +1,8 @@
 import { TelegramPlatform } from "./telegram/telegram-platform.ts";
 import { BrowserPlatform } from "./browser/browser-platform.ts";
 import { isRunningWithinTelegram } from "./is-running-within-telegram.ts";
-import { Language } from "../../translations/t.ts";
 import { PlatformSchemaType } from "../../../functions/db/user/upsert-user-db.ts";
+import { LanguageShared } from "../../../shared/language/language-shared.ts";
 
 export type PlatformTheme = {
   buttonColor: string;
@@ -17,7 +17,7 @@ export interface Platform {
   openInternalLink(link: string): void;
   getTheme(): PlatformTheme;
   getClientData(): PlatformSchemaType;
-  getLanguage(): Language;
+  getLanguageCached(): LanguageShared;
   getStartParam(): string | undefined;
   openInvoiceLink(link: string): void;
 }

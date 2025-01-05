@@ -9,10 +9,11 @@ import { activePlanesRequest } from "../api/api.ts";
 import { reportHandledError } from "../lib/rollbar/rollbar.tsx";
 import { formatPaidUntil } from "../screens/pro/format-paid-until.tsx";
 import { assert } from "../../shared/typescript/assert.ts";
-import { platform } from "../lib/platform/platform.ts";
-import { BrowserPlatform } from "../lib/platform/browser/browser-platform.ts";
 import { canDeleteItsAccount } from "../../shared/roles/can-delete-its-account.ts";
 import { getUserLanguage } from "../../shared/language/get-user-language.ts";
+import { LanguageShared } from "../../shared/language/language-shared.ts";
+import { platform } from "../lib/platform/platform.ts";
+import { BrowserPlatform } from "../lib/platform/browser/browser-platform.ts";
 
 export class UserStore {
   userInfo?: UserDbType;
@@ -32,18 +33,26 @@ export class UserStore {
     this.userInfo = user;
     this.plans = plans;
 
-    if (platform instanceof BrowserPlatform) {
-      platform.setDbLang(getUserLanguage(user));
-
-      if (this.isRtl) {
-        document.documentElement.setAttribute("dir", "rtl");
-      }
+    if (this.isRtl) {
+      document.documentElement.setAttribute("dir", "rtl");
     }
+
+    if (platform instanceof BrowserPlatform) {
+      platform.setLanguageCached(getUserLanguage(user));
+    }
+  }
+
+  get language(): LanguageShared {
+    if (!this.userInfo) {
+      return platform.getLanguageCached();
+    }
+
+    return getUserLanguage(this.userInfo);
   }
 
   get isRtl() {
     // return true
-    return platform.getLanguage() === "ar";
+    return this.language === "ar";
   }
 
   get user() {

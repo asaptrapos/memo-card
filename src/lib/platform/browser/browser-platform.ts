@@ -1,7 +1,6 @@
 import { Platform, platformMaxWidth, PlatformTheme } from "../platform.ts";
 import { action, makeAutoObservable } from "mobx";
 import { BooleanToggle } from "mobx-form-lite";
-import { isLanguage, Language } from "../../../translations/t.ts";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
 import { isDarkTheme } from "../../color-scheme/is-dark-theme.tsx";
 import { googleSignInRequest } from "../../../api/api.ts";
@@ -11,6 +10,7 @@ import {
   browserTokenKey,
 } from "./local-storage-keys.ts";
 import { cssVariablesDark, cssVariablesLight } from "./browser-colors.ts";
+import { LanguageShared } from "../../../../shared/language/language-shared.ts";
 
 export class BrowserPlatform implements Platform {
   isMobile = false;
@@ -25,7 +25,9 @@ export class BrowserPlatform implements Platform {
     onClick: () => void;
   };
 
-  dbLang?: string | null = localStorage.getItem(browserPlatformLangKey) || null;
+  languageCached: LanguageShared =
+    (localStorage.getItem(browserPlatformLangKey) as LanguageShared | null) ||
+    "en";
 
   constructor() {
     makeAutoObservable(
@@ -57,10 +59,6 @@ export class BrowserPlatform implements Platform {
       hintColor: cssVariables["--tg-theme-hint-color"],
       buttonTextColor: cssVariables["--tg-theme-button-text-color"],
     };
-  }
-
-  getLanguage(): Language {
-    return isLanguage(this.dbLang) ? this.dbLang : "en";
   }
 
   getStartParam(): string | undefined {
@@ -187,13 +185,16 @@ export class BrowserPlatform implements Platform {
     return navigator.platform.indexOf("Win") > -1;
   }
 
-  setDbLang(lang?: string | null) {
-    this.dbLang = lang;
-    localStorage.setItem(browserPlatformLangKey, lang || "");
-  }
-
   logout() {
     localStorage.removeItem(browserTokenKey);
     window.location.reload();
+  }
+
+  getLanguageCached(): LanguageShared {
+    return this.languageCached;
+  }
+
+  setLanguageCached(language: LanguageShared) {
+    this.languageCached = language;
   }
 }

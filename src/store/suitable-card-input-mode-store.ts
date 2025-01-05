@@ -1,8 +1,8 @@
 import { createCachedCardInputModesRequest } from "../api/create-cached-card-input-modes-request.ts";
 import { makeAutoObservable } from "mobx";
 import { CardInputModeDb } from "../../functions/db/card-input-mode/schema.ts";
-import { Language } from "../translations/t.ts";
-import { platform } from "../lib/platform/platform.ts";
+import { userStore } from "./user-store.ts";
+import { LanguageShared } from "../../shared/language/language-shared.ts";
 
 export class SuitableCardInputModeStore {
   cardInputModesRequest = createCachedCardInputModesRequest();
@@ -21,7 +21,7 @@ export class SuitableCardInputModeStore {
     }
 
     const cardInputModes = this.cardInputModesRequest.result.data;
-    const findByPreviewRecommendFor = (lang: Language) =>
+    const findByPreviewRecommendFor = (lang: LanguageShared) =>
       cardInputModes.find(
         (mode) => mode.options?.preview_recommend_for === lang,
       );
@@ -34,9 +34,7 @@ export class SuitableCardInputModeStore {
       throw new Error("No input mode found");
     }
 
-    return (
-      findByPreviewRecommendFor(platform.getLanguage()) || defaultInputMode
-    );
+    return findByPreviewRecommendFor(userStore.language) || defaultInputMode;
   }
 }
 

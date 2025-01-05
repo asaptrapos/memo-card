@@ -1,5 +1,6 @@
-import { platform } from "../lib/platform/platform.ts";
 import { Translator } from "../../shared/translator/translator.ts";
+import { userStore } from "../store/user-store.ts";
+import { LanguageShared } from "../../shared/language/language-shared.ts";
 
 const en = {
   logout: "Logout",
@@ -1490,9 +1491,8 @@ const ar: Translation = {
 };
 
 const translations = { en, ru, es, "pt-br": ptBr, ar };
-export type Language = keyof typeof translations;
 
-export const isLanguage = (lang?: string | null): lang is Language => {
+export const isLanguage = (lang?: string | null): lang is LanguageShared => {
   return lang ? lang in translations : false;
 };
 
@@ -1500,9 +1500,9 @@ export const translateCategory = (category: string) => {
   return t(`category_${category}` as any, category);
 };
 
-export const translator = new Translator<Language, Translation>(
+export const translator = new Translator<LanguageShared, Translation>(
   translations,
-  () => platform.getLanguage(),
+  () => userStore.language,
 );
 
 export const t = (key: keyof Translation, defaultValue?: string) => {

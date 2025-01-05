@@ -29,13 +29,14 @@ import { BooleanToggle } from "mobx-form-lite";
 import { RuEduVideoChoice } from "./ru-edu-video-choice.tsx";
 import { getTelegramChannelLink } from "../../../shared/links/get-telegram-channel-link.ts";
 import { getYouTubeChannelLink } from "../../../shared/links/get-youtube-channel-link.ts";
+import { userStore } from "../../store/user-store.ts";
 
 export const MainScreen = observer(() => {
   const [deckFolderToggle] = useState(() => new BooleanToggle(false));
   const [ruEduVideoToggle] = useState(() => new BooleanToggle(false));
 
   useMount(() => {
-    console.log('mc: load first time');
+    console.log("mc: load first time");
     deckListStore.loadFirstTime(platform.getStartParam());
   });
 
@@ -116,16 +117,14 @@ export const MainScreen = observer(() => {
                     cursor: "pointer",
                   })}
                   onClick={() => {
-                    if (platform.getLanguage() === "ru") {
+                    if (userStore.language === "ru") {
                       ruEduVideoToggle.setTrue();
                     } else {
                       platform.openExternalLink(links.youtubeChannelEn);
                     }
                   }}
                 >
-                  {platform.getLanguage() === "ru"
-                    ? "обучающие видео"
-                    : "YouTube"}
+                  {userStore.language === "ru" ? "обучающие видео" : "YouTube"}
                 </span>
 
                 {t("browser_no_personal_decks_end")}
@@ -213,7 +212,7 @@ export const MainScreen = observer(() => {
                   },
                 },
 
-                platform.getLanguage() === "ru"
+                userStore.language === "ru"
                   ? {
                       text: "Обучающие видео",
                       onClick: () => {

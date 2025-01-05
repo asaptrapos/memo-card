@@ -1,10 +1,10 @@
 import { Platform, PlatformTheme } from "../platform.ts";
 import { cssVarToValue } from "./css-var-to-value.ts";
-import { Language } from "../../../translations/t.ts";
 import { isRuProxy } from "../../urls/is-ru-proxy.ts";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
 import { WebApp } from "./telegram-web-app.ts";
 import { makeObservable, observable, action } from "mobx";
+import { LanguageShared } from "../../../../shared/language/language-shared.ts";
 
 const buttonColor = "var(--tg-theme-button-color)";
 const buttonTextColor = "var(--tg-theme-button-text-color)";
@@ -121,7 +121,7 @@ export class TelegramPlatform implements Platform {
     };
   }
 
-  getLanguage(): Language {
+  getLanguageCached(): LanguageShared {
     const languageCode = WebApp.initDataUnsafe.user?.language_code;
     switch (languageCode) {
       case "ru":
