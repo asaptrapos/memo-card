@@ -105,7 +105,6 @@ export class UserSettingsStore {
       platform.setLanguageCached(this.form.language.value);
     }
 
-    notifySuccess(t("user_settings_updated"));
     userStore.updateSettings({
       is_remind_enabled: body.isRemindNotifyEnabled,
       last_reminded_date: body.remindNotificationTime,
@@ -114,5 +113,7 @@ export class UserSettingsStore {
         ? this.form.language.value
         : undefined,
     });
+
+    notifySuccess(t("user_settings_updated"));
   }
 }
