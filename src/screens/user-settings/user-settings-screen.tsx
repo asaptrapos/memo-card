@@ -201,6 +201,30 @@ export const UserSettingsScreen = observer(() => {
               icon: (
                 <FilledIcon
                   backgroundColor={theme.icons.violet}
+                  icon={"mdi-translate"}
+                />
+              ),
+              text: t("settings_lang"),
+              right: (
+                <div className={css({ color: theme.linkColor })}>
+                  <Select
+                    value={language.value}
+                    onChange={(value) => {
+                      language.onChange(value);
+                    }}
+                    options={languagesShared.map((lang) => ({
+                      value: lang,
+                      label: languageSharedToHuman(lang),
+                    }))}
+                  />
+                </div>
+              ),
+            },
+
+            {
+              icon: (
+                <FilledIcon
+                  backgroundColor={theme.icons.blue}
                   icon={"mdi-face-agent"}
                 />
               ),
@@ -214,7 +238,7 @@ export const UserSettingsScreen = observer(() => {
             {
               icon: (
                 <FilledIcon
-                  backgroundColor={theme.icons.blue}
+                  backgroundColor={theme.icons.turquoise}
                   icon={"mdi-shield-account"}
                 />
               ),
@@ -227,7 +251,7 @@ export const UserSettingsScreen = observer(() => {
             {
               icon: (
                 <FilledIcon
-                  backgroundColor={theme.icons.turquoise}
+                  backgroundColor={theme.icons.sea}
                   icon={"mdi-email-edit"}
                 />
               ),
@@ -262,30 +286,6 @@ export const UserSettingsScreen = observer(() => {
         <div>
           <List
             items={[
-              {
-                icon: (
-                  <FilledIcon
-                    backgroundColor={theme.icons.green}
-                    icon={"mdi-translate"}
-                  />
-                ),
-                text: t("settings_lang"),
-                right: (
-                  <div className={css({ color: theme.linkColor })}>
-                    <Select
-                      value={language.value}
-                      onChange={(value) => {
-                        language.onChange(value)
-                      }}
-                      options={languagesShared.map((lang) => ({
-                        value: lang,
-                        label: languageSharedToHuman(lang),
-                      }))}
-                    />
-                  </div>
-                ),
-              },
-
               {
                 icon: (
                   <FilledIcon
