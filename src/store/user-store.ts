@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { autorun, makeAutoObservable } from "mobx";
 import { type UserDbType } from "../../functions/db/user/upsert-user-db.ts";
 import { type PlansForUser } from "../../functions/db/plan/get-active-plans-for-user.ts";
 import { BooleanToggle } from "mobx-form-lite";
@@ -27,15 +27,19 @@ export class UserStore {
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
+
+    autorun(() => {
+      if (this.isRtl) {
+        document.documentElement.setAttribute("dir", "rtl");
+      } else {
+        document.documentElement.removeAttribute("dir");
+      }
+    });
   }
 
   setUser(user: UserDbType, plans: PlansForUser) {
     this.userInfo = user;
     this.plans = plans;
-
-    if (this.isRtl) {
-      document.documentElement.setAttribute("dir", "rtl");
-    }
 
     if (platform instanceof BrowserPlatform) {
       platform.setLanguageCached(getUserLanguage(user));

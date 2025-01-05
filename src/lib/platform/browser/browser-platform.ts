@@ -196,5 +196,6 @@ export class BrowserPlatform implements Platform {
 
   setLanguageCached(language: LanguageShared) {
     this.languageCached = language;
+    localStorage.setItem(browserPlatformLangKey, language);
   }
 }

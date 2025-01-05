@@ -27,6 +27,10 @@ import { assert } from "../../../shared/typescript/assert.ts";
 import { reset } from "../../ui/reset.ts";
 import { showConfirm } from "../../lib/platform/show-confirm.ts";
 import { notifyError, notifySuccess } from "../shared/snackbar/snackbar.tsx";
+import {
+  languageSharedToHuman,
+  languagesShared,
+} from "../../../shared/language/language-shared.ts";
 
 export const timeRanges = generateTimeRange();
 
@@ -50,7 +54,7 @@ export const UserSettingsScreen = observer(() => {
     return null;
   }
 
-  const { isRemindNotifyEnabled, isSpeakingCardsEnabled, time } =
+  const { isRemindNotifyEnabled, isSpeakingCardsEnabled, time, language } =
     userSettingsStore.form;
 
   return (
@@ -258,6 +262,30 @@ export const UserSettingsScreen = observer(() => {
         <div>
           <List
             items={[
+              {
+                icon: (
+                  <FilledIcon
+                    backgroundColor={theme.icons.green}
+                    icon={"mdi-translate"}
+                  />
+                ),
+                text: t("settings_lang"),
+                right: (
+                  <div className={css({ color: theme.linkColor })}>
+                    <Select
+                      value={language.value}
+                      onChange={(value) => {
+                        language.onChange(value)
+                      }}
+                      options={languagesShared.map((lang) => ({
+                        value: lang,
+                        label: languageSharedToHuman(lang),
+                      }))}
+                    />
+                  </div>
+                ),
+              },
+
               {
                 icon: (
                   <FilledIcon

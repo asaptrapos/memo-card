@@ -148,6 +148,7 @@ const en = {
     "Please update your Telegram to ensure stable functioning of this app.",
   settings_review_notifications: "Review notifications",
   settings_time: "Time",
+  settings_lang: "Language",
   settings_review_notifications_hint:
     "Daily reminders help you remember to repeat cards",
   validation_deck_title: "The deck title is required",
@@ -306,6 +307,7 @@ const en = {
 type Translation = typeof en;
 
 const ru: Translation = {
+  settings_lang: "Язык",
   copy_code: "Скопировать код",
   copied: "Скопировано",
   html_column: "Столбец",
@@ -600,6 +602,7 @@ const ru: Translation = {
 };
 
 const es: Translation = {
+  settings_lang: "Idioma",
   html_row: "Fila",
   html_column: "Columna",
   copied: "Copiado",
@@ -897,6 +900,7 @@ const es: Translation = {
 };
 
 const ptBr: Translation = {
+  settings_lang: "Idioma",
   copied: "Copiado",
   copy_code: "Copiar código",
   html_column: "Coluna",
@@ -1194,6 +1198,7 @@ const ptBr: Translation = {
 };
 
 const ar: Translation = {
+  settings_lang: "اللغة",
   logout: "تسجيل الخروج",
   error_contact_support: "حدث خطأ. يرجى الاتصال بالدعم حتى نتمكن من مساعدتك.",
   login_google: "تسجيل الدخول باستخدام Google",

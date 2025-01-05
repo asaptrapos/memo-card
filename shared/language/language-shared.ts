@@ -1,4 +1,6 @@
-export type LanguageShared = "en" | "ru" | "es" | "pt-br" | "ar"
+export const languagesShared = ['en', 'ru', 'es', 'pt-br', 'ar'] as const;
+
+export type LanguageShared = typeof languagesShared[number];
 
 export enum LanguageCatalogItemAvailableIn {
   En = "en",
@@ -10,6 +12,23 @@ export enum LanguageCatalogItemAvailableIn {
   // Farsi
   Fa = "fa",
   PtBr = "pt-br",
+}
+
+export const languageSharedToHuman = (type: LanguageShared) => {
+  switch (type) {
+    case "en":
+      return "English";
+    case "ru":
+      return "Русский";
+    case "es":
+      return "Español";
+    case "pt-br":
+      return "Português";
+    case "ar":
+      return "العربية";
+    default:
+      return type;
+  }
 }
 
 export const languageCatalogItemAvailableInToNative = (
