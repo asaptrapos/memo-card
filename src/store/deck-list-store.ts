@@ -42,6 +42,7 @@ export enum StartParamType {
   RepeatAll = "repeat_all",
   DeckCatalog = "catalog",
   Pro = "pro",
+  Settings = "settings",
   Components = "ui_kit",
   Debug = "debug",
   Break = "break",
@@ -828,6 +829,8 @@ export class DeckListStore {
       screenStore.go({ type: "debug" });
     } else if (startParam === StartParamType.Components) {
       screenStore.go({ type: "componentCatalog" });
+    } else if (startParam === StartParamType.Settings) {
+      screenStore.goToUserSettings();
     } else if (startParam === StartParamType.Break) {
       throw new Error("Test exception for debugging");
     } else if (startParam === StartParamType.Pro) {
