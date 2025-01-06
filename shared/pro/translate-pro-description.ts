@@ -4,6 +4,8 @@ export const translateShortProDescription = (lang: LanguageShared): string => {
   switch (lang) {
     case "en":
       return "Unlock advanced features: AI card generation, high quality AI speech generation, duplicate folders and decks";
+    case "uk":
+      return "Отримайте розширені функції: генерація карток з ШІ, високоякісна генерація мови з ШІ, дублювання папок та колод";
     case "ru":
       return "Получите продвинутые функции: генерация карточек с ИИ, высококачественная генерация речи с ИИ, дублирование папок и колод";
     case "es":
@@ -12,6 +14,8 @@ export const translateShortProDescription = (lang: LanguageShared): string => {
       return "Desbloqueie recursos avançados: geração de cartões de IA, geração de voz de IA de alta qualidade, duplicar pastas e baralhos";
     case "ar":
       return "فتح ميزات متقدمة: إنشاء بطاقات بالذكاء الاصطناعي، إنشاء صوتي بالذكاء الاصطناعي عالي الجودة، تكرار المجلدات والكومات";
+    case "fa":
+      return "قفل کردن ویژگی‌های پیشرفته: ایجاد کارت‌های با هوش مصنوعی، ایجاد صدای با کیفیت بالای هوش مصنوعی، تکرار پوشه‌ها و دسته‌ها";
     default:
       return lang satisfies never;
   }
@@ -158,6 +162,60 @@ export const translateProDescription = (
         {
           title: "روابط مرة واحدة",
           description: "شارك أكوامك ومجلداتك بروابط مرة واحدة",
+        },
+      ];
+    }
+    case "fa": {
+      return [
+        {
+          title: "کارت‌های فردی با هوش مصنوعی",
+          description: "ایجاد کارت‌های فلش با ترجمه هوش مصنوعی برای هر کلمه",
+        },
+        {
+          title: "ایجاد کارت‌های فلش با هوش مصنوعی",
+          description:
+            "ایجاد کل دسته‌ها به صورت فوری با ارائه یک موضوع به هوش مصنوعی",
+        },
+        {
+          title: "ایجاد صدای با کیفیت بالای هوش مصنوعی",
+          description:
+            "دریافت صداهای با کیفیت بالا به جای صدای رباتیک برای کارت‌های شما",
+        },
+        {
+          title: "تکرار پوشه، دس��ه",
+          description:
+            "زمان خود را با تکرار پوشه‌ها و دسته‌های خود صرفه‌جویی کنید",
+        },
+        {
+          title: "پیوندهای یکبار مصرف",
+          description:
+            "اشتراک‌گذاری دسته‌ها و پوشه‌های خود با پیوندهای یکبار مصرف",
+        },
+      ];
+    }
+    case "uk": {
+      return [
+        {
+          title: "Карти з ШІ",
+          description:
+            "Генеруйте картки з перекладом та прикладом для будь-якого слова",
+        },
+        {
+          title: "Масова генерація карток з ШІ",
+          description: "Створюйте цілі колоди миттєво, надавши тему ШІ",
+        },
+        {
+          title: "Якісна генерація голосу з ШІ",
+          description:
+            "Отримуйте якісні озвучення замість роботизованого голосу для ваших карток",
+        },
+        {
+          title: "Дублювання папок, колод",
+          description: "Економте час, дублюючи ваші папки та колоди",
+        },
+        {
+          title: "Одноразові посилання",
+          description: "Поділіться колодами та папками через разові посилання",
         },
       ];
     }

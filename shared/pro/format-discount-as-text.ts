@@ -23,6 +23,10 @@ export const formatDiscountAsText = (
       return `Desconto ${discountNumberFormatted}`;
     case "ar":
       return `خصم ${discountNumberFormatted}`;
+    case "fa":
+      return `تخفیف ${discountNumberFormatted}`;
+    case "uk":
+      return `Знижка ${discountNumberFormatted}`;
     default:
       return lang satisfies never;
   }

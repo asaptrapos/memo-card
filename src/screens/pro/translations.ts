@@ -45,6 +45,10 @@ export const getBuyText = (
       return `Comprar "${getPlanTitle(plan)}" por ${price}${discountFormatted}`;
     case "ar":
       return `اشتري "${getPlanTitle(plan)}" مقابل ${price}${discountFormatted}`;
+    case "fa":
+      return `خرید "${getPlanTitle(plan)}" برای ${price}${discountFormatted}`;
+    case "uk":
+      return `Купити "${getPlanTitle(plan)}" за ${price}${discountFormatted}`;
     default:
       return lang satisfies never;
   }

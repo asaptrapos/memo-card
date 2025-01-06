@@ -141,5 +141,41 @@ export const translateHowMassCreationWorksText = () => {
     };
   }
 
+  if (language === "fa") {
+    return {
+      example1: "مثال 1",
+      example2: "مثال 2",
+      description: "با استفاده از هوش مصنوعی، چندین کارت را همزمان ایجاد کنید",
+      promptExample1: "ساخت 3 کارت با پایتخت‌های جهان",
+      frontExample1: "کشور",
+      backExample1: "پایتخت",
+      resultExample1:
+        "کارت‌هایی مانند آلمان - برلین، فرانسه - پاریس، کانادا - اتاوا خواهید داشت",
+      promptExample2:
+        "ساخت 2 کارت با کلمات انگلیسی و فرانسوی مرتبط با میوه‌ها",
+      frontExample2: "میوه به انگلیسی",
+      backExample2: "میوه به فرانسوی",
+      resultExample2: "کارت‌هایی مانند سیب - Pomme، موز - Banane خواهید داشت",
+    };
+  }
+
+  if (language === "uk") {
+    return {
+      example1: "Приклад 1",
+      example2: "Приклад 2",
+      description: "Генеруйте кілька карток одночасно за допомогою ШІ",
+      promptExample1: "Згенеруй 3 картки зі столицями світу",
+      frontExample1: "Країна",
+      backExample1: "Столиця",
+      resultExample1:
+        "Приклад результату: Німеччина - Берлін, Франція - Париж, Канада - Оттава",
+      promptExample2:
+        "Згенеруй 2 картки з англійськими та французькими словами, пов'язаними з фруктами",
+      frontExample2: "Фрукт англійською",
+      backExample2: "Фрукт французькою",
+      resultExample2: "Приклад результату: Яблуко - Pomme, Банан - Banane",
+    };
+  }
+
   return language satisfies never;
 };

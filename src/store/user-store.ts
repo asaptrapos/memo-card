@@ -55,8 +55,7 @@ export class UserStore {
   }
 
   get isRtl() {
-    // return true
-    return this.language === "ar";
+    return this.language === "ar" || this.language === 'fa';
   }
 
   get user() {

@@ -23,6 +23,21 @@ export const formatFrozenCards = (cards: number) => {
           return `${cards} карточки заморожены`;
       }
     }
+    case "uk": {
+      const rulesUk = new Intl.PluralRules("uk");
+      const resultUk = rulesUk.select(cards);
+      switch (resultUk) {
+        case "one":
+          return `${cards} картка заморожена`;
+        case "few":
+          return `${cards} картки заморожені`;
+        case "many":
+          return `${cards} карток заморожено`;
+        case "two":
+        default:
+          return `${cards} картки заморожені`;
+      }
+    }
     case "es": {
       const rulesEs = new Intl.PluralRules("es-ES");
       const resultEs = rulesEs.select(cards);
@@ -60,6 +75,19 @@ export const formatFrozenCards = (cards: number) => {
           return `تم تجميد ${cards} بطاقة`;
       }
     }
+    case "fa": {
+      const rulesFa = new Intl.PluralRules("fa");
+      const resultFa = rulesFa.select(cards);
+      switch (resultFa) {
+        case "one":
+          return `${cards} کارت یخ زده شده است`;
+        case "other":
+        default:
+          return `${cards} کارت یخ زده شده اند`;
+      }
+    }
+    default:
+      return language satisfies never;
   }
 };
 
@@ -121,5 +149,33 @@ export const formatDays = (days: number) => {
           return `${days} يومًا`;
       }
     }
+    case "fa": {
+      const rulesFa = new Intl.PluralRules("fa");
+      const resultFa = rulesFa.select(days);
+      switch (resultFa) {
+        case "one":
+          return `${days} روز`;
+        case "other":
+        default:
+          return `${days} روز`;
+      }
+    }
+    case "uk": {
+      const rulesUk = new Intl.PluralRules("uk");
+      const resultUk = rulesUk.select(days);
+      switch (resultUk) {
+        case "one":
+          return `${days} день`;
+        case "few":
+          return `${days} дні`;
+        case "many":
+          return `${days} днів`;
+        case "two":
+        default:
+          return `${days} дні`;
+      }
+    }
+    default:
+      return language satisfies never;
   }
 };

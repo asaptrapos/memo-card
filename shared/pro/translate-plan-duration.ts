@@ -129,6 +129,58 @@ export const translateProDuration = (
           return method satisfies never;
       }
     }
+    case "fa": {
+      const rulesFa = new Intl.PluralRules("fa");
+      const resultFa = rulesFa.select(duration);
+      switch (method) {
+        case PaymentMethodType.Usd:
+          switch (resultFa) {
+            case "one":
+              return `پرداخت ماهیانه`;
+            case "other":
+            default:
+              return `پرداخت سالیانه`;
+          }
+        case PaymentMethodType.Stars:
+          switch (resultFa) {
+            case "one":
+              return `${duration} ماه`;
+            case "other":
+            default:
+              return `${duration} ماه`;
+          }
+        default:
+          return method satisfies never;
+      }
+    }
+    case "uk": {
+      const rulesUk = new Intl.PluralRules("uk");
+      const resultUk = rulesUk.select(duration);
+      switch (method) {
+        case PaymentMethodType.Usd:
+          switch (resultUk) {
+            case "one":
+              return `Оплата щомісяця`;
+            case "few":
+            case "many":
+            case "other":
+            default:
+              return `Оплата щороку`;
+          }
+        case PaymentMethodType.Stars:
+          switch (resultUk) {
+            case "one":
+              return `${duration} місяць`;
+            case "few":
+            case "many":
+            case "other":
+            default:
+              return `${duration} місяці`;
+          }
+        default:
+          return method satisfies never;
+      }
+    }
     default:
       return lang satisfies never;
   }
