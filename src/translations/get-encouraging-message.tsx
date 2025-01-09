@@ -31,43 +31,87 @@ const ru = [
   "Подумай о накопленных знаниях, которые ты получаешь с каждым повторением. Будущий 'ты' благодарит тебя!",
 ];
 
+const uk = [
+  "Постійність — ключ до майстерності, і кожне повторення робить тебе кращим",
+  "Пам'ятай, що шлях знань безмежний, і кожне заняття має значення",
+  "Кожне повторення глибше вкарбовує знання у твою пам'ять. Молодець, що продовжуєш!",
+  "Кожне повторення зміцнює твої нейронні зв'язки. Ти не просто вчишся — ти ростеш!",
+  "Кожне повторення живить твоє майбутнє. Уяви, скільки ти дізнаєшся через рік!",
+  "Як кажуть, 'Повторення — мати навчання.' Ти втілюєш цю мудрість у кожному занятті.",
+  "Твої зусилля сьогодні — це основа для майбутньої майстерності. Продовжуй у тому ж дусі!",
+  "Навчання — це як будувати замок, цеглина за цеглиною. Кожне повторення додає нову цеглинку до твоєї фортеці знань.",
+  "Дерево знань не росте без постійного догляду. Поливай його регулярно!",
+  "Ти не просто повторюєш інформацію — ти перетворюєш її на частину себе.",
+];
+
+const ar = [
+  "الاستمرارية هي المفتاح للتميز، وكل خطوة تجعلك أفضل",
+  "تذكر، رحلة المعرفة لا تنتهي، وكل جلسة لها قيمتها",
+  "كل مراجعة تنقش المعرفة بعمق في ذاكرتك. أحسنت على المثابرة!",
+  "كل مراجعة تقوي روابطك العصبية. أنت لا تتعلم فقط، بل تنمو أيضًا!",
+  "كل مراجعة تغذي مستقبلك. تخيل أين ستكون بعد عام!",
+  "كما يقول المثل، 'التكرار أم التعلم'. أنت تجسد هذه الحكمة في كل جلسة.",
+  "جهودك اليوم هي أساس التميز في الغد. استمر في العمل الجيد!",
+  "التعلم مثل بناء قلعة، حجرًا تلو الآخر. كل مراجعة تضيف حجرًا جديدًا إلى حصنك المعرفي.",
+  "شجرة المعرفة تحتاج إلى رعاية مستمرة لتنمو. استمر في سقيها بانتظام!",
+  "أنت لا تراجع المعلومات فقط؛ بل تجعلها جزءًا من شخصيتك.",
+];
+
+const fa = [
+  "پیوستگی کلید موفقیت است، و هر گام تو را بهتر می‌کند",
+  "یاد داشته باش که مسیر دانش بی‌پایان است، و هر جلسه اهمیت دارد",
+  "هر مرور دانش را در ذهنت عمیق‌تر می‌کند. آفرین که ادامه می‌دهی!",
+  "هر مرور اتصالات عصبی‌ات را تقویت می‌کند. تو فقط یاد نمی‌گیری، در حال رشد هستی!",
+  "هر مرور آینده‌ات را تغذیه می‌کند. تصور کن که تا یک سال دیگر چقدر خواهی دانست!",
+  "همانطور که می‌گویند، 'تکرار مادر یادگیری است'. تو این حکمت را در هر جلسه به کار می‌بری.",
+  "تلاش‌های امروزت پایه‌ای برای موفقیت فرداست. ادامه بده!",
+  "یادگیری مثل ساختن یک قلعه است، آجر به آجر. هر مرور، آجر دیگری به قلعه دانشت اضافه می‌کند.",
+];
+
 const es = [
-  "La constancia es la clave para la maestría, y cada repetición te hace mejor",
-  "Recuerda que el camino del conocimiento es infinito, y cada lección cuenta",
-  "Cada repetición profundiza el conocimiento en tu memoria. ¡Bien hecho por no rendirte!",
-  "Cada repetición fortalece tus conexiones neuronales. No solo estás aprendiendo, estás creciendo",
+  "La constancia es la clave de la maestría, y cada repetición te hace mejor",
+  "Recuerda que el camino del conocimiento no tiene fin, y cada sesión cuenta",
+  "Cada repetición profundiza el conocimiento en tu memoria. ¡Bien hecho por seguir adelante!",
+  "Cada repetición fortalece tus conexiones neuronales. No solo aprendes, también creces.",
   "Cada repetición alimenta tu futuro. ¡Imagina cuánto sabrás dentro de un año!",
-  "Como dice el dicho, 'La repetición es la madre del aprendizaje'. Estás encarnando esta sabiduría en cada sesión",
-  "Tus esfuerzos de hoy son la base para la maestría de mañana. ¡Sigue así!",
-  "Aprender es como construir un castillo ladrillo a ladrillo. Cada repetición agrega una piedra más a tu fortaleza del conocimiento",
-  "El árbol de tu conocimiento no crecerá sin cuidado constante. Continúa regando tu árbol del aprendizaje",
-  "No solo estás repitiendo información; la estás convirtiendo en parte de ti",
-  "Piensa en el conocimiento acumulado que obtienes con cada repetición. Tu futuro yo te lo agradecerá",
+  "Como dice el refrán, 'La repetición es la madre del aprendizaje'. Estás adoptando esta sabiduría en cada sesión.",
+  "El esfuerzo que haces hoy es la base de tu maestría de mañana. ¡Sigue así!",
+  "Aprender es como construir un castillo ladrillo a ladrillo. Cada repetición añade una piedra más a tu fortaleza de conocimiento.",
+  "El árbol de tu conocimiento necesita cuidado constante para crecer. Sigue regándolo.",
+  "No estás solo repasando información; la estás integrando en tu esencia.",
 ];
 
 const ptBr = [
-  "A consistência é a chave para a maestria, e a cada passo você se torna melhor",
-  "Lembre-se de que o caminho do conhecimento é infinito, e cada lição é valiosa",
-  "Cada repetição aprofunda o conhecimento em sua memória. Parabéns e até a próxima revisão!",
-  "Cada repetição fortalece suas conexões neurais. Você não está apenas aprendendo, você está crescendo",
-  "Cada repetição alimenta seu futuro. Imagine quanto você saberá em um ano!",
-  "Como diz o ditado, 'A repetição é a mãe do aprendizado'. Você está abraçando essa sabedoria em cada sessão",
-  "Seus esforços de hoje são a base para o sucesso de amanhã. Continue assim!",
-  "Aprender é como construir um castelo, tijolo por tijolo. Cada repetição adiciona uma pedra à sua fortaleza do conhecimento",
-  "A árvore do seu conhecimento não crescerá sem cuidado constante. Continue regando sua árvore de aprendizado",
-  "Você não está apenas revisando informações; está transformando-as em parte de quem você é! Muito bem!",
-  "Pense no conhecimento acumulado que você obtém com cada revisão. Seu futuro agradecerá",
+  "A consistência é a chave para a maestria, e cada passo te torna melhor",
+  "Lembre-se de que o caminho do conhecimento é infinito, e cada sessão conta",
+  "Cada repetição aprofunda o conhecimento na sua memória. Parabéns por continuar!",
+  "Cada repetição fortalece suas conexões neurais. Você não está apenas aprendendo; está evoluindo!",
+  "Cada repetição alimenta o seu futuro. Imagine onde estará em um ano!",
+  "Como diz o ditado, 'A repetição é a mãe do aprendizado'. Você está vivendo essa sabedoria a cada sessão.",
+  "Seus esforços de hoje são a base da sua maestria amanhã. Continue assim!",
+  "Aprender é como construir um castelo, tijolo por tijolo. Cada repetição adiciona uma pedra à sua fortaleza de conhecimento.",
+  "Sua árvore do conhecimento precisa de cuidados constantes para crescer. Continue regando-a!",
+  "Você não está apenas revisando informações; está tornando-as parte de quem você é.",
 ];
 
 export const getEncouragingMessage = () => {
-  if (translator.getLang() === "ru") {
-    return random(ru);
+  const lang = translator.getLang();
+  switch (lang) {
+    case "ru":
+      return random(ru);
+    case "es":
+      return random(es);
+    case "pt-br":
+      return random(ptBr);
+    case "ar":
+      return random(ar);
+    case "fa":
+      return random(fa);
+    case "en":
+      return random(en);
+    case "uk":
+      return random(uk);
+    default:
+      return lang satisfies never;
   }
-  if (translator.getLang() === "es") {
-    return random(es);
-  }
-  if (translator.getLang() === "pt-br") {
-    return random(ptBr);
-  }
-  return random(en);
 };
