@@ -2113,7 +2113,10 @@ export const translateCategory = (category: string) => {
 
 export const translator = new Translator<LanguageShared, Translation>(
   translations,
-  () => userStore.language,
+  () => {
+    const language = userStore.language;
+    return isLanguage(language) ? language : "en";
+  },
 );
 
 export const t = (key: keyof Translation, defaultValue?: string) => {
