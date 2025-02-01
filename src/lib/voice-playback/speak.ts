@@ -1,4 +1,5 @@
 import { camelCaseToHuman } from "../string/camel-case-to-human.ts";
+import EasySpeech from "easy-speech";
 
 export enum SpeakLanguageEnum {
   USEnglish = "en-US",
@@ -46,28 +47,29 @@ export const languageKeyToHuman = (str: string): string => {
   return camelCaseToHuman(str);
 };
 
-export const isSpeechSynthesisSupported =
-  "speechSynthesis" in window &&
-  typeof SpeechSynthesisUtterance !== "undefined";
+export const isSpeechSynthesisSupported = EasySpeech.detect();
 
-export const speak = (text: string, language: SpeakLanguageEnum) => {
+export const speak = async (text: string, language: SpeakLanguageEnum) => {
   if (!isSpeechSynthesisSupported) {
     return;
   }
 
-  const utterance = new SpeechSynthesisUtterance(text);
+  try {
+    await EasySpeech.init({ maxTimeout: 5000, interval: 250 });
 
-  const voicesList = window.speechSynthesis.getVoices();
-  const defaultVoice = voicesList.find(
-    (voice) => voice.default && voice.lang === language,
-  );
-  const firstVoice = voicesList.find((voice) => voice.lang === language);
-  const voice = defaultVoice || firstVoice;
-  if (voice) {
-    utterance.voice = voice;
+    // Get voices for the specific language
+    // @ts-expect-error
+    const voices = EasySpeech.filterVoices({ language });
+    if (!voices.length) {
+      console.warn(`No voice found for language ${language}`);
+      return;
+    }
+
+    await EasySpeech.speak({
+      text,
+      voice: voices[0], // Use the first available voice for this language
+    });
+  } catch (e) {
+    console.error("Speech synthesis failed:", e);
   }
-
-  utterance.lang = language;
-
-  window.speechSynthesis.speak(utterance);
 };
