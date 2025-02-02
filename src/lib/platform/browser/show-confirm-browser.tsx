@@ -6,7 +6,6 @@ import { Button } from "../../../ui/button.tsx";
 import { Flex } from "../../../ui/flex.tsx";
 import { t } from "../../../translations/t.ts";
 import { ShowConfirmType } from "../platform.ts";
-import { css } from "@emotion/css";
 
 export const showConfirmBrowser: ShowConfirmType = (text) => {
   return new Promise((resolve) => {
@@ -29,28 +28,10 @@ export const showConfirmBrowser: ShowConfirmType = (text) => {
 
       return ReactDOM.createPortal(
         <div
-          className={css({
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            zIndex: theme.zIndex.confirmAlert,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          })}
+          style={{ zIndex: theme.zIndex.confirmAlert }}
+          className="fixed inset-0 bg-black/50 flex justify-center items-center"
         >
-          <div
-            className={css({
-              backgroundColor: "white",
-              width: 250,
-              padding: 20,
-              borderRadius: theme.borderRadius,
-              textAlign: "center",
-            })}
-          >
+          <div className="bg-bg w-[250px] p-5 rounded-xl text-center">
             <p>{text}</p>
             <Flex gap={8}>
               <Button outline onClick={handleCancel}>

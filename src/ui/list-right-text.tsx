@@ -1,6 +1,5 @@
-import { css } from "@emotion/css";
-import { theme } from "./theme.tsx";
 import React from "react";
+import { cn } from "./cn.ts";
 
 type ListRightTextParams = {
   text: string;
@@ -16,9 +15,5 @@ export const ListRightText = (props: ListRightTextParams) => {
   const textFormatted =
     text.length > 10 && cut ? `${text.slice(0, 10)}...` : text;
 
-  return (
-    <div className={css({ fontSize: 16, color: theme.hintColor })}>
-      {textFormatted}
-    </div>
-  );
+  return <div className={cn("color-hint text-base")}>{textFormatted}</div>;
 };

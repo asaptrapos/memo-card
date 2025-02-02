@@ -1,6 +1,5 @@
-import { css } from "@emotion/css";
-import { theme } from "./theme.tsx";
 import React, { ReactNode } from "react";
+import { cn } from "./cn.ts";
 
 type Props = {
   text: string;
@@ -12,18 +11,10 @@ export const ListHeader = (props: Props) => {
 
   return (
     <h5
-      className={css({
-        fontWeight: 400,
-        margin: 0,
-        padding: 0,
-        paddingLeft: 12,
-        paddingTop: 4,
-        paddingBottom: 0,
-        marginBottom: 4,
-        position: rightSlot ? "relative" : undefined,
-        color: theme.hintColor,
-        textTransform: "uppercase",
-      })}
+      className={cn(
+        "text-hint font-normal m-0 p-0 pl-3 pt-1 pb-0 mb-1 uppercase",
+        rightSlot && "relative",
+      )}
     >
       {text}
       {rightSlot}
