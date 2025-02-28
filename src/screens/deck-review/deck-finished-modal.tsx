@@ -1,7 +1,5 @@
 import React, { ReactNode } from "react";
 import { m } from "framer-motion";
-import { css } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
 import { LazyLoadFramerMotion } from "../../lib/framer-motion/lazy-load-framer-motion.tsx";
 
 type Props = {
@@ -26,12 +24,7 @@ export const DeckFinishedModal = (props: Props) => {
   return (
     <LazyLoadFramerMotion>
       <m.div
-        className={css({
-          margin: "0 auto",
-          padding: 24,
-          background: theme.bgColor,
-          borderRadius: theme.borderRadius,
-        })}
+        className="mx-auto p-6 bg-bg rounded-[12px]"
         initial={"hidden"}
         animate={"visible"}
         exit={"hidden"}

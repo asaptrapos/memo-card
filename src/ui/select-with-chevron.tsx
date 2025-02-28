@@ -1,6 +1,4 @@
-import React, { useRef } from "react";
-import { theme } from "./theme.tsx";
-import { css } from "@emotion/css";
+import { useRef } from "react";
 import { ChevronIcon } from "./chevron-icon.tsx";
 import { Select } from "./select.tsx";
 import { t } from "../translations/t.ts";
@@ -25,24 +23,12 @@ export const SelectWithChevron = <T extends OptionType>(props: Props<T>) => {
   const selectRef = useRef<HTMLSelectElement | null>(null);
 
   if (isLoading) {
-    return (
-      <div className={css({ color: theme.hintColor })}>{t("ui_loading")}</div>
-    );
+    return <div className="text-hint">{t("ui_loading")}</div>;
   }
 
   return (
     <div
-      className={css({
-        display: "flex",
-        gap: 8,
-        alignItems: "center",
-        backgroundColor: theme.bgColor,
-        cursor: "pointer",
-        padding: "12px 16px",
-        flex: 1,
-        justifyContent: "space-between",
-        borderRadius: theme.borderRadius,
-      })}
+      className="flex gap-2 items-center bg-bg cursor-pointer px-4 py-3 flex-1 justify-between rounded-xl"
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -58,11 +44,7 @@ export const SelectWithChevron = <T extends OptionType>(props: Props<T>) => {
       <Select selectRef={selectRef} {...props} />
       <ChevronIcon
         direction={"bottom"}
-        className={css({
-          color: theme.linkColor,
-          position: "relative",
-          top: 1.5,
-        })}
+        className="text-link relative top-[1.5px]"
       />
     </div>
   );

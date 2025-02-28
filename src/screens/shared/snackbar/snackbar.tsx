@@ -1,11 +1,11 @@
 import { enqueueSnackbar } from "notistack";
-import { css } from "@emotion/css";
 import { theme } from "../../../ui/theme.tsx";
 import { reportHandledError } from "../../../lib/rollbar/rollbar.tsx";
 import { userStore } from "../../../store/user-store.ts";
 import { hapticNotification } from "../../../lib/platform/telegram/haptics.ts";
 import { t } from "../../../translations/t.ts";
 import { ClearSnackbar } from "./clear-snackbar.tsx";
+import { cn } from "../../../ui/cn.ts";
 import "./notistack.css";
 
 const sharedStyles = {
@@ -45,7 +45,7 @@ export const notifyError = (report?: any, options?: NotifyErrorOptions) => {
 
   enqueueSnackbar(
     <div>
-      <div className={css({ fontWeight: 500 })}>{t("error")}</div>
+      <div className={cn("font-medium")}>{t("error")}</div>
       <div>{message}</div>
     </div>,
     {

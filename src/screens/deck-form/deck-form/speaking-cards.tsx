@@ -4,8 +4,6 @@ import { t } from "../../../translations/t.ts";
 import { CardRow } from "../../../ui/card-row.tsx";
 import { RadioSwitcher } from "../../../ui/radio-switcher.tsx";
 import { Flex } from "../../../ui/flex.tsx";
-import { css } from "@emotion/css";
-import { theme } from "../../../ui/theme.tsx";
 import { Select } from "../../../ui/select.tsx";
 import { enumEntries } from "../../../lib/typescript/enum-values.ts";
 import {
@@ -14,7 +12,6 @@ import {
 } from "../../../lib/voice-playback/speak.ts";
 import { DeckSpeakFieldEnum } from "../../../../functions/db/deck/decks-with-cards-schema.ts";
 import { HintTransparent } from "../../../ui/hint-transparent.tsx";
-import React from "react";
 import { useBackButton } from "../../../lib/platform/use-back-button.ts";
 import { useMainButton } from "../../../lib/platform/use-main-button.ts";
 import { useDeckFormStore } from "./store/deck-form-store-context.tsx";
@@ -51,9 +48,7 @@ export const SpeakingCards = observer(() => {
       {deckFormStore.isSpeakingCardEnabled ? (
         <Flex justifyContent={"space-between"} ml={12} mr={12}>
           <div>
-            <div className={css({ fontSize: 14, color: theme.hintColor })}>
-              {t("voice_language")}
-            </div>
+            <div className="text-sm text-hint">{t("voice_language")}</div>
             {deckFormStore.deckForm.speakingCardsLocale.value ? (
               <Select<string>
                 value={deckFormStore.deckForm.speakingCardsLocale.value}
@@ -67,9 +62,7 @@ export const SpeakingCards = observer(() => {
           </div>
 
           <div>
-            <div className={css({ fontSize: 14, color: theme.hintColor })}>
-              {t("card_speak_side")}
-            </div>
+            <div className="text-sm text-hint">{t("card_speak_side")}</div>
             {deckFormStore.deckForm.speakingCardsField.value ? (
               <Select<DeckSpeakFieldEnum>
                 value={deckFormStore.deckForm.speakingCardsField.value}

@@ -2,19 +2,13 @@ import { Screen } from "../shared/screen.tsx";
 import { platform } from "../../lib/platform/platform.ts";
 import { links } from "../../../shared/links/links.ts";
 import { Button } from "../../ui/button.tsx";
-import { css } from "@emotion/css";
 import { t } from "../../translations/t.ts";
+import { observer } from "mobx-react-lite";
 
-export const ErrorScreen = () => {
+export const ErrorScreen = observer(() => {
   return (
     <Screen title={t("error")}>
-      <div
-        className={css({
-          alignSelf: "center",
-          marginTop: 24,
-          marginBottom: 24,
-        })}
-      >
+      <div className="self-center my-6">
         {t("error_contact_support")}
       </div>
       <Button
@@ -26,4 +20,4 @@ export const ErrorScreen = () => {
       </Button>
     </Screen>
   );
-};
+});

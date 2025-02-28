@@ -1,25 +1,9 @@
-import { css } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
-import React from "react";
 import { t } from "../../translations/t.ts";
 
 export const EmptyStudyFrequencyChartText = () => {
   return (
     <div
-      className={css({
-        backgroundColor: theme.bgColor,
-        color: theme.textColor,
-        padding: 12,
-        boxShadow: theme.boxShadow,
-        borderRadius: theme.borderRadius,
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        fontSize: 14,
-        width: 250,
-        textAlign: "center",
-      })}
+      className="bg-bg text-text p-3 shadow rounded-[12px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm w-[250px] text-center"
     >
       {t("user_stats_empty_text")}
     </div>

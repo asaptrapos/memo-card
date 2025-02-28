@@ -1,5 +1,4 @@
 import { observer } from "mobx-react-lite";
-import { css, cx } from "@emotion/css";
 import { Label } from "../../../ui/label.tsx";
 import { Input } from "../../../ui/input.tsx";
 import React, { useEffect, useState } from "react";
@@ -14,7 +13,6 @@ import { Button } from "../../../ui/button.tsx";
 import { theme } from "../../../ui/theme.tsx";
 import { t } from "../../../translations/t.ts";
 import { deckListStore } from "../../../store/deck-list-store.ts";
-import { reset } from "../../../ui/reset.ts";
 import { Screen } from "../../shared/screen.tsx";
 import { CenteredUnstyledButton } from "../../../ui/centered-unstyled-button.tsx";
 import { ListHeader } from "../../../ui/list-header.tsx";
@@ -79,7 +77,7 @@ export const DeckForm = observer(() => {
       title={screen.deckId ? t("edit_deck") : t("add_deck")}
       subtitle={
         screen.folder ? (
-          <div className={css({ textAlign: "center", fontSize: 14 })}>
+          <div className="text-center text-sm">
             {t("folder")}{" "}
             <button
               onClick={() => {
@@ -91,10 +89,7 @@ export const DeckForm = observer(() => {
                   });
                 });
               }}
-              className={cx(
-                reset.button,
-                css({ fontSize: "inherit", color: theme.linkColor }),
-              )}
+              className="reset-button text-inherit text-link"
             >
               {screen.folder.name}
             </button>
@@ -131,11 +126,7 @@ export const DeckForm = observer(() => {
             />
             {t("cards")}
           </Flex>
-          <span
-            className={css({
-              color: theme.hintColor,
-            })}
-          >
+          <span className="text-hint">
             {deckFormStore.deckForm.cards.length}
           </span>
         </CardRow>
@@ -239,7 +230,7 @@ export const DeckForm = observer(() => {
         </div>
       )}
 
-      <div className={css({ marginTop: 18 })} />
+      <div className="mt-[18px]" />
 
       <Button
         icon={"mdi mdi-plus"}

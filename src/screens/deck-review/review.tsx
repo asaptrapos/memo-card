@@ -1,7 +1,5 @@
 import React from "react";
-import { cardSize } from "../shared/card/card.tsx";
 import { observer } from "mobx-react-lite";
-import { css } from "@emotion/css";
 import { CardState } from "./store/card-under-review-store.ts";
 import { ProgressBar } from "../../ui/progress-bar.tsx";
 import { useReviewStore } from "./store/review-store-context.tsx";
@@ -49,35 +47,13 @@ export const Review = observer(() => {
   });
 
   const component = (
-    <div
-      className={css({
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-        position: "relative",
-        overflow: "hidden",
-      })}
-    >
+    <div className="flex flex-col items-center justify-center h-screen relative overflow-hidden">
       {platform instanceof BrowserPlatform && (
-        <div
-          className={css({
-            position: "absolute",
-            top: 4,
-            left: 110,
-          })}
-        >
+        <div className="absolute top-1 left-[110px]">
           <BrowserBackButton />
         </div>
       )}
-      <div
-        className={css({
-          width: cardSize,
-          position: "absolute",
-          top: 8,
-        })}
-      >
+      <div className="w-card absolute top-2">
         {reviewStore.initialCardCount && (
           <ProgressBar
             value={reviewStore.reviewedCardsCount}

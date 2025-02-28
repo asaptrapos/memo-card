@@ -8,7 +8,6 @@ import { theme } from "../../ui/theme.tsx";
 import { t } from "../../translations/t.ts";
 import { Label } from "../../ui/label.tsx";
 import { Input } from "../../ui/input.tsx";
-import React from "react";
 import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";

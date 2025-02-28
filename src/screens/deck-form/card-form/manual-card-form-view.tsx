@@ -22,7 +22,6 @@ import { formTouchAll, isFormValid } from "mobx-form-lite";
 import { ButtonSideAligned } from "../../../ui/button-side-aligned.tsx";
 import { ButtonGrid } from "../../../ui/button-grid.tsx";
 import { CardAnswerErrors } from "./card-answer-errors.tsx";
-import { css } from "@emotion/css";
 import { screenStore } from "../../../store/screen-store.ts";
 import { assert } from "../../../../shared/typescript/assert.ts";
 import { useState } from "react";
@@ -157,7 +156,7 @@ export const ManualCardFormView = observer((props: Props) => {
         ) : null}
       </div>
 
-      <div className={css({ marginTop: 12 })}>
+      <div className="mt-3">
         <ButtonGrid>
           {cardForm.id && (
             <>

@@ -40,6 +40,4 @@ const createPlatform = (): Platform => {
     : new BrowserPlatform();
 };
 
-export const platformMaxWidth = 600;
-
 export const platform = createPlatform();

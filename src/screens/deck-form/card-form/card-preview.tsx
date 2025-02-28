@@ -1,6 +1,5 @@
 import { observer } from "mobx-react-lite";
 import { useBackButton } from "../../../lib/platform/use-back-button.ts";
-import { css } from "@emotion/css";
 import { CardReviewWithControls } from "../../deck-review/card-review-with-controls.tsx";
 import React, { useState } from "react";
 import { CardPreviewStore } from "../../deck-review/store/card-preview-store.ts";
@@ -24,37 +23,14 @@ export const CardPreview = observer((props: Props) => {
   });
 
   const component = (
-    <div
-      className={css({
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-        position: "relative",
-        overflowX: "hidden",
-      })}
-    >
+    <div className="flex flex-col items-center justify-center h-screen relative overflow-x-hidden">
       {platform instanceof BrowserPlatform && (
-        <div
-          className={css({
-            position: "absolute",
-            top: 12,
-            left: 12,
-          })}
-        >
+        <div className="absolute top-3 left-3">
           <BrowserBackButton />
         </div>
       )}
       {cardPreviewStore.isOpened && (
-        <div
-          className={css({
-            position: "absolute",
-            top: 12,
-            right: 12,
-            cursor: "pointer",
-          })}
-        >
+        <div className="absolute top-3 right-3 cursor-pointer">
           <i
             className={"mdi mdi-backup-restore mdi-24px"}
             onClick={() => {

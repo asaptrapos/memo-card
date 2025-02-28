@@ -1,10 +1,7 @@
 import { observer } from "mobx-react-lite";
-import { css } from "@emotion/css";
 import { theme } from "../../../ui/theme.tsx";
-import React from "react";
 import { DeckCardDbTypeWithType } from "../../../store/deck-list-store.ts";
 import { CardsToReviewCount } from "./cards-to-review-count.tsx";
-import { tapScale } from "../../../lib/animations/tap-scale.ts";
 import { Flex } from "../../../ui/flex.tsx";
 
 type Props = {
@@ -22,24 +19,11 @@ export const DeckRowWithCardsToReview = observer((props: Props) => {
   return (
     <div
       onClick={onClick}
-      className={css({
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        cursor: "pointer",
-        gap: 4,
-        borderRadius: theme.borderRadius,
-        padding: 12,
-        background: theme.bgColor,
-        ...tapScale,
-      })}
+      className="flex justify-between items-center cursor-pointer gap-1 rounded-[12px] p-3 bg-bg"
     >
       <div
         key={item.id}
-        className={css({
-          color: theme.textColor,
-          fontWeight: 500,
-        })}
+        className="text-text font-medium"
       >
         {item.name}
       </div>

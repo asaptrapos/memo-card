@@ -2,7 +2,6 @@ import { observer } from "mobx-react-lite";
 import { Screen } from "../shared/screen.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
-import { css } from "@emotion/css";
 import { useState } from "react";
 import { theme } from "../../ui/theme.tsx";
 import { Flex } from "../../ui/flex.tsx";
@@ -53,18 +52,7 @@ export const FreezeCardsScreen = observer(() => {
         ]}
       />
 
-      <div
-        className={css({
-          alignSelf: "center",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "column",
-          gap: 4,
-          color: theme.hintColor,
-          width: "100%",
-          fontSize: 14,
-        })}
-      >
+      <div className="self-center text-center flex flex-col gap-1 text-hint w-full text-sm">
         <span>{t("freeze_for")}</span>
         <Flex gap={8}>
           {[1, 3, 5].map((days) => {
@@ -84,13 +72,7 @@ export const FreezeCardsScreen = observer(() => {
         <Input field={form.freezeCardInput} />
       </div>
       {store.freezeDays ? (
-        <div
-          className={css({
-            color: theme.hintColor,
-            alignSelf: "center",
-            fontSize: 14,
-          })}
-        >
+        <div className="text-hint self-center text-sm">
           {t("freeze_notified")}{" "}
           {DateTime.now()
             .plus({ days: store.freezeDays + 1 })
@@ -103,7 +85,7 @@ export const FreezeCardsScreen = observer(() => {
         onClose={store.isHowOpen.setFalse}
       >
         <BottomSheetTitle title={t("how")} onClose={store.isHowOpen.setFalse} />
-        <ul className={css({ paddingLeft: 24 })}>
+        <ul className="pl-6">
           {[
             t("freeze_rule_1"),
             t("freeze_rule_2"),

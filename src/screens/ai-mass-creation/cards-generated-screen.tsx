@@ -5,16 +5,14 @@ import { useAiMassCreationStore } from "./store/ai-mass-creation-store-provider.
 import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { List } from "../../ui/list.tsx";
 import { ListHeader } from "../../ui/list-header.tsx";
-import { css, cx } from "@emotion/css";
 import { reset } from "../../ui/reset.ts";
-import { theme } from "../../ui/theme.tsx";
-import React from "react";
 import { t } from "../../translations/t.ts";
 import { screenStore } from "../../store/screen-store.ts";
 import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { CardNumber } from "../../ui/card-number.tsx";
 import { translateAddCards } from "./translations.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
+import { cn } from "../../ui/cn.ts";
 
 export const CardsGeneratedScreen = observer(() => {
   const store = useAiMassCreationStore();
@@ -44,15 +42,15 @@ export const CardsGeneratedScreen = observer(() => {
       title={t("cards_add")}
       subtitle={
         screen.deckTitle ? (
-          <div className={css({ textAlign: "center", fontSize: 14 })}>
+          <div className="text-center text-sm">
             {t("deck")}{" "}
             <button
               onClick={() => {
                 store.onQuitToDeck();
               }}
-              className={cx(
+              className={cn(
                 reset.button,
-                css({ fontSize: "inherit", color: theme.linkColor }),
+                "text-inherit text-link"
               )}
             >
               {screen.deckTitle}
@@ -76,10 +74,7 @@ export const CardsGeneratedScreen = observer(() => {
                   {card.front}
                 </div>
                 <div
-                  className={css({
-                    color: theme.hintColor,
-                    fontSize: 14,
-                  })}
+                  className="text-hint text-sm"
                 >
                   {card.back}
                 </div>
@@ -87,9 +82,9 @@ export const CardsGeneratedScreen = observer(() => {
             ),
             right: store.canDeleteGeneratedCard ? (
               <button
-                className={cx(
+                className={cn(
                   reset.button,
-                  css({ paddingTop: 4, fontSize: 16 }),
+                  "pt-1 text-base"
                 )}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -97,9 +92,9 @@ export const CardsGeneratedScreen = observer(() => {
                 }}
               >
                 <i
-                  className={cx(
+                  className={cn(
                     "mdi mdi-delete-circle mdi-24px",
-                    css({ color: theme.danger }),
+                    "text-danger"
                   )}
                 />
               </button>

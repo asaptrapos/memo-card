@@ -1,9 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { css, cx } from "@emotion/css";
 import { platform } from "../../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../../lib/platform/browser/browser-platform.ts";
-import { theme } from "../../../ui/theme.tsx";
 import { assert } from "../../../../shared/typescript/assert.ts";
 
 export const BrowserBackButton = observer(() => {
@@ -12,26 +10,10 @@ export const BrowserBackButton = observer(() => {
   }
 
   return (
-    <div
-      className={css({
-        display: "flex",
-        justifyContent: "space-between",
-      })}
-    >
+    <div className="flex justify-between">
       {platform.isBackButtonVisible ? (
         <i
-          className={cx(
-            "mdi mdi-arrow-left-circle mdi-24px",
-            css({
-              color: theme.hintColor,
-              cursor: "pointer",
-              ":active": {
-                transform: "scale(0.9)",
-                transition: "transform 0.3s",
-                transformOrigin: "center center",
-              },
-            }),
-          )}
+          className="mdi mdi-arrow-left-circle mdi-24px text-hint cursor-pointer"
           onClick={() => {
             assert(platform instanceof BrowserPlatform);
             platform.backButtonInfo?.onClick();

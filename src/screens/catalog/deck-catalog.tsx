@@ -1,11 +1,8 @@
 import { observer } from "mobx-react-lite";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
-import { css } from "@emotion/css";
-import React from "react";
 import { useDeckCatalogStore } from "./store/deck-catalog-store-context.tsx";
 import { useMount } from "../../lib/react/use-mount.ts";
-import { theme } from "../../ui/theme.tsx";
 import { Select } from "../../ui/select.tsx";
 import { DeckLanguage } from "./store/deck-catalog-store.ts";
 import { DeckListItemWithDescription } from "../../ui/deck-list-item-with-description.tsx";
@@ -35,7 +32,7 @@ export const DeckCatalog = observer(() => {
   return (
     <Screen title={t("deck_catalog")}>
       <Flex gap={4}>
-        <div className={css({ color: theme.hintColor })}>{t("category")}</div>
+        <div className="text-hint">{t("category")}</div>
         <Select
           value={store.filters.categoryId.value}
           onChange={store.filters.categoryId.onChange}
@@ -56,7 +53,7 @@ export const DeckCatalog = observer(() => {
       </Flex>
 
       <Flex gap={4}>
-        <div className={css({ color: theme.hintColor })}>
+        <div className="text-hint">
           {t("translated_to")}
         </div>
         <Select<DeckLanguage>

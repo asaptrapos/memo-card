@@ -5,7 +5,6 @@ import { Flex } from "../../ui/flex.tsx";
 import { Choice } from "./deck-or-folder-choose/choice.tsx";
 import { platform } from "../../lib/platform/platform.ts";
 import { links } from "../../../shared/links/links.ts";
-import React from "react";
 
 type Props = { toggle: BooleanToggle };
 

@@ -1,10 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { t } from "../../translations/t.ts";
-import { css } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
 import { screenStore } from "../../store/screen-store.ts";
 import { translateNewCardsCount } from "../../translations/translate-new-cards-count.tsx";
-import React from "react";
 
 type Props = {
   newCardsCount?: number | null;
@@ -21,10 +18,7 @@ export const WantMoreCardsButton = observer((props: Props) => {
     <>
       {t("review_finished_want_more")}{" "}
       <span
-        className={css({
-          color: theme.linkColor,
-          cursor: "pointer",
-        })}
+        className="text-link cursor-pointer"
         onClick={() => {
           screenStore.go({ type: "main" });
         }}

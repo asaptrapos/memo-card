@@ -1,7 +1,4 @@
-import { css, cx } from "@emotion/css";
-import { reset } from "./reset.ts";
-import { theme } from "./theme.tsx";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
@@ -13,19 +10,7 @@ export const CenteredUnstyledButton = (props: Props) => {
 
   return (
     <button
-      className={cx(
-        reset.button,
-        css({
-          width: "100%",
-          color: theme.linkColor,
-          fontSize: 14,
-          paddingTop: 6,
-          textTransform: "uppercase",
-          ":active": {
-            transform: "scale(0.97)",
-          },
-        }),
-      )}
+      className={"reset-button w-full text-link text-sm pt-1.5 uppercase active:scale-[0.97]"}
       onClick={onClick}
     >
       {children}

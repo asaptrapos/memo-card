@@ -6,8 +6,6 @@ import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
 import { CardRow } from "../../ui/card-row.tsx";
 import { HintTransparent } from "../../ui/hint-transparent.tsx";
-import React from "react";
-import { css } from "@emotion/css";
 import { t } from "../../translations/t.ts";
 import {
   chartFinish,
@@ -68,27 +66,16 @@ export const UserStatisticsScreen = observer(() => {
       {!userStatisticsStore.userStatisticsRequest.isLoading ? (
         <>
           <div
-            className={css({
-              marginTop: 10,
-              marginLeft: "auto",
-              marginRight: "auto",
-              textAlign: "center",
-              fontWeight: 500,
-            })}
+            className="mt-[10px] mx-auto text-center font-medium"
           >
             {t("user_stats_learning_time")}
           </div>
 
           <div
-            className={css({
-              marginTop: 10,
-              marginLeft: "auto",
-              marginRight: "auto",
-              position: "relative",
-            })}
+            className="mt-[10px] mx-auto relative"
           >
             {userStatisticsStore.isFrequencyChartEmpty ? (
-              <div className={css({ filter: "blur(5px)" })}>
+              <div className="blur-[5px]">
                 <PieChartCanvas
                   data={[
                     { interval_range: "1-2", frequency: 10 },
@@ -119,14 +106,14 @@ export const UserStatisticsScreen = observer(() => {
               <Flex direction={"column"} gap={4} alignSelf={"center"}>
                 <Flex gap={4} alignItems={"center"}>
                   <LegendItem color={chartStart} />
-                  <span className={css({ fontSize: 14 })}>
+                  <span className="text-[14px]">
                     {t("user_stats_chart_min_expl")}
                   </span>
                 </Flex>
 
                 <Flex gap={4} alignItems={"center"}>
                   <LegendItem color={chartFinish} />
-                  <span className={css({ fontSize: 14 })}>
+                  <span className="text-[14px]">
                     {t("user_stats_chart_max_expl")}
                   </span>
                 </Flex>

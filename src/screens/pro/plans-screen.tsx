@@ -14,7 +14,7 @@ import { userStore } from "../../store/user-store.ts";
 import { ExternalLink } from "../../ui/external-link.tsx";
 import { t, translator } from "../../translations/t.ts";
 import { RadioList } from "../../ui/radio-list/radio-list.tsx";
-import { css, cx } from "@emotion/css";
+import { cn } from "../../ui/cn.ts";
 import { theme } from "../../ui/theme.tsx";
 import {
   calcPlanPriceForDuration,
@@ -108,7 +108,7 @@ export const PlansScreen = observer(() => {
         fullWidth
       >
         {userStore.paidUntil ? (
-          <div className={css({ width: "100%" })}>
+          <div className={cn("w-full")}>
             <Hint>
               <Flex direction={"column"}>
                 <div>
@@ -137,25 +137,18 @@ export const PlansScreen = observer(() => {
               text: (
                 <Flex direction={"column"}>
                   <div>{planDescription[i].title}</div>
-                  <div
-                    className={css({
-                      fontSize: 14,
-                      color: theme.hintColor,
-                      paddingRight: 4,
-                    })}
-                  >
+                  <div className="text-sm text-hint pr-4">
                     {planDescription[i].description}
                   </div>
                 </Flex>
               ),
               right: item.previewItem ? (
-                <div className={css({ color: theme.hintColor })}>
+                <div className="text-hint">
                   <i
-                    className={cx(
+                    className={cn(
                       userStore.isRtl
                         ? "mdi mdi-chevron-left"
                         : "mdi mdi-chevron-right",
-                      css({ color: "currentColor" }),
                     )}
                   />
                 </div>
@@ -228,7 +221,7 @@ export const PlansScreen = observer(() => {
                 return {
                   id: durationsWithDiscount.duration,
                   title: (
-                    <div className={css({ display: "flex", gap: 8 })}>
+                    <div className="flex gap-2">
                       <span>
                         {translateProDuration(
                           durationsWithDiscount.duration,
@@ -245,13 +238,7 @@ export const PlansScreen = observer(() => {
                         />
                       )}
                       <div
-                        className={css({
-                          display: "flex",
-                          gap: 4,
-                          color: theme.hintColor,
-                          marginLeft: "auto",
-                          paddingRight: 8,
-                        })}
+                        className="flex gap-1 text-hint ml-auto pr-2"
                       >
                         {store.method === PaymentMethodType.Usd ? "$" : null}
                         {calcPlanPriceForDuration(
@@ -260,13 +247,7 @@ export const PlansScreen = observer(() => {
                           durationsWithDiscount.duration,
                         )}
                         {store.method === PaymentMethodType.Stars ? (
-                          <div
-                            className={css({
-                              width: 16,
-                              height: 16,
-                              marginTop: 2,
-                            })}
-                          >
+                          <div className="w-4 h-4 mt-0.5">
                             <IconTelegramStar />
                           </div>
                         ) : null}
@@ -279,7 +260,7 @@ export const PlansScreen = observer(() => {
           />
         </Label>
 
-        <div className={css({ width: "100%" })}>
+        <div className="w-full">
           <Hint>
             {t("payment_tos_and_pp_agree")}
             <ExternalLink href={links.tosPath}>{t("payment_tos")}</ExternalLink>

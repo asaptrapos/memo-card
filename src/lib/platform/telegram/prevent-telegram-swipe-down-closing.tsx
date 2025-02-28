@@ -1,5 +1,4 @@
 import React, { ReactNode, useEffect, useRef } from "react";
-import { css } from "@emotion/css";
 import { throttle } from "../../throttle/throttle.ts";
 import { platform } from "../platform.ts";
 import { TelegramPlatform } from "./telegram-platform.ts";
@@ -49,24 +48,24 @@ export const PreventTelegramSwipeDownClosing = (props: Props) => {
 
   return (
     <div
-      className={css({
+      style={{
         position: "fixed",
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
         overflow: "hidden",
-      })}
+      }}
     >
       <div
         ref={ref}
-        className={css({
+        style={{
           height: "100%",
           overflowY: "scroll",
           transform: "translate3d(0, 0, 0)",
           WebkitOverflowScrolling: "touch",
           padding: "0 16px 0 16px",
-        })}
+        }}
       >
         {children}
       </div>

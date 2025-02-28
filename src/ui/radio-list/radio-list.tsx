@@ -1,9 +1,8 @@
-import { theme } from "../theme.tsx";
 import { Flex } from "../flex.tsx";
-import { css } from "@emotion/css";
 import { ReactNode } from "react";
 import { RadioBoxFilled } from "./radio-box-filled.tsx";
 import { RadioBoxEmpty } from "./radio-box-empty.tsx";
+import { cn } from "../cn.ts";
 
 type RadioItemId = string | number | null;
 
@@ -23,26 +22,14 @@ export const RadioList = <T extends RadioItemId>(props: Props<T>) => {
         return (
           <div
             key={option.id}
-            className={css({
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "16px 8px",
-              backgroundColor: theme.bgColor,
-              outline: isSelected
-                ? `2px solid ${theme.buttonColor}`
-                : undefined,
-              borderRadius: theme.borderRadius,
-              cursor: "pointer",
-            })}
+            className={cn(
+              "flex items-center gap-2 p-4 px-2 bg-bg rounded-xl cursor-pointer",
+              isSelected && "outline-2 outline-button"
+            )}
             onClick={() => onChange(option.id)}
           >
             {isSelected ? <RadioBoxFilled /> : <RadioBoxEmpty />}
-            <div
-              className={css({
-                width: "100%",
-              })}
-            >
+            <div className="w-full">
               {option.title}
             </div>
           </div>

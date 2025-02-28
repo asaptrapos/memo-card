@@ -1,6 +1,3 @@
-import React from "react";
-import { theme } from "./theme.tsx";
-import { css } from "@emotion/css";
 import { t } from "../translations/t.ts";
 
 type OptionType = string | number | null;
@@ -22,23 +19,14 @@ export const Select = <T extends OptionType>(props: Props<T>) => {
   const { value, onChange, options, isLoading, selectRef } = props;
   if (isLoading) {
     return (
-      <div className={css({ color: theme.hintColor })}>{t("ui_loading")}</div>
+      <div className="text-hint">{t("ui_loading")}</div>
     );
   }
 
   return (
     <select
       ref={selectRef}
-      className={css({
-        backgroundColor: "transparent",
-        boxShadow: "none",
-        outline: "none",
-        fontSize: 16,
-        border: "none",
-        WebkitAppearance: "none",
-        cursor: "pointer",
-        color: theme.linkColor,
-      })}
+      className="bg-transparent shadow-none outline-none text-base border-none appearance-none cursor-pointer text-link"
       value={value || ""}
       onChange={(e) => onChange(e.target.value as T)}
     >

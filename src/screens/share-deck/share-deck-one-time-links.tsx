@@ -1,12 +1,10 @@
 import { observer } from "mobx-react-lite";
-import { css } from "@emotion/css";
 import { t } from "../../translations/t.ts";
 import React from "react";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { useMount } from "../../lib/react/use-mount.ts";
 import { getDeckOrFolderLink } from "./share-memo-card-url.tsx";
 import { copyToClipboard } from "../../lib/copy-to-clipboard/copy-to-clipboard.ts";
-import { theme } from "../../ui/theme.tsx";
 import { DateTime } from "luxon";
 import { useShareDeckStore } from "./store/share-deck-store-context.tsx";
 import { Screen } from "../shared/screen.tsx";
@@ -14,6 +12,7 @@ import { Loader } from "../../ui/loader.tsx";
 import { EmptyState } from "../../ui/empty-state.tsx";
 import { formatAccessUser } from "./format-access-user.ts";
 import { notifySuccess } from "../shared/snackbar/snackbar.tsx";
+import { cn } from "../../ui/cn.ts";
 
 export const ShareDeckOneTimeLinks = observer(() => {
   const store = useShareDeckStore();
@@ -45,18 +44,13 @@ export const ShareDeckOneTimeLinks = observer(() => {
             return (
               <div
                 key={i}
-                className={css({
-                  paddingTop: 6,
-                  marginLeft: 12,
-                  borderTop: i !== 0 ? `1px solid ${theme.divider}` : undefined,
-                })}
+                className={cn(
+                  "pt-1.5 ml-3",
+                  i !== 0 && "border-t border-divider",
+                )}
               >
                 <div>
-                  <div
-                    className={css({
-                      fontWeight: 500,
-                    })}
-                  >
+                  <div className="font-medium">
                     #{access.id}{" "}
                     <span
                       onClick={async () => {
@@ -64,10 +58,7 @@ export const ShareDeckOneTimeLinks = observer(() => {
                         await copyToClipboard(link);
                         notifySuccess(t("share_link_copied"));
                       }}
-                      className={css({
-                        color: theme.linkColor,
-                        cursor: "pointer",
-                      })}
+                      className={cn("text-link", "cursor-pointer")}
                     >
                       {t("share_copy_link")}
                     </span>

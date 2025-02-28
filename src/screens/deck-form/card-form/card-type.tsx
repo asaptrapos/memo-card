@@ -2,8 +2,6 @@ import { observer } from "mobx-react-lite";
 import { Screen } from "../../shared/screen.tsx";
 import { t } from "../../../translations/t.ts";
 import { Flex } from "../../../ui/flex.tsx";
-import { css, cx } from "@emotion/css";
-import { theme } from "../../../ui/theme.tsx";
 import { SelectWithChevron } from "../../../ui/select-with-chevron.tsx";
 import { HintTransparent } from "../../../ui/hint-transparent.tsx";
 import { List } from "../../../ui/list.tsx";
@@ -13,7 +11,6 @@ import {
   CardFormType,
   createAnswerForm,
 } from "../deck-form/store/deck-form-store.ts";
-import React from "react";
 import { useBackButton } from "../../../lib/platform/use-back-button.ts";
 import { useMainButton } from "../../../lib/platform/use-main-button.ts";
 import {
@@ -42,13 +39,7 @@ export const CardType = observer((props: Props) => {
     <Screen title={t("card_answer_type")}>
       <Flex direction={"column"} gap={4}>
         <Flex ml={12} mt={8} alignItems={"center"} gap={16}>
-          <div
-            className={css({
-              color: theme.hintColor,
-              textTransform: "uppercase",
-              fontSize: 14,
-            })}
-          >
+          <div className="text-hint uppercase text-sm">
             {t("card_answer_type")}
           </div>
           <SelectWithChevron
@@ -82,12 +73,7 @@ export const CardType = observer((props: Props) => {
                   }),
                   text: answerForm.text.value,
                   right: answerForm.isCorrect.value ? (
-                    <i
-                      className={cx(
-                        "mdi mdi-check-circle",
-                        css({ color: theme.success }),
-                      )}
-                    />
+                    <i className="mdi mdi-check-circle text-success" />
                   ) : null,
                 };
               })}
@@ -102,8 +88,8 @@ export const CardType = observer((props: Props) => {
                 cardForm.answerFormType = "new";
               })}
             >
-              <span className={css({ color: theme.linkColor })}>
-                <i className={cx("mdi mdi-plus", css({ color: "inherit" }))} />{" "}
+              <span className="text-link">
+                <i className="mdi mdi-plus text-inherit" />{" "}
                 {t("add_answer")}
               </span>
             </CardRow>

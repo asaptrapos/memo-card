@@ -1,9 +1,6 @@
-import React, { ReactNode } from "react";
-import { css, cx } from "@emotion/css";
-import { theme } from "./theme.tsx";
-import { Flex } from "./flex.tsx";
-import { reset } from "./reset.ts";
+import { ReactNode } from "react";
 import { userStore } from "../store/user-store.ts";
+import { cn } from "./cn";
 
 type Props = {
   text: ReactNode;
@@ -21,55 +18,34 @@ export const Label = (props: Props) => {
 
   return (
     <Tag
-      className={cx(
-        reset.label,
-        css({
-          display: "flex",
-          flexDirection: "column",
-          gap: 0,
-          width: fullWidth ? "100%" : undefined,
-        }),
+      className={cn(
+        "reset-label flex flex-col gap-1",
+        fullWidth && "w-full"
       )}
     >
-      <Flex
-        mr={userStore.isRtl ? 12 : undefined}
-        ml={!userStore.isRtl ? 12 : undefined}
-        alignItems={"center"}
-      >
-        <span
-          className={css({
-            color: theme.hintColor,
-            textTransform: "uppercase",
-            fontSize: 14,
-          })}
-        >
+      <div className={cn(
+        "flex items-center",
+        userStore.isRtl ? "mr-3" : "ml-3"
+      )}>
+        <span className="text-hint uppercase text-sm">
           {props.text}
         </span>
         {props.isRequired && (
-          <span
-            className={css({
-              paddingLeft: 4,
-              color: theme.danger,
-            })}
-          >
+          <span className="pl-1 text-danger">
             *
           </span>
         )}
         {slotRight && (
           <span
-            className={cx(
-              css({
-                fontSize: 14,
-              }),
-              userStore.isRtl
-                ? css({ marginRight: "auto", marginLeft: 12 })
-                : css({ marginLeft: "auto", marginRight: 12 }),
+            className={cn(
+              "text-sm",
+              userStore.isRtl ? "mr-auto ml-3" : "ml-auto mr-3"
             )}
           >
             {slotRight}
           </span>
         )}
-      </Flex>
+      </div>
       {props.children}
     </Tag>
   );

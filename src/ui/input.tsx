@@ -1,14 +1,13 @@
 import React, { ChangeEvent, useEffect, useRef } from "react";
-import { css, cx } from "@emotion/css";
-import { theme } from "./theme.tsx";
 import { TextField } from "mobx-form-lite";
 import { observer } from "mobx-react-lite";
 import autosize from "autosize";
 import { ValidationError } from "./validation-error.tsx";
 import { platform } from "../lib/platform/platform.ts";
 import { TelegramPlatform } from "../lib/platform/telegram/telegram-platform.ts";
+import { cn } from "./cn.ts";
 
-interface Props {
+type Props = {
   placeholder?: string;
   type?: "input" | "textarea";
   field: TextField<string>;
@@ -45,37 +44,17 @@ export const Input = observer((props: Props) => {
   }, [type, noAutoSize]);
 
   return (
-    <div
-      className={css({
-        display: "flex",
-        flexDirection: "column",
-        gap: 4,
-        position: "relative",
-      })}
-    >
+    <div className="flex flex-col gap-[4px] relative">
       <Tag
         ref={inputRef as any}
-        className={css({
-          display: "flex",
-          padding: "14px 10px",
-          paddingLeft: icon ? 40 : undefined,
-          fontSize: 16,
-          borderWidth: 2,
-          borderStyle: "solid",
-          borderColor:
-            isTouched && error ? theme.danger : theme.secondaryBgColor,
-          borderRadius: theme.borderRadius,
-          backgroundColor: theme.bgColor,
-          transition: "border-color 0.3s",
-          ":disabled": {
-            opacity: 0.4,
-            cursor: "not-allowed",
-          },
-          ":focus": {
-            borderColor: isTouched && error ? theme.danger : theme.buttonColor,
-            outline: "none",
-          },
-        })}
+        className={cn(
+          "flex py-3.5 px-2.5 text-base border-2 border-solid rounded-xl bg-bg transition-colors duration-300",
+          icon && "pl-10",
+          isTouched && error ? "border-danger" : "border-secondary-bg",
+          "focus:outline-none",
+          isTouched && error ? "focus:border-danger" : "focus:border-button",
+          isDisabled && "opacity-40 cursor-not-allowed"
+        )}
         disabled={isDisabled}
         type="text"
         rows={rows}
@@ -86,15 +65,10 @@ export const Input = observer((props: Props) => {
       />
       {icon ? (
         <i
-          className={cx(
+          className={cn(
             "mdi",
             icon,
-            css({
-              position: "absolute",
-              top: 8,
-              left: 12,
-              color: theme.hintColor,
-            }),
+            "absolute top-[8px] left-[12px] text-hint"
           )}
         />
       ) : null}

@@ -1,23 +1,12 @@
 import React, { ReactNode } from "react";
-import { css } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
+import { observer } from "mobx-react-lite";
 
 type Props = { text: ReactNode };
 
-export const Tag = ({ text }: Props) => (
+export const Tag = observer(({ text }: Props) => (
   <div
-    className={css({
-      color: theme.buttonTextColor,
-      backgroundColor: theme.success,
-      fontWeight: 600,
-      borderRadius: 4,
-      fontSize: 12,
-      padding: "0 4px",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    })}
+    className="text-button-text bg-success font-semibold rounded text-xs py-0 px-1 flex justify-center items-center"
   >
     {text}
   </div>
-);
+));

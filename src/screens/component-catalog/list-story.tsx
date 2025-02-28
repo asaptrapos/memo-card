@@ -1,12 +1,11 @@
 import { CardNumber } from "../../ui/card-number.tsx";
-import { css, cx } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
 import { reset } from "../../ui/reset.ts";
 import { List } from "../../ui/list.tsx";
-import React from "react";
 import { ProIcon } from "../../ui/pro-icon.tsx";
+import { cn } from "../../ui/cn.ts";
+import { observer } from "mobx-react-lite";
 
-export const ListStory = () => {
+export const ListStory = observer(() => {
   const items = Array(3)
     .fill(null)
     .map((card, i) => ({
@@ -17,10 +16,7 @@ export const ListStory = () => {
             Test title
           </div>
           <div
-            className={css({
-              color: theme.hintColor,
-              fontSize: 14,
-            })}
+            className="text-hint text-sm"
           >
             Test description Test description Test description Test description
             Test description
@@ -29,13 +25,13 @@ export const ListStory = () => {
       ),
       right: (
         <button
-          className={cx(reset.button, css({ fontSize: 16 }))}
+          className={cn(reset.button, "text-base")}
           onClick={() => {}}
         >
           <i
-            className={cx(
+            className={cn(
               "mdi mdi-delete-circle mdi-24px",
-              css({ color: theme.danger }),
+              "text-danger"
             )}
           />
         </button>
@@ -52,4 +48,4 @@ export const ListStory = () => {
       <List animateTap={false} items={items} />
     </>
   );
-};
+});

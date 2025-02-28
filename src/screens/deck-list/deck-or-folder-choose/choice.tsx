@@ -1,7 +1,6 @@
-import { css, cx } from "@emotion/css";
+import { cn } from "../../../ui/cn.ts";
 import { theme } from "../../../ui/theme.tsx";
 import { Flex } from "../../../ui/flex.tsx";
-import { tapScale } from "../../../lib/animations/tap-scale.ts";
 import { ChevronIcon } from "../../../ui/chevron-icon.tsx";
 import { ReactNode, useMemo } from "react";
 import { colord } from "colord";
@@ -17,22 +16,13 @@ export const Choice = (props: Props) => {
   const { icon, title, description, onClick } = props;
   const mainColor = theme.buttonColorComputed;
   const parsedColor = useMemo(() => colord(mainColor), [mainColor]);
+  const bgColorWithOpacity = parsedColor.alpha(0.2).toHex();
 
   return (
     <div
       onClick={onClick}
-      className={css({
-        padding: "14px 16px",
-        display: "flex",
-        flexDirection: "column",
-        gap: 4,
-        color: theme.textColor,
-        borderRadius: theme.borderRadius,
-        boxShadow: theme.boxShadow,
-        backgroundColor: parsedColor.alpha(0.2).toHex(),
-        cursor: "pointer",
-        ...tapScale,
-      })}
+      className="p-[14px_16px] flex flex-col gap-1 text-text rounded-[12px] shadow cursor-pointer"
+      style={{ backgroundColor: bgColorWithOpacity }}
     >
       <Flex
         justifyContent={"space-between"}
@@ -42,18 +32,16 @@ export const Choice = (props: Props) => {
       >
         <Flex gap={12}>
           {typeof icon === "string" ? (
-            <i className={cx(icon, css({ color: theme.buttonColor }))} />
+            <i className={cn(icon, "text-button")} />
           ) : (
             icon
           )}
           <Flex direction={"column"}>
-            <h3 className={css({ color: theme.buttonColor })}>{title}</h3>
-            <div className={css({ color: theme.buttonColor })}>
-              {description}
-            </div>
+            <h3 className="text-button">{title}</h3>
+            <div className="text-button">{description}</div>
           </Flex>
         </Flex>
-        <div className={css({ color: theme.buttonColor })}>
+        <div className="text-button">
           <ChevronIcon direction={"right"} />
         </div>
       </Flex>

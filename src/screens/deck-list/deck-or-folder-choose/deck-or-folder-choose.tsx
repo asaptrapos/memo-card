@@ -2,7 +2,6 @@ import { observer } from "mobx-react-lite";
 import { screenStore } from "../../../store/screen-store.ts";
 import { t } from "../../../translations/t.ts";
 import { Flex } from "../../../ui/flex.tsx";
-import React from "react";
 import { Choice } from "./choice.tsx";
 import { BottomSheet } from "../../../ui/bottom-sheet/bottom-sheet.tsx";
 import { BooleanToggle } from "mobx-form-lite";

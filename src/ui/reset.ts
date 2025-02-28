@@ -13,23 +13,4 @@ export const reset = {
       outline: "none",
     },
   }),
-  ul: css({
-    listStyle: "none",
-    padding: 0,
-    margin: 0,
-  }),
-  a: css({
-    textDecoration: "none",
-    color: "inherit",
-    "&:hover": {
-      color: "inherit",
-      textDecoration: "none",
-    },
-  }),
-  label: css({
-    marginBottom: 0,
-  }),
-  p: css({
-    margin: 0,
-  }),
 };

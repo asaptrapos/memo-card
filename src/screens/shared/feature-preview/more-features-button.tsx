@@ -2,7 +2,6 @@ import { userStore } from "../../../store/user-store.ts";
 import { ButtonSideAligned } from "../../../ui/button-side-aligned.tsx";
 import { screenStore } from "../../../store/screen-store.ts";
 import { t } from "../../../translations/t.ts";
-import React from "react";
 
 export const MoreFeaturesButton = () => {
   return userStore.isPaid ? null : (

@@ -2,9 +2,7 @@ import { observer } from "mobx-react-lite";
 import { LoginButton } from "@telegram-auth/react";
 import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
-import React, { useState } from "react";
-import { css, cx } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
+import React, { useState } from "react"
 import { t } from "../../translations/t.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
 import { TelegramPlatform } from "../../lib/platform/telegram/telegram-platform.ts";
@@ -41,55 +39,27 @@ export const LoginScreen = observer(() => {
 
   return (
     <div
-      className={css({
-        display: "flex",
-        maxWidth: 350,
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        gap: 14,
-        backgroundColor: theme.bgColor,
-        borderRadius: theme.borderRadius,
-        boxShadow: theme.boxShadow,
-        padding: 24,
-        paddingBottom: 48,
-      })}
+      className="flex max-w-[350px] justify-center items-center flex-col gap-3.5 bg-bg rounded shadow p-6 pb-12"
     >
       <div
-        className={css({
-          backgroundColor: "#f4f4f4",
-          borderRadius: "50%",
-          padding: 4,
-        })}
+        className="bg-[#f4f4f4] rounded-full p-1"
       >
         <img
-          className={css({
-            width: 100,
-            transform: "translate(2px, 4px)",
-          })}
+          className="w-[100px] translate-x-0.5 translate-y-1"
           src={"/img/logo.png"}
           alt={"MemoCard logo"}
         />
       </div>
       <h2>MemoCard</h2>
       <div
-        className={css({
-          width: "100%",
-          display: "flex",
-          gap: 4,
-          flexDirection: "column",
-          alignItems: "center",
-        })}
+        className="w-full flex gap-1 flex-col items-center"
       >
-        <div className={css({ width: 219 })}>
+        <div className="w-[219px]">
           <Button
             disabled={isGoogleSignInInProgress}
             icon={
               <i
-                className={cx(
-                  "mdi mdi-google mdi-24px",
-                  css({ color: "inherit" }),
-                )}
+                className="mdi mdi-google mdi-24px text-current"
               />
             }
             onClick={() => {
@@ -100,7 +70,7 @@ export const LoginScreen = observer(() => {
             {isGoogleSignInInProgress ? t("ui_loading") : t("login_google")}
           </Button>
         </div>
-        <div className={css({ height: 22 })}>
+        <div className="h-[22px]">
           <LoginButton
             showAvatar={false}
             cornerRadius={12}

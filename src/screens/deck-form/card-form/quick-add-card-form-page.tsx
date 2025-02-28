@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import React, { useState } from "react";
+import { useState } from "react";
 import { QuickAddCardFormStore } from "./store/quick-add-card-form-store.ts";
 import { CardFormWrapper } from "./card-form-wrapper.tsx";
 import { deckListStore } from "../../../store/deck-list-store.ts";

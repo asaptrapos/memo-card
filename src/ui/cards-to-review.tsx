@@ -3,7 +3,6 @@ import { DeckCardDbTypeWithType } from "../store/deck-list-store.ts";
 import { Flex } from "./flex.tsx";
 import { CardsToReviewCount } from "../screens/shared/deck-row-with-cards-to-review/cards-to-review-count.tsx";
 import { theme } from "./theme.tsx";
-import React from "react";
 
 type Props = {
   item: { cardsToReview: DeckCardDbTypeWithType[] };

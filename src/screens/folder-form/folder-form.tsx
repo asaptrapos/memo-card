@@ -3,14 +3,11 @@ import { Screen } from "../shared/screen.tsx";
 import { Label } from "../../ui/label.tsx";
 import { t } from "../../translations/t.ts";
 import { Input } from "../../ui/input.tsx";
-import React from "react";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
 import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { useMount } from "../../lib/react/use-mount.ts";
 import { useMainButton } from "../../lib/platform/use-main-button.ts";
-import { reset } from "../../ui/reset.ts";
-import { css, cx } from "@emotion/css";
 import { theme } from "../../ui/theme.tsx";
 import { Loader } from "../../ui/loader.tsx";
 import { useFolderFormStore } from "./store/folder-form-store-context.tsx";
@@ -23,6 +20,7 @@ import { assert } from "../../../shared/typescript/assert.ts";
 import { Flex } from "../../ui/flex.tsx";
 import { FormattingSwitcher } from "../deck-form/card-form/formatting-switcher.tsx";
 import { WysiwygField } from "../../ui/wysiwyg-field/wysiwig-field.tsx";
+import { cn } from "../../ui/cn.ts";
 
 export const FolderForm = observer(() => {
   const folderStore = useFolderFormStore();
@@ -91,7 +89,7 @@ export const FolderForm = observer(() => {
 
       <Label text={t("decks")} isPlain>
         {folderForm.decks.value.length === 0 && (
-          <div className={css({ marginBottom: 10 })}>
+          <div className="mb-2.5">
             <EmptyState>{t("folder_form_no_decks")}</EmptyState>
           </div>
         )}
@@ -107,10 +105,7 @@ export const FolderForm = observer(() => {
               },
               right: (
                 <button
-                  className={cx(
-                    reset.button,
-                    css({ paddingTop: 4, fontSize: 16 }),
-                  )}
+                  className="pt-1 text-base"
                   onClick={(e) => {
                     e.stopPropagation();
                     assert(folderForm);
@@ -118,10 +113,7 @@ export const FolderForm = observer(() => {
                   }}
                 >
                   <i
-                    className={cx(
-                      "mdi mdi-delete-circle mdi-24px",
-                      css({ color: theme.danger }),
-                    )}
+                    className="mdi mdi-delete-circle mdi-24px text-danger"
                   />
                 </button>
               ),
@@ -143,10 +135,7 @@ export const FolderForm = observer(() => {
               text: deck.name,
               right: (
                 <button
-                  className={cx(
-                    reset.button,
-                    css({ paddingTop: 4, fontSize: 16 }),
-                  )}
+                  className="pt-1 text-base"
                   onClick={() => {
                     assert(folderForm);
                     folderForm.decks.push({
@@ -156,10 +145,7 @@ export const FolderForm = observer(() => {
                   }}
                 >
                   <i
-                    className={cx(
-                      "mdi mdi-plus-circle mdi-24px",
-                      css({ color: theme.buttonColor }),
-                    )}
+                    className="mdi mdi-plus-circle mdi-24px text-button"
                   />
                 </button>
               ),
@@ -175,18 +161,15 @@ export const FolderForm = observer(() => {
               return {
                 text: (
                   <Flex
-                    className={css({
-                      textAlign: userStore.isRtl ? "right" : undefined,
-                    })}
+                    className={cn(
+                      userStore.isRtl && "text-right"
+                    )}
                     direction={"column"}
                     gap={4}
                   >
                     <div>{deck.name}</div>
                     <div
-                      className={css({
-                        fontSize: 14,
-                        color: theme.hintColor,
-                      })}
+                      className="text-sm text-hint"
                     >
                       {deck.folder_title}
                     </div>

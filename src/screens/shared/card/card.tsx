@@ -1,6 +1,4 @@
-import { css } from "@emotion/css";
 import React from "react";
-import { theme } from "../../../ui/theme.tsx";
 import { observer } from "mobx-react-lite";
 import { CardUnderReviewStore } from "../../deck-review/store/card-under-review-store.ts";
 import { HorizontalDivider } from "../../../ui/horizontal-divider.tsx";
@@ -13,7 +11,9 @@ import { boolNarrow } from "../../../lib/typescript/bool-narrow.ts";
 import { userStore } from "../../../store/user-store.ts";
 import { hapticSelection } from "../../../lib/platform/telegram/haptics.ts";
 import { assert } from "../../../../shared/typescript/assert.ts";
+import { cn } from "../../../ui/cn.ts";
 
+// Export the constant for backward compatibility
 export const cardSize = 310;
 export const IDK_ID = "idk";
 
@@ -50,38 +50,19 @@ export const Card = observer((props: Props) => {
   return (
     <div
       ref={cardRef}
-      className={
+      className={cn(
         card.answerType === "remember"
-          ? css({
-              position: "absolute",
-              left: "50%",
-              top: 0,
-              marginLeft: -(cardSize / 2),
-              height: cardSize,
-              width: cardSize,
-              boxSizing: "border-box",
-              borderRadius: theme.borderRadius,
-              color: theme.textColor,
-              display: "grid",
-              placeItems: "center center",
-              padding: 10,
-              background: theme.bgColor,
-              overflowX: "auto",
-            })
-          : css({
-              color: theme.textColor,
-            })
-      }
+          ? "absolute left-1/2 top-0 -ml-card-half h-card w-card box-border rounded-xl text-text flex items-center justify-center p-2.5 bg-bg overflow-x-auto"
+          : "text-text"
+      )}
     >
       {
         <div
-          className={css({
-            position: "absolute",
-            top: 0,
-            right: userStore.isRtl ? undefined : 30,
-            left: userStore.isRtl ? 30 : undefined,
-            cursor: "pointer",
-          })}
+          className={cn(
+            "absolute top-0", 
+            userStore.isRtl ? "left-[30px]" : "right-[30px]", 
+            "cursor-pointer"
+          )}
         >
           <Dropdown
             items={[
@@ -108,14 +89,8 @@ export const Card = observer((props: Props) => {
           />
         </div>
       }
-      <span
-        className={css({
-          textAlign: "center",
-          fontWeight: 600,
-          color: theme.textColor,
-        })}
-      >
-        <div className={css({ wordBreak: "break-word" })}>
+      <span className="text-center font-semibold text-text">
+        <div className="break-words">
           <CardFieldView text={card.front} />{" "}
           <CardSpeaker card={card} type={"front"} />
         </div>
@@ -127,9 +102,7 @@ export const Card = observer((props: Props) => {
           </div>
         ) : null}
         {card.isOpened && card.example ? (
-          <div
-            className={css({ fontWeight: 400, fontSize: 14, paddingTop: 8 })}
-          >
+          <div className="font-normal text-sm pt-2">
             <CardFieldView text={card.example} />
           </div>
         ) : null}
@@ -140,8 +113,8 @@ export const Card = observer((props: Props) => {
               assert(card.answer);
               if (card.answer.isCorrect) {
                 return (
-                  <div className={css({ fontWeight: "normal" })}>
-                    <span className={css({ color: theme.success })}>
+                  <div className="font-normal">
+                    <span className="text-success">
                       {t("review_correct_label")}:{" "}
                     </span>
                     {card.answer.text}
@@ -154,10 +127,10 @@ export const Card = observer((props: Props) => {
                 );
 
                 return (
-                  <div className={css({ fontWeight: "normal" })}>
+                  <div className="font-normal">
                     <div>
                       {card.answer.id !== IDK_ID && (
-                        <span className={css({ color: theme.danger })}>
+                        <span className="text-danger">
                           {t("review_wrong_label")}:{" "}
                         </span>
                       )}

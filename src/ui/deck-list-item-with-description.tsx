@@ -1,10 +1,7 @@
 import { observer } from "mobx-react-lite";
-import { css } from "@emotion/css";
-import { theme } from "./theme.tsx";
 import LinesEllipsis from "react-lines-ellipsis";
 import { DeckCategoryLogo } from "./deck-category-logo.tsx";
-import { tapScale } from "../lib/animations/tap-scale.ts";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { removeAllTags } from "../lib/sanitize-html/remove-all-tags.ts";
 
 type Props = {
@@ -24,25 +21,12 @@ export const DeckListItemWithDescription = observer((props: Props) => {
 
   return (
     <div
-      className={css({
-        display: "flex",
-        flexDirection: "column",
-        gap: 4,
-        borderRadius: theme.borderRadius,
-        padding: 12,
-        cursor: "pointer",
-        background: theme.bgColor,
-        ...tapScale,
-      })}
+      className="flex flex-col gap-1 rounded-[12px] p-3 cursor-pointer bg-bg"
       onClick={onClick}
     >
       <div
         key={catalogItem.id}
-        className={css({
-          color: theme.textColor,
-          fontWeight: 500,
-          position: "relative",
-        })}
+        className="text-text font-medium relative"
       >
         {catalogItem.deck_category?.logo ? (
           <DeckCategoryLogo
@@ -54,10 +38,7 @@ export const DeckListItemWithDescription = observer((props: Props) => {
         {titleRightSlot}
       </div>
       <div
-        className={css({
-          color: theme.hintColor,
-          fontSize: 14,
-        })}
+        className="text-hint text-[14px]"
       >
         <LinesEllipsis
           text={

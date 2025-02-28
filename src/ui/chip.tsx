@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-import { css, cx } from "@emotion/css";
-import { theme } from "./theme.tsx";
+import { cn } from "./cn";
 
 type Props = {
   children: ReactNode;
@@ -14,26 +13,10 @@ export const Chip = (props: Props) => {
   return (
     <div
       onClick={onClick}
-      className={cx(
-        css({
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "8px 12px",
-          borderRadius: 10,
-          background: theme.bgColor,
-          boxShadow: theme.boxShadow,
-          fontSize: 14,
-          fontWeight: 500,
-          cursor: "pointer",
-          color: theme.textColor,
-        }),
-        isSelected &&
-          css({
-            background: theme.buttonColor,
-            color: theme.buttonTextColor,
-          }),
-        fullWidth && css({ width: "100%" }),
+      className={cn(
+        "flex items-center justify-center px-3 py-2 rounded-[10px] bg-bg shadow text-sm font-medium cursor-pointer text-text",
+        isSelected && "bg-button text-button-text",
+        fullWidth && "w-full"
       )}
     >
       {children}

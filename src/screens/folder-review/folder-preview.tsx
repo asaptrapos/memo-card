@@ -3,9 +3,6 @@ import {
   deckListStore,
   DeckWithCardsWithReviewType,
 } from "../../store/deck-list-store.ts";
-import { css } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
-import React from "react";
 import { screenStore } from "../../store/screen-store.ts";
 import { Hint } from "../../ui/hint.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
@@ -29,6 +26,7 @@ import { DeckFolderInfoRowLoader } from "../shared/deck-folder-info-row-loader.t
 import { useMount } from "../../lib/react/use-mount.ts";
 import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
+import { cn } from "../../ui/cn.ts";
 
 type Props = {
   onDeckPreviewOpen: (deck: DeckWithCardsWithReviewType) => void;
@@ -72,30 +70,19 @@ export const FolderPreview = observer((props: Props) => {
     <Flex direction={"column"} pb={82}>
       <ListHeader text={t("folder")} />
       <div
-        className={css({
-          display: "flex",
-          flexDirection: "column",
-          gap: 16,
-          borderRadius: theme.borderRadius,
-          padding: "8px 16px",
-          paddingTop: 0,
-          paddingBottom: 16,
-          background: theme.bgColor,
-        })}
+        className="flex flex-col gap-4 rounded-[12px] px-4 pb-4 pt-0 bg-bg"
       >
         <div
-          className={css({
-            position: "relative",
-          })}
+          className="relative"
         >
-          <div className={css({ position: "absolute", left: 0, top: 6 })}>
+          <div className="absolute left-0 top-1.5">
             <BrowserBackButton />
           </div>
           <h3
-            className={css({
-              paddingTop: 12,
-              paddingLeft: platform instanceof BrowserPlatform ? 32 : 0,
-            })}
+            className={cn(
+              "pt-3",
+              platform instanceof BrowserPlatform ? "pl-8" : "pl-0"
+            )}
           >
             {folder.name}
           </h3>
@@ -105,17 +92,11 @@ export const FolderPreview = observer((props: Props) => {
         </div>
         {
           <div
-            className={css({
-              display: "flex",
-              gap: 4,
-              flexDirection: "column",
-              borderTop: `1px solid ${theme.divider}`,
-              paddingTop: 8,
-            })}
+            className="flex flex-col gap-1 border-t border-divider pt-2"
           >
             <Flex gap={4}>
               <span>{t("cards_to_repeat")}: </span>
-              <h4 className={css({ color: theme.orange })}>
+              <h4 className="text-orange">
                 {deckListStore.getFolderWithDecksCards.isLoading ? (
                   <DeckFolderInfoRowLoader />
                 ) : (
@@ -126,7 +107,7 @@ export const FolderPreview = observer((props: Props) => {
             </Flex>
             <Flex gap={4}>
               <span>{t("cards_new")}: </span>
-              <h4 className={css({ color: theme.success })}>
+              <h4 className="text-success">
                 {deckListStore.getFolderWithDecksCards.isLoading ? (
                   <DeckFolderInfoRowLoader />
                 ) : (
@@ -238,10 +219,7 @@ export const FolderPreview = observer((props: Props) => {
                 text: deck.name,
                 right: (
                   <div
-                    className={css({
-                      position: "relative",
-                      marginRight: -12,
-                    })}
+                    className="relative -mr-3"
                   >
                     <CardsToReview item={deck} />
                   </div>
@@ -257,7 +235,7 @@ export const FolderPreview = observer((props: Props) => {
         .isMineFolder &&
       folder.cardsToReview.length === 0 &&
       !deckListStore.isCatalogItemLoading ? (
-        <div className={css({ marginTop: 8 })}>
+        <div className="mt-2">
           <Hint>{t("no_cards_to_review_in_deck")}</Hint>
         </div>
       ) : null}

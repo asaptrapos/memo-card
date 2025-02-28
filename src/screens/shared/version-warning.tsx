@@ -1,5 +1,3 @@
-import { css } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
 import { t } from "../../translations/t.ts";
 import { platform } from "../../lib/platform/platform.ts";
 import { TelegramPlatform } from "../../lib/platform/telegram/telegram-platform.ts";
@@ -14,26 +12,9 @@ export const VersionWarning = () => {
   }
 
   return (
-    <div
-      className={css({
-        padding: 8,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        gap: 8,
-        backgroundColor: theme.dangerLight,
-        color: theme.textColor,
-        borderRadius: theme.borderRadius,
-        marginBottom: 8,
-      })}
-    >
+    <div className="p-2 flex items-center justify-center flex-col gap-2 bg-danger-light text-text rounded-[12px] mb-2">
       <div>{t("warning_telegram_outdated_title")}</div>
-      <div
-        className={css({
-          fontSize: 12,
-        })}
-      >
+      <div className="text-xs">
         {t("warning_telegram_outdated_description")}
       </div>
     </div>

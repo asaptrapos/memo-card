@@ -1,5 +1,4 @@
 import { observer } from "mobx-react-lite";
-import React from "react";
 import { AnswerFormView } from "./answer-form-view.tsx";
 import { CardFormStoreInterface } from "../deck-form/store/card-form-store-interface.ts";
 import { CardPreview } from "./card-preview.tsx";

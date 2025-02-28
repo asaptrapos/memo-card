@@ -3,9 +3,7 @@ import { CardInputModeDb } from "../../../../functions/db/card-input-mode/schema
 import { BottomSheet } from "../../../ui/bottom-sheet/bottom-sheet.tsx";
 import { Flex } from "../../../ui/flex.tsx";
 import { BottomSheetTitle } from "../../../ui/bottom-sheet/bottom-sheet-title.tsx";
-import { css } from "@emotion/css";
 import { t } from "../../../translations/t.ts";
-import { theme } from "../../../ui/theme.tsx";
 import { CardSidePreview } from "../../card-input-mode/card-side-preview.tsx";
 import { UpgradeProBlock } from "./upgrade-pro-block.tsx";
 import React from "react";
@@ -30,18 +28,12 @@ export const IndividualCardAiPreview = observer((props: Props) => {
         return (
           <Flex direction={"column"} alignItems={"center"} pb={48}>
             <BottomSheetTitle title={viewMode.title} onClose={onClose} />
-            <div className={css({ width: 250 })}>
+            <div className="w-[250px]">
               <Flex pb={16} justifyContent={"center"}>
                 {t("card_input_mode_type")}
               </Flex>
               <div
-                className={css({
-                  padding: "12px 10px",
-                  borderRadius: theme.borderRadius,
-                  boxSizing: "border-box",
-                  width: "100%",
-                  backgroundColor: theme.secondaryBgColor,
-                })}
+                className="p-[12px_10px] rounded-[12px] box-border w-full bg-secondary-bg"
               >
                 {viewMode.preview_front}
               </div>

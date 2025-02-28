@@ -1,7 +1,6 @@
 import { m } from "framer-motion";
-import React, { SVGProps } from "react";
+import { SVGProps } from "react";
 import { LazyLoadFramerMotion } from "../lib/framer-motion/lazy-load-framer-motion.tsx";
-import { css } from "@emotion/css";
 import { userStore } from "../store/user-store.ts";
 
 type Direction = "top" | "bottom" | "right";
@@ -38,11 +37,7 @@ export const ChevronIcon = (props: Props) => {
         whileTap={{ scale: 0.9 }}
         animate={{ rotate: getRotation(direction) }}
         initial={false}
-        className={css({
-          ":focus": {
-            outline: "none",
-          },
-        })}
+        className="focus:outline-none"
         {...restProps}
       >
         <path

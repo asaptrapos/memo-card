@@ -1,4 +1,3 @@
-import { css, cx } from "@emotion/css";
 import React, { ReactNode } from "react";
 
 type Props = {
@@ -6,24 +5,16 @@ type Props = {
   icon: string | ReactNode;
 };
 
-export const FilledIcon = (props: Props) => {
-  const { backgroundColor, icon } = props;
+export const FilledIcon = ({ backgroundColor, icon }: Props) => {
   const isIconString = typeof icon === "string";
 
   return (
     <div
-      className={css({
-        backgroundColor: backgroundColor,
-        borderRadius: 8,
-        width: 30,
-        height: 30,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      })}
+      style={{ backgroundColor }}
+      className="rounded-lg w-[30px] h-[30px] flex justify-center items-center"
     >
       {isIconString ? (
-        <i className={cx("mdi", icon, css({ color: "#fff" }))} />
+        <i className={`mdi ${icon} text-white`} />
       ) : (
         icon
       )}

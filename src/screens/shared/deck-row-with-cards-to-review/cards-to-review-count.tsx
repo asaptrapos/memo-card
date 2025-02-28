@@ -1,6 +1,6 @@
-import { css } from "@emotion/css";
 import React from "react";
 import { observer } from "mobx-react-lite";
+import { cn } from "../../../ui/cn.ts";
 
 type Props = {
   items: Array<unknown>;
@@ -12,10 +12,8 @@ export const CardsToReviewCount = observer((props: Props) => {
 
   return items.length > 0 ? (
     <div
-      className={css({
-        color: color,
-        fontWeight: 600,
-      })}
+      className={cn("font-semibold")}
+      style={{ color }}
     >
       {items.length}
     </div>

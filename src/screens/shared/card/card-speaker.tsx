@@ -1,7 +1,4 @@
 import { throttle } from "../../../lib/throttle/throttle.ts";
-import { css, cx } from "@emotion/css";
-import { theme } from "../../../ui/theme.tsx";
-import React from "react";
 import { observer } from "mobx-react-lite";
 import { LimitedCardUnderReviewStore } from "./card.tsx";
 
@@ -20,15 +17,7 @@ export const CardSpeaker = observer((props: Props) => {
   return (
     <i
       onClick={throttle(card.speak, 500)}
-      className={cx(
-        "mdi mdi-play-circle mdi-24px",
-        css({
-          cursor: "pointer",
-          position: "relative",
-          top: 3,
-          color: theme.buttonColor,
-        }),
-      )}
+      className="mdi mdi-play-circle mdi-24px cursor-pointer relative top-[3px] text-button"
     />
   );
 });

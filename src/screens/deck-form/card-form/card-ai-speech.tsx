@@ -7,8 +7,6 @@ import { useMainButton } from "../../../lib/platform/use-main-button.ts";
 import { t } from "../../../translations/t.ts";
 import { Button } from "../../../ui/button.tsx";
 import { ButtonGrid } from "../../../ui/button-grid.tsx";
-import { css } from "@emotion/css";
-import { theme } from "../../../ui/theme.tsx";
 import { Flex } from "../../../ui/flex.tsx";
 import { Chip } from "../../../ui/chip.tsx";
 import { Input } from "../../../ui/input.tsx";
@@ -53,18 +51,7 @@ export const CardAiSpeech = observer((props: Props) => {
         </>
       ) : (
         <>
-          <div
-            className={css({
-              alignSelf: "center",
-              textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              gap: 4,
-              color: theme.hintColor,
-              width: "100%",
-              fontSize: 14,
-            })}
-          >
+          <div className="self-center text-center flex flex-col gap-1 text-hint w-full text-sm">
             <span>{t("ai_speech_empty")}</span>
             <Flex gap={8}>
               {(["front", "back"] as const).map((side) => {

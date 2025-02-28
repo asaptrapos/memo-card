@@ -1,11 +1,10 @@
 import { observer } from "mobx-react-lite";
 import { Button } from "../../../ui/button.tsx";
-import { theme } from "../../../ui/theme.tsx";
-import { platform, platformMaxWidth } from "../../../lib/platform/platform.ts";
+import { platform } from "../../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../../lib/platform/browser/browser-platform.ts";
 import { t } from "../../../translations/t.ts";
-import { css } from "@emotion/css";
 import { assert } from "../../../../shared/typescript/assert.ts";
+import { cn } from "../../../ui/cn.ts";
 
 export const BrowserMainButton = observer(() => {
   if (!(platform instanceof BrowserPlatform)) {
@@ -25,18 +24,9 @@ export const BrowserMainButton = observer(() => {
 
   return (
     <div
-      className={css({
-        width: "100%",
-        maxWidth: platformMaxWidth,
-        position: "fixed",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        margin: "0 auto",
-        padding: platform.isMobile ? 16 : "16px 0",
-        boxSizing: "border-box",
-        zIndex: theme.zIndex.mainButton,
-      })}
+      className={cn(
+        "z-main-button max-w-2xl w-full fixed left-0 right-0 bottom-0 mx-auto box-border p-4 md:py-4 md:px-0",
+      )}
     >
       <Button
         disabled={platform.isMainButtonLoading.value}

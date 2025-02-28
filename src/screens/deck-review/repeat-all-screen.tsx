@@ -4,7 +4,6 @@ import { useMount } from "../../lib/react/use-mount.ts";
 import { deckListStore } from "../../store/deck-list-store.ts";
 import { DeckFinished } from "./deck-finished.tsx";
 import { Review } from "./review.tsx";
-import React from "react";
 import { Hint } from "../../ui/hint.tsx";
 import { t } from "../../translations/t.ts";
 import { WantMoreCardsButton } from "./want-more-cards-button.tsx";

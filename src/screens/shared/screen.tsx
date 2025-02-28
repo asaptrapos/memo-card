@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { observer } from "mobx-react-lite";
-import { css } from "@emotion/css";
+import { cn } from "../../ui/cn.ts";
 import { BrowserBackButton } from "./browser-platform/browser-back-button.tsx";
 import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
@@ -16,25 +16,18 @@ export const Screen = observer((props: Props) => {
 
   return (
     <div
-      className={css({
-        display: "flex",
-        flexDirection: "column",
-        gap: 8,
-        position: "relative",
-        marginBottom: platform instanceof BrowserPlatform ? 80 : 16,
-      })}
+      className={cn(
+        "flex flex-col gap-2 relative",
+        platform instanceof BrowserPlatform ? "mb-20" : "mb-4"
+      )}
     >
       <div>
         <div
-          className={css({
-            position: "absolute",
-            top: -4,
-            left: 0,
-          })}
+          className="absolute -top-1 left-0"
         >
           <BrowserBackButton />
         </div>
-        <h3 className={css({ textAlign: "center" })}>{title}</h3>
+        <h3 className="text-center">{title}</h3>
         {subtitle}
       </div>
       {children}

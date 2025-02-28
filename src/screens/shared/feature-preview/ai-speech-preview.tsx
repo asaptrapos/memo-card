@@ -1,7 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { BottomSheet } from "../../../ui/bottom-sheet/bottom-sheet.tsx";
 import { BottomSheetTitle } from "../../../ui/bottom-sheet/bottom-sheet-title.tsx";
-import { css } from "@emotion/css";
 import { Flex } from "../../../ui/flex.tsx";
 import { t } from "../../../translations/t.ts";
 import React, { useState } from "react";
@@ -43,13 +42,7 @@ export const AiSpeechPreview = observer((props: Props) => {
       <Flex direction={"column"} alignItems={"center"} pb={48}>
         <BottomSheetTitle title={t("ai_speech_title")} onClose={onClose} />
         <div
-          className={css({
-            maxWidth: 300,
-            marginTop: 16,
-            display: "flex",
-            flexDirection: "column",
-            gap: 4,
-          })}
+          className="max-w-[300px] mt-4 flex flex-col gap-1"
         >
           <Flex gap={8} alignItems={"center"} justifyContent={"center"}>
             <span>{t("ai_speech_preview_instead")}</span>
@@ -59,7 +52,7 @@ export const AiSpeechPreview = observer((props: Props) => {
             <span>{t("ai_speech_preview_get")}</span>
             <PreviewSpeaker player={playerAiSpeech} />
           </Flex>
-          <div className={css({ marginTop: 12 })}>
+          <div className="mt-3">
             {t("ai_speech_supports")}
           </div>
         </div>

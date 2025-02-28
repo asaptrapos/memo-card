@@ -1,6 +1,5 @@
 import { observer } from "mobx-react-lite";
 import { useAiMassCreationStore } from "./store/ai-mass-creation-store-provider.tsx";
-import React from "react";
 import { AiMassCreationForm } from "./ai-mass-creation-form.tsx";
 import { PreviousPromptsScreen } from "./previous-prompts-screen.tsx";
 import { CardsGeneratedScreenWrapper } from "./cards-generated-screen-wrapper.tsx";

@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { CardFormStoreInterface } from "../deck-form/store/card-form-store-interface.ts";
 import { useBackButton } from "../../../lib/platform/use-back-button.ts";
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiGeneratedCardFormStore } from "./store/ai-generated-card-form-store.ts";
 import { useMainButton } from "../../../lib/platform/use-main-button.ts";
 import { t } from "../../../translations/t.ts";

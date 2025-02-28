@@ -3,8 +3,6 @@ import { observer } from "mobx-react-lite";
 import { BottomSheet } from "../../../ui/bottom-sheet/bottom-sheet.tsx";
 import { BottomSheetTitle } from "../../../ui/bottom-sheet/bottom-sheet-title.tsx";
 import { t } from "../../../translations/t.ts";
-import { css } from "@emotion/css";
-import { theme } from "../../../ui/theme.tsx";
 import React from "react";
 import { UpgradeProBlock } from "./upgrade-pro-block.tsx";
 
@@ -22,24 +20,13 @@ export const MassCreationPreview = observer((props: Props) => {
     <BottomSheet isOpen={isOpen} onClose={onClose}>
       <BottomSheetTitle title={t("how")} onClose={onClose} />
       <div
-        className={css({
-          display: "flex",
-          flexDirection: "column",
-          gap: 16,
-          padding: 16,
-          background: theme.bgColor,
-          borderRadius: theme.borderRadius,
-        })}
+        className="flex flex-col gap-4 p-4 bg-bg rounded-[12px]"
       >
         <div>{translations.description}</div>
         <div>
           <span>{translations.example1}:</span>
           <ul
-            className={css({
-              paddingLeft: 24,
-              marginTop: 0,
-              marginBottom: 0,
-            })}
+            className="pl-6 mt-0 mb-0"
           >
             <li>
               <b>{t("ai_cards_prompt")}</b>: {translations.promptExample1}
@@ -57,11 +44,7 @@ export const MassCreationPreview = observer((props: Props) => {
         <div>
           <span>{translations.example2}</span>
           <ul
-            className={css({
-              paddingLeft: 24,
-              marginTop: 0,
-              marginBottom: 0,
-            })}
+            className="pl-6 mt-0 mb-0"
           >
             <li>
               <b>{t("ai_cards_prompt")}</b>: {translations.promptExample2}

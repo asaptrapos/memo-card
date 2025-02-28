@@ -1,4 +1,4 @@
-import { Platform, platformMaxWidth, PlatformTheme } from "../platform.ts";
+import { Platform, PlatformTheme } from "../platform.ts";
 import { action, makeAutoObservable } from "mobx";
 import { BooleanToggle } from "mobx-form-lite";
 import { PlatformSchemaType } from "../../../../functions/db/user/upsert-user-db.ts";
@@ -165,9 +165,7 @@ export class BrowserPlatform implements Platform {
   }
 
   listenIsMobile() {
-    const isMobileQuery = window.matchMedia(
-      `(max-width: ${platformMaxWidth}px)`,
-    );
+    const isMobileQuery = window.matchMedia(`(max-width: 600px)`);
     this.isMobile = isMobileQuery.matches;
     isMobileQuery.addEventListener(
       "change",

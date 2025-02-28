@@ -1,17 +1,13 @@
 import { observer } from "mobx-react-lite";
+import { cn } from "../../../ui/cn.ts";
 import { useDeckFormStore } from "./store/deck-form-store-context.tsx";
 import { screenStore } from "../../../store/screen-store.ts";
 import { useBackButton } from "../../../lib/platform/use-back-button.ts";
-import { css, cx } from "@emotion/css";
 import { Input } from "../../../ui/input.tsx";
-import { theme } from "../../../ui/theme.tsx";
 import { Button } from "../../../ui/button.tsx";
-import React from "react";
-import { reset } from "../../../ui/reset.ts";
 import { t } from "../../../translations/t.ts";
 import { Screen } from "../../shared/screen.tsx";
 import { removeAllTags } from "../../../lib/sanitize-html/remove-all-tags.ts";
-import { tapScale } from "../../../lib/animations/tap-scale.ts";
 import { Flex } from "../../../ui/flex.tsx";
 import { CardNumber } from "../../../ui/card-number.tsx";
 import { assert } from "../../../../shared/typescript/assert.ts";
@@ -60,13 +56,9 @@ export const CardList = observer(() => {
               return (
                 <button
                   key={i}
-                  className={cx(
-                    reset.button,
-                    css({
-                      color: isSelected ? theme.linkColor : undefined,
-                      cursor: "pointer",
-                      fontSize: 16,
-                    }),
+                  className={cn(
+                    "reset-button cursor-pointer text-base",
+                    isSelected && "text-link"
                   )}
                   onClick={() => {
                     deckFormStore.changeSort(item.fieldName);
@@ -86,22 +78,13 @@ export const CardList = observer(() => {
             deckFormStore.editCardFormById(cardForm.id);
           }}
           key={i}
-          className={css({
-            cursor: "pointer",
-            backgroundColor: theme.bgColor,
-            borderRadius: theme.borderRadius,
-            padding: 12,
-            // If the card content is too big then hide it
-            maxHeight: 120,
-            overflow: "hidden",
-            ...tapScale,
-          })}
+          className="cursor-pointer bg-bg rounded-[12px] p-3 max-h-[120px] overflow-hidden"
         >
           <div>
             <CardNumber number={i + 1} />
             {removeAllTags(cardForm.front.value)}
           </div>
-          <div className={css({ color: theme.hintColor })}>
+          <div className="text-hint">
             {removeAllTags(cardForm.back.value)}
           </div>
         </div>

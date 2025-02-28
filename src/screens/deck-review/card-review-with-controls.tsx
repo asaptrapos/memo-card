@@ -1,13 +1,10 @@
 import { observer } from "mobx-react-lite";
 import {
   Card,
-  cardSize,
   IDK_ID,
   LimitedCardUnderReviewStore,
 } from "../shared/card/card.tsx";
-import { css } from "@emotion/css";
 import { Button } from "../../ui/button.tsx";
-import React from "react";
 import { t } from "../../translations/t.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
 
@@ -33,28 +30,14 @@ export const CardReviewWithControls = observer((props: Props) => {
   return (
     <>
       <div
-        className={css({
-          height: card?.answerType === "choice_single" ? 400 : 350,
-          position: "relative",
-          width: "100%",
-        })}
+        className={`relative w-full ${
+          card?.answerType === "choice_single" ? "h-[400px]" : "h-[350px]"
+        }`}
       >
         {card && <Card card={card} onHideCardForever={onHideCardForever} />}
       </div>
       {card && card.answerType === "remember" && (
-        <div
-          className={css({
-            position: "sticky",
-            bottom: 32,
-            display: "flex",
-            alignItems: "center",
-            gap: 16,
-            width: cardSize,
-            "> button": {
-              flex: 1,
-            },
-          })}
-        >
+        <div className="sticky bottom-8 flex items-center gap-4 w-card [&>button]:flex-1">
           {card.isOpened ? (
             <>
               <Button key={"forgot"} onClick={() => onWrong()} outline>
@@ -78,20 +61,7 @@ export const CardReviewWithControls = observer((props: Props) => {
       )}
 
       {card && card.answerType === "choice_single" && !card.isOpened && (
-        <div
-          className={css({
-            position: "absolute",
-            bottom: 48,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 4,
-            width: cardSize,
-            "> button": {
-              flex: 1,
-            },
-          })}
-        >
+        <div className="absolute bottom-12 flex flex-col items-center gap-1 w-card [&>button]:flex-1">
           {card.answers.map((answer) => (
             <Button
               key={answer.id}
@@ -115,19 +85,7 @@ export const CardReviewWithControls = observer((props: Props) => {
       )}
 
       {card && card.answerType === "choice_single" && card.isOpened && (
-        <div
-          className={css({
-            position: "absolute",
-            bottom: 48,
-            display: "flex",
-            alignItems: "center",
-            gap: 16,
-            width: cardSize,
-            "> button": {
-              flex: 1,
-            },
-          })}
-        >
+        <div className="absolute bottom-12 flex items-center gap-4 w-card [&>button]:flex-1">
           <Button
             onClick={() => {
               onReviewCardWithAnswers();

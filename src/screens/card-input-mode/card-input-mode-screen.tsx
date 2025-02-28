@@ -10,7 +10,6 @@ import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { t } from "../../translations/t.ts";
 import { DeckFormStore } from "../deck-form/deck-form/store/deck-form-store.ts";
-import { css } from "@emotion/css";
 import { IndividualCardAiPreview } from "../shared/feature-preview/individual-card-ai-preview.tsx";
 
 type Props = { deckFormStore: DeckFormStore };
@@ -52,14 +51,10 @@ export const CardInputModeScreen = observer((props: Props) => {
             store.cardInputModesRequest.result.data.map((inputMode) => ({
               id: inputMode.id,
               title: (
-                <div className={css({ width: "100%", position: "relative" })}>
+                <div className="w-full relative">
                   <div>{inputMode.title}</div>
                   <div
-                    className={css({
-                      position: "absolute",
-                      top: -6,
-                      right: 0,
-                    })}
+                    className="absolute -top-[6px] right-0"
                     onClick={(e) => {
                       e.stopPropagation();
                       store.viewModeId.onChange(inputMode.id);

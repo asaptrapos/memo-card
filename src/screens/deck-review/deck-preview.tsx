@@ -1,8 +1,5 @@
 import { observer } from "mobx-react-lite";
 import { deckListStore } from "../../store/deck-list-store.ts";
-import { css } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
-import React from "react";
 import { useReviewStore } from "./store/review-store-context.tsx";
 import { screenStore } from "../../store/screen-store.ts";
 import { Hint } from "../../ui/hint.tsx";
@@ -25,6 +22,7 @@ import { useHotkeys } from "react-hotkeys-hook";
 import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 import { ListHeader } from "../../ui/list-header.tsx";
+import { cn } from "../../ui/cn.ts";
 
 type Props = { onCardListPreview: () => void };
 
@@ -60,30 +58,19 @@ export const DeckPreview = observer((props: Props) => {
       <div>
         <ListHeader text={t("deck")} />
         <div
-          className={css({
-            display: "flex",
-            flexDirection: "column",
-            gap: 16,
-            borderRadius: theme.borderRadius,
-            padding: "8px 16px",
-            paddingTop: 0,
-            paddingBottom: 16,
-            background: theme.bgColor,
-          })}
+          className="flex flex-col gap-4 rounded-[12px] px-4 pb-4 pt-0 bg-bg"
         >
           <div
-            className={css({
-              position: "relative",
-            })}
+            className="relative"
           >
-            <div className={css({ position: "absolute", left: 0, top: 6 })}>
+            <div className="absolute left-0 top-1.5">
               <BrowserBackButton />
             </div>
             <h3
-              className={css({
-                paddingTop: 12,
-                paddingLeft: platform instanceof BrowserPlatform ? 32 : 0,
-              })}
+              className={cn(
+                "pt-3",
+                platform instanceof BrowserPlatform ? "pl-8" : "pl-0"
+              )}
             >
               {deck.name}
             </h3>
@@ -93,17 +80,11 @@ export const DeckPreview = observer((props: Props) => {
           </div>
           {
             <div
-              className={css({
-                display: "flex",
-                gap: 4,
-                flexDirection: "column",
-                borderTop: `1px solid ${theme.divider}`,
-                paddingTop: 8,
-              })}
+              className="flex flex-col gap-1 border-t border-divider pt-2"
             >
               <Flex gap={4}>
                 <span>{t("cards_to_repeat")}: </span>
-                <h4 className={css({ color: theme.orange })}>
+                <h4 className="text-orange">
                   {deckListStore.deckWithCardsRequest.isLoading ? (
                     <DeckFolderInfoRowLoader />
                   ) : (
@@ -114,7 +95,7 @@ export const DeckPreview = observer((props: Props) => {
               </Flex>
               <Flex gap={4}>
                 <span>{t("cards_new")}: </span>
-                <h4 className={css({ color: theme.success })}>
+                <h4 className="text-success">
                   {deckListStore.deckWithCardsRequest.isLoading ? (
                     <DeckFolderInfoRowLoader />
                   ) : (

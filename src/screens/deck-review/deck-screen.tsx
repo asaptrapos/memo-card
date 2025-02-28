@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { Review } from "./review.tsx";
 import { DeckPreview } from "./deck-preview.tsx";

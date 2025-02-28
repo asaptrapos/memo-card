@@ -2,17 +2,15 @@ import { observer, useLocalObservable } from "mobx-react-lite";
 import { Screen } from "../shared/screen.tsx";
 import { useAiMassCreationStore } from "./store/ai-mass-creation-store-provider.tsx";
 import { useMount } from "../../lib/react/use-mount.ts";
-import React from "react";
 import { ScreenLoader } from "../../ui/full-screen-loader.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { Flex } from "../../ui/flex.tsx";
-import { css, cx } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
 import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { TextField } from "mobx-form-lite";
 import { boolNarrow } from "../../lib/typescript/bool-narrow.ts";
 import { t } from "../../translations/t.ts";
 import { EmptyState } from "../../ui/empty-state.tsx";
+import { cn } from "../../ui/cn.ts";
 
 export const PreviousPromptsScreen = observer(() => {
   const store = useAiMassCreationStore();
@@ -60,20 +58,9 @@ export const PreviousPromptsScreen = observer(() => {
 
               return (
                 <div
-                  className={cx(
-                    css({
-                      backgroundColor: theme.bgColor,
-                      borderRadius: theme.borderRadius,
-                      padding: 12,
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      cursor: "pointer",
-                    }),
-                    isSelected &&
-                      css({
-                        outline: `2px solid ${theme.buttonColor}`,
-                      }),
+                  className={cn(
+                    "bg-bg rounded-[12px] p-3 flex justify-between items-center cursor-pointer",
+                    isSelected && "outline-2 outline-button"
                   )}
                   key={i}
                   onClick={() => {
@@ -82,7 +69,7 @@ export const PreviousPromptsScreen = observer(() => {
                 >
                   <Flex direction={"column"} gap={4}>
                     <div
-                      className={css({ maxHeight: 120, overflow: "hidden" })}
+                      className="max-h-[120px] overflow-hidden"
                     >
                       {log.payload.prompt}
                     </div>
@@ -90,12 +77,7 @@ export const PreviousPromptsScreen = observer(() => {
                       return (
                         <div
                           key={i}
-                          className={css({
-                            fontSize: 14,
-                            color: theme.hintColor,
-                            borderTop: `1px solid ${theme.divider}`,
-                            paddingTop: 4,
-                          })}
+                          className="text-sm text-hint border-t border-divider pt-1"
                         >
                           {field}
                         </div>

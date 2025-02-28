@@ -1,21 +1,14 @@
-import { css } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
-import React from "react";
 import { t } from "../../translations/t.ts";
 
 export const NoDecksMatchingFilters = () => {
   return (
     <div
-      className={css({
-        marginTop: 150,
-        alignSelf: "center",
-        textAlign: "center",
-      })}
+      className="mt-[150px] self-center text-center"
     >
-      <div className={css({ fontWeight: 500 })}>
+      <div className="font-medium">
         {t("deck_search_not_found")}
       </div>
-      <div className={css({ fontSize: 14, color: theme.hintColor })}>
+      <div className="text-sm text-hint">
         {t("deck_search_not_found_description")}
       </div>
     </div>

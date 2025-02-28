@@ -1,5 +1,4 @@
 import React from "react";
-import { css } from "@emotion/css";
 import { t, translateCategory } from "../translations/t.ts";
 import { platform } from "../lib/platform/platform.ts";
 import { TelegramPlatform } from "../lib/platform/telegram/telegram-platform.ts";
@@ -46,7 +45,7 @@ export const DeckCategoryLogo = (props: Props) => {
   const replacedFlag = replaceFlagEmojiOnWindows(logo);
 
   return (
-    <span className={css({ marginRight: 6 })} title={title}>
+    <span className="mr-1.5" title={title}>
       {replacedFlag ? (
         <img
           src={`https://flagcdn.com/16x12/${replacedFlag}.png`}

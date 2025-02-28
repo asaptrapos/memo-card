@@ -1,6 +1,4 @@
 import { ReactNode } from "react";
-import { css } from "@emotion/css";
-import { theme } from "./theme.tsx";
 import { platform } from "../lib/platform/platform.ts";
 
 type Props = {
@@ -15,10 +13,7 @@ export const ExternalLink = (props: Props) => {
       onClick={() => {
         platform.openExternalLink(href);
       }}
-      className={css({
-        color: theme.buttonColor,
-        cursor: "pointer",
-      })}
+      className="text-button cursor-pointer"
     >
       {children}
     </span>

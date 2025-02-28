@@ -1,22 +1,10 @@
-import { css, cx } from "@emotion/css";
-import React, { ReactNode } from "react";
-import { theme } from "./theme.tsx";
+import { ReactNode } from "react";
 
 type Props = { children: ReactNode };
 
 export const Hint = (props: Props) => {
   return (
-    <div
-      className={cx(
-        css({
-          fontSize: 14,
-          padding: "8px 12px",
-          borderRadius: theme.borderRadius,
-          color: theme.hintColor,
-          backgroundColor: theme.bgColor,
-        }),
-      )}
-    >
+    <div className="text-sm px-3 py-2 rounded-xl text-hint bg-bg">
       {props.children}
     </div>
   );

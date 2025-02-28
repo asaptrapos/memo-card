@@ -6,7 +6,6 @@ import { Input } from "../../../ui/input.tsx";
 import { CardRow } from "../../../ui/card-row.tsx";
 import { RadioSwitcher } from "../../../ui/radio-switcher.tsx";
 import { HintTransparent } from "../../../ui/hint-transparent.tsx";
-import React from "react";
 import { useBackButton } from "../../../lib/platform/use-back-button.ts";
 import { useMainButton } from "../../../lib/platform/use-main-button.ts";
 import { ButtonGrid } from "../../../ui/button-grid.tsx";

@@ -8,7 +8,6 @@ import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { RadioSwitcher } from "../../ui/radio-switcher.tsx";
 import { theme } from "../../ui/theme.tsx";
 import { Select } from "../../ui/select.tsx";
-import { css, cx } from "@emotion/css";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
 import { HintTransparent } from "../../ui/hint-transparent.tsx";
@@ -24,7 +23,6 @@ import { userStore } from "../../store/user-store.ts";
 import { ProIcon } from "../../ui/pro-icon.tsx";
 import { copyToClipboard } from "../../lib/copy-to-clipboard/copy-to-clipboard.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
-import { reset } from "../../ui/reset.ts";
 import { showConfirm } from "../../lib/platform/show-confirm.ts";
 import { notifyError, notifySuccess } from "../shared/snackbar/snackbar.tsx";
 import {
@@ -115,12 +113,7 @@ export const UserSettingsScreen = observer(() => {
                 />
               ),
               right: (
-                <span
-                  className={css({
-                    top: 3,
-                    position: "relative",
-                  })}
-                >
+                <span className="relative top-[3px]">
                   <RadioSwitcher
                     isOn={isRemindNotifyEnabled.value}
                     onToggle={isRemindNotifyEnabled.toggle}
@@ -139,7 +132,7 @@ export const UserSettingsScreen = observer(() => {
                   ),
                   text: t("settings_time"),
                   right: (
-                    <div className={css({ color: theme.linkColor })}>
+                    <div className="text-link">
                       <Select
                         value={time.value.toString()}
                         onChange={(value) => {
@@ -174,12 +167,7 @@ export const UserSettingsScreen = observer(() => {
                 />
               ),
               right: (
-                <span
-                  className={css({
-                    top: 3,
-                    position: "relative",
-                  })}
-                >
+                <span className="relative top-[3px]">
                   <RadioSwitcher
                     isOn={isSpeakingCardsEnabled.value}
                     onToggle={isSpeakingCardsEnabled.toggle}
@@ -206,7 +194,7 @@ export const UserSettingsScreen = observer(() => {
               ),
               text: t("settings_lang"),
               right: (
-                <div className={css({ color: theme.linkColor })}>
+                <div className="text-link">
                   <Select
                     value={language.value}
                     onChange={(value) => {
@@ -259,7 +247,7 @@ export const UserSettingsScreen = observer(() => {
                 platform instanceof BrowserPlatform ? (
                   <span>
                     <a
-                      className={cx(reset.a, css({ color: theme.linkColor }))}
+                      className={"reset-link text-link"}
                       href={`mailto:${links.supportEmail}`}
                     >
                       {links.supportEmail}

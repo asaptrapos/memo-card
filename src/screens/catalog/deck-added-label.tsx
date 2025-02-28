@@ -1,22 +1,14 @@
-import { css, cx } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
-import React from "react";
 import { t } from "../../translations/t.ts";
+import { cn } from "../../ui/cn.ts";
 
 export const DeckAddedLabel = () => {
   return (
     <div
       title={t("deck_has_been_added")}
-      className={css({
-        position: "absolute",
-        right: 0,
-        top: 0,
-        borderRadius: theme.borderRadius,
-        backgroundColor: theme.bgColor,
-      })}
+      className="absolute right-0 top-0 rounded-[12px] bg-bg"
     >
       <i
-        className={cx("mdi mdi-check-circle", css({ color: theme.linkColor }))}
+        className={cn("mdi mdi-check-circle", "text-link")}
       />
     </div>
   );

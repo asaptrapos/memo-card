@@ -1,9 +1,7 @@
 import { observer } from "mobx-react-lite";
-import { css, cx } from "@emotion/css";
-import { theme } from "./theme.tsx";
-import { tapScale } from "../lib/animations/tap-scale.ts";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { userStore } from "../store/user-store.ts";
+import { cn } from "./cn";
 
 export type ListItemType = {
   text: ReactNode;
@@ -29,73 +27,36 @@ export const List = observer((props: Props) => {
       : props.animateTap;
 
   return (
-    <div className={css({ display: "flex", flexDirection: "column" })}>
+    <div className="flex flex-col">
       {items.map((item, i) => {
         const showDivider = i !== items.length - 1;
         return (
           <div
             key={i}
             onClick={item.onClick}
-            className={cx(
-              css({
-                boxSizing: "border-box",
-                display: "flex",
-                justifyContent: item.alignCenter ? "center" : "space-between",
-                alignItems: "center",
-                cursor: "pointer",
-                gap: 8,
-                borderRadius: 0,
-                ":first-child": {
-                  borderTopLeftRadius: theme.borderRadius,
-                  borderTopRightRadius: theme.borderRadius,
-                },
-                ":last-child": {
-                  borderBottomLeftRadius: theme.borderRadius,
-                  borderBottomRightRadius: theme.borderRadius,
-                },
-                paddingLeft: 12,
-                paddingRight: userStore.isRtl ? 12 : undefined,
-                background: theme.bgColor,
-
-                textAlign: item.alignCenter ? "center" : "left",
-              }),
-              animateTap ? css(tapScale) : undefined,
+            className={cn(
+              "box-border flex items-center cursor-pointer gap-2 pl-3 bg-bg",
+              item.alignCenter ? "justify-center" : "justify-between",
+              userStore.isRtl && "pr-3",
+              "first:rounded-t-xl last:rounded-b-xl",
+              animateTap && "active:scale-[0.98] active:transition-transform active:duration-300 active:origin-center"
             )}
           >
-            <div
-              className={css({
-                color: theme.textColor,
-                alignItems: "center",
-                display: "flex",
-                gap: 8,
-                width: item.alignCenter ? undefined : "100%",
-                marginRight: item.alignCenter ? 12 : undefined,
-              })}
-            >
+            <div className={cn(
+              "text-text flex items-center gap-2",
+              item.alignCenter ? "mr-3" : "w-full"
+            )}>
               {item.icon}
-              <div
-                className={css({
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  flex: 1,
-                  paddingBottom: 12,
-                  paddingTop: 12,
-                  borderBottom: showDivider
-                    ? `1px solid ${theme.divider}`
-                    : undefined,
-                })}
-              >
-                <span
-                  className={css({
-                    color: item.isLinkColor ? theme.linkColor : undefined,
-                  })}
-                >
+              <div className={cn(
+                "flex justify-between items-center flex-1 py-3",
+                showDivider && "border-b border-divider"
+              )}>
+                <span className={item.isLinkColor ? "text-link" : undefined}>
                   {item.text}
                 </span>
-                {item.right ? (
-                  <div className={css({ marginRight: 10 })}>{item.right}</div>
-                ) : null}
+                {item.right && (
+                  <div className="mr-2.5">{item.right}</div>
+                )}
               </div>
             </div>
           </div>

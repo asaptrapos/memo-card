@@ -6,7 +6,6 @@ import { FormattingSwitcher } from "./formatting-switcher.tsx";
 import { WysiwygField } from "../../../ui/wysiwyg-field/wysiwig-field.tsx";
 import { Input } from "../../../ui/input.tsx";
 import { HintTransparent } from "../../../ui/hint-transparent.tsx";
-import React from "react";
 import { userStore } from "../../../store/user-store.ts";
 import { CardFormType } from "../deck-form/store/deck-form-store.ts";
 import { useBackButton } from "../../../lib/platform/use-back-button.ts";

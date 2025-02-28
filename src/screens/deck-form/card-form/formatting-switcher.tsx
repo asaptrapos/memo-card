@@ -1,11 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { userStore } from "../../../store/user-store.ts";
-import { css, cx } from "@emotion/css";
-import { reset } from "../../../ui/reset.ts";
-import { theme } from "../../../ui/theme.tsx";
 import { ChevronIcon } from "../../../ui/chevron-icon.tsx";
 import { t } from "../../../translations/t.ts";
-import React from "react";
 
 export const FormattingSwitcher = observer(() => {
   return (
@@ -14,20 +10,13 @@ export const FormattingSwitcher = observer(() => {
       onClick={() => {
         userStore.isCardFormattingOn.toggle();
       }}
-      className={cx(
-        reset.button,
-        css({
-          fontSize: 16,
-          color: theme.linkColor,
-          cursor: "pointer",
-        }),
-      )}
+      className="reset-button text-base text-link cursor-pointer"
     >
       <span
-        className={css({
+        className="inline-block"
+        style={{
           transform: "translateY(2px)",
-          display: "inline-block",
-        })}
+        }}
       >
         {" "}
         <ChevronIcon

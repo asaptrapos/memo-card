@@ -4,12 +4,11 @@ import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { t } from "../../translations/t.ts";
 import { Screen } from "../shared/screen.tsx";
 import { useMount } from "../../lib/react/use-mount.ts";
-import React, { useState } from "react";
+import { useState } from "react";
 import { screenStore } from "../../store/screen-store.ts";
 import { List } from "../../ui/list.tsx";
 import { FilledIcon } from "../../ui/filled-icon.tsx";
 import { theme } from "../../ui/theme.tsx";
-import { css } from "@emotion/css";
 import { RadioSwitcher } from "../../ui/radio-switcher.tsx";
 import { FullScreenLoader } from "../../ui/full-screen-loader.tsx";
 import { CatalogSettingsStore } from "./store/catalog-settings-store.ts";
@@ -63,12 +62,7 @@ export const CatalogSettingsScreen = observer(() => {
                 />
               ),
               right: (
-                <span
-                  className={css({
-                    top: 3,
-                    position: "relative",
-                  })}
-                >
+                <span className="relative top-[3px]">
                   <RadioSwitcher
                     isOn={form.isPublic.value}
                     onToggle={form.isPublic.toggle}
@@ -86,7 +80,7 @@ export const CatalogSettingsScreen = observer(() => {
               ),
               text: "User language",
               right: (
-                <div className={css({ color: theme.linkColor })}>
+                <div className="text-link">
                   <Select<LanguageCatalogItemAvailableIn | null>
                     value={form.availableIn.value}
                     onChange={(value) => {
@@ -116,7 +110,7 @@ export const CatalogSettingsScreen = observer(() => {
               ),
               text: "Category",
               right: (
-                <div className={css({ color: theme.linkColor })}>
+                <div className="text-link">
                   <Select<string | null>
                     value={form.categoryId.value}
                     onChange={(value) => {

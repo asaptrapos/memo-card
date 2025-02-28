@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useIsOverflowing } from "../../lib/react/use-is-overflowing.ts";
-import { css, cx } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
+import { cn } from "../../ui/cn.ts";
 import { t } from "../../translations/t.ts";
 import { sanitizeTextForCard } from "../../lib/sanitize-html/sanitize-text-for-card.ts";
 import { wysiwygTableStyle } from "../../ui/wysiwyg-table-style.ts";
@@ -21,14 +20,10 @@ export const DeckFolderDescription = (props: Props) => {
     <>
       <div
         ref={ref}
-        className={cx(
-          css({
-            whiteSpace: "pre-wrap",
-            maxHeight: 294,
-            overflowY: "hidden",
-          }),
-          isExpanded && css({ maxHeight: "none" }),
-          wysiwygTableStyle,
+        className={cn(
+          "whitespace-pre-wrap max-h-[294px] overflow-y-hidden",
+          isExpanded && "max-h-none",
+          wysiwygTableStyle
         )}
         dangerouslySetInnerHTML={{
           __html: sanitizeTextForCard(deck.description || ""),
@@ -36,11 +31,7 @@ export const DeckFolderDescription = (props: Props) => {
       />
       {isOverflowing && !isExpanded ? (
         <div
-          className={css({
-            color: theme.linkColor,
-            textAlign: "center",
-            cursor: "pointer",
-          })}
+          className="text-link text-center cursor-pointer"
           onClick={() => {
             setIsExpanded(true);
           }}

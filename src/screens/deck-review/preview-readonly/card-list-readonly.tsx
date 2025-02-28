@@ -2,19 +2,15 @@ import { observer } from "mobx-react-lite";
 import { DeckCardDbType } from "../../../../functions/db/deck/decks-with-cards-schema.ts";
 import { Screen } from "../../shared/screen.tsx";
 import { t } from "../../../translations/t.ts";
-import { css, cx } from "@emotion/css";
-import { theme } from "../../../ui/theme.tsx";
-import { tapScale } from "../../../lib/animations/tap-scale.ts";
 import { CardNumber } from "../../../ui/card-number.tsx";
 import { removeAllTags } from "../../../lib/sanitize-html/remove-all-tags.ts";
-import React from "react";
 import { useBackButton } from "../../../lib/platform/use-back-button.ts";
 import { DeckWithCardsWithReviewType } from "../../../store/deck-list-store.ts";
 import { List } from "../../../ui/list.tsx";
 import { ListHeader } from "../../../ui/list-header.tsx";
 import { DeckFolderDescription } from "../../shared/deck-folder-description.tsx";
-import { reset } from "../../../ui/reset.ts";
 import { userStore } from "../../../store/user-store.ts";
+import { cn } from "../../../ui/cn.ts";
 
 type Props = {
   onBack: () => void;
@@ -35,20 +31,12 @@ export const CardListReadonly = observer((props: Props) => {
     <Screen
       title={""}
       subtitle={
-        <div
-          className={css({
-            textAlign: "center",
-            fontSize: 14,
-          })}
-        >
+        <div className="text-center text-sm">
           <button
             onClick={() => {
               onBack();
             }}
-            className={cx(
-              reset.button,
-              css({ fontSize: "inherit", color: theme.linkColor }),
-            )}
+            className="text-inherit text-link"
           >
             {subtitle}
           </button>
@@ -58,18 +46,8 @@ export const CardListReadonly = observer((props: Props) => {
       {deck ? (
         <div>
           <ListHeader text={t("deck")} />
-          <div
-            className={css({
-              display: "flex",
-              flexDirection: "column",
-              gap: 8,
-              borderRadius: theme.borderRadius,
-              padding: "8px 16px",
-              paddingBottom: 16,
-              background: theme.bgColor,
-            })}
-          >
-            <h3 className={css({ paddingTop: 8 })}>{deck.name}</h3>
+          <div className="flex flex-col gap-2 rounded-[12px] px-4 pb-4 pt-2 bg-bg">
+            <h3 className="pt-2">{deck.name}</h3>
             <DeckFolderDescription isExpanded deck={deck} />
           </div>
         </div>
@@ -84,24 +62,16 @@ export const CardListReadonly = observer((props: Props) => {
             text: (
               <div
                 key={i}
-                className={css({
-                  cursor: "pointer",
-                  textAlign: userStore.isRtl ? "right" : undefined,
-                  backgroundColor: theme.bgColor,
-                  borderRadius: theme.borderRadius,
-                  // If the card content is too big then hide it
-                  maxHeight: 120,
-                  overflow: "hidden",
-                  ...tapScale,
-                })}
+                className={cn(
+                  "cursor-pointer bg-bg rounded-[12px] max-h-[120px] overflow-hidden",
+                  userStore.isRtl && "text-right",
+                )}
               >
                 <div>
                   <CardNumber number={i + 1} />
                   {removeAllTags(card.front)}
                 </div>
-                <div className={css({ color: theme.hintColor })}>
-                  {removeAllTags(card.back)}
-                </div>
+                <div className="text-hint">{removeAllTags(card.back)}</div>
               </div>
             ),
           }))}

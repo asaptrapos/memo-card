@@ -1,6 +1,4 @@
 import React, { ReactNode } from "react";
-import { css, cx } from "@emotion/css";
-import { theme } from "../theme.tsx";
 
 type Props = {
   title: ReactNode;
@@ -12,35 +10,16 @@ export const BottomSheetTitle = (props: Props) => {
 
   return (
     <h2
-      className={css({
-        width: "100%",
-        textAlign: "center",
-        position: "relative",
-        alignSelf: "center",
-        paddingTop: 8,
-        paddingBottom: 24,
-      })}
+      className="w-full text-center relative self-center pt-2 pb-6"
     >
       {title}
       <span
-        className={css({
-          position: "absolute",
-          right: 8,
-          top: 10,
-          cursor: "pointer",
-          backgroundColor: theme.secondaryBgColor,
-          borderRadius: "50%",
-          width: 35,
-          height: 35,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        })}
+        className="absolute right-2 top-[10px] cursor-pointer bg-secondary-bg rounded-full w-[35px] h-[35px] flex justify-center items-center"
         onClick={() => {
           onClose();
         }}
       >
-        <i className={cx("mdi mdi-close")} />
+        <i className="mdi mdi-close" />
       </span>
     </h2>
   );

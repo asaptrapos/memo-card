@@ -1,6 +1,5 @@
-import React, { Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { css, cx } from "@emotion/css";
 import { PublicDeck } from "./public-deck.tsx";
 import { DeckRowWithCardsToReview } from "../shared/deck-row-with-cards-to-review/deck-row-with-cards-to-review.tsx";
 import { deckListStore } from "../../store/deck-list-store.ts";
@@ -11,11 +10,9 @@ import { screenStore } from "../../store/screen-store.ts";
 import { CardRowLoading } from "../shared/card-row-loading.tsx";
 import { ListHeader } from "../../ui/list-header.tsx";
 import { range } from "../../lib/array/range.ts";
-import { reset } from "../../ui/reset.ts";
 import { ViewMoreDecksToggle } from "./view-more-decks-toggle.tsx";
 import { t } from "../../translations/t.ts";
 import { links } from "../../../shared/links/links.ts";
-import { tapScale } from "../../lib/animations/tap-scale.ts";
 import { Flex } from "../../ui/flex.tsx";
 import { List } from "../../ui/list.tsx";
 import { FilledIcon } from "../../ui/filled-icon.tsx";
@@ -82,7 +79,7 @@ export const MainScreen = observer(() => {
                     />
                     {listItem.type === "folder" &&
                     deckListStore.isMyDecksExpanded.value ? (
-                      <div className={css({ marginLeft: 24 })}>
+                      <div className="ml-6">
                         <List
                           items={listItem.decks.map((deck) => {
                             return {
@@ -112,10 +109,7 @@ export const MainScreen = observer(() => {
 
                 {t("browser_no_personal_decks_link")}
                 <span
-                  className={css({
-                    color: theme.linkColor,
-                    cursor: "pointer",
-                  })}
+                  className="text-link cursor-pointer"
                   onClick={() => {
                     if (userStore.language === "ru") {
                       ruEduVideoToggle.setTrue();
@@ -164,23 +158,12 @@ export const MainScreen = observer(() => {
                 <PublicDeck key={deck.id} deck={deck} />
               ))}
               <button
-                className={cx(
-                  reset.button,
-                  css({
-                    paddingTop: 10,
-                    paddingBottom: 6,
-                    color: theme.linkColor,
-                    fontSize: 16,
-                    ...tapScale,
-                  }),
-                )}
+                className="py-[10px_6px] text-link text-base"
                 onClick={() => {
                   screenStore.go({ type: "deckCatalog" });
                 }}
               >
-                <i
-                  className={cx(css({ color: "inherit" }), "mdi mdi-magnify")}
-                />{" "}
+                <i className="mdi mdi-magnify text-inherit" />{" "}
                 {t("explore_public_decks")}
               </button>
             </>

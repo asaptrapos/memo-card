@@ -37,12 +37,12 @@ import { AiMassCreationStoreProvider } from "./ai-mass-creation/store/ai-mass-cr
 import { SnackbarProviderWrapper } from "./shared/snackbar/snackbar-provider-wrapper.tsx";
 import { Debug } from "./debug/debug.tsx";
 import { BrowserMainButton } from "./shared/browser-platform/browser-main-button.tsx";
-import { css, cx } from "@emotion/css";
-import { platform, platformMaxWidth } from "../lib/platform/platform.ts";
+import { platform } from "../lib/platform/platform.ts";
 import { BrowserPlatform } from "../lib/platform/browser/browser-platform.ts";
 import { CatalogSettingsScreenLazy } from "./catalog-settings/catalog-settings-screen-lazy.tsx";
 import { LoginScreen } from "./login/login-screen.tsx";
 import { TelegramPlatform } from "../lib/platform/telegram/telegram-platform.ts";
+import { cn } from "../ui/cn.ts";
 
 export const App = observer(() => {
   useRestoreFullScreenExpand();
@@ -57,29 +57,16 @@ export const App = observer(() => {
 
   return (
     <div
-      className={cx(
-        platform instanceof TelegramPlatform && platform.isWeb()
-          ? css({ marginTop: 16 })
-          : undefined,
+      className={cn({
+        "mt-4": platform instanceof TelegramPlatform && platform.isWeb(),
 
-        platform instanceof BrowserPlatform ||
-          (platform instanceof TelegramPlatform && platform.isFullScreen)
-          ? css({
-              margin: "0 auto",
-              marginTop: 24,
-              maxWidth: platformMaxWidth,
-            })
-          : undefined,
+        [`mx-auto mt-6 max-w-2xl`]:
+          platform instanceof BrowserPlatform ||
+          (platform instanceof TelegramPlatform && platform.isFullScreen),
 
-        screenStore.screen.type === "browserLogin"
-          ? css({
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              minHeight: "calc(100vh - 48px)",
-            })
-          : undefined,
-      )}
+        "flex justify-center items-center min-h-[calc(100vh_-_48px)]":
+          screenStore.screen.type === "browserLogin",
+      })}
     >
       <VersionWarning />
       <SnackbarProviderWrapper />

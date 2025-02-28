@@ -1,12 +1,11 @@
 import { CardNumber } from "../../ui/card-number.tsx";
-import { css, cx } from "@emotion/css";
-import { theme } from "../../ui/theme.tsx";
 import { reset } from "../../ui/reset.ts";
 import { List } from "../../ui/list.tsx";
-import React from "react";
 import { Flex } from "../../ui/flex.tsx";
+import { cn } from "../../ui/cn.ts";
+import { observer } from "mobx-react-lite";
 
-export const ListStoryMultipleIcons = () => {
+export const ListStoryMultipleIcons = observer(() => {
   return (
     <List
       animateTap={false}
@@ -20,10 +19,7 @@ export const ListStoryMultipleIcons = () => {
                 Test title
               </div>
               <div
-                className={css({
-                  color: theme.hintColor,
-                  fontSize: 14,
-                })}
+                className="text-hint text-sm"
               >
                 Test description Test description Test description Test
                 description Test description
@@ -33,24 +29,24 @@ export const ListStoryMultipleIcons = () => {
           right: (
             <Flex gap={8}>
               <button
-                className={cx(reset.button, css({ fontSize: 16 }))}
+                className={cn(reset.button, "text-base")}
                 onClick={() => {}}
               >
                 <i
-                  className={cx(
+                  className={cn(
                     "mdi mdi-eye-check-outline mdi-24px",
-                    css({ color: theme.buttonColor }),
+                    "text-button"
                   )}
                 />
               </button>
               <button
-                className={cx(reset.button, css({ fontSize: 16 }))}
+                className={cn(reset.button, "text-base")}
                 onClick={() => {}}
               >
                 <i
-                  className={cx(
+                  className={cn(
                     "mdi mdi-delete-circle mdi-24px",
-                    css({ color: theme.danger }),
+                    "text-danger"
                   )}
                 />
               </button>
@@ -59,4 +55,4 @@ export const ListStoryMultipleIcons = () => {
         }))}
     />
   );
-};
+});

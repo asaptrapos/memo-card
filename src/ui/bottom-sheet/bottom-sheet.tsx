@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { theme } from "../theme.tsx";
-import { css, cx } from "@emotion/css";
-import { platform, platformMaxWidth } from "../../lib/platform/platform.ts";
+import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
+import { cn } from "../cn.ts";
 
 const variants = {
   open: { y: 0 },
@@ -35,42 +34,25 @@ export const BottomSheet = (props: Props) => {
   const bottomSheetBody =
     platform instanceof BrowserPlatform && !platform.isMobile ? (
       <div
-        className={cx(
-          css({
-            position: "fixed",
-            bottom: 0,
-            right: 0,
-            backgroundColor: theme.bgColor,
-            padding: 20,
-            boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
-            zIndex: theme.zIndex.bottomSheetForeground,
-            borderRadius: 20,
-            width: platformMaxWidth,
-            height: "fit-content",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }),
+        className={cn(
+          "fixed bottom-0 right-0 bg-bg p-5 rounded-[20px] h-fit z-bottom-sheet-fg w-2xl",
+          "top-1/2 left-1/2",
         )}
+        style={{
+          boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
+          transform: "translate(-50%, -50%)",
+        }}
       >
         {children}
       </div>
     ) : (
       <motion.div
-        className={cx(
-          css({
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            backgroundColor: theme.bgColor,
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-            padding: 20,
-            boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
-            zIndex: theme.zIndex.bottomSheetForeground,
-          }),
+        className={cn(
+          "fixed bottom-0 left-0 right-0 bg-bg rounded-t-[20px] p-5 z-bottom-sheet-fg",
         )}
+        style={{
+          boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
+        }}
         initial="closed"
         animate="open"
         exit="closed"
@@ -85,17 +67,12 @@ export const BottomSheet = (props: Props) => {
       {isOpen && (
         <>
           <motion.div
-            className={css({
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
+            className="fixed inset-0 z-bottom-sheet-bg"
+            style={{
               backgroundColor: "rgba(0, 0, 0, 0.5)",
               backdropFilter: "blur(4px)",
               WebkitBackdropFilter: "blur(4px)",
-              zIndex: theme.zIndex.bottomSheetBackground,
-            })}
+            }}
             initial="closed"
             animate="open"
             exit="closed"

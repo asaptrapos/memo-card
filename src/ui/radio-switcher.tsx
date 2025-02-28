@@ -1,16 +1,5 @@
-import { css, cx } from "@emotion/css";
-import React from "react";
-import { theme } from "./theme.tsx";
 import { isDarkTheme } from "../lib/color-scheme/is-dark-theme.tsx";
-
-const config = {
-  colors: {
-    grayLightExtra: "#e8ecef",
-    white: "#fff",
-  },
-  cursorSize: 19,
-  transitionDuration: "0.2s",
-};
+import { cn } from "./cn";
 
 type Props = {
   isOn: boolean;
@@ -25,55 +14,23 @@ export const RadioSwitcher = (props: Props) => {
       onClick={(event) => {
         event.stopPropagation();
       }}
-      className={cx(
-        css({
-          display: "inline-flex",
-          alignItems: "center",
-          backgroundColor: isDarkTheme()
-            ? "#0f0f0f"
-            : config.colors.grayLightExtra,
-          outline: isOn || isDarkTheme() ? undefined : "1px solid white",
-          borderRadius: 38,
-          padding: "0px 0.5rem",
-          color: config.colors.white,
-          height: 26,
-          width: 40,
-          cursor: "pointer",
-          position: "relative",
-          whiteSpace: "nowrap",
-          transition: `background-color ${config.transitionDuration}`,
-          marginBottom: 0,
-        }),
-        isOn && css({ backgroundColor: theme.success }),
+      className={cn(
+        "inline-flex items-center rounded-[38px] px-2 h-[26px] w-[40px] cursor-pointer relative whitespace-nowrap transition-colors duration-200 mb-0",
+        isDarkTheme() ? "bg-[#0f0f0f]" : "bg-[#e8ecef]",
+        !isOn && !isDarkTheme() && "outline-1 outline-white",
+        isOn && "bg-success"
       )}
     >
       <input
         type="checkbox"
-        className={css({ position: "absolute", appearance: "none" })}
+        className="absolute appearance-none"
         checked={isOn}
         onChange={onToggle}
       />
       <div
-        className={cx(
-          css({
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
-            backgroundColor: config.colors.white,
-            boxShadow: theme.boxShadow,
-            width: config.cursorSize,
-            height: config.cursorSize,
-            borderRadius: "50%",
-            transitionTimingFunction: "ease-in-out",
-            transitionDuration: config.transitionDuration,
-            transitionProperty: "left, background-color",
-            left: 4,
-          }),
-          isOn &&
-            css({
-              left: `calc(100% - ${config.cursorSize}px - 4px)`,
-            }),
+        className={cn(
+          "flex justify-center items-center absolute bg-white shadow w-[19px] h-[19px] rounded-full transition-[left,background-color] duration-200 ease-in-out left-1",
+          isOn && "left-[calc(100%_-_23px)]"
         )}
       />
     </label>
