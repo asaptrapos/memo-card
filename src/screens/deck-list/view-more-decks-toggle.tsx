@@ -9,7 +9,7 @@ export const ViewMoreDecksToggle = observer(() => {
   return (
     <button
       className={cn(
-        "absolute top-2 text-link text-sm uppercase flex items-center gap-1",
+        "absolute top-1 text-link text-sm uppercase flex items-center gap-1",
         userStore.isRtl ? "left-3" : "right-3",
       )}
       onClick={deckListStore.isMyDecksExpanded.toggle}
