@@ -1,12 +1,14 @@
 import { m } from "framer-motion";
 import { LazyLoadFramerMotion } from "../lib/framer-motion/lazy-load-framer-motion.tsx";
+import { observer } from "mobx-react-lite";
 
 type Props = {
   value: number;
   max: number;
 };
 
-export const ProgressBar = ({ value, max }: Props) => {
+export const ProgressBar = observer((props: Props) => {
+  const { value, max } = props;
   return (
     <div className="w-full bg-bg rounded-xl relative overflow-hidden">
       <LazyLoadFramerMotion>
@@ -16,9 +18,14 @@ export const ProgressBar = ({ value, max }: Props) => {
           className="bg-success h-[30px]"
         />
       </LazyLoadFramerMotion>
-      <div className="absolute left-1/2 top-1 -translate-x-1/2 text-center text-sm font-semibold text-text">
+      <div
+        style={{
+          transform: "translateX(-50%)",
+        }}
+        className="absolute left-1/2 top-1 text-center text-sm font-semibold text-text"
+      >
         {value}/{max}
       </div>
     </div>
   );
-};
+});
