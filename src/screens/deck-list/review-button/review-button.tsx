@@ -66,7 +66,7 @@ export const ReviewButton = observer(() => {
           {isMenuOpen.value && (
             <m.div
               className={cn(
-                "absolute bottom-16 bg-bg rounded-lg shadow-lg overflow-hidden z-10",
+                "absolute bottom-16 bg-bg rounded-lg shadow-lg border border-gray-300 overflow-hidden z-10",
                 {
                   "right-0": !userStore.isRtl,
                   "left-0": userStore.isRtl,
