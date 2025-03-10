@@ -27,13 +27,13 @@ import { RuEduVideoChoice } from "./ru-edu-video-choice.tsx";
 import { getTelegramChannelLink } from "../../../shared/links/get-telegram-channel-link.ts";
 import { getYouTubeChannelLink } from "../../../shared/links/get-youtube-channel-link.ts";
 import { userStore } from "../../store/user-store.ts";
+import { ReviewButton } from "./review-button/review-button.tsx";
 
 export const MainScreen = observer(() => {
   const [deckFolderToggle] = useState(() => new BooleanToggle(false));
   const [ruEduVideoToggle] = useState(() => new BooleanToggle(false));
 
   useMount(() => {
-    console.log("mc: load first time");
     deckListStore.loadFirstTime(platform.getStartParam());
   });
 
@@ -158,7 +158,7 @@ export const MainScreen = observer(() => {
                 <PublicDeck key={deck.id} deck={deck} />
               ))}
               <button
-                className="py-[10px_6px] text-link text-base"
+                className="pt-2 text-link text-base"
                 onClick={() => {
                   screenStore.go({ type: "deckCatalog" });
                 }}
@@ -257,6 +257,8 @@ export const MainScreen = observer(() => {
           </div>
         </>
       )}
+
+      <ReviewButton />
     </Flex>
   );
 });

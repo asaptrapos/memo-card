@@ -48,7 +48,7 @@ export const List = observer((props: Props) => {
             )}>
               {item.icon}
               <div className={cn(
-                "flex justify-between items-center flex-1 py-3",
+                "flex justify-between select-none items-center flex-1 py-3",
                 showDivider && "border-b border-divider"
               )}>
                 <span className={item.isLinkColor ? "text-link" : undefined}>

@@ -3,7 +3,10 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { reviewCardsRequest } from "../../../api/api.ts";
 import { ReviewOutcome } from "../../../../functions/services/review-card.ts";
 import { screenStore } from "../../../store/screen-store.ts";
-import { type DeckWithCardsWithReviewType } from "../../../store/deck-list-store.ts";
+import {
+  DeckCardDbTypeWithType,
+  type DeckWithCardsWithReviewType
+} from "../../../store/deck-list-store.ts";
 import {
   hapticImpact,
   hapticNotification,
@@ -105,6 +108,18 @@ export class ReviewStore {
             new CardUnderReviewStore(card, deck, card.type),
           );
         });
+    });
+
+    this.initializeInitialCurrentNextCards();
+  }
+
+  startCustomReview(decks: Array<[DeckCardDbTypeWithType, DeckWithCardsWithReviewType]>) {
+    if (!decks.length) {
+      return;
+    }
+
+    decks.forEach(([card, deck]) => {
+      this.cardsToReview.push(new CardUnderReviewStore(card, deck, card.type));
     });
 
     this.initializeInitialCurrentNextCards();

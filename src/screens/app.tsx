@@ -43,6 +43,7 @@ import { CatalogSettingsScreenLazy } from "./catalog-settings/catalog-settings-s
 import { LoginScreen } from "./login/login-screen.tsx";
 import { TelegramPlatform } from "../lib/platform/telegram/telegram-platform.ts";
 import { cn } from "../ui/cn.ts";
+import { RepeatCustomScreen } from "./deck-review/repeat-custom/repeat-custom-screen.tsx";
 
 export const App = observer(() => {
   useRestoreFullScreenExpand();
@@ -91,6 +92,13 @@ export const App = observer(() => {
         <PreventTelegramSwipeDownClosingIos>
           <ReviewStoreProvider>
             <RepeatAllScreen />
+          </ReviewStoreProvider>
+        </PreventTelegramSwipeDownClosingIos>
+      )}
+      {screenStore.screen.type === "reviewCustom" && (
+        <PreventTelegramSwipeDownClosingIos>
+          <ReviewStoreProvider>
+            <RepeatCustomScreen />
           </ReviewStoreProvider>
         </PreventTelegramSwipeDownClosingIos>
       )}

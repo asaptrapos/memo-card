@@ -26,6 +26,11 @@ const en = {
     "Are you sure you want to hide this card forever? You will never see it again",
   wysiwyg_big_header: "Big header",
   next: "Next",
+  review_all_due: "Review all due",
+  custom_due_cards: "Due cards",
+  custom_new_cards: "New cards",
+  review_custom: "Custom review",
+  review_card_type: "Select card type",
   review_wrong_label: "Wrong",
   review_correct_label: "Correct",
   wysiwyg_small_header: "Small header",
@@ -478,6 +483,11 @@ const ru: Translation = {
   front: "Лицевая",
   back: "Обратная",
   card_speak_description: "Позволяет услышать произношение",
+  review_all_due: "К повторению",
+  review_custom: "Выбрать что повторять",
+  custom_due_cards: "Карточки к повторению",
+  custom_new_cards: "Новые карточки",
+  review_card_type: "Выберите тип карточки",
   review_deck_finished: `Колода пройдена 🎉`,
   review_all_cards: `Вы повторили все карточки на сегодня 🎉`,
   review_finished_want_more: "Хотите ещё? У вас есть",
@@ -602,6 +612,11 @@ const ru: Translation = {
 };
 
 const es: Translation = {
+  review_all_due: "Para revisar",
+  review_custom: "Seleccionar qué revisar",
+  review_card_type: "Selecciona el tipo de tarjeta",
+  custom_due_cards: "Tarjetas por revisar",
+  custom_new_cards: "Tarjetas nuevas",
   settings_lang: "Idioma",
   html_row: "Fila",
   html_column: "Columna",
@@ -900,6 +915,11 @@ const es: Translation = {
 };
 
 const ptBr: Translation = {
+  review_custom: "Selecionar o que revisar",
+  review_all_due: "Para revisar",
+  custom_new_cards: "Novas cartas",
+  custom_due_cards: "Cartas para revisar",
+  review_card_type: "Selecione o tipo de carta",
   settings_lang: "Idioma",
   copied: "Copiado",
   copy_code: "Copiar código",
@@ -1198,6 +1218,11 @@ const ptBr: Translation = {
 };
 
 const ar: Translation = {
+  review_all_due: "للمراجعة",
+  review_card_type: "اختر نوع البطاقة",
+  custom_due_cards: "البطاقات المستحقة",
+  custom_new_cards: "البطاقات الجديدة",
+  review_custom: "اختر ما تريد مراجعته",
   settings_lang: "اللغة",
   logout: "تسجيل الخروج",
   error_contact_support: "حدث خطأ. يرجى الاتصال بالدعم حتى نتمكن من مساعدتك.",
@@ -1496,6 +1521,11 @@ const ar: Translation = {
 };
 
 const fa: Translation = {
+  review_all_due: "برای مرور",
+  review_custom: "انتخاب موارد مرور",
+  custom_new_cards: "کارت‌های جدید",
+  custom_due_cards: "کارت‌های مرور",
+  review_card_type: "نوع کارت را انتخاب کنید",
   settings_lang: "زبان",
   html_row: "سطر",
   html_column: "ستون",
@@ -1800,6 +1830,11 @@ const fa: Translation = {
 };
 
 const uk: Translation = {
+  review_all_due: "Для повторення",
+  review_custom: "Виберіть, що повторити",
+  review_card_type: "Виберіть тип картки",
+  custom_due_cards: "Картки для повторення",
+  custom_new_cards: "Нові картки",
   go_back: "Назад",
   settings_lang: "Мова",
   copy_code: "Копіювати код",

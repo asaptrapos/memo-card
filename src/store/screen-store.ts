@@ -19,6 +19,7 @@ type Route =
   | { type: "folderForm"; folderId?: number }
   | { type: "folderPreview"; folderId: number }
   | { type: "reviewAll" }
+  | { type: "reviewCustom" }
   | { type: "cardQuickAddForm"; deckId: number }
   | { type: "deckCatalog" }
   | { type: "shareDeck"; deckId: number; shareId: string }

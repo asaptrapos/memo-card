@@ -602,7 +602,17 @@ export class DeckListStore {
   }
 
   get myDeckItemsVisible(): DeckListItem[] {
-    const sortedListItems = this.myFoldersAsDecks
+    const sortedListItems = this.myDeckItems;
+
+    if (this.isMyDecksExpanded.value) {
+      return sortedListItems;
+    }
+
+    return sortedListItems.slice(0, collapsedDecksLimit);
+  }
+
+  get myDeckItems(): DeckListItem[] {
+    return this.myFoldersAsDecks
       .concat(this.myDecksWithoutFolder)
       .sort((a, b) => {
         // sort decks by cardsToReview count with type 'repeat' first, then with type 'new'
@@ -625,11 +635,6 @@ export class DeckListStore {
         }
         return a.name.localeCompare(b.name);
       });
-
-    if (this.isMyDecksExpanded.value) {
-      return sortedListItems;
-    }
-    return sortedListItems.slice(0, collapsedDecksLimit);
   }
 
   get areAllDecksReviewed() {
@@ -639,11 +644,25 @@ export class DeckListStore {
     );
   }
 
+  get cardsToReviewCount() {
+    return this.myDecks.reduce((acc, deck) => {
+      return (
+        acc + deck.cardsToReview.filter((card) => card.type === "repeat").length
+      );
+    }, 0);
+  }
+
   get newCardsCount() {
     return this.myDecks.reduce((acc, deck) => {
       return (
         acc + deck.cardsToReview.filter((card) => card.type === "new").length
       );
+    }, 0);
+  }
+
+  get cardsTotalCount() {
+    return this.myDecks.reduce((acc, deck) => {
+      return acc + deck.deck_card.length;
     }, 0);
   }
 
