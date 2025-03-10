@@ -15,7 +15,7 @@ export const translateCardCount = (count: number) => {
       const result = new Intl.PluralRules("ru-RU").select(count);
       switch (result) {
         case "one":
-          return `1 карточка`;
+          return `${count} карточка`;
         case "few":
         case "two":
           return `${count} карточки`;
@@ -27,7 +27,7 @@ export const translateCardCount = (count: number) => {
       const result = new Intl.PluralRules("uk").select(count);
       switch (result) {
         case "one":
-          return `1 картка`;
+          return `${count} картка`;
         case "few":
         case "two":
           return `${count} картки`;
@@ -44,9 +44,9 @@ export const translateCardCount = (count: number) => {
 
       switch (result) {
         case "one":
-          return `1 بطاقة`;
+          return `${count} بطاقة`;
         case "two":
-          return `2 بطاقة`;
+          return `${count} بطاقتين`;
         case "few":
           return `${count} بطاقات`;
         default:
@@ -59,7 +59,7 @@ export const translateCardCount = (count: number) => {
 
       switch (result) {
         case "one":
-          return `1 tarjeta`;
+          return `${count} tarjeta`;
         default:
           return `${count} tarjetas`;
       }
@@ -70,7 +70,7 @@ export const translateCardCount = (count: number) => {
 
       switch (result) {
         case "one":
-          return `1 carta`;
+          return `${count} carta`;
         default:
           return `${count} cartas`;
       }
