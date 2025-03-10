@@ -30,7 +30,7 @@ export class RepeatCustomSelectorStore {
     );
 
     makePersistable(this, {
-      name: "repeatCustomForm.v1",
+      name: "repeatCustomFormV1",
       properties: ["form"],
       storage: storageAdapter,
     });
