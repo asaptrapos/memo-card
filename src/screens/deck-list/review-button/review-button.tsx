@@ -85,7 +85,7 @@ export const ReviewButton = observer(() => {
                 }}
                 className="w-full whitespace-nowrap text-left text-base px-4 py-3 hover:bg-gray-100 flex items-center justify-between gap-3"
               >
-                <span className={"flex gap-2 items-center"}>
+                <span className={"flex gap-2 items-center text-text"}>
                   <BookOpenIcon className="max-[360px]:hidden h-5 w-5 text-button" />
                   {t("review_all_due")}
                 </span>
@@ -99,7 +99,7 @@ export const ReviewButton = observer(() => {
                 }}
                 className="w-full whitespace-nowrap text-left text-base px-4 py-3 hover:bg-gray-100 flex justify-between items-center gap-3"
               >
-                <span className={"flex gap-2 items-center"}>
+                <span className={"flex gap-2 items-center text-text"}>
                   <BlocksIcon className="max-[360px]:hidden h-5 w-5 text-button" />
                   {t("review_custom")}
                 </span>
