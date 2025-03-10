@@ -12,6 +12,7 @@ import { CustomCloseIcon } from "./icons/custom-close-icon.tsx";
 import { CustomPlayIcon } from "./icons/custom-play-icon.tsx";
 import { t } from "../../../translations/t.ts";
 import { translateCardCount } from "../../deck-review/repeat-custom/translate-card-count.ts";
+import { hapticImpact } from "../../../lib/platform/telegram/haptics.ts";
 
 export const ReviewButton = observer(() => {
   const [isMenuOpen] = useState(() => new BooleanToggle(false));
@@ -29,7 +30,10 @@ export const ReviewButton = observer(() => {
         })}
       >
         <button
-          onClick={isMenuOpen.toggle}
+          onClick={() => {
+            hapticImpact("medium");
+            isMenuOpen.toggle();
+          }}
           className="h-14 pt-0.5 w-14 rounded-full bg-button text-white shadow-xl flex items-center justify-center z-20"
         >
           <AnimatePresence mode="popLayout" initial={false}>
@@ -96,6 +100,7 @@ export const ReviewButton = observer(() => {
               <button
                 onClick={() => {
                   screenStore.go({ type: "reviewCustom" });
+                  hapticImpact("light");
                 }}
                 className="w-full whitespace-nowrap text-left text-base px-4 py-3 hover:bg-gray-100 flex justify-between items-center gap-3"
               >

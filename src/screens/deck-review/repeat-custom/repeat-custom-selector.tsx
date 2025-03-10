@@ -13,6 +13,7 @@ import { theme } from "../../../ui/theme.tsx";
 import { cn } from "../../../ui/cn.ts";
 import { translateReviewCardsLabel } from "./translate-review-cards-label.ts";
 import { t } from "../../../translations/t.ts";
+import { hapticSelection } from "../../../lib/platform/telegram/haptics.ts";
 
 type Props = {
   onClick: () => void;
@@ -55,6 +56,7 @@ export const RepeatCustomSelector = observer((props: Props) => {
               ),
               onClick: () => {
                 store.toggleCardType("repeat");
+                hapticSelection();
               },
               right: (
                 <CardsToReviewCount
@@ -67,6 +69,7 @@ export const RepeatCustomSelector = observer((props: Props) => {
             {
               onClick: () => {
                 store.toggleCardType("new");
+                hapticSelection();
               },
               icon: (
                 <CircleCheckbox
@@ -112,6 +115,7 @@ export const RepeatCustomSelector = observer((props: Props) => {
                   </div>
                 }
                 onClick={() => {
+                  hapticSelection();
                   store.toggleListRoot(listItem);
                 }}
                 item={listItem}
@@ -122,6 +126,7 @@ export const RepeatCustomSelector = observer((props: Props) => {
                     items={listItem.decks.map((deck) => {
                       return {
                         onClick: () => {
+                          hapticSelection();
                           store.toggleDeckId(deck.id);
                         },
                         text: deck.name,
