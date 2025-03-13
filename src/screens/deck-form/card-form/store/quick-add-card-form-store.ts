@@ -7,6 +7,7 @@ import {
 } from "../../deck-form/store/deck-form-store.ts";
 import { makeAutoObservable } from "mobx";
 import {
+  formToPlain,
   formTouchAll,
   isFormDirty,
   isFormEmpty,
@@ -63,17 +64,7 @@ export class QuickAddCardFormStore implements CardFormStoreInterface {
 
     const body: AddCardRequest = {
       deckId: screen.deckId,
-      card: {
-        back: this.cardForm.back.value,
-        front: this.cardForm.front.value,
-        example: this.cardForm.example.value,
-        answerType: this.cardForm.answerType.value,
-        answers: this.cardForm.answers.value.map((answer) => ({
-          id: answer.id,
-          text: answer.text.value,
-          isCorrect: answer.isCorrect.value,
-        })),
-      },
+      card: formToPlain(this.cardForm),
     };
 
     const result = await this.addCardRequest.execute(body);

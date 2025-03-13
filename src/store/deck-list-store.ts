@@ -74,8 +74,6 @@ export type DeckListItem = {
     }
 );
 
-const collapsedDecksLimit = 3;
-
 export class DeckListStore {
   myInfo?: Exclude<MyInfoResponse, "plans" | "user">;
   myInfoRequest = new RequestStore(myInfoRequest, {
@@ -103,6 +101,10 @@ export class DeckListStore {
       },
       { autoBind: true },
     );
+  }
+
+  get collapsedDeckLimit() {
+    return userStore.isPaid ? 6 : 3;
   }
 
   get isCatalogItemLoading() {
@@ -598,7 +600,7 @@ export class DeckListStore {
   }
 
   get shouldShowMyDecksToggle() {
-    return this.myDecks.length > collapsedDecksLimit;
+    return this.myDecks.length > this.collapsedDeckLimit;
   }
 
   get myDeckItemsVisible(): DeckListItem[] {
@@ -608,7 +610,7 @@ export class DeckListStore {
       return sortedListItems;
     }
 
-    return sortedListItems.slice(0, collapsedDecksLimit);
+    return sortedListItems.slice(0, this.collapsedDeckLimit);
   }
 
   get myDeckItems(): DeckListItem[] {

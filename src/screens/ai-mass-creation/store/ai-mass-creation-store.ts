@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import {
+  formToPlain,
   formTouchAll,
   isFormValid,
   ListField,
@@ -143,12 +144,9 @@ export class AiMassCreationStore {
       return;
     }
 
-    const result = await this.aiMassGenerateRequest.execute({
-      prompt: this.promptForm.prompt.value,
-      frontPrompt: this.promptForm.frontPrompt.value,
-      backPrompt: this.promptForm.backPrompt.value,
-      examplePrompt: this.promptForm.examplePrompt.value,
-    });
+    const formPlain = formToPlain(this.promptForm);
+
+    const result = await this.aiMassGenerateRequest.execute(formPlain);
 
     if (result.status === "error") {
       notifyError({ e: result.error, info: "Failed to generated cards" });
