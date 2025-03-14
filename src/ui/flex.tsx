@@ -27,46 +27,71 @@ export const Flex = (props: Props) => {
   // Map CSS properties to Tailwind classes
   const getFlexDirection = () => {
     switch (props.direction) {
-      case "row": return "flex-row";
-      case "column": return "flex-col";
-      case "row-reverse": return "flex-row-reverse";
-      case "column-reverse": return "flex-col-reverse";
-      default: return "";
+      case "row":
+        return "flex-row";
+      case "column":
+        return "flex-col";
+      case "row-reverse":
+        return "flex-row-reverse";
+      case "column-reverse":
+        return "flex-col-reverse";
+      default:
+        return "";
     }
   };
 
   const getJustifyContent = () => {
     switch (props.justifyContent) {
-      case "flex-start": return "justify-start";
-      case "flex-end": return "justify-end";
-      case "center": return "justify-center";
-      case "space-between": return "justify-between";
-      case "space-around": return "justify-around";
-      case "space-evenly": return "justify-evenly";
-      default: return "";
+      case "flex-start":
+        return "justify-start";
+      case "flex-end":
+        return "justify-end";
+      case "center":
+        return "justify-center";
+      case "space-between":
+        return "justify-between";
+      case "space-around":
+        return "justify-around";
+      case "space-evenly":
+        return "justify-evenly";
+      default:
+        return "";
     }
   };
 
   const getAlignItems = () => {
     switch (props.alignItems) {
-      case "flex-start": return "items-start";
-      case "flex-end": return "items-end";
-      case "center": return "items-center";
-      case "baseline": return "items-baseline";
-      case "stretch": return "items-stretch";
-      default: return "";
+      case "flex-start":
+        return "items-start";
+      case "flex-end":
+        return "items-end";
+      case "center":
+        return "items-center";
+      case "baseline":
+        return "items-baseline";
+      case "stretch":
+        return "items-stretch";
+      default:
+        return "";
     }
   };
 
   const getAlignSelf = () => {
     switch (props.alignSelf) {
-      case "flex-start": return "self-start";
-      case "flex-end": return "self-end";
-      case "center": return "self-center";
-      case "baseline": return "self-baseline";
-      case "stretch": return "self-stretch";
-      case "auto": return "self-auto";
-      default: return "";
+      case "flex-start":
+        return "self-start";
+      case "flex-end":
+        return "self-end";
+      case "center":
+        return "self-center";
+      case "baseline":
+        return "self-baseline";
+      case "stretch":
+        return "self-stretch";
+      case "auto":
+        return "self-auto";
+      default:
+        return "";
     }
   };
 
@@ -92,7 +117,7 @@ export const Flex = (props: Props) => {
         getAlignItems(),
         getAlignSelf(),
         userStore.isRtl && "text-right",
-        className
+        className,
       )}
       style={style}
     >

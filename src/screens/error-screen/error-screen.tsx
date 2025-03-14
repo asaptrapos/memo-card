@@ -8,9 +8,7 @@ import { observer } from "mobx-react-lite";
 export const ErrorScreen = observer(() => {
   return (
     <Screen title={t("error")}>
-      <div className="self-center my-6">
-        {t("error_contact_support")}
-      </div>
+      <div className="self-center my-6">{t("error_contact_support")}</div>
       <Button
         onClick={() => {
           platform.openInternalLink(links.supportChat);

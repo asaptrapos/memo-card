@@ -19,15 +19,11 @@ export const MassCreationPreview = observer((props: Props) => {
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose}>
       <BottomSheetTitle title={t("how")} onClose={onClose} />
-      <div
-        className="flex flex-col gap-4 p-4 bg-bg rounded-[12px]"
-      >
+      <div className="flex flex-col gap-4 p-4 bg-bg rounded-[12px]">
         <div>{translations.description}</div>
         <div>
           <span>{translations.example1}:</span>
-          <ul
-            className="pl-6 mt-0 mb-0"
-          >
+          <ul className="pl-6 mt-0 mb-0">
             <li>
               <b>{t("ai_cards_prompt")}</b>: {translations.promptExample1}
             </li>
@@ -43,9 +39,7 @@ export const MassCreationPreview = observer((props: Props) => {
 
         <div>
           <span>{translations.example2}</span>
-          <ul
-            className="pl-6 mt-0 mb-0"
-          >
+          <ul className="pl-6 mt-0 mb-0">
             <li>
               <b>{t("ai_cards_prompt")}</b>: {translations.promptExample2}
             </li>

@@ -15,7 +15,7 @@ type Props = {
   rows?: number;
   icon?: string;
   noAutoSize?: boolean;
-}
+};
 
 export const Input = observer((props: Props) => {
   const noAutoSize = props.noAutoSize || false;
@@ -53,7 +53,7 @@ export const Input = observer((props: Props) => {
           isTouched && error ? "border-danger" : "border-secondary-bg",
           "focus:outline-none",
           isTouched && error ? "focus:border-danger" : "focus:border-button",
-          isDisabled && "opacity-40 cursor-not-allowed"
+          isDisabled && "opacity-40 cursor-not-allowed",
         )}
         disabled={isDisabled}
         type="text"
@@ -68,7 +68,7 @@ export const Input = observer((props: Props) => {
           className={cn(
             "mdi",
             icon,
-            "absolute top-[8px] left-[12px] text-hint"
+            "absolute top-[8px] left-[12px] text-hint",
           )}
         />
       ) : null}

@@ -41,9 +41,7 @@ export const AiSpeechPreview = observer((props: Props) => {
     <BottomSheet isOpen={isOpen} onClose={onClose}>
       <Flex direction={"column"} alignItems={"center"} pb={48}>
         <BottomSheetTitle title={t("ai_speech_title")} onClose={onClose} />
-        <div
-          className="max-w-[300px] mt-4 flex flex-col gap-1"
-        >
+        <div className="max-w-[300px] mt-4 flex flex-col gap-1">
           <Flex gap={8} alignItems={"center"} justifyContent={"center"}>
             <span>{t("ai_speech_preview_instead")}</span>
             <PreviewSpeaker player={playerRobotic} />
@@ -52,9 +50,7 @@ export const AiSpeechPreview = observer((props: Props) => {
             <span>{t("ai_speech_preview_get")}</span>
             <PreviewSpeaker player={playerAiSpeech} />
           </Flex>
-          <div className="mt-3">
-            {t("ai_speech_supports")}
-          </div>
+          <div className="mt-3">{t("ai_speech_supports")}</div>
         </div>
 
         {showUpgrade && <UpgradeProBlock />}

@@ -7,9 +7,7 @@ export const DeckAddedLabel = () => {
       title={t("deck_has_been_added")}
       className="absolute right-0 top-0 rounded-[12px] bg-bg"
     >
-      <i
-        className={cn("mdi mdi-check-circle", "text-link")}
-      />
+      <i className={cn("mdi mdi-check-circle", "text-link")} />
     </div>
   );
 };

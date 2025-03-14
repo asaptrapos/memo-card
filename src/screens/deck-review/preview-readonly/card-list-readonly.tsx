@@ -69,7 +69,7 @@ export const CardListReadonly = observer((props: Props) => {
               >
                 <div>
                   <CardNumber number={i + 1} />
-                  {removeAllTags(card.front)}
+                  <span className="text-xl">{removeAllTags(card.front)}</span>
                 </div>
                 <div className="text-hint">{removeAllTags(card.back)}</div>
               </div>

@@ -18,9 +18,7 @@ export const ListStoryMultipleIcons = observer(() => {
                 <CardNumber number={i + 1} />
                 Test title
               </div>
-              <div
-                className="text-hint text-sm"
-              >
+              <div className="text-hint text-sm">
                 Test description Test description Test description Test
                 description Test description
               </div>
@@ -35,7 +33,7 @@ export const ListStoryMultipleIcons = observer(() => {
                 <i
                   className={cn(
                     "mdi mdi-eye-check-outline mdi-24px",
-                    "text-button"
+                    "text-button",
                   )}
                 />
               </button>
@@ -46,7 +44,7 @@ export const ListStoryMultipleIcons = observer(() => {
                 <i
                   className={cn(
                     "mdi mdi-delete-circle mdi-24px",
-                    "text-danger"
+                    "text-danger",
                   )}
                 />
               </button>

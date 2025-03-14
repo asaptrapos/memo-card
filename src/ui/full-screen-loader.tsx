@@ -8,7 +8,7 @@ type Props = {
 export const FullScreenLoader = (props: Props) => {
   const height = props.height ?? "100vh";
   const backgroundColor = props.backgroundColor ?? theme.secondaryBgColor;
-  
+
   return (
     <div
       className="flex items-center justify-center"

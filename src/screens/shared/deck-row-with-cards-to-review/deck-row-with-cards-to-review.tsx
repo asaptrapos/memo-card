@@ -23,7 +23,7 @@ export const DeckRowWithCardsToReview = observer((props: Props) => {
       onClick={onClick}
       className="flex justify-between items-center cursor-pointer gap-1 rounded-[12px] p-3 bg-bg"
     >
-      <div className={'flex'} key={item.id}>
+      <div className={"flex"} key={item.id}>
         {slotLeft}
         <div className="text-text font-medium">{item.name}</div>
       </div>

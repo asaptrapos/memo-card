@@ -18,28 +18,18 @@ export const Label = (props: Props) => {
 
   return (
     <Tag
-      className={cn(
-        "reset-label flex flex-col gap-1",
-        fullWidth && "w-full"
-      )}
+      className={cn("reset-label flex flex-col gap-1", fullWidth && "w-full")}
     >
-      <div className={cn(
-        "flex items-center",
-        userStore.isRtl ? "mr-3" : "ml-3"
-      )}>
-        <span className="text-hint uppercase text-sm">
-          {props.text}
-        </span>
-        {props.isRequired && (
-          <span className="pl-1 text-danger">
-            *
-          </span>
-        )}
+      <div
+        className={cn("flex items-center", userStore.isRtl ? "mr-3" : "ml-3")}
+      >
+        <span className="text-hint uppercase text-sm">{props.text}</span>
+        {props.isRequired && <span className="pl-1 text-danger">*</span>}
         {slotRight && (
           <span
             className={cn(
               "text-sm",
-              userStore.isRtl ? "mr-auto ml-3" : "ml-auto mr-3"
+              userStore.isRtl ? "mr-auto ml-3" : "ml-auto mr-3",
             )}
           >
             {slotRight}

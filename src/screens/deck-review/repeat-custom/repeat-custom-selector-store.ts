@@ -10,7 +10,7 @@ import { makePersistable, stopPersisting } from "mobx-persist-store";
 import { storageAdapter } from "../../../lib/platform/storage-adapter.ts";
 
 type RepeatCustomForm = {
-  reviewTypes: CardReviewType[]
+  reviewTypes: CardReviewType[];
   selectedDecksIds: number[];
 };
 
@@ -53,7 +53,9 @@ export class RepeatCustomSelectorStore {
     } else if (deckListItem.type === "folder") {
       // if we're trying to toggle folder, we should toggle all decks inside it
       const ids = deckListItem.decks.map((deck) => deck.id);
-      const isFolderOn = ids.every((id) => this.form.selectedDecksIds.includes(id));
+      const isFolderOn = ids.every((id) =>
+        this.form.selectedDecksIds.includes(id),
+      );
       if (isFolderOn) {
         // Remove all deck ids from the folder
         for (let i = this.form.selectedDecksIds.length - 1; i >= 0; i--) {

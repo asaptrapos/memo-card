@@ -65,15 +65,11 @@ export const UserStatisticsScreen = observer(() => {
 
       {!userStatisticsStore.userStatisticsRequest.isLoading ? (
         <>
-          <div
-            className="mt-[10px] mx-auto text-center font-medium"
-          >
+          <div className="mt-[10px] mx-auto text-center font-medium">
             {t("user_stats_learning_time")}
           </div>
 
-          <div
-            className="mt-[10px] mx-auto relative"
-          >
+          <div className="mt-[10px] mx-auto relative">
             {userStatisticsStore.isFrequencyChartEmpty ? (
               <div className="blur-[5px]">
                 <PieChartCanvas

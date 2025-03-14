@@ -69,19 +69,15 @@ export const FolderPreview = observer((props: Props) => {
   return (
     <Flex direction={"column"} pb={82}>
       <ListHeader text={t("folder")} />
-      <div
-        className="flex flex-col gap-4 rounded-[12px] px-4 pb-4 pt-0 bg-bg"
-      >
-        <div
-          className="relative"
-        >
+      <div className="flex flex-col gap-4 rounded-[12px] px-4 pb-4 pt-0 bg-bg">
+        <div className="relative">
           <div className="absolute left-0 top-1.5">
             <BrowserBackButton />
           </div>
           <h3
             className={cn(
               "pt-3",
-              platform instanceof BrowserPlatform ? "pl-8" : "pl-0"
+              platform instanceof BrowserPlatform ? "pl-8" : "pl-0",
             )}
           >
             {folder.name}
@@ -91,9 +87,7 @@ export const FolderPreview = observer((props: Props) => {
           <DeckFolderDescription deck={folder} />
         </div>
         {
-          <div
-            className="flex flex-col gap-1 border-t border-divider pt-2"
-          >
+          <div className="flex flex-col gap-1 border-t border-divider pt-2">
             <Flex gap={4}>
               <span>{t("cards_to_repeat")}: </span>
               <h4 className="text-orange">
@@ -218,9 +212,7 @@ export const FolderPreview = observer((props: Props) => {
                 },
                 text: deck.name,
                 right: (
-                  <div
-                    className="relative -mr-3"
-                  >
+                  <div className="relative -mr-3">
                     <CardsToReview item={deck} />
                   </div>
                 ),

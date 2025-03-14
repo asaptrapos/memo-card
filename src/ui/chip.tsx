@@ -16,7 +16,7 @@ export const Chip = (props: Props) => {
       className={cn(
         "flex items-center justify-center px-3 py-2 rounded-[10px] bg-bg shadow text-sm font-medium cursor-pointer text-text",
         isSelected && "bg-button text-button-text",
-        fullWidth && "w-full"
+        fullWidth && "w-full",
       )}
     >
       {children}

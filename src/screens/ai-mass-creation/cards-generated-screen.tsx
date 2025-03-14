@@ -48,10 +48,7 @@ export const CardsGeneratedScreen = observer(() => {
               onClick={() => {
                 store.onQuitToDeck();
               }}
-              className={cn(
-                reset.button,
-                "text-inherit text-link"
-              )}
+              className={cn(reset.button, "text-inherit text-link")}
             >
               {screen.deckTitle}
             </button>
@@ -73,19 +70,12 @@ export const CardsGeneratedScreen = observer(() => {
                   <CardNumber number={i + 1} />
                   {card.front}
                 </div>
-                <div
-                  className="text-hint text-sm"
-                >
-                  {card.back}
-                </div>
+                <div className="text-hint text-sm">{card.back}</div>
               </div>
             ),
             right: store.canDeleteGeneratedCard ? (
               <button
-                className={cn(
-                  reset.button,
-                  "pt-1 text-base"
-                )}
+                className={cn(reset.button, "pt-1 text-base")}
                 onClick={(e) => {
                   e.stopPropagation();
                   store.deleteGeneratedCard(i);
@@ -94,7 +84,7 @@ export const CardsGeneratedScreen = observer(() => {
                 <i
                   className={cn(
                     "mdi mdi-delete-circle mdi-24px",
-                    "text-danger"
+                    "text-danger",
                   )}
                 />
               </button>

@@ -60,7 +60,7 @@ export const PreviousPromptsScreen = observer(() => {
                 <div
                   className={cn(
                     "bg-bg rounded-[12px] p-3 flex justify-between items-center cursor-pointer",
-                    isSelected && "outline-2 outline-button"
+                    isSelected && "outline-2 outline-button",
                   )}
                   key={i}
                   onClick={() => {
@@ -68,9 +68,7 @@ export const PreviousPromptsScreen = observer(() => {
                   }}
                 >
                   <Flex direction={"column"} gap={4}>
-                    <div
-                      className="max-h-[120px] overflow-hidden"
-                    >
+                    <div className="max-h-[120px] overflow-hidden">
                       {log.payload.prompt}
                     </div>
                     {secondaryFields.map((field, i) => {

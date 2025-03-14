@@ -15,25 +15,15 @@ export const ListStory = observer(() => {
             <CardNumber number={i + 1} />
             Test title
           </div>
-          <div
-            className="text-hint text-sm"
-          >
+          <div className="text-hint text-sm">
             Test description Test description Test description Test description
             Test description
           </div>
         </div>
       ),
       right: (
-        <button
-          className={cn(reset.button, "text-base")}
-          onClick={() => {}}
-        >
-          <i
-            className={cn(
-              "mdi mdi-delete-circle mdi-24px",
-              "text-danger"
-            )}
-          />
+        <button className={cn(reset.button, "text-base")} onClick={() => {}}>
+          <i className={cn("mdi mdi-delete-circle mdi-24px", "text-danger")} />
         </button>
       ),
     }));

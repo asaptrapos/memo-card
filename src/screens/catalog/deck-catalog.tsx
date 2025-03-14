@@ -53,9 +53,7 @@ export const DeckCatalog = observer(() => {
       </Flex>
 
       <Flex gap={4}>
-        <div className="text-hint">
-          {t("translated_to")}
-        </div>
+        <div className="text-hint">{t("translated_to")}</div>
         <Select<DeckLanguage>
           value={store.filters.language.value}
           onChange={store.filters.language.onChange}

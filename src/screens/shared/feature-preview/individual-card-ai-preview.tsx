@@ -32,9 +32,7 @@ export const IndividualCardAiPreview = observer((props: Props) => {
               <Flex pb={16} justifyContent={"center"}>
                 {t("card_input_mode_type")}
               </Flex>
-              <div
-                className="p-[12px_10px] rounded-[12px] box-border w-full bg-secondary-bg"
-              >
+              <div className="p-[12px_10px] rounded-[12px] box-border w-full bg-secondary-bg">
                 {viewMode.preview_front}
               </div>
 

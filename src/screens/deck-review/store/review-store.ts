@@ -5,7 +5,7 @@ import { ReviewOutcome } from "../../../../functions/services/review-card.ts";
 import { screenStore } from "../../../store/screen-store.ts";
 import {
   DeckCardDbTypeWithType,
-  type DeckWithCardsWithReviewType
+  type DeckWithCardsWithReviewType,
 } from "../../../store/deck-list-store.ts";
 import {
   hapticImpact,
@@ -113,7 +113,9 @@ export class ReviewStore {
     this.initializeInitialCurrentNextCards();
   }
 
-  startCustomReview(decks: Array<[DeckCardDbTypeWithType, DeckWithCardsWithReviewType]>) {
+  startCustomReview(
+    decks: Array<[DeckCardDbTypeWithType, DeckWithCardsWithReviewType]>,
+  ) {
     if (!decks.length) {
       return;
     }

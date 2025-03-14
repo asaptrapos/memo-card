@@ -112,9 +112,7 @@ export const FolderForm = observer(() => {
                     return folderForm.decks.removeByIndex(i);
                   }}
                 >
-                  <i
-                    className="mdi mdi-delete-circle mdi-24px text-danger"
-                  />
+                  <i className="mdi mdi-delete-circle mdi-24px text-danger" />
                 </button>
               ),
             };
@@ -144,9 +142,7 @@ export const FolderForm = observer(() => {
                     });
                   }}
                 >
-                  <i
-                    className="mdi mdi-plus-circle mdi-24px text-button"
-                  />
+                  <i className="mdi mdi-plus-circle mdi-24px text-button" />
                 </button>
               ),
             };
@@ -161,18 +157,12 @@ export const FolderForm = observer(() => {
               return {
                 text: (
                   <Flex
-                    className={cn(
-                      userStore.isRtl && "text-right"
-                    )}
+                    className={cn(userStore.isRtl && "text-right")}
                     direction={"column"}
                     gap={4}
                   >
                     <div>{deck.name}</div>
-                    <div
-                      className="text-sm text-hint"
-                    >
-                      {deck.folder_title}
-                    </div>
+                    <div className="text-sm text-hint">{deck.folder_title}</div>
                   </Flex>
                 ),
               };

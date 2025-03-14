@@ -28,10 +28,7 @@ export const Dropdown = ({ items }: Props) => {
   }, []);
 
   return (
-    <div
-      ref={dropdownRef}
-      className="absolute inline-block"
-    >
+    <div ref={dropdownRef} className="absolute inline-block">
       <div
         onClick={toggleDropdown}
         className="dropdown-icon select-none cursor-pointer"
@@ -48,7 +45,7 @@ export const Dropdown = ({ items }: Props) => {
               transition={{ duration: 0.2 }}
               className={cn(
                 "dropdown-content block absolute bg-secondary-bg min-w-[160px] rounded-[12px] shadow z-10 text-text",
-                userStore.isRtl ? "left-0" : "right-0"
+                userStore.isRtl ? "left-0" : "right-0",
               )}
             >
               {items.map((item, i) => (
@@ -57,7 +54,7 @@ export const Dropdown = ({ items }: Props) => {
                   className={cn(
                     "p-[12px_16px] whitespace-nowrap hover:bg-button hover:text-button-text",
                     i === 0 && "rounded-t-[12px]",
-                    i === items.length - 1 && "rounded-b-[12px]"
+                    i === items.length - 1 && "rounded-b-[12px]",
                   )}
                   onClick={() => {
                     item.onClick();

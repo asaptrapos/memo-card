@@ -23,7 +23,7 @@ export const DeckFolderDescription = (props: Props) => {
         className={cn(
           "whitespace-pre-wrap max-h-[294px] overflow-y-hidden",
           isExpanded && "max-h-none",
-          wysiwygTableStyle
+          wysiwygTableStyle,
         )}
         dangerouslySetInnerHTML={{
           __html: sanitizeTextForCard(deck.description || ""),

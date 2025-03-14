@@ -18,13 +18,11 @@ export const Screen = observer((props: Props) => {
     <div
       className={cn(
         "flex flex-col gap-2 relative",
-        platform instanceof BrowserPlatform ? "mb-20" : "mb-4"
+        platform instanceof BrowserPlatform ? "mb-20" : "mb-4",
       )}
     >
       <div>
-        <div
-          className="absolute -top-1 left-0"
-        >
+        <div className="absolute -top-1 left-0">
           <BrowserBackButton />
         </div>
         <h3 className="text-center">{title}</h3>

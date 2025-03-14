@@ -24,10 +24,7 @@ export const DeckListItemWithDescription = observer((props: Props) => {
       className="flex flex-col gap-1 rounded-[12px] p-3 cursor-pointer bg-bg"
       onClick={onClick}
     >
-      <div
-        key={catalogItem.id}
-        className="text-text font-medium relative"
-      >
+      <div key={catalogItem.id} className="text-text font-medium relative">
         {catalogItem.deck_category?.logo ? (
           <DeckCategoryLogo
             logo={catalogItem.deck_category.logo}
@@ -37,9 +34,7 @@ export const DeckListItemWithDescription = observer((props: Props) => {
         {catalogItem.name}
         {titleRightSlot}
       </div>
-      <div
-        className="text-hint text-[14px]"
-      >
+      <div className="text-hint text-[14px]">
         <LinesEllipsis
           text={
             catalogItem.description

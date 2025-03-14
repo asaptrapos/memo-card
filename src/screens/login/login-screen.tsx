@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { LoginButton } from "@telegram-auth/react";
 import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
-import React, { useState } from "react"
+import React, { useState } from "react";
 import { t } from "../../translations/t.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
 import { TelegramPlatform } from "../../lib/platform/telegram/telegram-platform.ts";
@@ -38,12 +38,8 @@ export const LoginScreen = observer(() => {
   }
 
   return (
-    <div
-      className="flex max-w-[350px] justify-center items-center flex-col gap-3.5 bg-bg rounded shadow p-6 pb-12"
-    >
-      <div
-        className="bg-[#f4f4f4] rounded-full p-1"
-      >
+    <div className="flex max-w-[350px] justify-center items-center flex-col gap-3.5 bg-bg rounded shadow p-6 pb-12">
+      <div className="bg-[#f4f4f4] rounded-full p-1">
         <img
           className="w-[100px] translate-x-0.5 translate-y-1"
           src={"/img/logo.png"}
@@ -51,17 +47,11 @@ export const LoginScreen = observer(() => {
         />
       </div>
       <h2>MemoCard</h2>
-      <div
-        className="w-full flex gap-1 flex-col items-center"
-      >
+      <div className="w-full flex gap-1 flex-col items-center">
         <div className="w-[219px]">
           <Button
             disabled={isGoogleSignInInProgress}
-            icon={
-              <i
-                className="mdi mdi-google mdi-24px text-current"
-              />
-            }
+            icon={<i className="mdi mdi-google mdi-24px text-current" />}
             onClick={() => {
               setGoogleSignInHidden(false);
               setIsGoogleSignInInProgress(true);

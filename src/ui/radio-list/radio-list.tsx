@@ -24,14 +24,12 @@ export const RadioList = <T extends RadioItemId>(props: Props<T>) => {
             key={option.id}
             className={cn(
               "flex items-center gap-2 p-4 px-2 bg-bg rounded-xl cursor-pointer",
-              isSelected && "outline-2 outline-button"
+              isSelected && "outline-2 outline-button",
             )}
             onClick={() => onChange(option.id)}
           >
             {isSelected ? <RadioBoxFilled /> : <RadioBoxEmpty />}
-            <div className="w-full">
-              {option.title}
-            </div>
+            <div className="w-full">{option.title}</div>
           </div>
         );
       })}

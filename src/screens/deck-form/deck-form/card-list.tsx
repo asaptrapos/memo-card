@@ -58,7 +58,7 @@ export const CardList = observer(() => {
                   key={i}
                   className={cn(
                     "reset-button cursor-pointer text-base",
-                    isSelected && "text-link"
+                    isSelected && "text-link",
                   )}
                   onClick={() => {
                     deckFormStore.changeSort(item.fieldName);
@@ -84,9 +84,7 @@ export const CardList = observer(() => {
             <CardNumber number={i + 1} />
             {removeAllTags(cardForm.front.value)}
           </div>
-          <div className="text-hint">
-            {removeAllTags(cardForm.back.value)}
-          </div>
+          <div className="text-hint">{removeAllTags(cardForm.back.value)}</div>
         </div>
       ))}
       <Button

@@ -53,15 +53,15 @@ export const Card = observer((props: Props) => {
       className={cn(
         card.answerType === "remember"
           ? "absolute left-1/2 top-0 -ml-card-half h-card w-card box-border rounded-xl text-text flex items-center justify-center p-2.5 bg-bg overflow-x-auto"
-          : "text-text"
+          : "text-text",
       )}
     >
       {
         <div
           className={cn(
-            "absolute top-0", 
-            userStore.isRtl ? "left-[30px]" : "right-[30px]", 
-            "cursor-pointer"
+            "absolute top-0",
+            userStore.isRtl ? "left-[30px]" : "right-[30px]",
+            "cursor-pointer",
           )}
         >
           <Dropdown

@@ -127,14 +127,14 @@ export const translateHowMassCreationWorksText = () => {
     return {
       example1: "المثال 1",
       example2: "المثال 2",
-      description: "قم بإنشاء بطاقات متعددة في وقت واحد باستخدام الذكاء الاصطناعي",
+      description:
+        "قم بإنشاء بطاقات متعددة في وقت واحد باستخدام الذكاء الاصطناعي",
       promptExample1: "إنشاء 3 بطاقات بعواصم العالم",
       frontExample1: "بلد",
       backExample1: "عاصمة",
       resultExample1:
         "ستحصل على بطاقات مثل ألمانيا - برلين ، فرنسا - باريس ، كندا - أوتاوا",
-      promptExample2:
-        "إنشاء 2 بطاقة بكلمات إنجليزية وفرنسية تتعلق بالفواكه",
+      promptExample2: "إنشاء 2 بطاقة بكلمات إنجليزية وفرنسية تتعلق بالفواكه",
       frontExample2: "فاكهة بالإنجليزية",
       backExample2: "فاكهة بالفرنسية",
       resultExample2: "ستحصل على بطاقات مثل تفاحة - Pomme ، موزة - Banane",
@@ -151,8 +151,7 @@ export const translateHowMassCreationWorksText = () => {
       backExample1: "پایتخت",
       resultExample1:
         "کارت‌هایی مانند آلمان - برلین، فرانسه - پاریس، کانادا - اتاوا خواهید داشت",
-      promptExample2:
-        "ساخت 2 کارت با کلمات انگلیسی و فرانسوی مرتبط با میوه‌ها",
+      promptExample2: "ساخت 2 کارت با کلمات انگلیسی و فرانسوی مرتبط با میوه‌ها",
       frontExample2: "میوه به انگلیسی",
       backExample2: "میوه به فرانسوی",
       resultExample2: "کارت‌هایی مانند سیب - Pomme، موز - Banane خواهید داشت",

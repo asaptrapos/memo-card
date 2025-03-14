@@ -39,24 +39,27 @@ export const List = observer((props: Props) => {
               item.alignCenter ? "justify-center" : "justify-between",
               userStore.isRtl && "pr-3",
               "first:rounded-t-xl last:rounded-b-xl",
-              animateTap && "active:scale-[0.98] active:transition-transform active:duration-300 active:origin-center"
+              animateTap &&
+                "active:scale-[0.98] active:transition-transform active:duration-300 active:origin-center",
             )}
           >
-            <div className={cn(
-              "text-text flex items-center gap-2",
-              item.alignCenter ? "mr-3" : "w-full"
-            )}>
+            <div
+              className={cn(
+                "text-text flex items-center gap-2",
+                item.alignCenter ? "mr-3" : "w-full",
+              )}
+            >
               {item.icon}
-              <div className={cn(
-                "flex justify-between select-none items-center flex-1 py-3",
-                showDivider && "border-b border-divider"
-              )}>
+              <div
+                className={cn(
+                  "flex justify-between select-none items-center flex-1 py-3",
+                  showDivider && "border-b border-divider",
+                )}
+              >
                 <span className={item.isLinkColor ? "text-link" : undefined}>
                   {item.text}
                 </span>
-                {item.right && (
-                  <div className="mr-2.5">{item.right}</div>
-                )}
+                {item.right && <div className="mr-2.5">{item.right}</div>}
               </div>
             </div>
           </div>

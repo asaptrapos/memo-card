@@ -7,9 +7,7 @@ type Props = {
 export const CardRowLoading = (props: Props) => {
   const speed = props.speed || 2;
   return (
-    <div
-      className="flex justify-between cursor-pointer gap-1 rounded-[12px] p-[14px_12px] bg-bg"
-    >
+    <div className="flex justify-between cursor-pointer gap-1 rounded-[12px] p-[14px_12px] bg-bg">
       <ContentLoader
         speed={speed}
         width={"100%"}

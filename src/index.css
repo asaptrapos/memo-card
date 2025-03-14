@@ -4,6 +4,7 @@
 .reset-button {
   @apply p-0 border-0 outline-none cursor-pointer bg-transparent focus:outline-none;
   font-family: inherit;
+  font-size: 1rem;
 }
 
 .reset-label {

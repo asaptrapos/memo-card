@@ -237,9 +237,7 @@ export const PlansScreen = observer(() => {
                           )}
                         />
                       )}
-                      <div
-                        className="flex gap-1 text-hint ml-auto pr-2"
-                      >
+                      <div className="flex gap-1 text-hint ml-auto pr-2">
                         {store.method === PaymentMethodType.Usd ? "$" : null}
                         {calcPlanPriceForDuration(
                           store.method,

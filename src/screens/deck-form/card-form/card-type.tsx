@@ -89,8 +89,7 @@ export const CardType = observer((props: Props) => {
               })}
             >
               <span className="text-link">
-                <i className="mdi mdi-plus text-inherit" />{" "}
-                {t("add_answer")}
+                <i className="mdi mdi-plus text-inherit" /> {t("add_answer")}
               </span>
             </CardRow>
           </>
