@@ -29,6 +29,7 @@ export const BrowserMainButton = observer(() => {
       )}
     >
       <Button
+        className="shadow-lg"
         disabled={platform.isMainButtonLoading.value}
         onClick={mainButtonInfo.onClick}
       >

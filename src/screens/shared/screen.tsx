@@ -25,7 +25,7 @@ export const Screen = observer((props: Props) => {
         <div className="absolute -top-1 left-0">
           <BrowserBackButton />
         </div>
-        <h3 className="text-center">{title}</h3>
+        <h3 className="text-center text-lg">{title}</h3>
         {subtitle}
       </div>
       {children}

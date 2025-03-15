@@ -81,7 +81,7 @@ export const UserSettingsScreen = observer(() => {
         </HintTransparent>
       </div>
 
-      <div>
+      <div className="mt-1">
         <List
           items={[
             {
@@ -102,7 +102,7 @@ export const UserSettingsScreen = observer(() => {
         <HintTransparent>{t("freeze_hint")}</HintTransparent>
       </div>
 
-      <div>
+      <div className="mt-1">
         <List
           items={[
             {
@@ -155,7 +155,7 @@ export const UserSettingsScreen = observer(() => {
         </HintTransparent>
       </div>
 
-      <div>
+      <div className="mt-1">
         <List
           animateTap={false}
           items={[
@@ -182,7 +182,7 @@ export const UserSettingsScreen = observer(() => {
         <HintTransparent>{t("card_speak_description")}</HintTransparent>
       </div>
 
-      <div>
+      <div className="mt-1">
         <List
           items={[
             {
@@ -271,7 +271,7 @@ export const UserSettingsScreen = observer(() => {
       </div>
 
       {platform instanceof BrowserPlatform && (
-        <div>
+        <div className="mt-1">
           <List
             items={[
               {

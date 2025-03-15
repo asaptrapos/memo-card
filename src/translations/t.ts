@@ -3,6 +3,13 @@ import { userStore } from "../store/user-store.ts";
 import { LanguageShared } from "../../shared/language/language-shared.ts";
 
 const en = {
+  card_order: "Card order",
+  card_order_none: "No order",
+  card_order_none_hint: "Cards appear in the order they were added to decks",
+  card_order_review_first: "Review cards first",
+  card_order_review_first_hint: "Shows all cards to review before new cards",
+  card_order_random: "Random order",
+  card_order_random_hint: "Cards are displayed in a random order",
   logout: "Logout",
   error_contact_support:
     "An error occurred. Please contact support so we can help you.",
@@ -312,6 +319,13 @@ const en = {
 type Translation = typeof en;
 
 const ru: Translation = {
+  card_order: "Порядок карточек",
+  card_order_none: "Без сортировки",
+  card_order_none_hint: "Карточки отображаются в порядке добавления в колоды",
+  card_order_review_first: "Сначала для повторения",
+  card_order_review_first_hint: "Сначала карточки для повторения, потом новые",
+  card_order_random: "Случайный порядок",
+  card_order_random_hint: "Карточки отображаются в случайном порядке",
   settings_lang: "Язык",
   copy_code: "Скопировать код",
   copied: "Скопировано",
@@ -612,6 +626,13 @@ const ru: Translation = {
 };
 
 const es: Translation = {
+  card_order: "Orden de tarjetas",
+  card_order_none: "Sin orden",
+  card_order_none_hint: "Tarjetas en orden de adición",
+  card_order_review_first: "Repasar primero",
+  card_order_review_first_hint: "Primero tarjetas de repaso, luego nuevas",
+  card_order_random: "Orden aleatorio",
+  card_order_random_hint: "Tarjetas en orden aleatorio",
   review_all_due: "Para revisar",
   review_custom: "Seleccionar qué revisar",
   review_card_type: "Tipo de tarjeta",
@@ -915,6 +936,13 @@ const es: Translation = {
 };
 
 const ptBr: Translation = {
+  card_order: "Ordem dos cartões",
+  card_order_none: "Sem ordem",
+  card_order_none_hint: "Cartões na ordem de adição",
+  card_order_review_first: "Revisar primeiro",
+  card_order_review_first_hint: "Primeiro cartões de revisão, depois novos",
+  card_order_random: "Ordem aleatória",
+  card_order_random_hint: "Cartões em ordem aleatória",
   review_custom: "Selecionar o que revisar",
   review_all_due: "Para revisar",
   custom_new_cards: "Novas cartas",
@@ -1218,6 +1246,13 @@ const ptBr: Translation = {
 };
 
 const ar: Translation = {
+  card_order: "ترتيب البطاقات",
+  card_order_none: "بدون ترتيب",
+  card_order_none_hint: "البطاقات بترتيب إضافتها",
+  card_order_review_first: "المراجعة أولاً",
+  card_order_review_first_hint: "بطاقات المراجعة أولاً ثم الجديدة",
+  card_order_random: "ترتيب عشوائي",
+  card_order_random_hint: "ترتيب عشوائي",
   review_all_due: "للمراجعة",
   review_card_type: "اختر نوع البطاقة",
   custom_due_cards: "البطاقات المستحقة",
@@ -1521,6 +1556,13 @@ const ar: Translation = {
 };
 
 const fa: Translation = {
+  card_order: "ترتیب کارت‌ها",
+  card_order_none: "بدون ترتیب",
+  card_order_none_hint: "کارت‌ها به ترتیب اضافه شدن",
+  card_order_review_first: "ابتدا مرور",
+  card_order_review_first_hint: "ابتدا کارت‌های مرور، سپس جدید",
+  card_order_random: "ترتیب تصادفی",
+  card_order_random_hint: "کارت‌های تصادفی",
   review_all_due: "برای مرور",
   review_custom: "انتخاب موارد مرور",
   custom_new_cards: "کارت‌های جدید",
@@ -1830,6 +1872,13 @@ const fa: Translation = {
 };
 
 const uk: Translation = {
+  card_order: "Порядок карток",
+  card_order_none: "Без порядку",
+  card_order_none_hint: "Картки в порядку додавання",
+  card_order_review_first: "Спочатку повторення",
+  card_order_review_first_hint: "Спочатку картки для повторення, потім нові",
+  card_order_random: "Випадковий порядок",
+  card_order_random_hint: "Картки випадковим порядком",
   review_all_due: "Для повторення",
   review_custom: "Виберіть, що повторити",
   review_card_type: "Тип картки",

@@ -23,7 +23,7 @@ export const RadioList = <T extends RadioItemId>(props: Props<T>) => {
           <div
             key={option.id}
             className={cn(
-              "flex items-center gap-2 p-4 px-2 bg-bg rounded-xl cursor-pointer",
+              "flex items-center gap-2 p-4 px-3.5 bg-bg rounded-xl cursor-pointer",
               isSelected && "outline-2 outline-button",
             )}
             onClick={() => onChange(option.id)}

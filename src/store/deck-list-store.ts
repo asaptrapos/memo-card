@@ -104,7 +104,7 @@ export class DeckListStore {
   }
 
   get collapsedDeckLimit() {
-    return userStore.isPaid ? 6 : 3;
+    return 6;
   }
 
   get isCatalogItemLoading() {

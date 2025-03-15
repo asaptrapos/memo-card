@@ -14,6 +14,9 @@ import { cn } from "../../../ui/cn.ts";
 import { translateReviewCardsLabel } from "./translate-review-cards-label.ts";
 import { t } from "../../../translations/t.ts";
 import { hapticSelection } from "../../../lib/platform/telegram/haptics.ts";
+import { RadioList } from "../../../ui/radio-list/radio-list.tsx";
+import { Flex } from "../../../ui/flex.tsx";
+import { boolNarrow } from "../../../lib/typescript/bool-narrow.ts";
 
 type Props = {
   onClick: () => void;
@@ -149,6 +152,56 @@ export const RepeatCustomSelector = observer((props: Props) => {
           );
         })}
       </div>
+
+      <div>
+        <ListHeader text={t("card_order")} />
+        <RadioList
+          selectedId={store.sortingType.value}
+          options={[
+            {
+              id: "none" as const,
+              title: (
+                <Flex direction={"column"}>
+                  <div>{t("card_order_none")}</div>
+                  <div className="text-sm text-hint pr-4">
+                    {t("card_order_none_hint")}
+                  </div>
+                </Flex>
+              ),
+            },
+            store.form.reviewTypes.includes("new")
+              ? {
+                  id: "review-first" as const,
+                  title: (
+                    <Flex direction={"column"}>
+                      <div>{t("card_order_review_first")}</div>
+                      <div className="text-sm text-hint pr-4">
+                        {t("card_order_review_first_hint")}
+                      </div>
+                    </Flex>
+                  ),
+                }
+              : null,
+            {
+              id: "random" as const,
+              title: (
+                <Flex direction={"column"}>
+                  <div>{t("card_order_random")}</div>
+                  <div className="text-sm text-hint pr-4">
+                    {t("card_order_random_hint")}
+                  </div>
+                </Flex>
+              ),
+            },
+          ].filter(boolNarrow)}
+          onChange={(sortingType) => {
+            store.sortingType.onChange(sortingType);
+            hapticSelection();
+          }}
+        />
+      </div>
+
+
     </Screen>
   );
 });
