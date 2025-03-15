@@ -200,8 +200,6 @@ export const RepeatCustomSelector = observer((props: Props) => {
           }}
         />
       </div>
-
-
     </Screen>
   );
 });
