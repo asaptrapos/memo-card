@@ -18,7 +18,7 @@ export const Label = (props: Props) => {
 
   return (
     <Tag
-      className={cn("reset-label flex flex-col gap-1", fullWidth && "w-full")}
+      className={cn("reset-label flex flex-col gap-0.5", fullWidth && "w-full")}
     >
       <div
         className={cn("flex items-center", userStore.isRtl ? "mr-3" : "ml-3")}
