@@ -1,4 +1,4 @@
-import { translator } from "../../../translations/t.ts";
+import { translator } from "../../translations/t.ts";
 
 export const translateCardCount = (count: number) => {
   const language = translator.getLang();

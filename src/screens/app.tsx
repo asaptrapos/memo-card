@@ -43,7 +43,7 @@ import { CatalogSettingsScreenLazy } from "./catalog-settings/catalog-settings-s
 import { LoginScreen } from "./login/login-screen.tsx";
 import { TelegramPlatform } from "../lib/platform/telegram/telegram-platform.ts";
 import { cn } from "../ui/cn.ts";
-import { RepeatCustomScreen } from "./deck-review/repeat-custom/repeat-custom-screen.tsx";
+import { RepeatCustomScreen } from "./repeat-custom/repeat-custom-screen.tsx";
 
 export const App = observer(() => {
   useRestoreFullScreenExpand();

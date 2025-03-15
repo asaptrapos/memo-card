@@ -11,8 +11,9 @@ import { userStore } from "../../../store/user-store.ts";
 import { CustomCloseIcon } from "./icons/custom-close-icon.tsx";
 import { CustomPlayIcon } from "./icons/custom-play-icon.tsx";
 import { t } from "../../../translations/t.ts";
-import { translateCardCount } from "../../deck-review/repeat-custom/translate-card-count.ts";
+import { translateCardCount } from "../translate-card-count.ts";
 import { hapticImpact } from "../../../lib/platform/telegram/haptics.ts";
+import { MenuButton } from "./menu-button.tsx";
 
 export const ReviewButton = observer(() => {
   const [isMenuOpen] = useState(() => new BooleanToggle(false));
@@ -61,12 +62,11 @@ export const ReviewButton = observer(() => {
           </AnimatePresence>
         </button>
 
-        {/* Floating menu options */}
         <AnimatePresence>
           {isMenuOpen.value && (
             <m.div
               className={cn(
-                "absolute bottom-16 bg-bg rounded-lg shadow-lg border border-gray-300 overflow-hidden z-10",
+                "absolute bottom-16 bg-bg rounded-lg shadow-lg border border-secondary-bg overflow-hidden z-10",
                 {
                   "right-0": !userStore.isRtl,
                   "left-0": userStore.isRtl,
@@ -83,11 +83,10 @@ export const ReviewButton = observer(() => {
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.2 }}
             >
-              <button
+              <MenuButton
                 onClick={() => {
                   screenStore.go({ type: "reviewAll" });
                 }}
-                className="w-full whitespace-nowrap text-left text-base px-4 py-3 hover:bg-gray-100 flex items-center justify-between gap-3"
               >
                 <span className={"flex gap-2 items-center text-text"}>
                   <BookOpenIcon className="max-[360px]:hidden h-5 w-5 text-button" />
@@ -96,13 +95,12 @@ export const ReviewButton = observer(() => {
                 <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded-full text-sm">
                   {translateCardCount(deckListStore.cardsToReviewCount)}
                 </span>
-              </button>
-              <button
+              </MenuButton>
+              <MenuButton
                 onClick={() => {
                   screenStore.go({ type: "reviewCustom" });
                   hapticImpact("light");
                 }}
-                className="w-full whitespace-nowrap text-left text-base px-4 py-3 hover:bg-gray-100 flex justify-between items-center gap-3"
               >
                 <span className={"flex gap-2 items-center text-text"}>
                   <BlocksIcon className="max-[360px]:hidden h-5 w-5 text-button" />
@@ -111,7 +109,7 @@ export const ReviewButton = observer(() => {
                 <span className="bg-slate-100 text-slate-700 px-2 py-1 rounded-full text-sm">
                   {translateCardCount(deckListStore.cardsTotalCount)}
                 </span>
-              </button>
+              </MenuButton>
             </m.div>
           )}
         </AnimatePresence>

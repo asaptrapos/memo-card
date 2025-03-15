@@ -1,4 +1,4 @@
-import { translator } from "../../../translations/t.ts";
+import { translator } from "../../translations/t.ts";
 
 export const translateReviewCardsLabel = (count: number) => {
   const language = translator.getLang();

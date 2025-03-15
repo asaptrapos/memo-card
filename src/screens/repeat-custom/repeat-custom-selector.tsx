@@ -1,22 +1,22 @@
 import { observer } from "mobx-react-lite";
 import { RepeatCustomSelectorStore } from "./repeat-custom-selector-store.ts";
-import { useMainButton } from "../../../lib/platform/use-main-button.ts";
-import { Screen } from "../../shared/screen.tsx";
-import { List } from "../../../ui/list.tsx";
-import { CircleCheckbox } from "../../../ui/circle-checkbox.tsx";
-import { deckListStore } from "../../../store/deck-list-store.ts";
-import { DeckRowWithCardsToReview } from "../../shared/deck-row-with-cards-to-review/deck-row-with-cards-to-review.tsx";
-import { CardsToReview } from "../../../ui/cards-to-review.tsx";
-import { ListHeader } from "../../../ui/list-header.tsx";
-import { CardsToReviewCount } from "../../shared/deck-row-with-cards-to-review/cards-to-review-count.tsx";
-import { theme } from "../../../ui/theme.tsx";
-import { cn } from "../../../ui/cn.ts";
+import { useMainButton } from "../../lib/platform/use-main-button.ts";
+import { Screen } from "../shared/screen.tsx";
+import { List } from "../../ui/list.tsx";
+import { CircleCheckbox } from "../../ui/circle-checkbox.tsx";
+import { deckListStore } from "../../store/deck-list-store.ts";
+import { DeckRowWithCardsToReview } from "../shared/deck-row-with-cards-to-review/deck-row-with-cards-to-review.tsx";
+import { CardsToReview } from "../../ui/cards-to-review.tsx";
+import { ListHeader } from "../../ui/list-header.tsx";
+import { CardsToReviewCount } from "../shared/deck-row-with-cards-to-review/cards-to-review-count.tsx";
+import { theme } from "../../ui/theme.tsx";
+import { cn } from "../../ui/cn.ts";
 import { translateReviewCardsLabel } from "./translate-review-cards-label.ts";
-import { t } from "../../../translations/t.ts";
-import { hapticSelection } from "../../../lib/platform/telegram/haptics.ts";
-import { RadioList } from "../../../ui/radio-list/radio-list.tsx";
-import { Flex } from "../../../ui/flex.tsx";
-import { boolNarrow } from "../../../lib/typescript/bool-narrow.ts";
+import { t } from "../../translations/t.ts";
+import { hapticSelection } from "../../lib/platform/telegram/haptics.ts";
+import { RadioList } from "../../ui/radio-list/radio-list.tsx";
+import { Flex } from "../../ui/flex.tsx";
+import { boolNarrow } from "../../lib/typescript/bool-narrow.ts";
 
 type Props = {
   onClick: () => void;

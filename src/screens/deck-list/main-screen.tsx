@@ -27,7 +27,7 @@ import { RuEduVideoChoice } from "./ru-edu-video-choice.tsx";
 import { getTelegramChannelLink } from "../../../shared/links/get-telegram-channel-link.ts";
 import { getYouTubeChannelLink } from "../../../shared/links/get-youtube-channel-link.ts";
 import { userStore } from "../../store/user-store.ts";
-import { ReviewButton } from "./review-button/review-button.tsx";
+import { ReviewButton } from "../repeat-custom/review-button/review-button.tsx";
 
 export const MainScreen = observer(() => {
   const [deckFolderToggle] = useState(() => new BooleanToggle(false));

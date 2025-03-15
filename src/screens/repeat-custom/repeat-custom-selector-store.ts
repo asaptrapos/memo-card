@@ -1,15 +1,15 @@
-import { CardReviewType } from "../../../../functions/db/deck/get-cards-to-review-db.ts";
+import { CardReviewType } from "../../../functions/db/deck/get-cards-to-review-db.ts";
 import { makeAutoObservable } from "mobx";
 import {
   DeckCardDbTypeWithType,
   DeckListItem,
   deckListStore,
   DeckWithCardsWithReviewType,
-} from "../../../store/deck-list-store.ts";
+} from "../../store/deck-list-store.ts";
 import { makePersistable, stopPersisting } from "mobx-persist-store";
-import { storageAdapter } from "../../../lib/platform/storage-adapter.ts";
+import { storageAdapter } from "../../lib/platform/storage-adapter.ts";
 import { TextField } from "mobx-form-lite";
-import { persistableField } from "../../../lib/mobx-form-lite-persistable/persistable-field.ts";
+import { persistableField } from "../../lib/mobx-form-lite-persistable/persistable-field.ts";
 
 export type SortingType = "none" | "review-first" | "random";
 
