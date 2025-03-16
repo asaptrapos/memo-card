@@ -2,14 +2,13 @@ import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { screenStore } from "../../../store/screen-store.ts";
-import { BlocksIcon, BookOpenIcon } from "lucide-react";
+import { BlocksIcon, BookOpenIcon, CirclePlayIcon } from "lucide-react";
 import { LazyLoadFramerMotion } from "../../../lib/framer-motion/lazy-load-framer-motion.tsx";
 import { deckListStore } from "../../../store/deck-list-store.ts";
 import { BooleanToggle } from "mobx-form-lite";
 import { cn } from "../../../ui/cn.ts";
 import { userStore } from "../../../store/user-store.ts";
 import { CustomCloseIcon } from "./icons/custom-close-icon.tsx";
-import { CustomPlayIcon } from "./icons/custom-play-icon.tsx";
 import { t } from "../../../translations/t.ts";
 import { translateCardCount } from "../translate-card-count.ts";
 import { hapticImpact } from "../../../lib/platform/telegram/haptics.ts";
@@ -56,7 +55,12 @@ export const ReviewButton = observer(() => {
                 exit={{ opacity: 0, rotate: -90 }}
                 transition={{ duration: 0.2 }}
               >
-                <CustomPlayIcon />
+                <CirclePlayIcon
+                  style={{
+                    transform: "translate(0.25px, -0.5px)",
+                  }}
+                  className="h-8 w-8"
+                />
               </m.div>
             )}
           </AnimatePresence>
