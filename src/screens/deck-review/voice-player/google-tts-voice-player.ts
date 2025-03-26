@@ -20,14 +20,22 @@ const buildGoogleTtsUrl = (language: string, text: string) => {
   return `https://translate.google.com/translate_tts?ie=UTF-8&tl=${encodedLanguage}&client=tw-ob&q=${encodedText}`;
 };
 
+const audioCache = new Map<string, HTMLAudioElement>();
+
 export class GoogleTtsVoicePlayer implements VoicePlayer {
   private audio: HTMLAudioElement;
 
   constructor(language: string, text: string) {
     insertMetaNoReferrerToDom();
+    const cacheKey = `${language} ${text}`;
+    if (audioCache.has(cacheKey)) {
+      this.audio = audioCache.get(cacheKey)!;
+      return;
+    }
     this.audio = new Audio(buildGoogleTtsUrl(language, text));
     this.audio.preload = "none";
     callbackQueue.add(() => this.audio.load());
+    audioCache.set(cacheKey, this.audio);
   }
 
   play() {
