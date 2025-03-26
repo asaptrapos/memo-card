@@ -44,12 +44,18 @@ import { LoginScreen } from "./login/login-screen.tsx";
 import { TelegramPlatform } from "../lib/platform/telegram/telegram-platform.ts";
 import { cn } from "../ui/cn.ts";
 import { RepeatCustomScreen } from "./repeat-custom/repeat-custom-screen.tsx";
+import { useMount } from "../lib/react/use-mount.ts";
+import { featuresStore } from "../store/features-store.ts";
 
 export const App = observer(() => {
   useRestoreFullScreenExpand();
 
   useSettingsButton(() => {
     screenStore.goToUserSettings();
+  });
+
+  useMount(() => {
+    featuresStore.load();
   });
 
   if (deckListStore.isAppLoading) {

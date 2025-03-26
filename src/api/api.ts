@@ -93,6 +93,7 @@ import {
   CreateOrderRequest,
   CreateOrderResponse,
 } from "../../functions/stars-order-plan.ts";
+import { FeaturesResponse } from "../../functions/my-features.ts";
 
 export const healthRequest = () => {
   return request<HealthResponse>("/health");
@@ -128,6 +129,10 @@ export const updateCatalogItemSettingsRequest = (
     UpdateCatalogItemSettingsResponse,
     UpdateCatalogItemSettingsRequest
   >(`/update-catalog-item-settings`, "POST", body);
+};
+
+export const myFeaturesRequest = () => {
+  return request<FeaturesResponse>("/my-features");
 };
 
 export const addDeckToMineRequest = (body: AddDeckToMineRequest) => {

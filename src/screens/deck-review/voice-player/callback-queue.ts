@@ -25,6 +25,7 @@ export class CallbackQueue {
     this.isExecuting = true;
     const fn = this.queue.shift();
     if (fn) {
+      console.debug("CallbackQueue callback executed");
       fn();
     }
 

@@ -47,7 +47,9 @@ export const languageKeyToHuman = (str: string): string => {
   return camelCaseToHuman(str);
 };
 
-export const isSpeechSynthesisSupported = EasySpeech.detect();
+export const isSpeechSynthesisSupported =
+  "speechSynthesis" in window &&
+  typeof SpeechSynthesisUtterance !== "undefined";
 
 export const speak = async (text: string, language: SpeakLanguageEnum) => {
   if (!isSpeechSynthesisSupported) {
