@@ -159,6 +159,7 @@ const reviewCardsReviewMock = vi.hoisted(() => vi.fn());
 vi.mock("../../../api/api.ts", () => {
   return {
     reviewCardsRequest: reviewCardsReviewMock,
+    myFeaturesRequest: vi.fn(),
   };
 });
 
