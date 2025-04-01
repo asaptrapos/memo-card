@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { CardInputModeDb } from "../../../../functions/db/card-input-mode/schema.ts";
 import { BottomSheet } from "../../../ui/bottom-sheet/bottom-sheet.tsx";
 import { Flex } from "../../../ui/flex.tsx";
@@ -6,7 +5,6 @@ import { BottomSheetTitle } from "../../../ui/bottom-sheet/bottom-sheet-title.ts
 import { t } from "../../../translations/t.ts";
 import { CardSidePreview } from "../../card-input-mode/card-side-preview.tsx";
 import { UpgradeProBlock } from "./upgrade-pro-block.tsx";
-import React from "react";
 
 type Props = {
   isOpen: boolean;
@@ -15,7 +13,7 @@ type Props = {
   showUpgrade?: boolean;
 };
 
-export const IndividualCardAiPreview = observer((props: Props) => {
+export function IndividualCardAiPreview(props: Props) {
   const { isOpen, onClose, viewMode, showUpgrade } = props;
 
   return (
@@ -58,4 +56,4 @@ export const IndividualCardAiPreview = observer((props: Props) => {
       })()}
     </BottomSheet>
   );
-});
+}

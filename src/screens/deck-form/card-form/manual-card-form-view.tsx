@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { CardFormStoreInterface } from "../deck-form/store/card-form-store-interface.ts";
 import { useMainButton } from "../../../lib/platform/use-main-button.ts";
 import { t } from "../../../translations/t.ts";
@@ -32,7 +31,7 @@ type PreviewType = "ai_speech";
 
 type Props = { cardFormStore: CardFormStoreInterface };
 
-export const ManualCardFormView = observer((props: Props) => {
+export function ManualCardFormView(props: Props) {
   const { cardFormStore } = props;
   const { cardForm, markCardAsRemoved } = cardFormStore;
   const [previewType, setPreviewType] = useState<PreviewType | null>(null);
@@ -226,4 +225,4 @@ export const ManualCardFormView = observer((props: Props) => {
       />
     </Screen>
   );
-});
+}

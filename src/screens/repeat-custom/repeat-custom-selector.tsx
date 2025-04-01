@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { RepeatCustomSelectorStore } from "./repeat-custom-selector-store.ts";
 import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { Screen } from "../shared/screen.tsx";
@@ -23,9 +22,7 @@ type Props = {
   store: RepeatCustomSelectorStore;
 };
 
-export const RepeatCustomSelector = observer((props: Props) => {
-  const { onClick, store } = props;
-
+export function RepeatCustomSelector({ onClick, store }: Props) {
   useMainButton(
     () => translateReviewCardsLabel(store.customCardsToReviewCount),
     () => {
@@ -202,4 +199,4 @@ export const RepeatCustomSelector = observer((props: Props) => {
       </div>
     </Screen>
   );
-});
+}

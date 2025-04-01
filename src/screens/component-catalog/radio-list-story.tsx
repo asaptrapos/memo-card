@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RadioList } from "../../ui/radio-list/radio-list.tsx";
 import { Flex } from "../../ui/flex.tsx";
 
-export const RadioListStory = () => {
+export function RadioListStory() {
   const [selectedId, setSelectedId] = useState<"1" | "2">("1");
   const [inputModeId, setInputModeId] = useState<null | "1" | "2">(null);
 
@@ -28,4 +28,4 @@ export const RadioListStory = () => {
       />
     </Flex>
   );
-};
+}

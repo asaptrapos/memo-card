@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { LazyLoadFramerMotion } from "../lib/framer-motion/lazy-load-framer-motion.tsx";
 import { AnimatePresence, m } from "framer-motion";
 import { userStore } from "../store/user-store.ts";
@@ -8,7 +8,7 @@ type Props = {
   items: Array<{ text: ReactNode; onClick: () => void }>;
 };
 
-export const Dropdown = ({ items }: Props) => {
+export function Dropdown({ items }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -70,4 +70,4 @@ export const Dropdown = ({ items }: Props) => {
       </LazyLoadFramerMotion>
     </div>
   );
-};
+}

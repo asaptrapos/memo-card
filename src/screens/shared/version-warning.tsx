@@ -2,7 +2,7 @@ import { t } from "../../translations/t.ts";
 import { platform } from "../../lib/platform/platform.ts";
 import { TelegramPlatform } from "../../lib/platform/telegram/telegram-platform.ts";
 
-export const VersionWarning = () => {
+export function VersionWarning() {
   if (!(platform instanceof TelegramPlatform)) {
     return null;
   }
@@ -19,4 +19,4 @@ export const VersionWarning = () => {
       </div>
     </div>
   );
-};
+}

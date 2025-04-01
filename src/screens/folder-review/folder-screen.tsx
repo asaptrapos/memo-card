@@ -1,11 +1,9 @@
-import { observer } from "mobx-react-lite";
 import { useReviewStore } from "../deck-review/store/review-store-context.tsx";
 import { DeckFinished } from "../deck-review/deck-finished.tsx";
 import { Review } from "../deck-review/review.tsx";
-import React from "react";
 import { FolderPreviewWrapper } from "./folder-preview-wrapper.tsx";
 
-export const FolderScreen = observer(() => {
+export function FolderScreen() {
   const reviewStore = useReviewStore();
 
   if (reviewStore.isFinished) {
@@ -15,4 +13,4 @@ export const FolderScreen = observer(() => {
   }
 
   return <FolderPreviewWrapper />;
-});
+}

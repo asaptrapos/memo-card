@@ -3,7 +3,7 @@ import { ButtonSideAligned } from "../../../ui/button-side-aligned.tsx";
 import { screenStore } from "../../../store/screen-store.ts";
 import { t } from "../../../translations/t.ts";
 
-export const MoreFeaturesButton = () => {
+export function MoreFeaturesButton() {
   return userStore.isPaid ? null : (
     <ButtonSideAligned
       icon={"mdi-star-circle mdi-24px"}
@@ -15,4 +15,4 @@ export const MoreFeaturesButton = () => {
       {t("more_features")}
     </ButtonSideAligned>
   );
-};
+}

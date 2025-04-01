@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { Screen } from "../../shared/screen.tsx";
 import { Label } from "../../../ui/label.tsx";
 import { t } from "../../../translations/t.ts";
@@ -16,7 +15,7 @@ type Props = {
   onBack: () => void;
 };
 
-export const CardExample = observer((props: Props) => {
+export function CardExample(props: Props) {
   const isCardFormattingOn = userStore.isCardFormattingOn.value;
   const { cardForm, onBack } = props;
 
@@ -44,4 +43,4 @@ export const CardExample = observer((props: Props) => {
       </Label>
     </Screen>
   );
-});
+}

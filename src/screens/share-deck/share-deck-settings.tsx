@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
 import { useMainButton } from "../../lib/platform/use-main-button.ts";
@@ -9,11 +8,10 @@ import { RadioSwitcher } from "../../ui/radio-switcher.tsx";
 import { HintTransparent } from "../../ui/hint-transparent.tsx";
 import { Label } from "../../ui/label.tsx";
 import { Input } from "../../ui/input.tsx";
-import React from "react";
 import { useShareDeckStore } from "./store/share-deck-store-context.tsx";
 import { Screen } from "../shared/screen.tsx";
 
-export const ShareDeckSettings = observer(() => {
+export function ShareDeckSettings() {
   const store = useShareDeckStore();
 
   useBackButton(() => {
@@ -73,4 +71,4 @@ export const ShareDeckSettings = observer(() => {
       </CardRow>
     </Screen>
   );
-});
+}

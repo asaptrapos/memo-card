@@ -1,6 +1,6 @@
 import { sanitizeTextForCard } from "../../../lib/sanitize-html/sanitize-text-for-card.ts";
 
-export const CardFieldView = (props: { text: string }) => {
+export function CardFieldView(props: { text: string }) {
   const { text } = props;
   return (
     <span
@@ -9,4 +9,4 @@ export const CardFieldView = (props: { text: string }) => {
       }}
     />
   );
-};
+}

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { m } from "framer-motion";
 import { LazyLoadFramerMotion } from "../../lib/framer-motion/lazy-load-framer-motion.tsx";
 
@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const DeckFinishedModal = (props: Props) => {
+export function DeckFinishedModal(props: Props) {
   const { children } = props;
 
   const modal = {
@@ -34,4 +34,4 @@ export const DeckFinishedModal = (props: Props) => {
       </m.div>
     </LazyLoadFramerMotion>
   );
-};
+}

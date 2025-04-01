@@ -38,7 +38,7 @@ type Props = {
   height: number;
 };
 
-export const PieChartCanvas = ({ data, width, height }: Props) => {
+export function PieChartCanvas({ data, width, height }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -82,4 +82,4 @@ export const PieChartCanvas = ({ data, width, height }: Props) => {
   }, [data, height, width]);
 
   return <canvas ref={canvasRef} width={width} height={height} />;
-};
+}

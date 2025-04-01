@@ -1,9 +1,8 @@
-import { observer } from "mobx-react-lite";
 import { userStore } from "../../../store/user-store.ts";
 import { ChevronIcon } from "../../../ui/chevron-icon.tsx";
 import { t } from "../../../translations/t.ts";
 
-export const FormattingSwitcher = observer(() => {
+export function FormattingSwitcher() {
   return (
     <button
       tabIndex={-1}
@@ -26,4 +25,4 @@ export const FormattingSwitcher = observer(() => {
       {t("formatting")}
     </button>
   );
-});
+}

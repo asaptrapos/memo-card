@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { Screen } from "../../shared/screen.tsx";
 import { t } from "../../../translations/t.ts";
 import { CardRow } from "../../../ui/card-row.tsx";
@@ -17,12 +16,8 @@ import { useMainButton } from "../../../lib/platform/use-main-button.ts";
 import { useDeckFormStore } from "./store/deck-form-store-context.tsx";
 import { useProgress } from "../../../lib/platform/use-progress.tsx";
 
-export const SpeakingCards = observer(() => {
+export function SpeakingCards() {
   const deckFormStore = useDeckFormStore();
-
-  if (!deckFormStore.deckForm) {
-    return null;
-  }
 
   useBackButton(() => {
     deckFormStore.quitSpeakingCardsScreen();
@@ -33,6 +28,10 @@ export const SpeakingCards = observer(() => {
   });
 
   useProgress(() => deckFormStore.isSending);
+
+  if (!deckFormStore.deckForm) {
+    return null;
+  }
 
   return (
     <Screen title={t("speaking_cards")}>
@@ -78,4 +77,4 @@ export const SpeakingCards = observer(() => {
       ) : null}
     </Screen>
   );
-});
+}

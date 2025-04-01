@@ -1,6 +1,4 @@
-import React from "react";
-
-export const ProIcon = () => {
+export function ProIcon() {
   return (
     <div
       className="rounded-lg w-[30px] h-[30px] flex flex-col justify-center items-center text-white"
@@ -11,4 +9,4 @@ export const ProIcon = () => {
       <i className="mdi mdi-star text-inherit" />
     </div>
   );
-};
+}

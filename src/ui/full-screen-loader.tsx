@@ -5,7 +5,7 @@ type Props = {
   backgroundColor?: string;
 };
 
-export const FullScreenLoader = (props: Props) => {
+export function FullScreenLoader(props: Props) {
   const height = props.height ?? "100vh";
   const backgroundColor = props.backgroundColor ?? theme.secondaryBgColor;
 
@@ -17,8 +17,8 @@ export const FullScreenLoader = (props: Props) => {
       <i className="mdi mdi-loading mdi-spin mdi-48px" />
     </div>
   );
-};
+}
 
-export const ScreenLoader = () => {
+export function ScreenLoader() {
   return <FullScreenLoader height="calc(100vh - 90px)" />;
-};
+}

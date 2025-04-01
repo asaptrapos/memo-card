@@ -1,8 +1,7 @@
-import React from "react";
 import { notifyError, notifySuccess } from "../shared/snackbar/snackbar.tsx";
 import { SnackbarProviderWrapper } from "../shared/snackbar/snackbar-provider-wrapper.tsx";
 
-export const SnackbarStory = () => {
+export function SnackbarStory() {
   return (
     <div>
       <SnackbarProviderWrapper />
@@ -27,4 +26,4 @@ export const SnackbarStory = () => {
       </button>
     </div>
   );
-};
+}

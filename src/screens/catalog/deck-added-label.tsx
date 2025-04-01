@@ -1,7 +1,7 @@
 import { t } from "../../translations/t.ts";
 import { cn } from "../../ui/cn.ts";
 
-export const DeckAddedLabel = () => {
+export function DeckAddedLabel() {
   return (
     <div
       title={t("deck_has_been_added")}
@@ -10,4 +10,4 @@ export const DeckAddedLabel = () => {
       <i className={cn("mdi mdi-check-circle", "text-link")} />
     </div>
   );
-};
+}

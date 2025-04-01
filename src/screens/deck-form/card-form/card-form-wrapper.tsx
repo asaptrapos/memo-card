@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { AnswerFormView } from "./answer-form-view.tsx";
 import { CardFormStoreInterface } from "../deck-form/store/card-form-store-interface.ts";
 import { CardPreview } from "./card-preview.tsx";
@@ -12,7 +11,7 @@ type Props = {
   cardFormStore: CardFormStoreInterface;
 };
 
-export const CardFormWrapper = observer((props: Props) => {
+export function CardFormWrapper(props: Props) {
   const { cardFormStore } = props;
   const { cardForm } = cardFormStore;
   assert(cardForm, "Card should not be empty before editing");
@@ -58,4 +57,4 @@ export const CardFormWrapper = observer((props: Props) => {
   }
 
   return <CardFormView cardFormStore={cardFormStore} />;
-});
+}

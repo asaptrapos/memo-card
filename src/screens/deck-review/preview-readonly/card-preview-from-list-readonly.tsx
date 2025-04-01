@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { createMockCardPreviewForm } from "../../deck-form/card-form/create-mock-card-preview-form.ts";
 import { CardPreview } from "../../deck-form/card-form/card-preview.tsx";
@@ -11,7 +10,7 @@ type Props = {
   onBack: () => void;
 };
 
-export const CardPreviewFromListReadonly = observer((props: Props) => {
+export function CardPreviewFromListReadonly(props: Props) {
   const { card, onBack, deck } = props;
   const [form] = useState(createMockCardPreviewForm(card, deck));
 
@@ -23,4 +22,4 @@ export const CardPreviewFromListReadonly = observer((props: Props) => {
       }}
     />
   );
-});
+}

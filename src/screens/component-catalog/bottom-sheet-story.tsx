@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BottomSheet } from "../../ui/bottom-sheet/bottom-sheet.tsx";
 
-export const BottomSheetStory = () => {
+export function BottomSheetStory() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -29,4 +29,4 @@ export const BottomSheetStory = () => {
       </BottomSheet>
     </div>
   );
-};
+}

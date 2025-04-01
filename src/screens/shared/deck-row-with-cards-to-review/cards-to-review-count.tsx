@@ -1,5 +1,3 @@
-import React from "react";
-import { observer } from "mobx-react-lite";
 import { cn } from "../../../ui/cn.ts";
 
 type Props = {
@@ -8,7 +6,7 @@ type Props = {
   isDisabled?: boolean;
 };
 
-export const CardsToReviewCount = observer((props: Props) => {
+export function CardsToReviewCount(props: Props) {
   const { items, color, isDisabled } = props;
   const count = Array.isArray(items) ? items.length : items;
 
@@ -22,4 +20,4 @@ export const CardsToReviewCount = observer((props: Props) => {
       {count}
     </div>
   ) : null;
-});
+}

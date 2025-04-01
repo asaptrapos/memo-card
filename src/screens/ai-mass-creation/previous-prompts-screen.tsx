@@ -1,4 +1,4 @@
-import { observer, useLocalObservable } from "mobx-react-lite";
+import { useLocalObservable } from "mobx-react-lite";
 import { Screen } from "../shared/screen.tsx";
 import { useAiMassCreationStore } from "./store/ai-mass-creation-store-provider.tsx";
 import { useMount } from "../../lib/react/use-mount.ts";
@@ -12,7 +12,7 @@ import { t } from "../../translations/t.ts";
 import { EmptyState } from "../../ui/empty-state.tsx";
 import { cn } from "../../ui/cn.ts";
 
-export const PreviousPromptsScreen = observer(() => {
+export function PreviousPromptsScreen() {
   const store = useAiMassCreationStore();
   const localStore = useLocalObservable(() => ({
     selectedIndex: new TextField<number | null>(null),
@@ -90,4 +90,4 @@ export const PreviousPromptsScreen = observer(() => {
       </Flex>
     </Screen>
   );
-});
+}

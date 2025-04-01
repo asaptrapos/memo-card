@@ -12,7 +12,7 @@ type Props = {
   column?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button = (props: Props) => {
+export function Button(props: Props) {
   const {
     className,
     mainColor = theme.buttonColorComputed,
@@ -90,4 +90,4 @@ export const Button = (props: Props) => {
       {children}
     </button>
   );
-};
+}

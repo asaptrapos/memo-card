@@ -1,9 +1,8 @@
-import { observer } from "mobx-react-lite";
 import { Screen } from "../shared/screen.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
 import { Flex } from "../../ui/flex.tsx";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { Hint } from "../../ui/hint.tsx";
 import { useMount } from "../../lib/react/use-mount.ts";
@@ -65,7 +64,7 @@ const planItems: Array<{
   { iconColor: theme.icons.sea, iconText: "mdi-link-variant" },
 ];
 
-export const PlansScreen = observer(() => {
+export function PlansScreen() {
   const [store] = useState(() => new PlansScreenStore());
   useBackButton(() => {
     screenStore.back();
@@ -287,4 +286,4 @@ export const PlansScreen = observer(() => {
       />
     </Screen>
   );
-});
+}

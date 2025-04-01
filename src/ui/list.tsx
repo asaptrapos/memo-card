@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 import { userStore } from "../store/user-store.ts";
 import { cn } from "./cn";
@@ -17,7 +16,7 @@ type Props = {
   animateTap?: boolean;
 };
 
-export const List = observer((props: Props) => {
+export function List(props: Props) {
   const { items } = props;
   const animateTap =
     items.length > 1
@@ -67,4 +66,4 @@ export const List = observer((props: Props) => {
       })}
     </div>
   );
-});
+}

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { FullScreenLoader } from "../../ui/full-screen-loader.tsx";
 
 const CatalogSettings = lazy(() =>
@@ -7,10 +7,10 @@ const CatalogSettings = lazy(() =>
   })),
 );
 
-export const CatalogSettingsScreenLazy = () => {
+export function CatalogSettingsScreenLazy() {
   return (
     <Suspense fallback={<FullScreenLoader />}>
       <CatalogSettings />
     </Suspense>
   );
-};
+}

@@ -1,9 +1,7 @@
 import { translateHowMassCreationWorksText } from "../../ai-mass-creation/translations.ts";
-import { observer } from "mobx-react-lite";
 import { BottomSheet } from "../../../ui/bottom-sheet/bottom-sheet.tsx";
 import { BottomSheetTitle } from "../../../ui/bottom-sheet/bottom-sheet-title.tsx";
 import { t } from "../../../translations/t.ts";
-import React from "react";
 import { UpgradeProBlock } from "./upgrade-pro-block.tsx";
 
 type Props = {
@@ -12,7 +10,7 @@ type Props = {
   showUpgrade?: boolean;
 };
 
-export const MassCreationPreview = observer((props: Props) => {
+export function MassCreationPreview(props: Props) {
   const { onClose, isOpen, showUpgrade } = props;
   const translations = translateHowMassCreationWorksText();
 
@@ -56,4 +54,4 @@ export const MassCreationPreview = observer((props: Props) => {
       {showUpgrade && <UpgradeProBlock />}
     </BottomSheet>
   );
-});
+}

@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { deckListStore } from "../../store/deck-list-store.ts";
 import { useReviewStore } from "./store/review-store-context.tsx";
 import { screenStore } from "../../store/screen-store.ts";
@@ -26,7 +25,7 @@ import { cn } from "../../ui/cn.ts";
 
 type Props = { onCardListPreview: () => void };
 
-export const DeckPreview = observer((props: Props) => {
+export function DeckPreview(props: Props) {
   const reviewStore = useReviewStore();
 
   useBackButton(() => {
@@ -221,4 +220,4 @@ export const DeckPreview = observer((props: Props) => {
       ) : null}
     </Flex>
   );
-});
+}

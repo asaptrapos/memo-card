@@ -2,7 +2,7 @@ import { closeSnackbar, SnackbarKey } from "notistack";
 
 type Props = { snackbarId: SnackbarKey };
 
-export const ClearSnackbar = (props: Props) => {
+export function ClearSnackbar(props: Props) {
   const { snackbarId } = props;
   return (
     <button
@@ -14,4 +14,4 @@ export const ClearSnackbar = (props: Props) => {
       <i className="mdi mdi-close-circle-outline mdi-24px text-button" />
     </button>
   );
-};
+}

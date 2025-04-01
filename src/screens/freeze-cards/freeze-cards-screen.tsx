@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { Screen } from "../shared/screen.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
@@ -18,7 +17,7 @@ import { List } from "../../ui/list.tsx";
 import { BottomSheet } from "../../ui/bottom-sheet/bottom-sheet.tsx";
 import { BottomSheetTitle } from "../../ui/bottom-sheet/bottom-sheet-title.tsx";
 
-export const FreezeCardsScreen = observer(() => {
+export function FreezeCardsScreen() {
   const [store] = useState(() => new FreezeCardsStore());
   const { form } = store;
 
@@ -98,4 +97,4 @@ export const FreezeCardsScreen = observer(() => {
       </BottomSheet>
     </Screen>
   );
-});
+}

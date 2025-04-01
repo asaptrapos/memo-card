@@ -2,7 +2,7 @@ type Props = {
   error: string;
 };
 
-export const ValidationError = (props: Props) => {
+export function ValidationError(props: Props) {
   const { error } = props;
   return <div className="text-[14px] text-danger ml-3">{error}</div>;
-};
+}

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { Component, components } from "./components.tsx";
 
-export const ComponentCatalogPage = () => {
+export function ComponentCatalogPage() {
   const [selectedComponent, setSelectedComponent] = useState<Component | null>(
     null,
   );
@@ -30,4 +30,4 @@ export const ComponentCatalogPage = () => {
       </ul>
     </Screen>
   );
-};
+}

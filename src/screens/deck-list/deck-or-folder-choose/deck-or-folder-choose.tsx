@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { screenStore } from "../../../store/screen-store.ts";
 import { t } from "../../../translations/t.ts";
 import { Flex } from "../../../ui/flex.tsx";
@@ -8,7 +7,7 @@ import { BooleanToggle } from "mobx-form-lite";
 
 type Props = { toggle: BooleanToggle };
 
-export const DeckOrFolderChoose = observer((props: Props) => {
+export function DeckOrFolderChoose(props: Props) {
   const { toggle } = props;
 
   return (
@@ -43,4 +42,4 @@ export const DeckOrFolderChoose = observer((props: Props) => {
       </Flex>
     </BottomSheet>
   );
-});
+}

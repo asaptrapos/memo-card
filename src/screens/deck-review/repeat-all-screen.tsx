@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { useReviewStore } from "./store/review-store-context.tsx";
 import { useMount } from "../../lib/react/use-mount.ts";
 import { deckListStore } from "../../store/deck-list-store.ts";
@@ -11,7 +10,7 @@ import { Flex } from "../../ui/flex.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
 
-export const RepeatAllScreen = observer(() => {
+export function RepeatAllScreen() {
   const reviewStore = useReviewStore();
 
   useMount(() => {
@@ -43,4 +42,4 @@ export const RepeatAllScreen = observer(() => {
       ) : null}
     </Flex>
   );
-});
+}

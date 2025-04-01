@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { t } from "../../translations/t.ts";
@@ -21,7 +20,7 @@ import { enumValues } from "../../lib/typescript/enum-values.ts";
 import { useProgress } from "../../lib/platform/use-progress.tsx";
 import { assert } from "../../../shared/typescript/assert.ts";
 
-export const CatalogSettingsScreen = observer(() => {
+export function CatalogSettingsScreen() {
   const [catalogSettingsStore] = useState(() => new CatalogSettingsStore());
   const screen = screenStore.screen;
   assert(screen.type === "catalogSettings");
@@ -144,4 +143,4 @@ export const CatalogSettingsScreen = observer(() => {
       </div>
     </Screen>
   );
-});
+}

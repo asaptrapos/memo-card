@@ -2,7 +2,7 @@ import { UpgradeButton } from "../../../ui/upgrade-button.tsx";
 import { t } from "../../../translations/t.ts";
 import { screenStore } from "../../../store/screen-store.ts";
 
-export const UpgradeProBlock = () => {
+export function UpgradeProBlock() {
   return (
     <div className="mt-9 self-stretch">
       <UpgradeButton
@@ -14,4 +14,4 @@ export const UpgradeProBlock = () => {
       </UpgradeButton>
     </div>
   );
-};
+}

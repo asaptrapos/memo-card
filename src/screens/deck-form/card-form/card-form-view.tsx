@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { CardFormStoreInterface } from "../deck-form/store/card-form-store-interface.ts";
 import { GeneratedCardFormView } from "./generated-card-form-view.tsx";
 import { ManualCardFormView } from "./manual-card-form-view.tsx";
@@ -6,7 +5,7 @@ import { assert } from "../../../../shared/typescript/assert.ts";
 
 type Props = { cardFormStore: CardFormStoreInterface };
 
-export const CardFormView = observer((props: Props) => {
+export function CardFormView(props: Props) {
   const { cardFormStore } = props;
   const { cardForm } = cardFormStore;
 
@@ -20,4 +19,4 @@ export const CardFormView = observer((props: Props) => {
     return <ManualCardFormView {...props} />;
   }
   return <GeneratedCardFormView {...props} />;
-});
+}

@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { useReviewStore } from "../deck-review/store/review-store-context.tsx";
 import { deckListStore } from "../../store/deck-list-store.ts";
 import { DeckFinished } from "../deck-review/deck-finished.tsx";
@@ -16,7 +15,7 @@ import { RepeatCustomSelector } from "./repeat-custom-selector.tsx";
 import { RepeatCustomSelectorStore } from "./repeat-custom-selector-store.ts";
 import { useMount } from "../../lib/react/use-mount.ts";
 
-export const RepeatCustomScreen = observer(() => {
+export function RepeatCustomScreen() {
   const reviewStore = useReviewStore();
   const [repeatCustomSelectorStore] = useState(
     () => new RepeatCustomSelectorStore(),
@@ -64,4 +63,4 @@ export const RepeatCustomScreen = observer(() => {
       ) : null}
     </Flex>
   );
-});
+}

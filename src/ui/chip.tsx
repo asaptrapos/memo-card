@@ -8,7 +8,7 @@ type Props = {
   fullWidth?: boolean;
 };
 
-export const Chip = (props: Props) => {
+export function Chip(props: Props) {
   const { children, isSelected, onClick, fullWidth } = props;
   return (
     <div
@@ -22,4 +22,4 @@ export const Chip = (props: Props) => {
       {children}
     </div>
   );
-};
+}

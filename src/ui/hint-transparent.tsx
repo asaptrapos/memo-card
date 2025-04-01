@@ -4,7 +4,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const HintTransparent = (props: Props) => {
+export function HintTransparent(props: Props) {
   const { children } = props;
 
   return (
@@ -12,4 +12,4 @@ export const HintTransparent = (props: Props) => {
       {children}
     </div>
   );
-};
+}

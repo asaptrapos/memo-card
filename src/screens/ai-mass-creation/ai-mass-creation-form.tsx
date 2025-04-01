@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { useAiMassCreationStore } from "./store/ai-mass-creation-store-provider.tsx";
 import { Screen } from "../shared/screen.tsx";
 import { Flex } from "../../ui/flex.tsx";
@@ -14,7 +13,7 @@ import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
 import { MassCreationPreview } from "../shared/feature-preview/mass-creation-preview.tsx";
 
-export const AiMassCreationForm = observer(() => {
+export function AiMassCreationForm() {
   const store = useAiMassCreationStore();
   const { promptForm } = store;
 
@@ -89,4 +88,4 @@ export const AiMassCreationForm = observer(() => {
       />
     </Screen>
   );
-});
+}

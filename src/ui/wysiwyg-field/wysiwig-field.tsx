@@ -1,5 +1,4 @@
 import "./wysiwyg-field.css";
-import { observer } from "mobx-react-lite";
 import {
   createButton,
   Editor,
@@ -7,7 +6,7 @@ import {
   Toolbar,
 } from "react-simple-wysiwyg";
 import { theme } from "../theme.tsx";
-import React, { useState } from "react";
+import { useState } from "react";
 import { TextField } from "mobx-form-lite";
 import { ValidationError } from "../validation-error.tsx";
 import { ColorIcon } from "./color-icon.tsx";
@@ -92,7 +91,7 @@ type Props = {
   field: TextField<string>;
 };
 
-export const WysiwygField = observer((props: Props) => {
+export function WysiwygField(props: Props) {
   const { field } = props;
   const { onChange, value, isTouched, error, onBlur } = field;
   const hasError = isTouched && error;
@@ -150,4 +149,4 @@ export const WysiwygField = observer((props: Props) => {
       {hasError ? <ValidationError error={error} /> : null}
     </EditorProvider>
   );
-});
+}

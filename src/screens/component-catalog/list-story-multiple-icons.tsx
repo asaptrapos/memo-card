@@ -3,9 +3,8 @@ import { reset } from "../../ui/reset.ts";
 import { List } from "../../ui/list.tsx";
 import { Flex } from "../../ui/flex.tsx";
 import { cn } from "../../ui/cn.ts";
-import { observer } from "mobx-react-lite";
 
-export const ListStoryMultipleIcons = observer(() => {
+export function ListStoryMultipleIcons() {
   return (
     <List
       animateTap={false}
@@ -53,4 +52,4 @@ export const ListStoryMultipleIcons = observer(() => {
         }))}
     />
   );
-});
+}

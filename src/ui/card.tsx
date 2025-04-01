@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { ReactNode } from "react";
 
 type Props = {
@@ -6,7 +5,7 @@ type Props = {
   onClick?: () => void;
 };
 
-export const Card = observer((props: Props) => {
+export function Card(props: Props) {
   return (
     <label
       onClick={props.onClick}
@@ -15,4 +14,4 @@ export const Card = observer((props: Props) => {
       {props.children}
     </label>
   );
-});
+}

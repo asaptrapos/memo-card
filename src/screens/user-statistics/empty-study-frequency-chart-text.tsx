@@ -1,6 +1,6 @@
 import { t } from "../../translations/t.ts";
 
-export const EmptyStudyFrequencyChartText = () => {
+export function EmptyStudyFrequencyChartText() {
   return (
     <div
       style={{ transform: "translate(-50%, -50%)" }}
@@ -9,4 +9,4 @@ export const EmptyStudyFrequencyChartText = () => {
       {t("user_stats_empty_text")}
     </div>
   );
-};
+}

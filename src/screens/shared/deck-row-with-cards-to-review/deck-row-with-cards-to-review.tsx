@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { theme } from "../../../ui/theme.tsx";
 import { DeckCardDbTypeWithType } from "../../../store/deck-list-store.ts";
 import { CardsToReviewCount } from "./cards-to-review-count.tsx";
@@ -15,7 +14,7 @@ type Props = {
   onClick: () => void;
 };
 
-export const DeckRowWithCardsToReview = observer((props: Props) => {
+export function DeckRowWithCardsToReview(props: Props) {
   const { item, onClick, slotLeft } = props;
 
   return (
@@ -39,4 +38,4 @@ export const DeckRowWithCardsToReview = observer((props: Props) => {
       </Flex>
     </div>
   );
-});
+}

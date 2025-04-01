@@ -1,6 +1,6 @@
 type Props = { src: string };
 
-export const AudioPlayer = (props: Props) => {
+export function AudioPlayer(props: Props) {
   const { src } = props;
   return (
     <audio
@@ -10,4 +10,4 @@ export const AudioPlayer = (props: Props) => {
       controlsList="nodownload"
     />
   );
-};
+}

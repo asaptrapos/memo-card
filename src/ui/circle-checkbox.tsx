@@ -8,7 +8,7 @@ type Props = {
   checkedClassName: string;
 };
 
-export const CircleCheckbox = (props: Props) => {
+export function CircleCheckbox(props: Props) {
   const { checked, onChange, checkedClassName } = props;
 
   return (
@@ -49,4 +49,4 @@ export const CircleCheckbox = (props: Props) => {
       </m.button>
     </LazyLoadFramerMotion>
   );
-};
+}

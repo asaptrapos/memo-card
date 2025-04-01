@@ -4,7 +4,7 @@ type Props = {
   color: string;
 };
 
-export const LegendItem = (props: Props) => {
+export function LegendItem(props: Props) {
   const { color } = props;
   return (
     <div
@@ -12,4 +12,4 @@ export const LegendItem = (props: Props) => {
       style={{ backgroundColor: color }}
     />
   );
-};
+}

@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { CardFormType } from "../deck-form/store/deck-form-store.ts";
 import { isFormDirty, isFormTouched } from "mobx-form-lite";
 import { ValidationError } from "../../../ui/validation-error.tsx";
@@ -7,7 +6,7 @@ type Props = {
   cardForm: CardFormType;
 };
 
-export const CardAnswerErrors = observer((props: Props) => {
+export function CardAnswerErrors(props: Props) {
   const { cardForm } = props;
 
   return (
@@ -17,4 +16,4 @@ export const CardAnswerErrors = observer((props: Props) => {
       <ValidationError error={cardForm.answers.error} />
     )
   );
-});
+}

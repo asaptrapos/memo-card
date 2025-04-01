@@ -1,6 +1,5 @@
-import React, { ChangeEvent, useEffect, useRef } from "react";
+import { ChangeEvent, useEffect, useRef } from "react";
 import { TextField } from "mobx-form-lite";
-import { observer } from "mobx-react-lite";
 import autosize from "autosize";
 import { ValidationError } from "./validation-error.tsx";
 import { platform } from "../lib/platform/platform.ts";
@@ -17,7 +16,7 @@ type Props = {
   noAutoSize?: boolean;
 };
 
-export const Input = observer((props: Props) => {
+export function Input(props: Props) {
   const noAutoSize = props.noAutoSize || false;
   const { field, placeholder, type, rows, icon, isDisabled } = props;
   const { onChange, value, isTouched, error, onBlur } = field;
@@ -75,4 +74,4 @@ export const Input = observer((props: Props) => {
       {isTouched && error ? <ValidationError error={error} /> : null}
     </div>
   );
-});
+}

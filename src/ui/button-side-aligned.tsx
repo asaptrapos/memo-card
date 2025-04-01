@@ -13,7 +13,7 @@ type Props = {
   align?: "left" | "center";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const ButtonSideAligned = (props: Props) => {
+export function ButtonSideAligned(props: Props) {
   const align = props.align || "left";
   const {
     className,
@@ -90,4 +90,4 @@ export const ButtonSideAligned = (props: Props) => {
       </span>
     </button>
   );
-};
+}

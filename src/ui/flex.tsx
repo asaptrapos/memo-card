@@ -21,7 +21,7 @@ type Props = {
   fullWidth?: boolean;
 };
 
-export const Flex = (props: Props) => {
+export function Flex(props: Props) {
   const { children, className } = props;
 
   // Map CSS properties to Tailwind classes
@@ -124,4 +124,4 @@ export const Flex = (props: Props) => {
       {children}
     </div>
   );
-};
+}

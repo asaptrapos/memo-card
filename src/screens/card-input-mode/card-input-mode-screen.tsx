@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { Screen } from "../shared/screen.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { ReactNode, useState } from "react";
@@ -14,7 +13,7 @@ import { IndividualCardAiPreview } from "../shared/feature-preview/individual-ca
 
 type Props = { deckFormStore: DeckFormStore };
 
-export const CardInputModeScreen = observer((props: Props) => {
+export function CardInputModeScreen(props: Props) {
   const { deckFormStore } = props;
   const [store] = useState(() => new CardInputModeStore(deckFormStore));
 
@@ -79,4 +78,4 @@ export const CardInputModeScreen = observer((props: Props) => {
       />
     </Screen>
   );
-});
+}

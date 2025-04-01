@@ -1,5 +1,3 @@
-import React from "react";
-import { observer } from "mobx-react-lite";
 import { DeckFinishedModal } from "./deck-finished-modal.tsx";
 import { useReviewStore } from "./store/review-store-context.tsx";
 import { useMount } from "../../lib/react/use-mount.ts";
@@ -18,7 +16,7 @@ type Props = {
   newCardsCount?: number;
 };
 
-export const DeckFinished = observer((props: Props) => {
+export function DeckFinished(props: Props) {
   const { type, newCardsCount } = props;
   const reviewStore = useReviewStore();
 
@@ -52,4 +50,4 @@ export const DeckFinished = observer((props: Props) => {
       </Flex>
     </DeckFinishedModal>
   );
-});
+}

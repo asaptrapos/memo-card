@@ -15,7 +15,7 @@ type Props<T extends OptionType> = {
   selectRef?: any;
 };
 
-export const Select = <T extends OptionType>(props: Props<T>) => {
+export function Select<T extends OptionType>(props: Props<T>) {
   const { value, onChange, options, isLoading, selectRef } = props;
   if (isLoading) {
     return <div className="text-hint">{t("ui_loading")}</div>;
@@ -35,4 +35,4 @@ export const Select = <T extends OptionType>(props: Props<T>) => {
       ))}
     </select>
   );
-};
+}

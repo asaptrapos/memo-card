@@ -1,5 +1,4 @@
 import { throttle } from "../../../lib/throttle/throttle.ts";
-import { observer } from "mobx-react-lite";
 import { LimitedCardUnderReviewStore } from "./card.tsx";
 
 type Props = {
@@ -7,7 +6,7 @@ type Props = {
   type: "front" | "back";
 };
 
-export const CardSpeaker = observer((props: Props) => {
+export function CardSpeaker(props: Props) {
   const { card, type } = props;
   if (!card.isCardSpeakerVisible(type)) {
     return null;
@@ -20,4 +19,4 @@ export const CardSpeaker = observer((props: Props) => {
       className="mdi mdi-play-circle mdi-24px cursor-pointer relative top-[3px] text-button"
     />
   );
-});
+}

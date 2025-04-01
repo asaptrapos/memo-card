@@ -1,11 +1,10 @@
-import { observer } from "mobx-react-lite";
 import { cn } from "../../ui/cn.ts";
 import { deckListStore } from "../../store/deck-list-store.ts";
 import { ChevronIcon } from "../../ui/chevron-icon.tsx";
 import { t } from "../../translations/t.ts";
 import { userStore } from "../../store/user-store.ts";
 
-export const ViewMoreDecksToggle = observer(() => {
+export function ViewMoreDecksToggle() {
   return (
     <button
       className={cn(
@@ -29,4 +28,4 @@ export const ViewMoreDecksToggle = observer(() => {
         : t("show_all_decks")}
     </button>
   );
-});
+}

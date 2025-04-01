@@ -1,5 +1,4 @@
 import { Screen } from "../shared/screen.tsx";
-import { observer } from "mobx-react-lite";
 import { useMount } from "../../lib/react/use-mount.ts";
 import { useUserStatisticsStore } from "./store/user-statistics-store-context.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
@@ -20,7 +19,7 @@ import { Flex } from "../../ui/flex.tsx";
 const pieChartWidth = 250;
 const pieChartHeight = 200;
 
-export const UserStatisticsScreen = observer(() => {
+export function UserStatisticsScreen() {
   const userStatisticsStore = useUserStatisticsStore();
 
   useBackButton(() => {
@@ -125,4 +124,4 @@ export const UserStatisticsScreen = observer(() => {
       ) : null}
     </Screen>
   );
-});
+}

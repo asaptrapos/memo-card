@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { CardFormStoreInterface } from "../deck-form/store/card-form-store-interface.ts";
 import { useBackButton } from "../../../lib/platform/use-back-button.ts";
 import { useState } from "react";
@@ -17,7 +16,7 @@ import { assert } from "../../../../shared/typescript/assert.ts";
 
 type Props = { cardFormStore: CardFormStoreInterface };
 
-export const GeneratedCardFormView = observer((props: Props) => {
+export function GeneratedCardFormView(props: Props) {
   const { cardFormStore } = props;
 
   assert(
@@ -72,4 +71,4 @@ export const GeneratedCardFormView = observer((props: Props) => {
       </Label>
     </Screen>
   );
-});
+}

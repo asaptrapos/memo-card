@@ -1,7 +1,7 @@
 import { PieChartCanvas } from "../user-statistics/pie-chart-canvas.tsx";
 import { Flex } from "../../ui/flex.tsx";
 
-export const PieChartCanvasStory = () => {
+export function PieChartCanvasStory() {
   return (
     <Flex gap={16} direction={"column"}>
       <PieChartCanvas
@@ -34,4 +34,4 @@ export const PieChartCanvasStory = () => {
       />
     </Flex>
   );
-};
+}

@@ -10,7 +10,7 @@ type Props = {
   isExpanded?: boolean;
 };
 
-export const DeckFolderDescription = (props: Props) => {
+export function DeckFolderDescription(props: Props) {
   const { deck } = props;
   const [isOverflowing, setIsOverflowing] = useState(false);
   const [isExpanded, setIsExpanded] = useState(!!props.isExpanded);
@@ -41,4 +41,4 @@ export const DeckFolderDescription = (props: Props) => {
       ) : null}
     </>
   );
-};
+}

@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { DeckCardDbTypeWithType } from "../store/deck-list-store.ts";
 import { Flex } from "./flex.tsx";
 import { CardsToReviewCount } from "../screens/shared/deck-row-with-cards-to-review/cards-to-review-count.tsx";
@@ -8,7 +7,7 @@ type Props = {
   item: { cardsToReview: DeckCardDbTypeWithType[] };
 };
 
-export const CardsToReview = observer((props: Props) => {
+export function CardsToReview(props: Props) {
   const { item } = props;
   return (
     <Flex mr={20} justifyContent={"space-between"} gap={10}>
@@ -22,4 +21,4 @@ export const CardsToReview = observer((props: Props) => {
       />
     </Flex>
   );
-});
+}

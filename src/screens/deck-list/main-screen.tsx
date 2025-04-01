@@ -1,5 +1,4 @@
 import { Fragment, useState } from "react";
-import { observer } from "mobx-react-lite";
 import { PublicDeck } from "./public-deck.tsx";
 import { DeckRowWithCardsToReview } from "../shared/deck-row-with-cards-to-review/deck-row-with-cards-to-review.tsx";
 import { deckListStore } from "../../store/deck-list-store.ts";
@@ -29,7 +28,7 @@ import { getYouTubeChannelLink } from "../../../shared/links/get-youtube-channel
 import { userStore } from "../../store/user-store.ts";
 import { ReviewButton } from "../repeat-custom/review-button/review-button.tsx";
 
-export const MainScreen = observer(() => {
+export function MainScreen() {
   const [deckFolderToggle] = useState(() => new BooleanToggle(false));
   const [ruEduVideoToggle] = useState(() => new BooleanToggle(false));
 
@@ -261,4 +260,4 @@ export const MainScreen = observer(() => {
       <ReviewButton />
     </Flex>
   );
-});
+}

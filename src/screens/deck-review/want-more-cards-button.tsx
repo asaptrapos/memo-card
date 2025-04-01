@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { t } from "../../translations/t.ts";
 import { screenStore } from "../../store/screen-store.ts";
 import { translateNewCardsCount } from "../../translations/translate-new-cards-count.tsx";
@@ -7,7 +6,7 @@ type Props = {
   newCardsCount?: number | null;
 };
 
-export const WantMoreCardsButton = observer((props: Props) => {
+export function WantMoreCardsButton(props: Props) {
   const { newCardsCount } = props;
 
   if (!newCardsCount) {
@@ -28,4 +27,4 @@ export const WantMoreCardsButton = observer((props: Props) => {
       {t("review_finished_to_review")}
     </>
   );
-});
+}

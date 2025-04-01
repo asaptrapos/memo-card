@@ -3,9 +3,8 @@ import { reset } from "../../ui/reset.ts";
 import { List } from "../../ui/list.tsx";
 import { ProIcon } from "../../ui/pro-icon.tsx";
 import { cn } from "../../ui/cn.ts";
-import { observer } from "mobx-react-lite";
 
-export const ListStory = observer(() => {
+export function ListStory() {
   const items = Array(3)
     .fill(null)
     .map((card, i) => ({
@@ -38,4 +37,4 @@ export const ListStory = observer(() => {
       <List animateTap={false} items={items} />
     </>
   );
-});
+}

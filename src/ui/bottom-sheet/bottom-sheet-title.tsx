@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 type Props = {
   title: ReactNode;
   onClose: () => void;
 };
 
-export const BottomSheetTitle = (props: Props) => {
+export function BottomSheetTitle(props: Props) {
   const { title, onClose } = props;
 
   return (
@@ -21,4 +21,4 @@ export const BottomSheetTitle = (props: Props) => {
       </span>
     </h2>
   );
-};
+}

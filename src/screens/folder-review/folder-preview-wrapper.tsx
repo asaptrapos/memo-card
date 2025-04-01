@@ -1,5 +1,4 @@
-import { observer } from "mobx-react-lite";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   deckListStore,
   DeckWithCardsWithReviewType,
@@ -7,7 +6,7 @@ import {
 import { CardListWithPreviewReadonly } from "../deck-review/preview-readonly/card-list-with-preview-readonly.tsx";
 import { FolderPreview } from "./folder-preview.tsx";
 
-export const FolderPreviewWrapper = observer(() => {
+export function FolderPreviewWrapper() {
   const [previewDeck, setPreviewDeck] =
     useState<DeckWithCardsWithReviewType | null>(null);
 
@@ -31,4 +30,4 @@ export const FolderPreviewWrapper = observer(() => {
       }}
     />
   );
-});
+}

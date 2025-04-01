@@ -1,9 +1,8 @@
-import { observer } from "mobx-react-lite";
 import { HorizontalDivider } from "../../ui/horizontal-divider.tsx";
 
 type Props = { front?: string; back?: string; example?: string };
 
-export const CardSidePreview = observer((props: Props) => {
+export function CardSidePreview(props: Props) {
   const { front, back, example } = props;
   return (
     <div className="h-[250px] w-[250px] box-border rounded-[12px] text-text flex flex-col items-center justify-center p-[10px] bg-secondary-bg">
@@ -13,4 +12,4 @@ export const CardSidePreview = observer((props: Props) => {
       <div className="pt-2 font-normal text-sm max-w-[200px]">{example}</div>
     </div>
   );
-});
+}

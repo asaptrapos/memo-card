@@ -1,13 +1,12 @@
 import { m } from "framer-motion";
 import { LazyLoadFramerMotion } from "../lib/framer-motion/lazy-load-framer-motion.tsx";
-import { observer } from "mobx-react-lite";
 
 type Props = {
   value: number;
   max: number;
 };
 
-export const ProgressBar = observer((props: Props) => {
+export function ProgressBar(props: Props) {
   const { value, max } = props;
   return (
     <div className="w-full bg-bg rounded-xl relative overflow-hidden">
@@ -28,4 +27,4 @@ export const ProgressBar = observer((props: Props) => {
       </div>
     </div>
   );
-});
+}

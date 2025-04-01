@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { FullScreenLoader } from "../../ui/full-screen-loader.tsx";
 import { ShareDeckOrFormStoreProvider } from "./store/share-deck-store-context.tsx";
 

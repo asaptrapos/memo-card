@@ -1,4 +1,3 @@
-import React from "react";
 import { cn } from "./cn.ts";
 
 type Props = {
@@ -7,7 +6,7 @@ type Props = {
   column?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const UpgradeButton = (props: Props) => {
+export function UpgradeButton(props: Props) {
   const { className, children, column, ...restProps } = props;
 
   return (
@@ -25,4 +24,4 @@ export const UpgradeButton = (props: Props) => {
       {children}
     </button>
   );
-};
+}

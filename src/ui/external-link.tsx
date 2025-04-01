@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const ExternalLink = (props: Props) => {
+export function ExternalLink(props: Props) {
   const { href, children } = props;
   return (
     <span
@@ -18,4 +18,4 @@ export const ExternalLink = (props: Props) => {
       {children}
     </span>
   );
-};
+}

@@ -1,6 +1,4 @@
-import { observer } from "mobx-react-lite";
 import { t } from "../../translations/t.ts";
-import React from "react";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { useMount } from "../../lib/react/use-mount.ts";
 import { getDeckOrFolderLink } from "./share-memo-card-url.tsx";
@@ -14,7 +12,7 @@ import { formatAccessUser } from "./format-access-user.ts";
 import { notifySuccess } from "../shared/snackbar/snackbar.tsx";
 import { cn } from "../../ui/cn.ts";
 
-export const ShareDeckOneTimeLinks = observer(() => {
+export function ShareDeckOneTimeLinks() {
   const store = useShareDeckStore();
 
   useBackButton(() => {
@@ -91,4 +89,4 @@ export const ShareDeckOneTimeLinks = observer(() => {
         : null}
     </Screen>
   );
-});
+}

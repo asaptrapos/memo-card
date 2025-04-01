@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { Screen } from "../../shared/screen.tsx";
 import { t } from "../../../translations/t.ts";
 import { Flex } from "../../../ui/flex.tsx";
@@ -24,7 +23,7 @@ type Props = {
   onBack: () => void;
 };
 
-export const CardType = observer((props: Props) => {
+export function CardType(props: Props) {
   const { cardForm, onBack } = props;
 
   useBackButton(() => {
@@ -97,4 +96,4 @@ export const CardType = observer((props: Props) => {
       </>
     </Screen>
   );
-});
+}

@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import {
   deckListStore,
   DeckWithCardsWithReviewType,
@@ -32,7 +31,7 @@ type Props = {
   onDeckPreviewOpen: (deck: DeckWithCardsWithReviewType) => void;
 };
 
-export const FolderPreview = observer((props: Props) => {
+export function FolderPreview(props: Props) {
   const reviewStore = useReviewStore();
 
   useBackButton(() => {
@@ -233,4 +232,4 @@ export const FolderPreview = observer((props: Props) => {
       ) : null}
     </Flex>
   );
-});
+}

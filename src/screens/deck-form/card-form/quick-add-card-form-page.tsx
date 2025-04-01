@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { QuickAddCardFormStore } from "./store/quick-add-card-form-store.ts";
 import { CardFormWrapper } from "./card-form-wrapper.tsx";
@@ -23,8 +22,8 @@ const createQuickAddCardFormStore = () => {
   );
 };
 
-export const QuickAddCardFormPage = observer(() => {
+export function QuickAddCardFormPage() {
   const [quickAddCardStore] = useState(createQuickAddCardFormStore);
 
   return <CardFormWrapper cardFormStore={quickAddCardStore} />;
-});
+}

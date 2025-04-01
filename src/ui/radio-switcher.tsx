@@ -6,7 +6,7 @@ type Props = {
   onToggle: () => void;
 };
 
-export const RadioSwitcher = (props: Props) => {
+export function RadioSwitcher(props: Props) {
   const { isOn, onToggle } = props;
 
   return (
@@ -35,4 +35,4 @@ export const RadioSwitcher = (props: Props) => {
       />
     </label>
   );
-};
+}

@@ -23,7 +23,7 @@ type Props = Pick<SVGProps<SVGSVGElement>, "onClick" | "className"> & {
   direction: Direction;
 };
 
-export const ChevronIcon = (props: Props) => {
+export function ChevronIcon(props: Props) {
   const { direction, ...restProps } = props;
   return (
     <LazyLoadFramerMotion>
@@ -51,4 +51,4 @@ export const ChevronIcon = (props: Props) => {
       </m.svg>
     </LazyLoadFramerMotion>
   );
-};
+}

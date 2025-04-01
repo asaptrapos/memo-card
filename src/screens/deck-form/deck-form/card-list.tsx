@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { cn } from "../../../ui/cn.ts";
 import { useDeckFormStore } from "./store/deck-form-store-context.tsx";
 import { screenStore } from "../../../store/screen-store.ts";
@@ -12,7 +11,7 @@ import { Flex } from "../../../ui/flex.tsx";
 import { CardNumber } from "../../../ui/card-number.tsx";
 import { assert } from "../../../../shared/typescript/assert.ts";
 
-export const CardList = observer(() => {
+export function CardList() {
   const deckFormStore = useDeckFormStore();
   const screen = screenStore.screen;
   assert(screen.type === "deckForm");
@@ -96,4 +95,4 @@ export const CardList = observer(() => {
       </Button>
     </Screen>
   );
-});
+}

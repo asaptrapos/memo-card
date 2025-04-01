@@ -1,8 +1,7 @@
 import ContentLoader from "react-content-loader";
 import { theme } from "../../ui/theme.tsx";
-import React from "react";
 
-export const DeckFolderInfoRowLoader = () => {
+export function DeckFolderInfoRowLoader() {
   return (
     <div>
       <ContentLoader
@@ -17,4 +16,4 @@ export const DeckFolderInfoRowLoader = () => {
       </ContentLoader>
     </div>
   );
-};
+}

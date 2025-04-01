@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { MainScreen } from "./deck-list/main-screen.tsx";
 import { DeckScreen } from "./deck-review/deck-screen.tsx";
 import { ReviewStoreProvider } from "./deck-review/store/review-store-context.tsx";
@@ -7,7 +6,6 @@ import { DeckFormScreen } from "./deck-form/deck-form/deck-form-screen.tsx";
 import { DeckFormStoreProvider } from "./deck-form/deck-form/store/deck-form-store-context.tsx";
 import { QuickAddCardFormPage } from "./deck-form/card-form/quick-add-card-form-page.tsx";
 import { VersionWarning } from "./shared/version-warning.tsx";
-import React from "react";
 import { deckListStore } from "../store/deck-list-store.ts";
 import { FullScreenLoader } from "../ui/full-screen-loader.tsx";
 import {
@@ -33,7 +31,6 @@ import { PlansScreen } from "./pro/plans-screen.tsx";
 import { FreezeCardsScreenLazy } from "./freeze-cards/freeze-cards-screen-lazy.tsx";
 import { AiMassCreationScreen } from "./ai-mass-creation/ai-mass-creation-screen.tsx";
 import { AiMassCreationStoreProvider } from "./ai-mass-creation/store/ai-mass-creation-store-provider.tsx";
-
 import { SnackbarProviderWrapper } from "./shared/snackbar/snackbar-provider-wrapper.tsx";
 import { Debug } from "./debug/debug.tsx";
 import { BrowserMainButton } from "./shared/browser-platform/browser-main-button.tsx";
@@ -47,7 +44,7 @@ import { RepeatCustomScreen } from "./repeat-custom/repeat-custom-screen.tsx";
 import { useMount } from "../lib/react/use-mount.ts";
 import { featuresStore } from "../store/features-store.ts";
 
-export const App = observer(() => {
+export function App() {
   useRestoreFullScreenExpand();
 
   useSettingsButton(() => {
@@ -192,4 +189,4 @@ export const App = observer(() => {
       <BrowserMainButton />
     </div>
   );
-});
+}

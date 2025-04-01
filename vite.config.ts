@@ -1,9 +1,14 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import react from '@vitejs/plugin-react'
+import observerPlugin from 'mobx-react-observer/babel-plugin'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({
+    babel: {
+      plugins: [observerPlugin()]
+    }
+  })],
   build: {
     rollupOptions: {
       input: {

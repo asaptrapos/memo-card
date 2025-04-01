@@ -1,10 +1,8 @@
-import React from "react";
-import { observer } from "mobx-react-lite";
 import { platform } from "../../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../../lib/platform/browser/browser-platform.ts";
 import { assert } from "../../../../shared/typescript/assert.ts";
 
-export const BrowserBackButton = observer(() => {
+export function BrowserBackButton() {
   if (!(platform instanceof BrowserPlatform)) {
     return null;
   }
@@ -22,4 +20,4 @@ export const BrowserBackButton = observer(() => {
       ) : null}
     </div>
   );
-});
+}

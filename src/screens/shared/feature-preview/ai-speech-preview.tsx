@@ -1,9 +1,8 @@
-import { observer } from "mobx-react-lite";
 import { BottomSheet } from "../../../ui/bottom-sheet/bottom-sheet.tsx";
 import { BottomSheetTitle } from "../../../ui/bottom-sheet/bottom-sheet-title.tsx";
 import { Flex } from "../../../ui/flex.tsx";
 import { t } from "../../../translations/t.ts";
-import React, { useState } from "react";
+import { useState } from "react";
 import { createVoicePlayer } from "../../deck-review/voice-player/create-voice-player.ts";
 import { SpeakLanguageEnum } from "../../../lib/voice-playback/speak.ts";
 import { PreviewSpeaker } from "./preview-speaker.tsx";
@@ -19,7 +18,7 @@ type Props = {
   isOpen: boolean;
 };
 
-export const AiSpeechPreview = observer((props: Props) => {
+export function AiSpeechPreview(props: Props) {
   const { onClose, isOpen, showUpgrade } = props;
   const [playerRobotic] = useState(() =>
     createVoicePlayer(
@@ -57,4 +56,4 @@ export const AiSpeechPreview = observer((props: Props) => {
       </Flex>
     </BottomSheet>
   );
-});
+}

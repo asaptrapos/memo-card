@@ -1,5 +1,3 @@
-import React from "react";
-import { observer } from "mobx-react-lite";
 import { CardState } from "./store/card-under-review-store.ts";
 import { ProgressBar } from "../../ui/progress-bar.tsx";
 import { useReviewStore } from "./store/review-store-context.tsx";
@@ -12,7 +10,7 @@ import { BrowserBackButton } from "../shared/browser-platform/browser-back-butto
 import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
 
-export const Review = observer(() => {
+export function Review() {
   const reviewStore = useReviewStore();
   useBackButton(() => {
     reviewStore.submitUnfinished();
@@ -76,4 +74,4 @@ export const Review = observer(() => {
   return reviewStore.currentCard?.isOverflowing.value
     ? createPortal(component, document.body)
     : component;
-});
+}

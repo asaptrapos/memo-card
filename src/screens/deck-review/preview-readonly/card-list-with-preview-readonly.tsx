@@ -1,5 +1,4 @@
-import { observer } from "mobx-react-lite";
-import React, { useState } from "react";
+import { useState } from "react";
 import { DeckCardDbType } from "../../../../functions/db/deck/decks-with-cards-schema.ts";
 import { CardPreviewFromListReadonly } from "./card-preview-from-list-readonly.tsx";
 import { CardListReadonly } from "./card-list-readonly.tsx";
@@ -14,7 +13,7 @@ type Props = {
   isFolderPreview?: boolean;
 };
 
-export const CardListWithPreviewReadonly = observer((props: Props) => {
+export function CardListWithPreviewReadonly(props: Props) {
   const { deck, onBack, cards, subtitle } = props;
   const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
 
@@ -48,4 +47,4 @@ export const CardListWithPreviewReadonly = observer((props: Props) => {
       }}
     />
   );
-});
+}

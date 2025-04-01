@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { CardFormType } from "../deck-form/store/deck-form-store.ts";
 import { useBackButton } from "../../../lib/platform/use-back-button.ts";
 import { Screen } from "../../shared/screen.tsx";
@@ -18,7 +17,7 @@ type Props = {
   onBack: () => void;
 };
 
-export const CardAiSpeech = observer((props: Props) => {
+export function CardAiSpeech(props: Props) {
   const { cardForm, onBack } = props;
 
   const [store] = useState(() => new AiSpeechGeneratorStore(cardForm));
@@ -93,4 +92,4 @@ export const CardAiSpeech = observer((props: Props) => {
       )}
     </Screen>
   );
-});
+}

@@ -1,7 +1,6 @@
-import { observer } from "mobx-react-lite";
 import { useUserSettingsStore } from "./store/user-settings-store-context.tsx";
 import { deckListStore } from "../../store/deck-list-store.ts";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { generateTimeRange } from "./generate-time-range.tsx";
 import { useMainButton } from "../../lib/platform/use-main-button.ts";
 import { useProgress } from "../../lib/platform/use-progress.tsx";
@@ -32,7 +31,7 @@ import {
 
 export const timeRanges = generateTimeRange();
 
-export const UserSettingsScreen = observer(() => {
+export function UserSettingsScreen() {
   const userSettingsStore = useUserSettingsStore();
   const screen = screenStore.screen;
   assert(screen.type === "userSettings");
@@ -327,4 +326,4 @@ export const UserSettingsScreen = observer(() => {
       )}
     </Screen>
   );
-});
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { copyToClipboard } from "../../lib/copy-to-clipboard/copy-to-clipboard.ts";
 import { notifySuccess } from "../../screens/shared/snackbar/snackbar.tsx";
 import { t } from "../../translations/t.ts";
@@ -13,7 +13,7 @@ type TableData = {
   rows: string[][];
 };
 
-export const HtmlTableEditor = () => {
+export function HtmlTableEditor() {
   const [tableData, setTableData] = useState<TableData>({
     headers: ["Head 1", "Head 2", "Head 3"],
     rows: [
@@ -183,4 +183,4 @@ export const HtmlTableEditor = () => {
       </div>
     </div>
   );
-};
+}

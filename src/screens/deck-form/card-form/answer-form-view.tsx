@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { CardFormType } from "../deck-form/store/deck-form-store.ts";
 import { Screen } from "../../shared/screen.tsx";
 import { Label } from "../../../ui/label.tsx";
@@ -20,7 +19,7 @@ type Props = {
   cardForm: CardFormType;
 };
 
-export const AnswerFormView = observer((props: Props) => {
+export function AnswerFormView(props: Props) {
   const { cardForm } = props;
 
   const answer = cardForm.answers.value.find(
@@ -126,4 +125,4 @@ export const AnswerFormView = observer((props: Props) => {
       </ButtonGrid>
     </Screen>
   );
-});
+}

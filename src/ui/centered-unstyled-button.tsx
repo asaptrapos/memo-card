@@ -5,7 +5,7 @@ type Props = {
   onClick: () => void;
 };
 
-export const CenteredUnstyledButton = (props: Props) => {
+export function CenteredUnstyledButton(props: Props) {
   const { children, onClick } = props;
 
   return (
@@ -18,4 +18,4 @@ export const CenteredUnstyledButton = (props: Props) => {
       {children}
     </button>
   );
-};
+}

@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { DeckForm } from "./deck-form.tsx";
 import { useDeckFormStore } from "./store/deck-form-store-context.tsx";
 import { CardList } from "./card-list.tsx";
@@ -7,7 +6,7 @@ import { PreventTelegramSwipeDownClosingIos } from "../../../lib/platform/telegr
 import { SpeakingCards } from "./speaking-cards.tsx";
 import { CardInputModeScreen } from "../../card-input-mode/card-input-mode-screen.tsx";
 
-export const DeckFormScreen = observer(() => {
+export function DeckFormScreen() {
   const deckFormStore = useDeckFormStore();
 
   if (deckFormStore.deckFormScreen === "cardList") {
@@ -48,4 +47,4 @@ export const DeckFormScreen = observer(() => {
   }
 
   return deckFormStore.deckFormScreen satisfies never;
-});
+}

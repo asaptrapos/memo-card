@@ -17,7 +17,7 @@ type Props<T extends OptionType> = {
   isLoading?: boolean;
 };
 
-export const SelectWithChevron = <T extends OptionType>(props: Props<T>) => {
+export function SelectWithChevron<T extends OptionType>(props: Props<T>) {
   const { isLoading } = props;
 
   const selectRef = useRef<HTMLSelectElement | null>(null);
@@ -48,4 +48,4 @@ export const SelectWithChevron = <T extends OptionType>(props: Props<T>) => {
       />
     </div>
   );
-};
+}

@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { screenStore } from "../../../store/screen-store.ts";
@@ -14,7 +13,7 @@ import { translateCardCount } from "../translate-card-count.ts";
 import { hapticImpact } from "../../../lib/platform/telegram/haptics.ts";
 import { MenuButton } from "./menu-button.tsx";
 
-export const ReviewButton = observer(() => {
+export function ReviewButton() {
   const [isMenuOpen] = useState(() => new BooleanToggle(false));
 
   if (deckListStore.myInfoRequest.isLoading || !deckListStore.myDecks.length) {
@@ -120,4 +119,4 @@ export const ReviewButton = observer(() => {
       </div>
     </LazyLoadFramerMotion>
   );
-});
+}

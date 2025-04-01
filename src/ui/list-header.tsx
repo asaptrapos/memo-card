@@ -6,7 +6,7 @@ type Props = {
   rightSlot?: ReactNode;
 };
 
-export const ListHeader = (props: Props) => {
+export function ListHeader(props: Props) {
   const { text, rightSlot } = props;
 
   return (
@@ -20,4 +20,4 @@ export const ListHeader = (props: Props) => {
       {rightSlot}
     </h5>
   );
-};
+}

@@ -4,10 +4,10 @@ type Props = {
   children: ReactNode;
 };
 
-export const EmptyState = (props: Props) => {
+export function EmptyState(props: Props) {
   const { children } = props;
 
   return (
     <div className="w-full text-center mt-2 text-sm text-hint">{children}</div>
   );
-};
+}

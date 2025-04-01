@@ -1,6 +1,6 @@
 import { SnackbarProvider } from "notistack";
 
-export const SnackbarProviderWrapper = () => {
+export function SnackbarProviderWrapper() {
   return (
     <SnackbarProvider
       iconVariant={{
@@ -17,4 +17,4 @@ export const SnackbarProviderWrapper = () => {
       }}
     />
   );
-};
+}

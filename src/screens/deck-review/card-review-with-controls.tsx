@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import {
   Card,
   IDK_ID,
@@ -17,7 +16,7 @@ type Props = {
   onHideCardForever: () => void;
 };
 
-export const CardReviewWithControls = observer((props: Props) => {
+export function CardReviewWithControls(props: Props) {
   const {
     card,
     onWrong,
@@ -97,4 +96,4 @@ export const CardReviewWithControls = observer((props: Props) => {
       )}
     </>
   );
-});
+}

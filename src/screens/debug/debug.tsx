@@ -1,11 +1,10 @@
 import { screenStore } from "../../store/screen-store.ts";
-import { observer } from "mobx-react-lite";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 
-export const Debug = observer(() => {
+export function Debug() {
   useBackButton(() => {
     screenStore.back();
   });
 
   return <div>Debug</div>;
-});
+}

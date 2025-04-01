@@ -3,7 +3,7 @@ type ListRightTextParams = {
   cut?: boolean;
 };
 
-export const ListRightText = (props: ListRightTextParams) => {
+export function ListRightText(props: ListRightTextParams) {
   const { text, cut } = props;
   if (!text) {
     return null;
@@ -13,4 +13,4 @@ export const ListRightText = (props: ListRightTextParams) => {
     text.length > 10 && cut ? `${text.slice(0, 10)}...` : text;
 
   return <div className={"color-hint text-base"}>{textFormatted}</div>;
-};
+}

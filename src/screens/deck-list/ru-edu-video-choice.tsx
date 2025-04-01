@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { BooleanToggle } from "mobx-form-lite";
 import { BottomSheet } from "../../ui/bottom-sheet/bottom-sheet.tsx";
 import { Flex } from "../../ui/flex.tsx";
@@ -8,7 +7,7 @@ import { links } from "../../../shared/links/links.ts";
 
 type Props = { toggle: BooleanToggle };
 
-export const RuEduVideoChoice = observer((props: Props) => {
+export function RuEduVideoChoice(props: Props) {
   const { toggle } = props;
 
   return (
@@ -46,4 +45,4 @@ export const RuEduVideoChoice = observer((props: Props) => {
       </Flex>
     </BottomSheet>
   );
-});
+}

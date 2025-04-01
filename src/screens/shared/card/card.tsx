@@ -1,5 +1,3 @@
-import React from "react";
-import { observer } from "mobx-react-lite";
 import { CardUnderReviewStore } from "../../deck-review/store/card-under-review-store.ts";
 import { HorizontalDivider } from "../../../ui/horizontal-divider.tsx";
 import { CardSpeaker } from "./card-speaker.tsx";
@@ -40,7 +38,7 @@ type Props = {
   onHideCardForever?: () => void;
 };
 
-export const Card = observer((props: Props) => {
+export function Card(props: Props) {
   const { card, onHideCardForever } = props;
   const { ref: cardRef } = useIsOverflowing(
     card.isOpened,
@@ -148,4 +146,4 @@ export const Card = observer((props: Props) => {
       </span>
     </div>
   );
-});
+}

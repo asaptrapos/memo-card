@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { screenStore } from "../../store/screen-store.ts";
 import { useDeckCatalogStore } from "./store/deck-catalog-store-context.tsx";
@@ -18,7 +17,7 @@ import { Flex } from "../../ui/flex.tsx";
 import { languageFilterToNativeName } from "./translations.ts";
 import { LanguageCatalogItemAvailableIn } from "../../../shared/language/language-shared.ts";
 
-export const DeckCatalog = observer(() => {
+export function DeckCatalog() {
   const store = useDeckCatalogStore();
 
   useMount(() => {
@@ -110,4 +109,4 @@ export const DeckCatalog = observer(() => {
       })()}
     </Screen>
   );
-});
+}

@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import LinesEllipsis from "react-lines-ellipsis";
 import { DeckCategoryLogo } from "./deck-category-logo.tsx";
 import { ReactNode } from "react";
@@ -16,7 +15,7 @@ type Props = {
   titleRightSlot?: ReactNode;
 };
 
-export const DeckListItemWithDescription = observer((props: Props) => {
+export function DeckListItemWithDescription(props: Props) {
   const { catalogItem, onClick, titleRightSlot } = props;
 
   return (
@@ -49,4 +48,4 @@ export const DeckListItemWithDescription = observer((props: Props) => {
       </div>
     </div>
   );
-});
+}

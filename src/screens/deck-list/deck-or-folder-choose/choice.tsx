@@ -12,7 +12,7 @@ type Props = {
   onClick: () => void;
 };
 
-export const Choice = (props: Props) => {
+export function Choice(props: Props) {
   const { icon, title, description, onClick } = props;
   const mainColor = theme.buttonColorComputed;
   const parsedColor = useMemo(() => colord(mainColor), [mainColor]);
@@ -47,4 +47,4 @@ export const Choice = (props: Props) => {
       </Flex>
     </div>
   );
-};
+}

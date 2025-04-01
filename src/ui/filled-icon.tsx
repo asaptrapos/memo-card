@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 type Props = {
   backgroundColor: string;
   icon: string | ReactNode;
 };
 
-export const FilledIcon = ({ backgroundColor, icon }: Props) => {
+export function FilledIcon({ backgroundColor, icon }: Props) {
   const isIconString = typeof icon === "string";
 
   return (
@@ -16,4 +16,4 @@ export const FilledIcon = ({ backgroundColor, icon }: Props) => {
       {isIconString ? <i className={`mdi ${icon} text-white`} /> : icon}
     </div>
   );
-};
+}

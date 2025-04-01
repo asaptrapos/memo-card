@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { Screen } from "../shared/screen.tsx";
 import { useBackButton } from "../../lib/platform/use-back-button.ts";
 import { useAiMassCreationStore } from "./store/ai-mass-creation-store-provider.tsx";
@@ -14,7 +13,7 @@ import { translateAddCards } from "./translations.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
 import { cn } from "../../ui/cn.ts";
 
-export const CardsGeneratedScreen = observer(() => {
+export function CardsGeneratedScreen() {
   const store = useAiMassCreationStore();
   assert(store.massCreationForm);
   const screen = screenStore.screen;
@@ -94,4 +93,4 @@ export const CardsGeneratedScreen = observer(() => {
       </div>
     </Screen>
   );
-});
+}

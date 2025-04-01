@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
@@ -20,7 +20,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const BottomSheet = (props: Props) => {
+export function BottomSheet(props: Props) {
   const { isOpen, onClose, children } = props;
 
   // Disable backdrop scroll
@@ -85,4 +85,4 @@ export const BottomSheet = (props: Props) => {
       )}
     </AnimatePresence>
   );
-};
+}

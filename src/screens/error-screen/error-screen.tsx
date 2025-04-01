@@ -3,9 +3,8 @@ import { platform } from "../../lib/platform/platform.ts";
 import { links } from "../../../shared/links/links.ts";
 import { Button } from "../../ui/button.tsx";
 import { t } from "../../translations/t.ts";
-import { observer } from "mobx-react-lite";
 
-export const ErrorScreen = observer(() => {
+export function ErrorScreen() {
   return (
     <Screen title={t("error")}>
       <div className="self-center my-6">{t("error_contact_support")}</div>
@@ -18,4 +17,4 @@ export const ErrorScreen = observer(() => {
       </Button>
     </Screen>
   );
-});
+}

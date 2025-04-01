@@ -1,6 +1,6 @@
 type Props = { color: string };
 
-export const ColorIcon = (props: Props) => {
+export function ColorIcon(props: Props) {
   const { color } = props;
 
   return (
@@ -11,4 +11,4 @@ export const ColorIcon = (props: Props) => {
       className="w-[16px] h-[16px] ml-[7px] rounded-[4px] border border-white"
     />
   );
-};
+}

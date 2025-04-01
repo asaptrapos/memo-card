@@ -5,7 +5,7 @@ type PreviewSpeakerParams = {
   player: VoicePlayer | null;
 };
 
-export const PreviewSpeaker = (props: PreviewSpeakerParams) => {
+export function PreviewSpeaker(props: PreviewSpeakerParams) {
   const { player } = props;
 
   return (
@@ -14,4 +14,4 @@ export const PreviewSpeaker = (props: PreviewSpeakerParams) => {
       className="mdi mdi-play-circle mdi-36px cursor-pointer text-button"
     />
   );
-};
+}

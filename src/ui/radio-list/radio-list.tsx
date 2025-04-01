@@ -12,7 +12,7 @@ type Props<T extends RadioItemId> = {
   onChange: (selectedId: T) => void;
 };
 
-export const RadioList = <T extends RadioItemId>(props: Props<T>) => {
+export function RadioList<T extends RadioItemId>(props: Props<T>) {
   const { selectedId, options, onChange } = props;
 
   return (
@@ -35,4 +35,4 @@ export const RadioList = <T extends RadioItemId>(props: Props<T>) => {
       })}
     </Flex>
   );
-};
+}

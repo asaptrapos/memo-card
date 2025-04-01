@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { Button } from "../../../ui/button.tsx";
 import { platform } from "../../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../../lib/platform/browser/browser-platform.ts";
@@ -6,7 +5,7 @@ import { t } from "../../../translations/t.ts";
 import { assert } from "../../../../shared/typescript/assert.ts";
 import { cn } from "../../../ui/cn.ts";
 
-export const BrowserMainButton = observer(() => {
+export function BrowserMainButton() {
   if (!(platform instanceof BrowserPlatform)) {
     return null;
   }
@@ -39,4 +38,4 @@ export const BrowserMainButton = observer(() => {
       </Button>
     </div>
   );
-});
+}

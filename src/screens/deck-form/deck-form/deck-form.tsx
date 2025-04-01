@@ -1,7 +1,6 @@
-import { observer } from "mobx-react-lite";
 import { Label } from "../../../ui/label.tsx";
 import { Input } from "../../../ui/input.tsx";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useMainButton } from "../../../lib/platform/use-main-button.ts";
 import { useDeckFormStore } from "./store/deck-form-store-context.tsx";
 import { screenStore } from "../../../store/screen-store.ts";
@@ -33,7 +32,7 @@ import { WysiwygField } from "../../../ui/wysiwyg-field/wysiwig-field.tsx";
 
 type PreviewType = "bulk_ai_cards" | "individual_ai_card";
 
-export const DeckForm = observer(() => {
+export function DeckForm() {
   const deckFormStore = useDeckFormStore();
   const screen = screenStore.screen;
   const [previewType, setPreviewType] = useState<PreviewType | null>(null);
@@ -267,4 +266,4 @@ export const DeckForm = observer(() => {
       />
     </Screen>
   );
-});
+}

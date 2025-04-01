@@ -1,12 +1,11 @@
-import { observer } from "mobx-react-lite";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
   onClick?: () => void;
 };
 
-export const CardRow = observer((props: Props) => {
+export function CardRow(props: Props) {
   return (
     <label
       onClick={props.onClick}
@@ -15,4 +14,4 @@ export const CardRow = observer((props: Props) => {
       {props.children}
     </label>
   );
-});
+}

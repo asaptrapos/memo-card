@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { observer } from "mobx-react-lite";
 import { Review } from "./review.tsx";
 import { DeckPreview } from "./deck-preview.tsx";
 import { useReviewStore } from "./store/review-store-context.tsx";
@@ -8,7 +7,7 @@ import { CardListWithPreviewReadonly } from "./preview-readonly/card-list-with-p
 import { deckListStore } from "../../store/deck-list-store.ts";
 import { BooleanToggle } from "mobx-form-lite";
 
-export const DeckScreen = observer(() => {
+export function DeckScreen() {
   const reviewStore = useReviewStore();
   const [previewStore] = useState(() => new BooleanToggle(false));
 
@@ -31,4 +30,4 @@ export const DeckScreen = observer(() => {
   }
 
   return <DeckPreview onCardListPreview={previewStore.setTrue} />;
-});
+}

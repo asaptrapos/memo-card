@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { observer } from "mobx-react-lite";
 import { cn } from "../../ui/cn.ts";
 import { BrowserBackButton } from "./browser-platform/browser-back-button.tsx";
 import { platform } from "../../lib/platform/platform.ts";
@@ -11,7 +10,7 @@ type Props = {
   subtitle?: ReactNode;
 };
 
-export const Screen = observer((props: Props) => {
+export function Screen(props: Props) {
   const { children, title, subtitle } = props;
 
   return (
@@ -31,4 +30,4 @@ export const Screen = observer((props: Props) => {
       {children}
     </div>
   );
-});
+}

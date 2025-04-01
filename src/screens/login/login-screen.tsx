@@ -1,8 +1,7 @@
-import { observer } from "mobx-react-lite";
 import { LoginButton } from "@telegram-auth/react";
 import { platform } from "../../lib/platform/platform.ts";
 import { BrowserPlatform } from "../../lib/platform/browser/browser-platform.ts";
-import React, { useState } from "react";
+import { useState } from "react";
 import { t } from "../../translations/t.ts";
 import { assert } from "../../../shared/typescript/assert.ts";
 import { TelegramPlatform } from "../../lib/platform/telegram/telegram-platform.ts";
@@ -10,7 +9,7 @@ import { ErrorScreen } from "../error-screen/error-screen.tsx";
 import { useGoogleOneTapLogin } from "react-google-one-tap-login";
 import { Button } from "../../ui/button.tsx";
 
-export const LoginScreen = observer(() => {
+export function LoginScreen() {
   const BOT_NAME = import.meta.env.VITE_BOT_NAME;
   assert(BOT_NAME, "VITE_BOT_NAME is not set");
 
@@ -74,4 +73,4 @@ export const LoginScreen = observer(() => {
       </div>
     </div>
   );
-});
+}

@@ -9,7 +9,7 @@ const countries = [
 
 type Country = (typeof countries)[number]["value"];
 
-export const SelectStory = () => {
+export function SelectStory() {
   const [value, setValue] = useState<Country>("us");
   return (
     <Select
@@ -20,4 +20,4 @@ export const SelectStory = () => {
       options={countries}
     />
   );
-};
+}

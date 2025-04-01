@@ -1,4 +1,3 @@
-import React from "react";
 import { t, translateCategory } from "../translations/t.ts";
 import { platform } from "../lib/platform/platform.ts";
 import { TelegramPlatform } from "../lib/platform/telegram/telegram-platform.ts";
@@ -34,7 +33,7 @@ type Props = {
   categoryName: string;
 };
 
-export const DeckCategoryLogo = (props: Props) => {
+export function DeckCategoryLogo(props: Props) {
   const { logo, categoryName } = props;
   const title = `${t("deck_category")}: ${translateCategory(categoryName)}`;
 
@@ -58,4 +57,4 @@ export const DeckCategoryLogo = (props: Props) => {
       )}
     </span>
   );
-};
+}

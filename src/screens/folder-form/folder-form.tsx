@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { Screen } from "../shared/screen.tsx";
 import { Label } from "../../ui/label.tsx";
 import { t } from "../../translations/t.ts";
@@ -22,7 +21,7 @@ import { FormattingSwitcher } from "../deck-form/card-form/formatting-switcher.t
 import { WysiwygField } from "../../ui/wysiwyg-field/wysiwig-field.tsx";
 import { cn } from "../../ui/cn.ts";
 
-export const FolderForm = observer(() => {
+export function FolderForm() {
   const folderStore = useFolderFormStore();
   const { folderForm } = folderStore;
   const screen = screenStore.screen;
@@ -172,4 +171,4 @@ export const FolderForm = observer(() => {
       )}
     </Screen>
   );
-});
+}

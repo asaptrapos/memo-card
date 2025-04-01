@@ -12,7 +12,7 @@ type Props = {
   fullWidth?: boolean;
 };
 
-export const Label = (props: Props) => {
+export function Label(props: Props) {
   const Tag = props.isPlain ? "span" : "label";
   const { slotRight, fullWidth } = props;
 
@@ -39,4 +39,4 @@ export const Label = (props: Props) => {
       {props.children}
     </Tag>
   );
-};
+}

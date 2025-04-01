@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { DeckCardDbType } from "../../../../functions/db/deck/decks-with-cards-schema.ts";
 import { Screen } from "../../shared/screen.tsx";
 import { t } from "../../../translations/t.ts";
@@ -20,7 +19,7 @@ type Props = {
   subtitle: string;
 };
 
-export const CardListReadonly = observer((props: Props) => {
+export function CardListReadonly(props: Props) {
   const { cards, onClick, onBack, deck, subtitle } = props;
 
   useBackButton(() => {
@@ -79,4 +78,4 @@ export const CardListReadonly = observer((props: Props) => {
       </div>
     </Screen>
   );
-});
+}
