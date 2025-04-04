@@ -33,7 +33,7 @@ export const showConfirmBrowser: ShowConfirmType = (text) => {
         >
           <div className="bg-bg w-[250px] p-5 rounded-xl text-center">
             <p>{text}</p>
-            <Flex gap={8}>
+            <Flex gap={8} mt={16}>
               <Button outline onClick={handleCancel}>
                 {t("confirm_cancel")}
               </Button>
