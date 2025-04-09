@@ -68,7 +68,7 @@ export function CardListReadonly(props: Props) {
               >
                 <div>
                   <CardNumber number={i + 1} />
-                  <span className="text-xl">{removeAllTags(card.front)}</span>
+                  <span className="text-md">{removeAllTags(card.front)}</span>
                 </div>
                 <div className="text-hint">{removeAllTags(card.back)}</div>
               </div>
